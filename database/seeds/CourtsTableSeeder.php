@@ -14,19 +14,19 @@ class CourtsTableSeeder extends Seeder
         DB::table('courts')->insert([
             [
                 'name'      => 'Court 1',
-                'fk_sports' => 7,
+                'fk_sports' => 1,
             ],
             [
                 'name'      => 'Court 2',
-                'fk_sports' => 8,
+                'fk_sports' => 2,
             ],
             [
                 'name'      => 'Gym B',
-                'fk_sports' => 9,
+                'fk_sports' => 3,
             ],
             [
                 'name'      => 'Gym Z',
-                'fk_sports' => 10,
+                'fk_sports' => 4,
             ]
         ]);
     }

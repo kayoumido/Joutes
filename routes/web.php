@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('sports', 'SportController@index');
+Route::resource('sports', 'SportController');

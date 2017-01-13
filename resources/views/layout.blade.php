@@ -4,9 +4,9 @@
 
         <meta charset="utf-8" />
         
-        <link href="css/main.css" rel="stylesheet" type="text/css" />
-        <link href="css/layout.css" rel="stylesheet" type="text/css" />
-        <link href="css/styles.css" rel="stylesheet" type="text/css" />
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/styles.css" rel="stylesheet" type="text/css" />
         
         
         <title>Laravel</title>

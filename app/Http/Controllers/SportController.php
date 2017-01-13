@@ -53,12 +53,13 @@ class SportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Sport  $sport
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sport $sport)
+    public function edit($id)
     {
-        //
+        $sport = Sport::find($id);
+        return view('sport.edit')->with('sport', $sport);
     }
 
     /**

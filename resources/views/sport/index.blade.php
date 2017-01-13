@@ -12,7 +12,7 @@
 				<tr>
 					<td class="name">{{$sport->name}}</td>
 					<td class="action">
-						<i class="fa fa-pencil"></i>
+						<a href="{{url('sports/'.$sport->id.'/edit')}}"><i class="fa fa-pencil"></i></a>
 						<i class="fa fa-trash-o" aria-hidden="true"></i>
 					</td>
 				</tr>

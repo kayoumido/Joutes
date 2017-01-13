@@ -5,7 +5,7 @@
         <meta charset="utf-8" />       
         
         <title>Joutes</title>
-        
+
     </head>
     <body>
     
@@ -23,11 +23,9 @@
     
     </div><!-- page -->
     
-    <footer>
-
-        <script src="https://use.fontawesome.com/e153ca534d.js"></script>
-
-    </footer>
+    <footer></footer>
     
+    <script src="https://use.fontawesome.com/e153ca534d.js"></script>
+
     </body>
 </html>

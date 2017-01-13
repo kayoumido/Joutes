@@ -1,0 +1,47 @@
+body{
+	margin:0px;
+	padding:0px;
+	font-family: Helvetica, Arial, sans-serif;
+}
+#container {
+	width: 640px;
+	margin: 0px auto;
+	text-align: center;
+}
+table {
+	width: 100%;
+	color: #333;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+td, th { 
+	border: 1px solid #CCC;
+	height: 30px;
+}
+td.name {
+	width: 80%;
+	text-align: left;
+	padding-left: 20px;
+}
+td.action {
+	width: 20%;
+}
+th {
+	background: #DFDFDF;
+	font-weight: bold;
+}
+tr:nth-child(even) td {
+	background: #FEFEFE;
+}
+tr:nth-child(odd) td {
+	background: #F1F1F1;
+}
+i.fa {
+	font-size: 20px;
+}
+i.fa:hover {
+	cursor: pointer;
+}
+i.fa.fa-pencil {
+	margin-right: 10px;
+}

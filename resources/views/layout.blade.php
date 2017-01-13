@@ -12,24 +12,25 @@
         <title>Laravel</title>
     </head>
     <body>
-    
-    <header>
-
-    </header>
         
-    <div id="page">
+        <header>
+
+        </header>
+            
+            <div id="page">
+                
+                <div id="content">
+
+                    @yield('content')
+
+                </div><!-- content -->
+            
+            </div><!-- page -->
         
-        <div id="content">
+        <footer>
 
-            @yield('content')
-
-        </div><!-- content -->
-    
-    </div><!-- page -->
-    
-    <footer>
-
-    </footer>
-    
+        </footer>
+        
+    <script src="https://use.fontawesome.com/e153ca534d.js"></script>
     </body>
 </html>

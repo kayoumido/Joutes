@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 
 Route::get('teams','TeamController@index');
+Route::get('team/edit/{id}','TeamController@edit');

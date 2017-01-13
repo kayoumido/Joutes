@@ -56,9 +56,10 @@ class TeamController extends Controller
      * @param  \App\team  $team
      * @return \Illuminate\Http\Response
      */
-    public function edit(team $team)
+    public function edit(team $team, $id)
     {
-        //
+        $team = Team::whereId($id)->first();
+        return view('team.edit')->with('team', $team);
     }
 
     /**

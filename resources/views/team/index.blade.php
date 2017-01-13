@@ -19,8 +19,8 @@
 				<tr>
 			      <td> {{ $team->name }} {{ $team->id }}</td>
 			      <td> 
-				      <a href="" alt="Edit"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
-				      <a href="" alt="Edit"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+				      <a href="{{ url('/team/edit/'.$team->id) }}" alt="Edit"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
+				      <a href="" alt="Delete"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 			      </td>
 			    </tr>
 

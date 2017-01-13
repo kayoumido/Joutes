@@ -7,10 +7,10 @@ This project was created so the CPNV will be able to manage sport tournaments.
 ## Table of Contents
 
 ### [Getting started](#getting-started-1)
-### [Prerequisites](#prerequisites)
-### [Homestead](#homestead)
-### [Composer](#composer)
-### [Installation](#installation)
+### [Prerequisites](#prerequisites-1)
+### [Homestead](#homestead-1)
+### [Composer](#composer-1)
+### [Installation](#installation-1)
 
 
 ## Getting started

@@ -6,12 +6,11 @@ This project was created so the CPNV will be able to manage sport tournaments.
 
 ## Table of Contents
 
-### [Work environment](#workenvironment)
-### [Getting started](#gettingstarted)
-
-### Work environment
-
-
+### [Getting started](#getting-started-1)
+### [Prerequisites](#prerequisites)
+### [Homestead](#homestead)
+### [Composer](#composer)
+### [Installation](#installation)
 
 
 ## Getting started

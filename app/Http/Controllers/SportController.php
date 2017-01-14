@@ -75,8 +75,7 @@ class SportController extends Controller
         $sport->name = $request->input('name');
         $sport->save();
 
-        $sports = Sport::all();
-        return view('sport.index')->with('sports', $sports);
+        return redirect()->route('sports.index');
     }
 
     /**

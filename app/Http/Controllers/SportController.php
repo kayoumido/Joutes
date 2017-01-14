@@ -25,7 +25,7 @@ class SportController extends Controller
      */
     public function create()
     {
-        //
+        return view('sport.create');
     }
 
     /**

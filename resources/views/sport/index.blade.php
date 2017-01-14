@@ -5,7 +5,7 @@
 		<h1>Liste des sports</h1>
 		<table>
 			<tr>
-				<th>Name</th>
+				<th>Noms</th>
 				<th>Actions</th>
 			</tr>
 			@foreach ($sports as $sport)
@@ -18,6 +18,10 @@
 				</tr>
 			@endforeach
 		</table>
+
+		<br>
+		
 		<a href="{{route('sports.create')}}" title="Créer un sport"><input type="button" value="Nouveau"></a>
+
 	</div>
 @stop

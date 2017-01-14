@@ -42,10 +42,10 @@ class SportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Sport  $sport
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Sport $sport)
+    public function show($id)
     {
         //
     }
@@ -66,21 +66,26 @@ class SportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sport  $sport
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sport $sport)
+    public function update(Request $request, $id)
     {
-        //
+        $sport = Sport::find($id);
+        $sport->name = $request->input('name');
+        $sport->save();
+
+        $sports = Sport::all();
+        return view('sport.index')->with('sports', $sports);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Sport  $sport
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sport $sport)
+    public function destroy($id)
     {
         //
     }

@@ -8,6 +8,8 @@ body{
 	margin: 0px auto;
 	text-align: center;
 }
+
+/* TABLE */
 table {
 	width: 100%;
 	color: #333;
@@ -40,6 +42,8 @@ tr:nth-child(even) td {
 tr:nth-child(odd) td {
 	background: #F1F1F1;
 }
+
+/* FONT AWESOM ICONS */
 i.fa {
 	font-size: 20px;
 }
@@ -47,5 +51,22 @@ i.fa:hover {
 	cursor: pointer;
 }
 i.fa.fa-pencil {
+	float: left;
 	margin-right: 10px;
+	margin-left: 35px;
 }
+
+
+/* FORM */
+#container div.form-error{
+	color: #F00;
+    margin-bottom: 20px;
+}
+
+#container .button-delete{
+	border:none;
+	background: none;
+	margin-right:30px
+}
+
+

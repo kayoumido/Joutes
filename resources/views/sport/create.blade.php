@@ -5,7 +5,7 @@
 		<h1>Ajouter un sport</h1>
 
 		@if(isset($error))
-			<div class="form-error">
+			<div class="alert alert-danger">
 				{{ $error }}
 			</div>
 		@endif

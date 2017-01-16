@@ -35,6 +35,7 @@ td.action {
 th {
 	background: #DFDFDF;
 	font-weight: bold;
+	text-align: center;
 }
 tr:nth-child(even) td {
 	background: #FEFEFE;
@@ -56,13 +57,7 @@ i.fa.fa-pencil {
 	margin-left: 35px;
 }
 
-
-/* FORM */
-#container div.form-error{
-	color: #F00;
-    margin-bottom: 20px;
-}
-
+/* BUTTONS */
 #container .button-delete{
 	border:none;
 	background: none;

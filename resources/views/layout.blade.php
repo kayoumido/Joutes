@@ -5,6 +5,8 @@
         <meta charset="utf-8" />       
         
         <title>Joutes</title>
+        
+        <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
 
     </head>
     <body>
@@ -28,6 +30,8 @@
     <script src="https://use.fontawesome.com/e153ca534d.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/function.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
+
 
     </body>
 </html>

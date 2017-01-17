@@ -17,3 +17,5 @@ Route::get('/', function () {
 
 
 Route::resource('teams', 'TeamController');
+Route::resource('teams.participants', 'TeamParticipantController', ['only' => ['destroy']]);
+

@@ -47,7 +47,7 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $team = Team::whereId($id)->first();
+        $team = Team::find($id);
         return view('team.show')->with('team', $team);
     }
 
@@ -59,7 +59,7 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        $team = Team::whereId($id)->first();
+        $team = Team::find($id);
         return view('team.edit')->with('team', $team);
     }
 
@@ -109,4 +109,6 @@ class TeamController extends Controller
         $team->delete();
         return redirect()->route('teams.index');
     }
+
+
 }

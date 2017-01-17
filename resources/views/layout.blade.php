@@ -26,6 +26,8 @@
     <footer></footer>
     
     <script src="https://use.fontawesome.com/e153ca534d.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/function.js"></script>
 
     </body>
 </html>

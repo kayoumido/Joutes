@@ -18,11 +18,11 @@ class SportsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Rugby',
-                'description' => 'Equipes de 10',
+                'description' => null,
             ],
             [
                 'name' => 'Volley',
-                'description' => 'Equipes de 3',
+                'description' => null,
             ],
             [
                 'name' => 'Hockey',

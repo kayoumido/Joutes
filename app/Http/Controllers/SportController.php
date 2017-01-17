@@ -122,9 +122,8 @@ class SportController extends Controller
      */
     public function destroy($id)
     {
-        $sport = Sport::find($id);
+        $sport = Sport::findOrFail($id);
         $sport->delete();
-
         return redirect()->route('sports.index');
     }
 }

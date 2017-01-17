@@ -5,17 +5,18 @@
 		<h1>Liste des sports</h1>
 		<table>
 			<tr>
-				<th>Noms</th>
-				<th>Actions</th>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Action</th>
 			</tr>
 			@foreach ($sports as $sport)
 				<tr>
 					<td class="name">{{$sport->name}}</td>
+					<td class="description">{{$sport->description}}</td>
 					<td class="action">
-						<a href="{{route('sports.edit',$sport->id)}}" title="Éditer le sport" class="edit"><i class="fa fa-pencil"></i></a>
+						<a href="{{route('sports.edit',$sport->id)}}" title="Éditer le sport" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 						{{ Form::open(array('url' => route('sports.destroy', $sport->id), 'method' => 'delete')) }}
-							<!-- <i class="fa fa-trash-o" aria-hidden="true"></i>-->
-							<button type="submit" class="button-delete">
+							<button type="button" class="button-delete" data-name="{{ $sport->name }}" data-type="sport">
 			                    <i class="fa fa-trash-o" aria-hidden="true"></i>
 			                </button>
 						{{ Form::close() }}

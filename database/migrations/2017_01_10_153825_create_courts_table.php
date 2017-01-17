@@ -19,7 +19,7 @@ class CreateCourtsTable extends Migration
             $table->integer('fk_sports')->unsigned();
             $table->string('name', 45);
 
-            $table->foreign('fk_sports')->references('id')->on('sports');
+            $table->foreign('fk_sports')->references('id')->on('sports')->onDelete('cascade');
         });
     }
 

@@ -14,12 +14,12 @@ class CreateTournamentsHasCourtsTable extends Migration
     public function up()
     {
         Schema::create('tournaments_has_courts', function (Blueprint $table) {
-
+            
             $table->integer('fk_tournaments')->unsigned();
             $table->integer('fk_courts')->unsigned();
 
-            $table->foreign('fk_tournaments')->references('id')->on('tournaments');
-            $table->foreign('fk_courts')->references('id')->on('courts');
+            $table->foreign('fk_tournaments')->references('id')->on('tournaments')->onDelete('cascade');
+            $table->foreign('fk_courts')->references('id')->on('courts')->onDelete('cascade');
 
         });
     }

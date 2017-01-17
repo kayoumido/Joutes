@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event;
 
 class EventController extends Controller
 {
@@ -13,7 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        return Event::All();
     }
 
     /**
@@ -45,7 +46,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        return Event::findOrFail($id);
     }
 
     /**

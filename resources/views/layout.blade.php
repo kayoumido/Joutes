@@ -6,28 +6,38 @@
         
         <title>Joutes</title>
 
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+
+        <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" />
+        
+        <title>Laravel</title>
     </head>
     <body>
-    
-    <header>
-
-    </header>
         
-    <div id="page">
+        <header>
+
+        </header>
+            
+            <div id="page">
+                
+                <div id="content">
+
+                    @yield('content')
+
+                </div><!-- content -->
+            
+            </div><!-- page -->
         
-        <div id="content">
+        <footer>
 
-            @yield('content')
-
-        </div><!-- content -->
-    
-    </div><!-- page -->
-    
-    <footer></footer>
-    
-    <script src="https://use.fontawesome.com/e153ca534d.js"></script>
-    <script src="/js/app.js"></script>
-    <script src="/js/function.js"></script>
-
+        </footer>
+        
+        <script src="https://use.fontawesome.com/e153ca534d.js"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+        
+        <script src="{{ asset('js/main.js') }}"></script>
     </body>
 </html>

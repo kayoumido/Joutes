@@ -15,5 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('sports', 'SportController');
+
 
 Route::resource('teams', 'TeamController');

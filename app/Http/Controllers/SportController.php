@@ -36,13 +36,24 @@ class SportController extends Controller
      */
     public function store(Request $request)
     {   
+        $error = null;
+        // Test: must be begin with 3caracter min. (all sports have minimum 3 caracters)
+        $pattern = '/^[a-zA-Z]{3}/';
+
+        // Check if name is empty OR has minimum 3caracter at the beginning
+        if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
+            $error = 'Nom de sport invalide, 3 caractères minimum';
+        }
         // Check if the name already exists 
-        if(Sport::where('name', '=', $request->input('name'))->exists()){
+        else if(Sport::where('name', '=', $request->input('name'))->exists()){
             $error = '"'.$request->input('name').'"'.' existe déjà';
-            return view('sport.create')->with('error', $error);
-        }else{
+        }
+
+        if(empty($error)){
             Sport::create($request->all());
             return redirect()->route('sports.index');
+        }else{
+            return view('sport.create')->with('error', $error);
         }
     }
 
@@ -77,18 +88,27 @@ class SportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        // Check if the name already exists 
-        if(Sport::where('name', '=', $request->input('name'))->exists()){
-            $sport = Sport::find($id);
-            $error = '"'.$request->input('name').'"'.' existe déjà';
-            return view('sport.edit')->with('error', $error)->with('sport', $sport);
-        }else{    
-            $sport = Sport::find($id);
-            $sport->update($request->all());
-        }
+    {   
+        $sport = Sport::find($id);
+        $error = null;
+        // Test: must be begin with 3caracter min. (all sports have minimum 3 caracters)
+        $pattern = '/^[a-zA-Z]{3}/';
 
-        return redirect()->route('sports.index');
+        // Check if name is empty OR has minimum 3caracter at the beginning
+        if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
+            $error = 'Nom de sport invalide, 3 caractères minimum';
+        }
+        // Check if the name already exists 
+        else if(Sport::where('name', '=', $request->input('name'))->exists()){
+            $error = '"'.$request->input('name').'"'.' existe déjà';
+        }
+            
+        if(empty($error)){
+            $sport->update($request->all());
+            return redirect()->route('sports.index');
+        }else{
+            return view('sport.edit')->with('error', $error)->with('sport', $sport);
+        }
     }
 
     /**

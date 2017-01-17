@@ -13,6 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', function ($api) {
+    $api->resource('events', 'App\Http\Controllers\EventController', [ 'only' => [
+        'index', 'show'
+    ]]);
+
+    $api->resource('events.tournaments', 'App\Http\Controllers\TournamentController', [ 'only' => [
+        'index', 'show'
+    ]]);
+
+    $api->resource('events.teams', 'App\Http\Controllers\TeamController', [ 'only' => [
+        'index', 'show'
+    ]]);
+});

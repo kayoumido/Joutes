@@ -2,7 +2,8 @@
 
 @section('content')
 	<div id="container">
-
+		<a href="/"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
+		<h1>Sports</h1>
 		<table>
 			<tr>
 				<th>Nom</th>

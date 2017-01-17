@@ -1,8 +1,9 @@
 @extends('layout')
 
 @section('content')
-	<div id="container">	
-		<h1>Ajouter un sport</h1>
+	<div id="container">
+		<a href="{{ route('sports.index') }}"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>	
+		<h1>Créer un sport</h1>
 
 		@if(isset($error))
 			<div class="alert alert-danger">
@@ -19,7 +20,6 @@
 			{{ Form::text('description', null) }}
 			<br>
 			<br>
-			<a href="{{ route('sports.index') }}"><input type="button" class="btn btn-primary" value="Retour"></a>
 			{{ Form::submit('Créer', array('class' => 'btn btn-success')) }}
 
 		{{ Form::close() }}

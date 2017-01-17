@@ -2,6 +2,7 @@
 
 @section('content')
 	<div id="container">	
+		<a href="{{ route('sports.index') }}"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
 		<h1>Editer un sport</h1>
 
 		@if(isset($error))
@@ -19,7 +20,6 @@
 			{{ Form::text('description', $sport->description) }}
 			<br>
 			<br>
-			<a href="{{ route('sports.index') }}"><input type="button" class="btn btn-primary" value="Retour"></a>
 			{{ Form::submit('Enregistrer', array('class' => 'btn btn-success')) }}
 
 		{{ Form::close() }}	

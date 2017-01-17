@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\team;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -42,10 +41,10 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\team  $team
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(team $team)
+    public function show($id)
     {
         //
     }
@@ -53,10 +52,10 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\team  $team
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(team $team, $id)
+    public function edit($id)
     {
         $team = Team::whereId($id)->first();
         return view('team.edit')->with('team', $team);
@@ -66,10 +65,10 @@ class TeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\team  $team
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, team $team)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,10 +76,10 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\team  $team
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(team $team)
+    public function destroy($id)
     {
         //
     }

@@ -100,8 +100,9 @@ class SportController extends Controller
         if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
             $error = 'Nom de sport invalide, 3 caractères minimum';
         }
-        // Check if the name already exists 
-        else if(Sport::where('name', '=', $request->input('name'))->exists()){
+        // Check if the name already exists AND is not the same between the form POST and the DB
+        // This way, we can edit just the description and save the same name, but we cannot save the same name as an other sport on DB
+        else if($sport->name != $request->input('name') && Sport::where('name', '=', $request->input('name'))->exists()){
             $error = '"'.$request->input('name').'"'.' existe déjà';
         }
             

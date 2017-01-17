@@ -16,7 +16,7 @@
 						{{ Form::open(array('url' => route('sports.destroy', $sport->id), 'method' => 'delete')) }}
 							<!-- <i class="fa fa-trash-o" aria-hidden="true"></i>-->
 							<button type="submit" class="button-delete">
-			                    <i class="fa fa-trash-o"></i>
+			                    <i class="fa fa-trash-o" aria-hidden="true"></i>
 			                </button>
 						{{ Form::close() }}
 					</td>

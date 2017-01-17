@@ -6,7 +6,9 @@ body{
 #container {
 	width: 640px;
 	margin: 0px auto;
-	text-align: center;
+}
+h1{
+	margin-bottom: 25px;
 }
 
 /* TABLE */
@@ -62,6 +64,11 @@ i.fa.fa-pencil {
 	border:none;
 	background: none;
 	margin-right:30px
+}
+
+/* FORM */
+label {
+	width:100px;
 }
 
 

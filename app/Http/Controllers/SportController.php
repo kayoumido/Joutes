@@ -15,6 +15,8 @@ class SportController extends Controller
     public function index()
     {
         $sports = Sport::all();
+
+
         return view('sport.index')->with('sports', $sports);
     }
 
@@ -42,7 +44,7 @@ class SportController extends Controller
 
         // Check if name is empty OR has minimum 3caracter at the beginning
         if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
-            $error = 'Nom de sport invalide, 3 caractères minimum';
+            $error = 'Nom invalide: 3 caractères minimum';
         }
         // Check if the name already exists 
         else if(Sport::where('name', '=', $request->input('name'))->exists()){

@@ -12,14 +12,20 @@
 
 		{{ Form::open(array('url' => route('sports.store'), 'method' => 'post')) }}
 
-			{{ Form::label('name', 'Nom du sport : ') }}
+			{{ Form::label('name', 'Nom : ') }}
 			{{ Form::text('name', null) }}
+			<br>
+			{{ Form::label('description', 'Description : ') }}
+			{{ Form::text('description', null) }}
+			<br>
+			<br>
+			<a href="{{ route('sports.index') }}"><input type="button" class="btn btn-primary" value="Retour"></a>
 			{{ Form::submit('Créer', array('class' => 'btn btn-success')) }}
 
 		{{ Form::close() }}
 
 		<br>
 		
-		<a href="{{ route('sports.index') }}"><input type="button" class="btn btn-primary" value="Retour"></a>
+		
 	</div>
 @stop

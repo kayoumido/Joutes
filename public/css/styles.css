@@ -1,3 +1,4 @@
+/* GENERAL */
 body{
 	margin:0px;
 	padding:0px;
@@ -9,6 +10,30 @@ body{
 }
 h1{
 	margin-bottom: 25px;
+}
+
+a {
+	color: #636b6f;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* WELCOM VIEW */
+.tile {
+    height: 150px;
+    background-color: #F1f1f1;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 50px;
+    margin-top:20px;
+    border: 1px solid #636b6f;
+}
+.tile:hover {
+	background-color: #636b6f;
+	color:#F1F1F1;
+	cursor: pointer;
 }
 
 /* TABLE */

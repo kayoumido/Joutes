@@ -71,7 +71,29 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $team = Team::find($id);
+        $error = null;
+
+        // Test: must be begin with 3caracter min. (all sports have minimum 3 caracters)
+        $pattern = '/^[a-zA-Z]{3}/';
+
+        // Check if name is empty OR has minimum 3 caracter at the beginning
+        if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
+            $error = 'Nom de team invalide, 3 caractères minimum';
+        }
+        // Check if the name already exists 
+        else if(Team::where('name', '=', $request->input('name'))->exists()){
+            $error = '"'.$request->input('name').'"'.' existe déjà';
+        }
+            
+        if(empty($error)){
+            $team->update($request->all());
+            return redirect()->route('teams.index');
+        }else{
+            return view('team.edit')->with('error', $error)->with('team', $team);
+        }
+
     }
 
     /**

@@ -2,14 +2,10 @@
 <html>
     <head>
 
-        <meta charset="utf-8" />
+        <meta charset="utf-8" />       
         
-        <link href="css/main.css" rel="stylesheet" type="text/css" />
-        <link href="css/layout.css" rel="stylesheet" type="text/css" />
-        <link href="css/styles.css" rel="stylesheet" type="text/css" />
-        
-        
-        <title>Laravel</title>
+        <title>Joutes</title>
+
     </head>
     <body>
     
@@ -27,9 +23,9 @@
     
     </div><!-- page -->
     
-    <footer>
-
-    </footer>
+    <footer></footer>
     
+    <script src="https://use.fontawesome.com/e153ca534d.js"></script>
+
     </body>
 </html>

@@ -3,7 +3,7 @@ $( document ).ready(function() {
     // Create custom delete alert when we click on a .button-delete
 	$('.button-delete').click(function(){
 
-		event.preventDefault();
+		event.preventDefault(); // cancel the event click, needed to delte participant in team. Without the form is sumbit on icon click
 
 		var type = $(this).data("type");
 		var name = $(this).data("name");

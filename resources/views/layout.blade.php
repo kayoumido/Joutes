@@ -5,6 +5,8 @@
         <meta charset="utf-8" />       
         
         <title>Joutes</title>
+        
+        <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" type="text/css" />

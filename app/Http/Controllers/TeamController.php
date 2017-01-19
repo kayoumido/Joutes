@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Team;
+use App\Participant;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -47,8 +48,10 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $team = Team::whereId($id)->first();
-        return view('team.show')->with('team', $team);
+        $team = Team::find($id); 
+        $pepoleNoTeam = Participant::doesntHave('teams')->get();
+   
+        return view('team.show')->with('team', $team)->with('pepoleNoTeam', $pepoleNoTeam);
     }
 
     /**
@@ -59,7 +62,7 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        $team = Team::whereId($id)->first();
+        $team = Team::find($id);
         return view('team.edit')->with('team', $team);
     }
 
@@ -109,4 +112,6 @@ class TeamController extends Controller
         $team->delete();
         return redirect()->route('teams.index');
     }
+
+
 }

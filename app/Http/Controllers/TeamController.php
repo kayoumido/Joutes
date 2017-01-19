@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event;
+use App\Team;
+use App\Tournament;
+use App\Sport;
 
 class TeamController extends Controller
 {
@@ -11,9 +15,21 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $event)
     {
-        //
+        if ($request->is('api/*')) {
+            $tournaments = Event::findOrFail($event)->tournaments;
+            $teams       = [];
+
+            foreach ($tournaments as $tournament) {
+                $teams[] = $tournament->teams;
+            }
+
+            return $teams;
+        }
+        else {
+            return true;
+        }
     }
 
     /**
@@ -40,12 +56,34 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $event_id
+     * @param  int  $team_id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Request $request, $event_id, $team_id) {
+
+        if ($request->is('api/*')) {
+            $team        = Team::findOrFail($team_id);
+            $tournaments = $team->tournaments;
+
+            foreach ($tournaments as $tournament) {
+
+                $courts = Tournament::findOrFail($tournament->id)->courts;
+                foreach ($courts as $court) {
+
+                    $team['sports'] = Sport::findOrFail($court->fk_sports)->name;
+                }
+            }
+
+            // Laravel creates a "tournaments" element in "team" array
+            // It's unset because it isn't needed.
+            unset($team['tournaments']);
+
+            return $team;
+        }
+        else {
+            return true;
+        }
     }
 
     /**

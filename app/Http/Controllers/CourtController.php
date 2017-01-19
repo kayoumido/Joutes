@@ -38,26 +38,31 @@ class CourtController extends Controller
     public function store(Request $request)
     {
         $error = null;
-        // Test: must be begin with 3caracter min. (all sports have minimum 3 caracters)
+        // Test: must be begin with 1 caracter min.
         $pattern = '/^[A-Za-z0-9]{1}/';
 
-        if(Court::where('name', '=', $request->input('name'))->exists()){
-            echo "true";
-        }
-        //$inputHasSportLinked
 
-        // Check if name is empty OR has minimum 3caracter at the beginning
-        if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
-            $error = 'Nom invalide: 3 caractères minimum';
+        // Check if the name has min. 1 caracter at the beginning
+        if(!preg_match($pattern, $request->input('name'))){
+            $error = 'Nom invalide: 1 caractère minimum';
         }
+        // Sport cannot be empty
         else if(empty($request->input('sport'))){
             $error = 'Veuillez sélectionner un sport';
+        }
+        // Check if there already is a court with the same name AND sport linked. A court can have many times same name but not for the same sport linked.
+        else if(Court::whereRaw('name = ? and fk_sports = ?', [$request->input('name'), $request->input('sport')])->exists()){
+            $error = 'Le terrain "'.$request->input('name').'" est déjà lier au sport "'.Sport::find($request->input('sport'))->name.'"';
         }
 
 
         if(empty($error)){
-            //Sport::create($request->all());
-            //return redirect()->route('sports.index');
+            $court = new Court;
+            $court->name = $request->input('name');
+            $court->fk_sports = $request->input('sport');
+            $court->save();
+
+            return redirect()->route('courts.index');
             echo "OK";
         }else{
             $dropdownList = $this->getDropDownList();
@@ -113,10 +118,10 @@ class CourtController extends Controller
     private function getDropDownList(){
         $sports = Sport::all();
         // Creation of the array will contain the datas of the dropdown list
-        // This form: array("sport1" => "sport1", "sport2" => "sport2"), ...
+        // This form: array("sport_id 1" => "sport_name 1", "sport_id 2" => "sport_name 2"), ...
         $dropdownList = array();
         for ($i=0; $i < sizeof($sports); $i++) { 
-            $dropdownList[$sports[$i]->name] = $sports[$i]->name; 
+            $dropdownList[$sports[$i]->id] = $sports[$i]->name; 
         }
         return $dropdownList;
     }

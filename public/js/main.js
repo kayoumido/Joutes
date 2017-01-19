@@ -2,6 +2,9 @@ $( document ).ready(function() {
     	
     // Create custom delete alert when we click on a .button-delete
 	$('.button-delete').click(function(){
+
+		event.preventDefault(); // cancel the event click, needed to delte participant in team. Without the form is sumbit on icon click
+
 		var type = $(this).data("type");
 		var name = $(this).data("name");
 		var title = '';
@@ -10,8 +13,11 @@ $( document ).ready(function() {
 
 		switch(type) {
 		    case "sport":
-		    	title = "Voulez-vous vraiment supprimer le sport \""+name+"\"?";
+		    	title = "Voulez-vous vraiment supprimer le sport \""+name+"\" ?";
 		        text = "La suppression de ce sport va entrainer la suppression des courts liés"
+		        break;
+          	case "teamMember":
+		    	title = "Voulez-vous vraiment supprimer le membre \""+name+"\" ?";
 		        break;
 		}
 

@@ -9,11 +9,19 @@ class TeamParticipantController extends Controller
 
     public function destroy($idParticipant, $idTeam)
     {
-
         $team = Team::find($idTeam);
         $team->participants()->detach($idParticipant);
 
         return redirect()->route('teams.show', ['id' => $idTeam]);
+    }
+
+     public function store(Request $request, $idTeam)
+    {
+		$idParticipant = $request->input('pepole'); 
+        $team = Team::find($idTeam);
+        $team->participants()->attach($idParticipant);
+
+       return redirect()->route('teams.show', ['id' => $idTeam]);
     }
 
 }

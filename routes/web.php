@@ -19,5 +19,5 @@ Route::resource('sports', 'SportController');
 
 
 Route::resource('teams', 'TeamController');
-Route::resource('teams.participants', 'TeamParticipantController', ['only' => ['destroy']]);
+Route::resource('teams.participants', 'TeamParticipantController', ['only' => ['destroy', 'store']]);
 

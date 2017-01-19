@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Court; // This is the linked model
+use App\Sport; // This is the linked model
 use Illuminate\Http\Request;
 
 class CourtController extends Controller
@@ -25,7 +25,8 @@ class CourtController extends Controller
      */
     public function create()
     {
-        //
+        $dropdownList = $this->getDropDownList();
+        return view('court.create')->with('dropdownList', $dropdownList);
     }
 
     /**
@@ -36,7 +37,32 @@ class CourtController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $error = null;
+        // Test: must be begin with 3caracter min. (all sports have minimum 3 caracters)
+        $pattern = '/^[A-Za-z0-9]{1}/';
+
+        if(Court::where('name', '=', $request->input('name'))->exists()){
+            echo "true";
+        }
+        //$inputHasSportLinked
+
+        // Check if name is empty OR has minimum 3caracter at the beginning
+        if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
+            $error = 'Nom invalide: 3 caractères minimum';
+        }
+        else if(empty($request->input('sport'))){
+            $error = 'Veuillez sélectionner un sport';
+        }
+
+
+        if(empty($error)){
+            //Sport::create($request->all());
+            //return redirect()->route('sports.index');
+            echo "OK";
+        }else{
+            $dropdownList = $this->getDropDownList();
+            return view('court.create')->with('dropdownList', $dropdownList)->with('error', $error);
+        }
     }
 
     /**
@@ -82,5 +108,16 @@ class CourtController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function getDropDownList(){
+        $sports = Sport::all();
+        // Creation of the array will contain the datas of the dropdown list
+        // This form: array("sport1" => "sport1", "sport2" => "sport2"), ...
+        $dropdownList = array();
+        for ($i=0; $i < sizeof($sports); $i++) { 
+            $dropdownList[$sports[$i]->name] = $sports[$i]->name; 
+        }
+        return $dropdownList;
     }
 }

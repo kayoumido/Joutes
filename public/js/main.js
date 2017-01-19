@@ -2,6 +2,9 @@ $( document ).ready(function() {
     	
     // Create custom delete alert when we click on a .button-delete
 	$('.button-delete').click(function(){
+
+		event.preventDefault();
+
 		var type = $(this).data("type");
 		var name = $(this).data("name");
 		var title = '';
@@ -12,6 +15,9 @@ $( document ).ready(function() {
 		    case "sport":
 		    	title = "Voulez-vous vraiment supprimer le sport \""+name+"\"?";
 		        text = "La suppression de ce sport va entrainer la suppression des courts liés"
+		        break;
+          	case "teamMember":
+		    	title = "Voulez-vous vraiment supprimer le membre \""+name+"\"?";
 		        break;
 		}
 

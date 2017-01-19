@@ -22,11 +22,11 @@
 
 			  	@foreach ($team->participants as $participant) 
 					<tr>
-				      <td> {{ $participant->last_name }}{{ $participant->first_name }} </td>
+				      <td class="name"> {{ $participant->last_name }}{{ $participant->first_name }} </td>
 				      <td> 
 					      {{ Form::open(array('url' => route('teams.participants.destroy', [$participant->pivot['fk_participants'], $participant->pivot['fk_teams']]), 'method' => 'delete')) }}
-					      	<button type="submit" class="button-delete">
-					      		<i class="fa fa-trash-o .button-delete" aria-hidden="true"></i>
+					      	<button type="submit" class="button-delete" data-type="teamMember" data-type="{{ $participant->last_name }}{{ $participant->first_name }}">
+					      		<i class="fa fa-trash-o" aria-hidden="true"></i> 
 					      	</button>
 					      {{ Form::close() }}
 				      </td>

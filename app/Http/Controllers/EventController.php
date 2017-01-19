@@ -12,9 +12,14 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return Event::All();
+    public function index(Request $request) {
+
+        if ($request->is('api/*')) {
+            return Event::All();
+        }
+        else {
+            return true;
+        }
     }
 
     /**
@@ -44,9 +49,14 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        return Event::findOrFail($id);
+    public function show(Request $request, $id) {
+
+        if ($request->is('api/*')) {
+            return Event::findOrFail($id);
+        }
+        else {
+            return true;
+        }
     }
 
     /**

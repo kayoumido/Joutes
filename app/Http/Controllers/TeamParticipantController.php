@@ -13,7 +13,7 @@ class TeamParticipantController extends Controller
         $team = Team::find($idTeam);
         $team->participants()->detach($idParticipant);
 
-        return redirect()->route('teams.index');
+        return redirect()->route('teams.show', ['id' => $idTeam]);
     }
 
 }

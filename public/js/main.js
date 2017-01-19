@@ -36,10 +36,13 @@ $( document ).ready(function() {
 		  	closeOnConfirm: false
 		},
 		function(isConfirm){
-			if(isConfirm)
+			if(isConfirm){
 				$(form).submit();
-			else
+			}
+			else{
+				if ($(".addMember")[0]) //if class exit on this page
 				$('.addMember').find("option")[0].selected = true;//display defaut select
+			}
 				
 		});
   	}

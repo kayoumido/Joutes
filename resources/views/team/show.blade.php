@@ -44,14 +44,9 @@
 
 		{{ Form::open(array('url' => route('teams.participants.store',  $team->id), 'method' => 'post')) }}
 
-			<select name="pepole" class="form-control addMember">
+			
+			{{ Form::select('pepole', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
 
-				<option hidden> Séléctionner </option>
-				@foreach ($pepoleNoTeam as $pepole)
-					<option value="{{ $pepole->id }}">{{ $pepole->last_name }} {{ $pepole->first_name }}</option>
-				@endforeach
-
-			</select>
 
 		{{ Form::close() }}
 

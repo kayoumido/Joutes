@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Team;
+use App\Participant;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -47,8 +48,10 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $team = Team::find($id);
-        return view('team.show')->with('team', $team);
+        $team = Team::find($id); 
+        $pepoleNoTeam = Participant::doesntHave('teams')->get();
+   
+        return view('team.show')->with('team', $team)->with('pepoleNoTeam', $pepoleNoTeam);
     }
 
     /**

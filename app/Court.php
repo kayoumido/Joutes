@@ -10,4 +10,9 @@ class Court extends Model
 	// And with this that work
 	public $timestamps = false;
 	protected $fillable = array('fk_sports', 'name'); // -> We have to define all data we use on our courts table (For use : ->all())
+
+	// Relation with sports table
+	public function Sport(){
+		return $this->belongsTo('App\Sport', 'fk_sports');
+	}
 }

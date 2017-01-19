@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Court; // This is the linked model
 use Illuminate\Http\Request;
 
 class CourtController extends Controller
@@ -13,7 +14,8 @@ class CourtController extends Controller
      */
     public function index()
     {
-        return view('court.index');
+        $courts = Court::all();
+        return view('court.index')->with('courts',$courts);
     }
 
     /**

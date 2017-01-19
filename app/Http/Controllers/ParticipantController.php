@@ -48,7 +48,9 @@ class ParticipantController extends Controller
      */
     public function show($id)
     {
-        //
+        $participant = Participant::find($id);  
+        return view('participant.show')->with('participant', $participant);
+
     }
 
     /**

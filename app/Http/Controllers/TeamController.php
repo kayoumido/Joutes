@@ -18,11 +18,18 @@ class TeamController extends Controller
     public function index(Request $request, $event)
     {
         if ($request->is('api/*')) {
+
             $tournaments = Event::findOrFail($event)->tournaments;
             $teams       = [];
 
             foreach ($tournaments as $tournament) {
-                $teams[] = $tournament->teams;
+                $tournament_teams = $tournament->teams;
+
+                foreach ($tournament_teams as $team) {
+
+                    $team['sports'] = $team->sports();
+                    $teams[]        = $team;
+                }
             }
 
             return $teams;
@@ -64,20 +71,8 @@ class TeamController extends Controller
 
         if ($request->is('api/*')) {
             $team        = Team::findOrFail($team_id);
-            $tournaments = $team->tournaments;
 
-            foreach ($tournaments as $tournament) {
-
-                $courts = Tournament::findOrFail($tournament->id)->courts;
-                foreach ($courts as $court) {
-
-                    $team['sports'] = Sport::findOrFail($court->fk_sports)->name;
-                }
-            }
-
-            // Laravel creates a "tournaments" element in "team" array
-            // It's unset because it isn't needed.
-            unset($team['tournaments']);
+            $team['sports'] = $team->sports();
 
             return $team;
         }

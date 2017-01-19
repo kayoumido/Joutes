@@ -7,6 +7,13 @@
 		<a href="{{ route('teams.index') }}"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
 
 		<h1> {{ $team->name }}</h1>
+
+		@if (isset($infos))
+			<div class="alert alert-succes">
+				{{ $infos }}
+			</div>
+		@endif
+
 		<h2>Membres de l'équipe</h2>
 
 		<table>
@@ -37,18 +44,22 @@
 		  	</tbody>
 
 		</table>
-
+		
 		<h2>Ajouter un membre</h2>
+		@if (isset($error))
+			<div class="alert alert-danger">
+				{{ $error }}
+			</div>
+		@else
+			{{ Form::open(array('url' => route('teams.participants.store',  $team->id), 'method' => 'post')) }}
 
-	
-
-		{{ Form::open(array('url' => route('teams.participants.store',  $team->id), 'method' => 'post')) }}
-
-			
-			{{ Form::select('pepole', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
+				
+				{{ Form::select('pepole', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
 
 
-		{{ Form::close() }}
+			{{ Form::close() }}
+		
+		@endif
 
 	</div>
 	

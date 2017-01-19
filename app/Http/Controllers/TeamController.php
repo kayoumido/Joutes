@@ -49,9 +49,17 @@ class TeamController extends Controller
     public function show($id)
     {
         $team = Team::find($id); 
+
         $pepoleNoTeam = Participant::doesntHave('teams')->get();
+        // Creation of the array will contain the datas of the dropdown list
+        // This form: array("sport1" => "sport1", "sport2" => "sport2"), ...
+        $dropdownList = array();
+        for ($i=0; $i < sizeof($pepoleNoTeam); $i++) { 
+            $dropdownList[$pepoleNoTeam[$i]->id] = $pepoleNoTeam[$i]->last_name . " " . $pepoleNoTeam[$i]->first_name; 
+        }
+
    
-        return view('team.show')->with('team', $team)->with('pepoleNoTeam', $pepoleNoTeam);
+        return view('team.show')->with('team', $team)->with('dropdownList', $dropdownList);
     }
 
     /**

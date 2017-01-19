@@ -21,10 +21,10 @@ $( document ).ready(function() {
 		        break;
 		}
 
-		alertDeleteSport(form, title, text);
+		alertConfirm(form, title, text);
   	});
 
-  	function alertDeleteSport(form, title, text){
+  	function alertConfirm(form, title, text){
   		swal({
 		  	title: title,
 		  	text: text,
@@ -32,11 +32,18 @@ $( document ).ready(function() {
 		  	showCancelButton: true,
 		  	cancelButtonText: "Annuler",
 	  		confirmButtonColor: "#DD6B55",
-		  	confirmButtonText: "Oui, supprimer",
+		  	confirmButtonText: "Confirmer",
 		  	closeOnConfirm: false
 		},
-		function(){
-			$(form).submit();
+		function(isConfirm){
+			if(isConfirm){
+				$(form).submit();
+			}
+			else{
+				if ($(".addMember")[0]) //if class exit on this page
+				$('.addMember').find("option")[0].selected = true;//display defaut select
+			}
+				
 		});
   	}
 
@@ -48,7 +55,7 @@ $( document ).ready(function() {
 
     		var teamName = $(this).find(".name").text().toLowerCase();
 
-    		if((teamName.indexOf(search) < 0))
+    		if(teamName.indexOf(search) < 0)
     			$(this).hide();
     		else
     			$(this).show();
@@ -57,5 +64,14 @@ $( document ).ready(function() {
 
     });
    
+  	$( ".addMember" ).change(function() {
+
+		var name = $(this).find("option:selected").text();
+		var form = $(this).parent();
+  		var title = "Voulez-vous ajouter \""+name+"\" à l'équipe ?";
+
+	  	alertConfirm(form, title, '');
+
+	});
 
 });

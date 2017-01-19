@@ -39,13 +39,16 @@
 		</table>
 
 		<h2>Ajouter un membre</h2>
-		<select>
-			<option> Séléctionner </option>
-			@foreach ($pepoleNoTeam as $pepole)
-				<option> {{ $pepole->last_name }} {{ $pepole->first_name }} </option>
-			@endforeach
 
-		</select>
+	
+
+		{{ Form::open(array('url' => route('teams.participants.store',  $team->id), 'method' => 'post')) }}
+
+			
+			{{ Form::select('pepole', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
+
+
+		{{ Form::close() }}
 
 	</div>
 	

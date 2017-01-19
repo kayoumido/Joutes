@@ -19,9 +19,11 @@
 				</a>
 			</div>
 			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-				<div class="tile">
-					Some text
-				</div>
+				<a href="{{ route('courts.index') }}" title="Voir toutes les équipes">
+					<div class="tile">
+						Terrains
+					</div>
+				</a>
 			</div>
 			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 				<div class="tile">

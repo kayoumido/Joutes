@@ -87,7 +87,9 @@ class CourtController extends Controller
      */
     public function edit($id)
     {
-        //
+        $court = Court::find($id);
+        $dropdownList = $this->getDropDownList();
+        return view('court.edit')->with('court', $court)->with('dropdownList', $dropdownList);
     }
 
     /**
@@ -98,8 +100,35 @@ class CourtController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $court = Court::find($id);
+
+        /* CUSTOM SPECIFIC VALIDATION */
+        $customError = null;
+        // Check if there already is a court with the same name AND sport linked. A court can have many times same name but not for the same sport linked.
+        if(Court::whereRaw('name = ? and fk_sports = ?', [$request->input('name'), $request->input('sport')])->exists()){
+            $customError = 'Le terrain "'.$request->input('name').'" est déjà lier au sport "'.Sport::find($request->input('sport'))->name.'".';
+        }
+
+
+        /* LARAVEL VALIDATION */
+        // create the validation rules
+        $rules = array(
+            'name' => 'required|min:1|max:20',
+            'sport' => 'required',
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails() || !empty($customError)) {
+            $dropdownList = $this->getDropDownList();
+            return view('court.edit')->with('dropdownList', $dropdownList)->with('court', $court)->withErrors($validator->errors())->with('customError', $customError);
+        } else {
+            $court->name = $request->input('name');
+            $court->fk_sports = $request->input('sport');
+            $court->update();
+            return redirect()->route('courts.index');
+        }
     }
 
     /**

@@ -57,6 +57,8 @@ php -r "unlink('composer-setup.php');"
 
 ### Installation
 
+_All the following commands must be exectued in the project folder_
+
 First of all you need to clone the project on your local machine. You can either download the zip or use the git commands.
 
 ```

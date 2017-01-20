@@ -91,6 +91,16 @@ class SportController extends Controller
     {   
         $sport = Sport::find($id);
 
+
+        /* CUSTOM SPECIFIC VALIDATION */
+        $customError = null;
+        // Check if the name already exists AND is not the same between the form POST and the DB 
+        // This way, we can edit just the description and save the same name, but we cannot save the same name as an other sport on DB 
+        if($sport->name != $request->input('name') && Sport::where('name', '=', $request->input('name'))->exists()){ 
+            $customError = 'le sport "'.$request->input('name').'"'.' existe déjà.'; 
+        } 
+
+
         /* LARAVEL VALIDATION */
         // create the validation rules
         $rules = array(
@@ -100,12 +110,13 @@ class SportController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
 
-        if ($validator->fails()) {
-            return view('sport.edit')->withErrors($validator->errors())->with('sport', $sport);
+        if ($validator->fails() || !empty($customError)) {
+            return view('sport.edit')->withErrors($validator->errors())->with('sport', $sport)->with('customError', $customError);
         } else { 
             $sport->update($request->all());
             return redirect()->route('sports.index');
         }
+
     }
 
     /**

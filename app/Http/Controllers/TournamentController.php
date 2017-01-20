@@ -73,10 +73,13 @@ class TournamentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $event, $tournament_id)
+    public function show(Request $request, $event_id, $tournament_id)
     {
         if ($request->is('api/*')) {
-            
+
+            // try and find event
+            Event::findOrFail($event_id);
+
             $court_names = [];
             $sport       = '';
             $team_names  = [];

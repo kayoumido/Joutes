@@ -13,16 +13,16 @@ class TeamsTableSeeder extends Seeder
     {
         DB::table('teams')->insert([
             [
-                'name' => 'Kiwi Power',
+                'name' => 'SI-TIA',
             ],
             [
-                'name' => 'LSDM',
+                'name' => 'Team PRW2',
             ],
             [
-                'name' => 'La bonne biffle',
+                'name' => 'CFC3',
             ],
             [
-                'name' => 'Le pape est vaudois',
+                'name' => 'FPA',
             ]
         ]);
     }

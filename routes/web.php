@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('sports', 'SportController');
-
+Route::resource('courts', 'CourtController');
 
 Route::resource('teams', 'TeamController');
 Route::resource('teams.participants', 'TeamParticipantController', ['only' => ['destroy', 'store']]);

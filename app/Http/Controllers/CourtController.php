@@ -139,7 +139,9 @@ class CourtController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $court = Court::findOrFail($id);
+        $court->delete();
+        return redirect()->route('courts.index');
     }
 
     private function getDropDownList(){

@@ -11,12 +11,16 @@ $( document ).ready(function() {
 		switch(type) {
 		    case "sport":
 		    	title = "Voulez-vous vraiment supprimer le sport \""+name+"\"?";
-		        text = "La suppression de ce sport va entrainer la suppression des courts liés"
+		        text = "La suppression de ce sport va entrainer la suppression des courts liés";
+		        break;
+	        case "court":
+	        	title = "Voulez-vous vraiment supprimer le terrain \""+name+"\"?";
 		        break;
 		}
 
 		alertDeleteSport(form, title, text);
   	});
+
 
   	function alertDeleteSport(form, title, text){
   		swal({

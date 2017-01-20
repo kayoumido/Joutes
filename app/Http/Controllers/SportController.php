@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Sport; // This is the linked model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SportController extends Controller
 {
@@ -38,24 +39,21 @@ class SportController extends Controller
      */
     public function store(Request $request)
     {   
-        $error = null;
-        // Test: must be begin with 3caracter min. (all sports have minimum 3 caracters)
-        $pattern = '/^[a-zA-Z]{3}/';
 
-        // Check if name is empty OR has minimum 3caracter at the beginning
-        if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
-            $error = 'Nom invalide: 3 caractères minimum';
-        }
-        // Check if the name already exists 
-        else if(Sport::where('name', '=', $request->input('name'))->exists()){
-            $error = '"'.$request->input('name').'"'.' existe déjà';
-        }
+        /* LARAVEL VALIDATION */
+        // create the validation rules
+        $rules = array(
+            'name' => 'required|min:3|max:35|unique:sports,name',
+            'description' => 'max:45' 
+        );
 
-        if(empty($error)){
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return view('sport.create')->withErrors($validator->errors());
+        } else {
             Sport::create($request->all());
             return redirect()->route('sports.index');
-        }else{
-            return view('sport.create')->with('error', $error);
         }
     }
 

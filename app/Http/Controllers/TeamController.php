@@ -48,7 +48,8 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $team = Team::find($id);
+        $team = Team::find($id); 
+        $error = null;
 
         $pepoleNoTeam = Participant::doesntHave('teams')->get();
         // Creation of the array will contain the datas of the dropdown list
@@ -58,8 +59,10 @@ class TeamController extends Controller
             $dropdownList[$pepoleNoTeam[$i]->id] = $pepoleNoTeam[$i]->last_name . " " . $pepoleNoTeam[$i]->first_name;
         }
 
+        if(empty($dropdownList))
+            $error = "Aucun membre ne peut être ajouté car ils font tous déjà partis d'une team !";
 
-        return view('team.show')->with('team', $team)->with('dropdownList', $dropdownList);
+        return view('team.show')->with('team', $team)->with('dropdownList', $dropdownList)->with('error', $error);
     }
 
     /**

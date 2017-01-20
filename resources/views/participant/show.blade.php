@@ -15,34 +15,41 @@
 
 		<h2>Equipes du participant</h2>
 
-		<table>
 
-			<thead>
-				<tr>
-					<th>Nom de l'équipe</th>
-					<th>Options</th>
-				</tr>
-			</thead>
+		@if ( count($participant->teams) == 0  )
+			<div class="alert alert-danger">
+				Aucun équipe lié à ce membre !
+			</div>
+		@else
+			<table>
 
-			<tbody>
-
-			  	@foreach ($participant->teams as $team) 
+				<thead>
 					<tr>
-				      <td class="name"> {{ $team->name }} </td>
-				      <td> 
-					      {{ Form::open(array('url' => route('teams.participants.destroy', [$team->pivot['fk_participants'], $team->pivot['fk_teams']]), 'method' => 'delete')) }}
-					      	<button type="submit" class="button-delete" data-type="memberTeam" data-name='"{{ $participant->last_name }} {{ $participant->first_name }}" de "{{ $team->name }}"'>
-					      		<i class="fa fa-trash-o" aria-hidden="true"></i> 
-					      	</button>
-					      {{ Form::close() }}
-				      </td>
-				    </tr>
+						<th>Nom de l'équipe</th>
+						<th>Options</th>
+					</tr>
+				</thead>
 
-				@endforeach
-		    	
-		  	</tbody>
+				<tbody>
 
-		</table>
+				  	@foreach ($participant->teams as $team) 
+						<tr>
+					      <td class="name"> {{ $team->name }} </td>
+					      <td> 
+						      {{ Form::open(array('url' => route('teams.participants.destroy', [$team->pivot['fk_participants'], $team->pivot['fk_teams']]), 'method' => 'delete')) }}
+						      	<button type="submit" class="button-delete" data-type="memberTeam" data-name='"{{ $participant->last_name }} {{ $participant->first_name }}" de "{{ $team->name }}"'>
+						      		<i class="fa fa-trash-o" aria-hidden="true"></i> 
+						      	</button>
+						      {{ Form::close() }}
+					      </td>
+					    </tr>
+
+					@endforeach
+			    	
+			  	</tbody>
+
+			</table>
+		@endif
 
 
 		<h2>Ajouter ce membre à une team</h2>

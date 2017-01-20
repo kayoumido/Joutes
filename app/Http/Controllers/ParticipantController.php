@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Participant;
 use App\Team;
 use Illuminate\Http\Request;
+use Cookie;
 
 class ParticipantController extends Controller
 {
@@ -51,7 +52,7 @@ class ParticipantController extends Controller
     {
         $participant = Participant::find($id);
         $teams = Team::all();
-        $error = null;
+        $error = $infos = null;
 
         $dropdownList = array(); 
 
@@ -70,7 +71,12 @@ class ParticipantController extends Controller
          if(empty($dropdownList))
             $error = "Aucune team ne peut être ajouté à ce participant car il fait déjà partis de toutes les teams !";
 
-        return view('participant.show')->with('participant', $participant)->with('dropdownList', $dropdownList)->with('error', $error);
+        if(Cookie::get('infos') != null){
+            $infos = Cookie::get('infos');
+            Cookie::queue(Cookie::forget('infos'));
+        }
+
+        return view('participant.show')->with('participant', $participant)->with('dropdownList', $dropdownList)->with('error', $error)->with('infos', $infos);
 
     }
 

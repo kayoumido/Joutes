@@ -47,12 +47,14 @@ $( document ).ready(function() {
 			}
 			else{
 				if ($(".addMember")[0]) //if class exit on this page
-				$('.addMember').find("option")[0].selected = true;//display defaut select
+					$('.addMember').find("option")[0].selected = true;//display defaut select
 			}
 				
 		});
   	}
 
+  	// Search in a table and display only result who correspond to the search
+  	// @author Dessauges Antoine
   	$('.search').on('input',function(e){
     	
     	var search = $('.search').val().toLowerCase();
@@ -70,6 +72,8 @@ $( document ).ready(function() {
 
     });
    
+   	// Open confirm pop-up when select change
+  	// @author Dessauges Antoine
   	$( ".addMember" ).change(function() {
 
 		var name = $(this).find("option:selected").text();

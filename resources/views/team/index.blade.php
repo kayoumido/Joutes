@@ -1,3 +1,4 @@
+<!-- @author Dessauges Antoine -->
 @extends('layout')
 
 @section('content')

@@ -10,4 +10,9 @@ class Sport extends Model
 	// And with this that work
 	public $timestamps = false;
 	protected $fillable = array('name', 'description'); // -> We have to define all data we use on our sport table (For use ->all())
+
+    public function courts()
+    {
+        return $this->hasMany('App\Court', 'fk_sports');
+    }
 }

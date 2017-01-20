@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event;
 
 class EventController extends Controller
 {
@@ -11,9 +12,14 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request) {
+
+        if ($request->is('api/*')) {
+            return Event::All();
+        }
+        else {
+            return true;
+        }
     }
 
     /**
@@ -43,9 +49,14 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Request $request, $id) {
+
+        if ($request->is('api/*')) {
+            return Event::findOrFail($id);
+        }
+        else {
+            return true;
+        }
     }
 
     /**

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Team;
 use App\Participant;
 use Illuminate\Http\Request;
+use App\Event;
+use App\Team;
+use App\Tournament;
+use App\Sport;
 
 class TeamController extends Controller
 {
@@ -13,8 +17,28 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $event)
     {
+        if ($request->is('api/*')) {
+
+            $tournaments = Event::findOrFail($event)->tournaments;
+            $teams       = [];
+
+            foreach ($tournaments as $tournament) {
+                $tournament_teams = $tournament->teams;
+
+                foreach ($tournament_teams as $team) {
+
+                    $team['sports'] = $team->sports();
+                    $teams[]        = $team;
+                }
+            }
+
+            return $teams;
+        }
+        else {
+            return true;
+        }
         $teams = Team::all();
         return view('team.index')->with('teams', $teams);
     }
@@ -43,11 +67,22 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $event_id
+     * @param  int  $team_id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show(Request $request, $event_id, $team_id) {
+
+        if ($request->is('api/*')) {
+            $team        = Team::findOrFail($team_id);
+
+            $team['sports'] = $team->sports();
+
+            return $team;
+        }
+        else {
+            return true;
+        }
         $team = Team::find($id); 
 
         $pepoleNoTeam = Participant::doesntHave('teams')->get();

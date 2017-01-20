@@ -74,7 +74,10 @@ $( document ).ready(function() {
 
 		var name = $(this).find("option:selected").text();
 		var form = $(this).parent();
-  		var title = "Voulez-vous ajouter \""+name+"\" à l'équipe ?";
+		if($(this).attr("name") == "team")
+			var title = "Voulez-vous ajouter ce participant à l'équipe \""+name+"\" ?";
+		else 
+  			var title = "Voulez-vous ajouter \""+name+"\" à l'équipe ?";
 
 	  	alertConfirm(form, title, '');
 

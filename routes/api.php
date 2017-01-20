@@ -32,11 +32,11 @@ $api->version('v1', function ($api) {
         'index', 'show'
     ]]);
 
-    $api->resource('events.tournaments', 'App\Http\Controllers\TournamentController', [ 'only' => [
+    $api->resource('events.tournaments', 'App\Http\Controllers\EventTournamentController', [ 'only' => [
         'index', 'show'
     ]]);
 
-    $api->resource('events.teams', 'App\Http\Controllers\TeamController', [ 'only' => [
+    $api->resource('events.teams', 'App\Http\Controllers\EventTeamController', [ 'only' => [
         'index', 'show'
     ]]);
 });

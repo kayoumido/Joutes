@@ -25,7 +25,7 @@ class TeamParticipantController extends Controller
         $team = Team::find($idTeam);
 
         $participant = Participant::find($idParticipant);
-        $participantName = $participant->first_name. " " .$participant->last_name;
+        $participantName = $participant->last_name. " " .$participant->first_name;
 
         $team->participants()->detach($idParticipant); //delete the row in intemrediate table
 
@@ -67,7 +67,7 @@ class TeamParticipantController extends Controller
             $team->participants()->attach($idParticipant); //add the row in intemrediate table 
 
             $participant = Participant::find($idParticipant);
-            $participantName = $participant->first_name. " " .$participant->last_name;
+            $participantName = $participant->last_name. " " .$participant->first_name;
 
             $infosMessage = 'Le participant "'. $participantName .'" à bien été ajouté à la team "'. $team->name .'" !';
             Cookie::queue('infos', $infosMessage, 1);
@@ -82,7 +82,7 @@ class TeamParticipantController extends Controller
             $team->participants()->attach($id); //add the row in intemrediate table 
 
             $participant = Participant::find($id);
-            $participantName = $participant->first_name. " " .$participant->last_name;
+            $participantName = $participant->last_name. " " .$participant->first_name;
 
             $infosMessage = 'Le participant "'. $participantName .'" à bien été ajouté à la team "'. $team->name .'" !';
             Cookie::queue('infos', $infosMessage, 1);

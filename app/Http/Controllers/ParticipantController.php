@@ -20,7 +20,9 @@ class ParticipantController extends Controller
     public function index()
     {
         $participants = Participant::all();
-        return view('participant.index')->with('participants', $participants);
+        return view('participant.index', array(
+            "participants" => $participants,
+        ));
     }
 
     /**
@@ -80,7 +82,13 @@ class ParticipantController extends Controller
             Cookie::queue(Cookie::forget('infos')); //delete cookie
         }
 
-        return view('participant.show')->with('participant', $participant)->with('dropdownList', $dropdownList)->with('error', $error)->with('infos', $infos);
+        return view('participant.show', array(
+            'participant'  => $participant,
+            'dropdownList' => $dropdownList,
+            'error'        => $error,
+            'infos'        => $infos,
+        ));
+
 
     }
 

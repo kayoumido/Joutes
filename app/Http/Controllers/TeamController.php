@@ -19,7 +19,9 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::all();
-        return view('team.index')->with('teams', $teams);
+        return view('team.index', array(
+            "teams" => $teams,
+        ));
     }
 
     /**
@@ -73,7 +75,12 @@ class TeamController extends Controller
             Cookie::queue(Cookie::forget('infos')); //delete cookie
         }
 
-        return view('team.show')->with('team', $team)->with('dropdownList', $dropdownList)->with('error', $error)->with('infos', $infos);
+        return view('team.show', array(
+            "team"         => $team,
+            "dropdownList" => $dropdownList,
+            "error"        => $error,
+            "infos"        => $infos,
+        ));
     }
 
     /**
@@ -87,7 +94,9 @@ class TeamController extends Controller
     public function edit($id)
     {
         $team = Team::find($id);
-        return view('team.edit')->with('team', $team);
+        return view('team.edit', array(
+            "team" => $team,
+        ));
     }
 
     /**
@@ -121,7 +130,10 @@ class TeamController extends Controller
             $team->update($request->all());
             return redirect()->route('teams.index');
         }else{
-            return view('team.edit')->with('error', $error)->with('team', $team);
+            return view('team.edit', array(
+                "error" => $error,
+                "team" => $team,
+            ));
         }
 
     }

@@ -38,6 +38,21 @@
 		</table>
 
 
+		<h2>Ajouter ce membre à une team</h2>
+		@if (isset($error))
+			<div class="alert alert-danger">
+				{{ $error }}
+			</div>
+		@else
+			{{ Form::open(array('url' => route('teams.participants.store',  $participant->id), 'method' => 'post')) }}
+
+				
+				{{ Form::select('team', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
+
+
+			{{ Form::close() }}
+		
+		@endif
 
 	</div>
 	

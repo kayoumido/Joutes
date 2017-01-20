@@ -9,7 +9,7 @@
 		<h1> {{ $team->name }}</h1>
 
 		@if (isset($infos))
-			<div class="alert alert-succes">
+			<div class="alert alert-success">
 				{{ $infos }}
 			</div>
 		@endif

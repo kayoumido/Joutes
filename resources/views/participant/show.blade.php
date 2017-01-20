@@ -6,6 +6,13 @@
 		<a href="{{ route('participants.index') }}"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
 
 		<h1> {{ $participant->last_name }} {{ $participant->first_name }}</h1>
+
+		@if (isset($infos))
+			<div class="alert alert-success">
+				{{ $infos }}
+			</div>
+		@endif
+
 		<h2>Equipes du participant</h2>
 
 		<table>

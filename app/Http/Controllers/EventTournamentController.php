@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Tournament;
 use App\Event;
 use App\Sport;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EventTournamentController extends Controller
 {
@@ -54,14 +55,17 @@ class EventTournamentController extends Controller
     {
         if ($request->is('api/*')) {
 
-            // try and find event
-            Event::findOrFail($event_id);
+            // get event
+            $event             = Event::findOrFail($event_id);
+            $tournament        = $event->tournament($tournament_id);
+            $court_names       = [];
+            $sport             = '';
+            $team_names        = [];
 
-            $court_names = [];
-            $sport       = '';
-            $team_names  = [];
-
-            $tournament = Tournament::findOrFail($tournament_id);
+            // check if tournament belongs to event
+            if (empty($tournament)) {
+                throw new NotFoundHttpException("Tournament " . $tournament_id . " doesn't belong to Event " . $event_id);
+            }
 
             $courts = Tournament::findOrFail($tournament_id)->courts;
             $teams  = Tournament::findOrFail($tournament_id)->teams;

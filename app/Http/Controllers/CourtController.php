@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Court; // This is the linked model
 use App\Sport; // This is the linked model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CourtController extends Controller
 {
@@ -37,36 +38,33 @@ class CourtController extends Controller
      */
     public function store(Request $request)
     {
-        $error = null;
-        // Test: must be begin with 1 caracter min.
-        $pattern = '/^[A-Za-z0-9]{1}/';
-
-
-        // Check if the name has min. 1 caracter at the beginning
-        if(!preg_match($pattern, $request->input('name'))){
-            $error = 'Nom invalide: 1 caractère minimum';
-        }
-        // Sport cannot be empty
-        else if(empty($request->input('sport'))){
-            $error = 'Veuillez sélectionner un sport';
-        }
+        /* CUSTOM SPECIFIC VALIDATION */
+        $customError = null;
         // Check if there already is a court with the same name AND sport linked. A court can have many times same name but not for the same sport linked.
-        else if(Court::whereRaw('name = ? and fk_sports = ?', [$request->input('name'), $request->input('sport')])->exists()){
-            $error = 'Le terrain "'.$request->input('name').'" est déjà lier au sport "'.Sport::find($request->input('sport'))->name.'"';
+        if(Court::whereRaw('name = ? and fk_sports = ?', [$request->input('name'), $request->input('sport')])->exists()){
+            $customError = 'Le terrain "'.$request->input('name').'" est déjà lier au sport "'.Sport::find($request->input('sport'))->name.'".';
         }
 
 
-        if(empty($error)){
+        /* LARAVEL VALIDATION */
+        // create the validation rules
+        $rules = array(
+            'name' => 'required|min:1|max:20',
+            'sport' => 'required',
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails() || !empty($customError)) {
+            $dropdownList = $this->getDropDownList();
+            return view('court.create')->with('dropdownList', $dropdownList)->withErrors($validator->errors())->with('customError', $customError);
+        } else {
             $court = new Court;
             $court->name = $request->input('name');
             $court->fk_sports = $request->input('sport');
             $court->save();
 
             return redirect()->route('courts.index');
-            echo "OK";
-        }else{
-            $dropdownList = $this->getDropDownList();
-            return view('court.create')->with('dropdownList', $dropdownList)->with('error', $error);
         }
     }
 

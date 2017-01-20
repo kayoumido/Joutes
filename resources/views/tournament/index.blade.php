@@ -12,7 +12,7 @@
 			</tr>
 			@foreach ($tournaments as $tournament)
 				<tr>
-					<td class="name" style="width:40%">{{$tournament->name}}</td>
+					<td class="name" style="width:40%"><a href="{{route('tournaments.show', $tournament->id)}}" title="Voir le tournoi">{{$tournament->name}}</a></td>
 					<td class="description" style="width:40%">{{ $tournament->courts[0]->sport->name }}</td>
 					<td class="action" style="width:20%">
 						<a href="{{route('tournaments.edit',$tournament->id)}}" title="Éditer le tournoi" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>

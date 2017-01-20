@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tournament; // This is the linked model
 use Illuminate\Http\Request;
 
 class TournamentController extends Controller
@@ -13,7 +14,8 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        //
+        $tournaments = Tournament::all();
+        return view('tournament.index')->with('tournaments', $tournaments);
     }
 
     /**

@@ -17,9 +17,8 @@ class EventController extends Controller
         if ($request->is('api/*')) {
             return Event::All();
         }
-        else {
-            return true;
-        }
+
+        return true;
     }
 
     /**
@@ -54,9 +53,8 @@ class EventController extends Controller
         if ($request->is('api/*')) {
             return Event::findOrFail($id);
         }
-        else {
-            return true;
-        }
+
+        return true;
     }
 
     /**

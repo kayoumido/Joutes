@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Team;
 use App\Event;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EventTeamController extends Controller
 {
@@ -44,7 +45,13 @@ class EventTeamController extends Controller
     public function show(Request $request, $event_id, $team_id) {
 
         if ($request->is('api/*')) {
-            $team = Team::findOrFail($team_id);
+
+            $event = Event::findOrFail($event_id);
+            $team  = Team::findOrFail($team_id);
+
+            if (!$event->team($team_id)) {
+                throw new NotFoundHttpException("Team " . $team_id . " doesn't belong to Event " . $event_id);
+            }
 
             $team['sports'] = $team->sports();
 

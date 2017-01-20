@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use App\Team;
 
 class Event extends Model
 {
@@ -19,6 +20,22 @@ class Event extends Model
                 return $tournament;
             }
         }
+    }
 
+    public function team($id) {
+        $team  = Team::findOrFail($id);
+
+        // get tournaments in which the team is and tournaments in event
+        $t_tournaments = $team->tournaments;
+        $e_tournaments = $this->tournaments;
+
+        foreach ($t_tournaments as $t_tournament) {
+
+            foreach ($e_tournaments as $e_tournament) {
+
+                if ($e_tournament->id === $t_tournament->id)
+                    return true;
+            }
+        }
     }
 }

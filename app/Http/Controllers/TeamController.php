@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Team;
 use App\Participant;
 use Illuminate\Http\Request;
+use Cookie;
 
 class TeamController extends Controller
 {
@@ -49,7 +50,7 @@ class TeamController extends Controller
     public function show($id)
     {
         $team = Team::find($id); 
-        $error = null;
+        $error = $infos = null;
 
         $pepoleNoTeam = Participant::doesntHave('teams')->get();
         // Creation of the array will contain the datas of the dropdown list
@@ -62,7 +63,12 @@ class TeamController extends Controller
         if(empty($dropdownList))
             $error = "Aucun membre ne peut être ajouté car ils font tous déjà partis d'une team !";
 
-        return view('team.show')->with('team', $team)->with('dropdownList', $dropdownList)->with('error', $error);
+        if(Cookie::get('infos') != null){
+            $infos = Cookie::get('infos');
+            Cookie::queue(Cookie::forget('infos'));
+        }
+
+        return view('team.show')->with('team', $team)->with('dropdownList', $dropdownList)->with('error', $error)->with('infos', $infos);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Sport; // This is the linked model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SportController extends Controller
 {
@@ -38,24 +39,21 @@ class SportController extends Controller
      */
     public function store(Request $request)
     {   
-        $error = null;
-        // Test: must be begin with 3caracter min. (all sports have minimum 3 caracters)
-        $pattern = '/^[a-zA-Z]{3}/';
 
-        // Check if name is empty OR has minimum 3caracter at the beginning
-        if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
-            $error = 'Nom invalide: 3 caractères minimum';
-        }
-        // Check if the name already exists 
-        else if(Sport::where('name', '=', $request->input('name'))->exists()){
-            $error = '"'.$request->input('name').'"'.' existe déjà';
-        }
+        /* LARAVEL VALIDATION */
+        // create the validation rules
+        $rules = array(
+            'name' => 'required|min:3|max:35|unique:sports,name',
+            'description' => 'max:45' 
+        );
 
-        if(empty($error)){
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return view('sport.create')->withErrors($validator->errors());
+        } else {
             Sport::create($request->all());
             return redirect()->route('sports.index');
-        }else{
-            return view('sport.create')->with('error', $error);
         }
     }
 
@@ -92,26 +90,33 @@ class SportController extends Controller
     public function update(Request $request, $id)
     {   
         $sport = Sport::find($id);
-        $error = null;
-        // Test: must be begin with 3caracter min. (all sports have minimum 3 caracters)
-        $pattern = '/^[a-zA-Z]{3}/';
 
-        // Check if name is empty OR has minimum 3caracter at the beginning
-        if(empty($request->input('name')) || !preg_match($pattern, $request->input('name'))){
-            $error = 'Nom de sport invalide, 3 caractères minimum';
-        }
-        // Check if the name already exists AND is not the same between the form POST and the DB
-        // This way, we can edit just the description and save the same name, but we cannot save the same name as an other sport on DB
-        else if($sport->name != $request->input('name') && Sport::where('name', '=', $request->input('name'))->exists()){
-            $error = '"'.$request->input('name').'"'.' existe déjà';
-        }
-            
-        if(empty($error)){
+
+        /* CUSTOM SPECIFIC VALIDATION */
+        $customError = null;
+        // Check if the name already exists AND is not the same between the form POST and the DB 
+        // This way, we can edit just the description and save the same name, but we cannot save the same name as an other sport on DB 
+        if($sport->name != $request->input('name') && Sport::where('name', '=', $request->input('name'))->exists()){ 
+            $customError = 'le sport "'.$request->input('name').'"'.' existe déjà.'; 
+        } 
+
+
+        /* LARAVEL VALIDATION */
+        // create the validation rules
+        $rules = array(
+            'name' => 'required|min:3|max:35',
+            'description' => 'max:45' 
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails() || !empty($customError)) {
+            return view('sport.edit')->withErrors($validator->errors())->with('sport', $sport)->with('customError', $customError);
+        } else { 
             $sport->update($request->all());
             return redirect()->route('sports.index');
-        }else{
-            return view('sport.edit')->with('error', $error)->with('sport', $sport);
         }
+
     }
 
     /**

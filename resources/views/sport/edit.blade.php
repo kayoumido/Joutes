@@ -5,11 +5,18 @@
 		<a href="{{ route('sports.index') }}"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
 		<h1>Editer un sport</h1>
 
-		@if(isset($error))
+		@if ($errors->any() || isset($customError))
 			<div class="alert alert-danger">
-				{{ $error }}
-			</div>
-		@endif
+				@if ($errors->any())
+		            @foreach ($errors->all() as $error)
+		                {{ $error }}<br>        
+		            @endforeach
+		        @endif
+		        @if (isset($customError))
+		        	{{ $customError}}
+		        @endif
+	        </div>
+        @endif
 
 		{{ Form::open(array('url' => route('sports.update', $sport->id), 'method' => 'put')) }}
 

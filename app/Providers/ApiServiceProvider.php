@@ -13,12 +13,13 @@ class ApiServiceProvider extends RouteServiceProvider
      * Bootstrap the application services.
      *
      * @return void
+     * @author Doran Kayoumi
      */
     public function boot()
     {
         parent::boot();
 
-        //change the not found model exception to a symfony exception (dingo handles only symfony... )
+        // change the not found model exception to a symfony exception (dingo handles only symfony... )
         app('Dingo\Api\Exception\Handler')->register(function (ModelNotFoundException $exception) {
             throw new NotFoundHttpException($exception->getMessage() ,$previous = $exception);
         });

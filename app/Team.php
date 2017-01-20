@@ -14,15 +14,31 @@ class Team extends Model
         return $this->belongsToMany('App\Participant', 'participants_has_teams', 'fk_teams' ,'fk_participants');
     }
 
+	/**
+	 * Create a new belongs to many relationship instance between Team and Tournament
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 *
+	 * @author Doran Kayoumi
+	 */
     public function tournaments() {
         return $this->belongsToMany('App\Tournament', 'tournaments_has_teams', 'fk_teams', 'fk_tournaments');
     }
 
+	/**
+	 * Get sports of a team
+	 *
+	 * @return \Illuminate\Database\Eloquent\Model
+	 *
+	 * @author Doran Kayoumi
+	 */
     public function sports() {
 
-        $sports;
+		// Get team tournaments
         $tournaments = $this->tournaments;
+		$sports;
 
+		// Loop through tournaments to get soorts
         foreach ($tournaments as $tournament) {
 
             $courts = Tournament::findOrFail($tournament->id)->courts;

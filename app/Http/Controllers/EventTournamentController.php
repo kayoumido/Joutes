@@ -13,19 +13,25 @@ class EventTournamentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request  $request
+     * @param int $event_id
      * @return \Illuminate\Http\Response
+     *
+     * @author Doran Kayoumi
      */
-    public function index(Request $request, $event)
-    {
+    public function index(Request $request, $event_id) {
+        // check is it's an api request
         if ($request->is('api/*')) {
-            $tournaments = Event::findOrFail($event)->tournaments;
+            // get event tournaments
+            $tournaments = Event::findOrFail($event_id)->tournaments;
 
-            // for ($i = 0; $i < count($tournaments); ++$i) {
+            // loop through tournaments to get courts and sport
             foreach ($tournaments as $tournament) {
 
                 $court_names = [];
                 $sport       = '';
 
+                // get tournament courts
                 $courts = Tournament::findOrFail($tournament->id)->courts;
 
                 foreach ($courts as $court) {
@@ -48,33 +54,41 @@ class EventTournamentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param \Illuminate\Http\Request  $request
+     * @param  int  $event_id
+     * @param  int  $tournament_id
      * @return \Illuminate\Http\Response
+     *
+     * @author Doran Kayoumi
      */
-    public function show(Request $request, $event_id, $tournament_id)
-    {
+    public function show(Request $request, $event_id, $tournament_id) {
+        // check is it's an api request
         if ($request->is('api/*')) {
 
-            // get event
-            $event             = Event::findOrFail($event_id);
-            $tournament        = $event->tournament($tournament_id);
-            $court_names       = [];
-            $sport             = '';
-            $team_names        = [];
+            // get event and event tournaments
+            $event       = Event::findOrFail($event_id);
+            $tournament  = $event->tournament($tournament_id);
+            $court_names = [];
+            $sport       = '';
+            $team_names  = [];
 
             // check if tournament belongs to event
             if (empty($tournament)) {
+                // error
                 throw new NotFoundHttpException("Tournament " . $tournament_id . " doesn't belong to Event " . $event_id);
             }
 
+            // get tournament courts and teams
             $courts = Tournament::findOrFail($tournament_id)->courts;
             $teams  = Tournament::findOrFail($tournament_id)->teams;
 
+            // get tournament courts and sport
             foreach ($courts as $court) {
                 $court_names[] = $court->name;
                 $sport         = Sport::findOrFail($court->fk_sports);
             }
 
+            // get tournament teams
             foreach ($teams as $team) {
                 $team_names[] = $team->name;
             }

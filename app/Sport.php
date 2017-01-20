@@ -5,14 +5,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Sport extends Model
-{	
+{
 	// I added this because when I try to save() Sport value an updated_At "xy" error appears
 	// And with this that work
 	public $timestamps = false;
 	protected $fillable = array('name', 'description'); // -> We have to define all data we use on our sport table (For use ->all())
 
-    public function courts()
-    {
+	/**
+	 * Create a new has many relationship instance between Court and Sport
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 *
+	 * @author Doran Kayoumi
+	 */
+    public function courts() {
         return $this->hasMany('App\Court', 'fk_sports');
     }
 }

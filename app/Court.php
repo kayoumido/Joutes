@@ -11,8 +11,13 @@ class Court extends Model
 	public $timestamps = false;
 	protected $fillable = array('fk_sports', 'name'); // -> We have to define all data we use on our courts table (For use : ->all())
 
-	// Relation with sports table
-	public function Sport(){
+    /**
+     * Create a new belongs to relationship instance between Court and Sport
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     * @author Doran Kayoumi
+     */
         return $this->belongsTo(Sport::class, "fk_sports");
 	}
 }

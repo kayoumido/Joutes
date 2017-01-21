@@ -17,8 +17,12 @@ class TournamentsHasCourtsTableSeeder extends Seeder
                 'fk_courts'      => 1,
             ],
             [
+                'fk_tournaments' => 1,
+                'fk_courts'      => 2,
+            ],
+            [
                 'fk_tournaments' => 2,
-                'fk_courts'      => 4,
+                'fk_courts'      => 3,
             ]
         ]);
     }

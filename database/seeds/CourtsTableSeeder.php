@@ -18,7 +18,7 @@ class CourtsTableSeeder extends Seeder
             ],
             [
                 'name'      => 'Court 2',
-                'fk_sports' => 2,
+                'fk_sports' => 1,
             ],
             [
                 'name'      => 'Gym B',

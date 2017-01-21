@@ -19,12 +19,15 @@ $( document ).ready(function() {
 	        case "court":
 	        	title = "Voulez-vous vraiment supprimer le terrain \""+name+"\"?";
 		        break;
+		    case "tournament":
+		    	title = "Voulez-vous vraiment supprimer le tournois \""+name+"\" ?";
+		        break;  
           	case "teamMember":
 		    	title = "Voulez-vous vraiment supprimer \""+name+"\" de cette équipe ?";
 		        break;
 		    case "memberTeam":
 		    	title = "Voulez-vous vraiment retirer "+name+" ?";
-		        break;
+		        break;  
 		}
 
 		alertConfirm(form, title, text);

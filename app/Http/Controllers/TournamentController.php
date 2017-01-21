@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tournament; // This is the linked model
+use App\Sport;
 use Illuminate\Http\Request;
 
 class TournamentController extends Controller
@@ -25,7 +26,8 @@ class TournamentController extends Controller
      */
     public function create()
     {
-        //
+        $dropdownList = $this->getDropDownList();
+        return view('tournament.create')->with('dropdownList', $dropdownList);
     }
 
     /**
@@ -86,4 +88,17 @@ class TournamentController extends Controller
         $tournament->delete();
         return redirect()->route('tournaments.index');
     }
+
+
+    private function getDropDownList(){
+        $sports = Sport::all();
+        // Creation of the array will contain the datas of the dropdown list
+        // This form: array("sport_id 1" => "sport_name 1", "sport_id 2" => "sport_name 2"), ...
+        $dropdownList = array();
+        for ($i=0; $i < sizeof($sports); $i++) { 
+            $dropdownList[$sports[$i]->id] = $sports[$i]->name; 
+        }
+        return $dropdownList;
+    }
+
 }

@@ -108,9 +108,9 @@ i:hover{
 
 /* FORM */
 label {
-	width:100px;
+	width:115px;
 }
-select.courtHasSport{
+select.allSameStyle, input.allSameStyle{
 	width:164px;
 	height:28px;
 }

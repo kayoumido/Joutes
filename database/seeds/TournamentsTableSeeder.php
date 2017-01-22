@@ -16,16 +16,16 @@ class TournamentsTableSeeder extends Seeder
                 'name'       => 'Tournoi football Ste-Croix',
                 'start_date' => date("Y-m-d"),
                 'end_date'   => date("Y-m-d"),
-                'start_time' => date("H:i:s"),
-                'end_time'   => date("H:i:s"),
+                'start_time' => date("H:i"),
+                'end_time'   => date("H:i"),
                 'fk_events'  => 1,
             ],
             [
                 'name'       => 'Dream Volley',
                 'start_date' => date("Y-m-d"),
                 'end_date'   => date("Y-m-d"),
-                'start_time' => date("H:i:s"),
-                'end_time'   => date("H:i:s"),
+                'start_time' => date("H:i"),
+                'end_time'   => date("H:i"),
                 'fk_events'  => 2,
             ]
         ]);

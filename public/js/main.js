@@ -1,6 +1,8 @@
 $( document ).ready(function() {
     	
     // Create custom delete alert when we click on a .button-delete
+    // @author Dessaules Loïc
+    // @modified by Dessauges Antoine
 	$('.button-delete').click(function(){
 
 		event.preventDefault(); // cancel the event click, needed to delte participant in team. Without the form is sumbit on icon click
@@ -94,6 +96,7 @@ $( document ).ready(function() {
 
 
 /* FORM VALIDATIONS */
+// @author Dessaules Loïc
 $('.formSend').click(function(){
 	var form = $(this).parent();
 	var formId = form.attr('id');
@@ -138,22 +141,30 @@ $('.formSend').click(function(){
 	    	var endDateValue = $('#formTournament #endDate').val();
 
 	    	var patternName = /^[a-zA-Z0-9-_ ]{3,45}$/;
+	    	var patternSport = /^[1-9]+$/; // '' = empty, 1-2-3-... = sport
 	    	var patternDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 	    	var patternTime = /^([01]\d|2[0-3]):?([0-5]\d)$/;
 
 	    	if(!patternName.test(nameValue)){
 	    		error += 'Le champ Nom ne doit pas être vide et doit avoir entre 3 et 45 caractères.<br>';
 	    	}
+	    	if(!patternSport.test(sportValue)){
+	    		error += 'Aucun sport sélectionné.<br>';
+	    	}
 	    	if(!patternTime.test(startTimeValue)){
 	    		error += 'Le champ Heure de début ne doit pas être vide et doit être sous la forme hh:mm.<br>';
 	    	}
-
-	    	console.log(nameValue + " - " + sportValue + " - " + startDateValue + " - " + startTimeValue + " - " + endDateValue);
+	    	if(!patternDate.test(startDateValue)){
+	    		error += 'Le champ Date de début ne doit pas être vide et doit être sous la forme jj.mm.aaaa.<br>';
+	    	}
+	    	if(!patternDate.test(endDateValue)){
+	    		error += 'Le champ Date de début ne doit pas être vide et doit être sous la forme jj.mm.aaaa.<br>';
+	    	}
 	    	break;
 	}
 
 	if(error == ''){
-		//form.submit();
+		form.submit();
 	}else{
 		$('.alert').remove();
 		$('.alert-danger').remove();

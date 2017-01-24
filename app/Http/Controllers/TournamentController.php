@@ -60,7 +60,7 @@ class TournamentController extends Controller
         /* LARAVEL VALIDATION */
         // create the validation rules
         $rules = array(
-            'name' => 'required|min:3|max:45',
+            'name' => 'required|min:3|max:40',
             'sport' => 'required'
         );
 
@@ -113,7 +113,14 @@ class TournamentController extends Controller
     {
         $tournament = Tournament::find($id);
         $dropdownList = $this->getDropDownList();
-        $sport = $tournament->courts[0]->sport;
+
+        // normal case, there is a court linked to the tournament
+        if(isset($tournament->courts[0])){
+          $sport = $tournament->courts[0]->sport; // get the sport linked
+        }else{
+          // Court has been deleted so we don't have any sport linked
+          $sport = null; 
+        }
         return view('tournament.edit')->with('tournament', $tournament)->with('dropdownList', $dropdownList)->with('sport', $sport);
     }
 
@@ -147,7 +154,7 @@ class TournamentController extends Controller
         /* LARAVEL VALIDATION */
         // create the validation rules
         $rules = array(
-            'name' => 'required|min:3|max:45',
+            'name' => 'required|min:3|max:40',
             'sport' => 'required'
         );
 

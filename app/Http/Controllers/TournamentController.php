@@ -206,7 +206,12 @@ class TournamentController extends Controller
 
         if ($validator->fails() || !empty($customErrors)) {
             $tournament = Tournament::find($id);
-            $sport = $tournament->courts[0]->sport;
+            if(isset($tournament->courts[0])){
+              $sport = $tournament->courts[0]->sport;
+            }else{
+              $sport = null;
+            }
+            
             $dropdownList = $this->getDropDownList();
             return view('tournament.edit')->with('dropdownList', $dropdownList)
                                           ->with('tournament', $tournament)

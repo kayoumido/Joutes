@@ -18,7 +18,7 @@
 	        </div>
         @endif
 
-		{{ Form::open(array('url' => route('sports.update', $sport->id), 'method' => 'put')) }}
+		{{ Form::open(array('url' => route('sports.update', $sport->id), 'method' => 'put',  'id' => 'formSport')) }}
 
 			{{ Form::label('name', 'Nom : ') }}
 			{{ Form::text('name', $sport->name) }}
@@ -27,7 +27,7 @@
 			{{ Form::text('description', $sport->description) }}
 			<br>
 			<br>
-			{{ Form::submit('Enregistrer', array('class' => 'btn btn-success')) }}
+			{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}
 
 		{{ Form::close() }}	
 		

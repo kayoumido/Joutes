@@ -21,4 +21,5 @@ class Court extends Model
     public function sport(){
         return $this->belongsTo(Sport::class, "fk_sports");
     }
+
 }

@@ -24,7 +24,7 @@
 			{{ Form::text('name', $court->name) }}
 			<br>
 			{{ Form::label('Sport', 'Sport : ') }}
-			{{ Form::select('sport', $dropdownList, $court->sport->id, ['placeholder' => 'Sélectionner', 'class' => 'courtHasSport']) }}
+			{{ Form::select('sport', $dropdownList, $court->sport->id, ['placeholder' => 'Sélectionner', 'class' => 'allSameStyle']) }}
 			<br>
 			<br>
 			{{ Form::submit('Enregistrer', array('class' => 'btn btn-success')) }}

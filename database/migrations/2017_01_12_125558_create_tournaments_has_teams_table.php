@@ -18,7 +18,7 @@ class CreateTournamentsHasTeamsTable extends Migration
             $table->integer('fk_tournaments')->unsigned();
             $table->integer('fk_teams')->unsigned();
 
-            $table->foreign('fk_tournaments')->references('id')->on('tournaments');
+            $table->foreign('fk_tournaments')->references('id')->on('tournaments')->onDelete('cascade');;
             $table->foreign('fk_teams')->references('id')->on('teams');
         });
     }

@@ -60,7 +60,7 @@ class TournamentController extends Controller
         /* LARAVEL VALIDATION */
         // create the validation rules
         $rules = array(
-            'name' => 'required|min:3|max:40',
+            'name' => 'required|min:3|max:45',
             'sport' => 'required'
         );
 
@@ -147,7 +147,7 @@ class TournamentController extends Controller
         /* LARAVEL VALIDATION */
         // create the validation rules
         $rules = array(
-            'name' => 'required|min:3|max:40',
+            'name' => 'required|min:3|max:45',
             'sport' => 'required'
         );
 

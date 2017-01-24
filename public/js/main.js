@@ -129,12 +129,31 @@ $('.formSend').click(function(){
 	    		error += 'Aucun sport sélectionné.<br>';
 	    	}
 	        break;
+
+	    case "formTournament":
+	    	var nameValue = $('#formTournament #name').val();
+	    	var sportValue = $('#formTournament #sport').val();
+	    	var startDateValue = $('#formTournament #startDate').val();
+	    	var startTimeValue = $('#formTournament #startTime').val();
+	    	var endDateValue = $('#formTournament #endDate').val();
+
+	    	var patternName = /^[a-zA-Z0-9-_ ]{3,45}$/;
+	    	var patternDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+	    	var patternTime = /^([01]\d|2[0-3]):?([0-5]\d)$/;
+
+	    	if(!patternName.test(nameValue)){
+	    		error += 'Le champ Nom ne doit pas être vide et doit avoir entre 3 et 45 caractères.<br>';
+	    	}
+	    	if(!patternTime.test(startTimeValue)){
+	    		error += 'Le champ Heure de début ne doit pas être vide et doit être sous la forme hh:mm.<br>';
+	    	}
+
+	    	console.log(nameValue + " - " + sportValue + " - " + startDateValue + " - " + startTimeValue + " - " + endDateValue);
+	    	break;
 	}
 
 	if(error == ''){
-		$('.alert').remove();
-		$('.alert-danger').remove();
-		form.submit();
+		//form.submit();
 	}else{
 		$('.alert').remove();
 		$('.alert-danger').remove();

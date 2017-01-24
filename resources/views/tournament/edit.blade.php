@@ -20,14 +20,14 @@
 	        </div>
         @endif
 
-		{{ Form::open(array('url' => route('tournaments.update', $tournament->id), 'method' => 'put')) }}
+		{{ Form::open(array('url' => route('tournaments.update', $tournament->id), 'method' => 'put', 'id' => 'formTournament')) }}
 
 			{{ Form::label('name', 'Nom :') }}
 			{{ Form::text('name', $tournament->name) }}
 			<br>
 			<br>
 			{{ Form::label('Sport', 'Sport :') }}
-			{{ Form::select('sport', $dropdownList, $sport->id, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle')) }}
+			{{ Form::select('sport', $dropdownList, $sport->id, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 			<br>
 			(la liste contient uniquement les sports qui ont au minimum un terrain lié)
 			<br>
@@ -44,7 +44,7 @@
 			{{ Form::date('endDate', $tournament->end_date, array('class' => 'allSameStyle')) }}
 			<br>
 			<br>
-			{{ Form::submit('Enregistrer', array('class' => 'btn btn-success')) }}
+			{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}
 
 		{{ Form::close() }}
 

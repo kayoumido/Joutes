@@ -14,11 +14,15 @@ class ParticipantController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessauges Antoine
      */
     public function index()
     {
         $participants = Participant::all();
-        return view('participant.index')->with('participants', $participants);
+        return view('participant.index', array(
+            "participants" => $participants,
+        ));
     }
 
     /**
@@ -47,6 +51,8 @@ class ParticipantController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessauges Antoine
      */
     public function show($id)
     {
@@ -63,8 +69,8 @@ class ParticipantController extends Controller
         }
         for ($i=0; $i < sizeof($teams); $i++) { 
 
-            if(count($participant->teams) == 0 || !in_array($teams[$i]->name, $teamOfThisMember))
-                    $dropdownList[$teams[$i]->id] = $teams[$i]->name;
+            if(count($participant->teams) == 0 || !in_array($teams[$i]->name, $teamOfThisMember)) //if this current team is not in the teams of the member
+                $dropdownList[$teams[$i]->id] = $teams[$i]->name;
         
         }//for
 
@@ -73,10 +79,16 @@ class ParticipantController extends Controller
 
         if(Cookie::get('infos') != null){
             $infos = Cookie::get('infos');
-            Cookie::queue(Cookie::forget('infos'));
+            Cookie::queue(Cookie::forget('infos')); //delete cookie
         }
 
-        return view('participant.show')->with('participant', $participant)->with('dropdownList', $dropdownList)->with('error', $error)->with('infos', $infos);
+        return view('participant.show', array(
+            'participant'  => $participant,
+            'dropdownList' => $dropdownList,
+            'error'        => $error,
+            'infos'        => $infos,
+        ));
+
 
     }
 

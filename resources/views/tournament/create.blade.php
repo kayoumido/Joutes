@@ -20,14 +20,14 @@
 	        </div>
         @endif
 
-		{{ Form::open(array('url' => route('tournaments.store'), 'method' => 'post')) }}
+		{{ Form::open(array('url' => route('tournaments.store'), 'method' => 'post', 'id' => 'formTournament')) }}
 
 			{{ Form::label('name', 'Nom :') }}
 			{{ Form::text('name', null) }}
 			<br>
 			<br>
 			{{ Form::label('Sport', 'Sport :') }}
-			{{ Form::select('sport', $dropdownList, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle')) }}
+			{{ Form::select('sport', $dropdownList, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 			<br>
 			(la liste contient uniquement les sports qui ont au minimum un terrain lié)
 			<br>
@@ -44,7 +44,7 @@
 			{{ Form::date('endDate', \Carbon\Carbon::now(), array('class' => 'allSameStyle')) }}
 			<br>
 			<br>
-			{{ Form::submit('Créer', array('class' => 'btn btn-success')) }}
+			{{ Form::button('Créer', array('class' => 'btn btn-success formSend')) }}
 
 		{{ Form::close() }}
 

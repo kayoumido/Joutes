@@ -18,16 +18,16 @@
 	        </div>
         @endif
 
-		{{ Form::open(array('url' => route('courts.update', $court->id), 'method' => 'put')) }}
+		{{ Form::open(array('url' => route('courts.update', $court->id), 'method' => 'put', 'id' => 'formCourt')) }}
 
 			{{ Form::label('name', 'Nom : ') }}
 			{{ Form::text('name', $court->name) }}
 			<br>
 			{{ Form::label('Sport', 'Sport : ') }}
-			{{ Form::select('sport', $dropdownList, $court->sport->id, ['placeholder' => 'Sélectionner', 'class' => 'allSameStyle']) }}
+			{{ Form::select('sport', $dropdownList, $court->sport->id, ['placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport']) }}
 			<br>
 			<br>
-			{{ Form::submit('Enregistrer', array('class' => 'btn btn-success')) }}
+			{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}
 
 		{{ Form::close() }}	
 		

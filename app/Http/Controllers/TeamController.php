@@ -13,11 +13,15 @@ class TeamController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessauges Antoine
      */
     public function index()
     {
         $teams = Team::all();
-        return view('team.index')->with('teams', $teams);
+        return view('team.index', array(
+            "teams" => $teams,
+        ));
     }
 
     /**
@@ -46,6 +50,8 @@ class TeamController extends Controller
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessauges Antoine
      */
     public function show($id)
     {
@@ -53,6 +59,7 @@ class TeamController extends Controller
         $error = $infos = null;
 
         $pepoleNoTeam = Participant::doesntHave('teams')->get();
+
         // Creation of the array will contain the datas of the dropdown list
         // This form: array("sport1" => "sport1", "sport2" => "sport2"), ...
         $dropdownList = array();
@@ -65,10 +72,15 @@ class TeamController extends Controller
 
         if(Cookie::get('infos') != null){
             $infos = Cookie::get('infos');
-            Cookie::queue(Cookie::forget('infos'));
+            Cookie::queue(Cookie::forget('infos')); //delete cookie
         }
 
-        return view('team.show')->with('team', $team)->with('dropdownList', $dropdownList)->with('error', $error)->with('infos', $infos);
+        return view('team.show', array(
+            "team"         => $team,
+            "dropdownList" => $dropdownList,
+            "error"        => $error,
+            "infos"        => $infos,
+        ));
     }
 
     /**
@@ -76,11 +88,15 @@ class TeamController extends Controller
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessauges Antoine
      */
     public function edit($id)
     {
         $team = Team::find($id);
-        return view('team.edit')->with('team', $team);
+        return view('team.edit', array(
+            "team" => $team,
+        ));
     }
 
     /**
@@ -89,6 +105,8 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
+     * 
+     * @author Dessauges Antoine
      */
     public function update(Request $request, $id)
     {
@@ -112,7 +130,10 @@ class TeamController extends Controller
             $team->update($request->all());
             return redirect()->route('teams.index');
         }else{
-            return view('team.edit')->with('error', $error)->with('team', $team);
+            return view('team.edit', array(
+                "error" => $error,
+                "team" => $team,
+            ));
         }
 
     }
@@ -122,6 +143,8 @@ class TeamController extends Controller
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessauges Antoine
      */
     public function destroy($id)
     {

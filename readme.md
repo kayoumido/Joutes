@@ -11,6 +11,7 @@ This project was created so the CPNV will be able to manage sport tournaments.
 ### [Homestead](#homestead-1)
 ### [Composer](#composer-1)
 ### [Installation](#installation-1)
+### [Possible problems](#possible-problems-1)
 
 
 ## Getting started
@@ -46,6 +47,8 @@ To allow us to have exactly the same work environment, we decided to use Homeste
 
 _Composer is a tool for dependency management in PHP. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you._
 
+If you don't have composer installed, execute the following commads to do so :  
+
 ```
 
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -62,6 +65,8 @@ First of all you need to clone the project on your local machine. You can either
 ```
 $ git clone https://github.com/CPNV-ES/Joutes.git
 ```
+
+_All the following commands must be exectued in the project folder_
 
 Now you need to install all the dependencies of the project.
 
@@ -81,7 +86,7 @@ Once the file is created, you need to generate a new key.
 $ php artisan key:generate
 ```
 
-The project is almost up and running, the only thing left is to set up the DB. In the .env file you'll need to set the database information :
+The project is almost up and running, the only thing left to do is to create the DB, then in the .env file you'll need to set the database information :
 
 ```
 DB_HOST=127.0.0.1
@@ -91,7 +96,7 @@ DB_USERNAME=homestead
 DB_PASSWORD=secret
 ```
 
-Then you'll need to run the migrations so the different tables for the project will be created in your DB.
+Once the DB created and configured, you'll need to run the migrations so the different tables for the project will be created.
 
 ```
 $ php artisan migrate
@@ -104,3 +109,18 @@ $ php artisan db:seed
 ```
 
 So there, now you're up and running and you can start messing arround with the project.
+
+### Possible problems
+#### Homestead
+If you've used homestead, it might redirect you to the wrong site, so you'll need to exectute the following command :
+
+```
+$ vagrant provision
+```
+
+#### DB problems
+If you run into an error "Class XYZ not found" after seeding the DB, execute the following command :
+
+```
+$ composer dump-autoload
+```

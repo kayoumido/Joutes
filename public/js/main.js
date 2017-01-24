@@ -123,8 +123,8 @@ $('.formSend').click(function(){
 	    	var sportValue = $('#formCourt #sport').val(); // '' = empty, 1-2-3-... = sport
 
 	    	var patternName = /^[a-zA-Z0-9-_ ]{1,20}$/;
-	    	var patternSport = /^[1-9]+$/;
-	    	console.log(nameValue + ' - '+sportValue);
+	    	var patternSport = /^[0-9]+$/;
+
 	    	if(!patternName.test(nameValue)){
 	    		error += 'Le champ Nom ne doit pas être vide et doit avoir entre 1 et 20 caractères.<br>';
 	    	}
@@ -141,7 +141,7 @@ $('.formSend').click(function(){
 	    	var endDateValue = $('#formTournament #endDate').val();
 
 	    	var patternName = /^[a-zA-Z0-9-_ ]{3,45}$/;
-	    	var patternSport = /^[1-9]+$/; // '' = empty, 1-2-3-... = sport
+	    	var patternSport = /^[0-9]+$/; // '' = empty, 1-2-3-... = sport
 	    	var patternDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 	    	var patternTime = /^([01]\d|2[0-3]):?([0-5]\d)$/;
 
@@ -161,6 +161,8 @@ $('.formSend').click(function(){
 	    		error += 'Le champ Date de début ne doit pas être vide et doit être sous la forme jj.mm.aaaa.<br>';
 	    	}
 	    	break;
+
+	    	alert(sportValue);
 	}
 
 	if(error == ''){

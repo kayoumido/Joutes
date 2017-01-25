@@ -95,10 +95,7 @@ class EventTournamentController extends Controller
 
             // adding found sport and courts to tournaments array.
             // This is done because, these informations aren't found when getting info from tournament.
-
-            $sport_name = empty($sport) ? "No sports" : $sport->name;
-
-            $tournament['sport']  = $sport_name;
+            $tournament['sport']  = empty($sport) ? "No sports" : $sport->name;
             $tournament['courts'] = $court_names;
             $tournament['teams']  = $team_names;
 

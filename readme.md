@@ -86,7 +86,7 @@ Once the file is created, you need to generate a new key.
 $ php artisan key:generate
 ```
 
-The project is almost up and running, the only thing left to do is to create the DB, then in the .env file you'll need to set the database information :
+The project is almost up and running, in the .env file you'll need to configure the database information :
 
 ```
 DB_HOST=127.0.0.1
@@ -94,6 +94,12 @@ DB_PORT=3306
 DB_DATABASE=joutes
 DB_USERNAME=homestead
 DB_PASSWORD=secret
+```
+
+The only thing left to do is to create the DB. If you're using homestead, add the DB name in your Homestead.yaml file. Then you need to provision your VM.
+
+```
+$ vagrant provision
 ```
 
 Once the DB created and configured, you'll need to run the migrations so the different tables for the project will be created.

@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Validator;
 class SportController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the sports.
      *
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function index()
     {
@@ -20,9 +22,11 @@ class SportController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new sport.
      *
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function create()
     {
@@ -30,10 +34,12 @@ class SportController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created sport in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function store(Request $request)
     {   
@@ -56,10 +62,12 @@ class SportController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified sport.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function show($id)
     {
@@ -67,10 +75,12 @@ class SportController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified sport.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function edit($id)
     {
@@ -79,11 +89,13 @@ class SportController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified sport in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function update(Request $request, $id)
     {   
@@ -118,10 +130,12 @@ class SportController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified sport from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function destroy($id)
     {

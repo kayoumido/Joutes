@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Validator;
 class CourtController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of courts.
      *
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function index()
     {
@@ -20,9 +22,11 @@ class CourtController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new court.
      *
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function create()
     {
@@ -31,10 +35,12 @@ class CourtController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created court in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function store(Request $request)
     {
@@ -69,10 +75,12 @@ class CourtController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified court.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function show($id)
     {
@@ -80,10 +88,12 @@ class CourtController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified court.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function edit($id)
     {
@@ -93,11 +103,13 @@ class CourtController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified court in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function update(Request $request, $id)
     {   
@@ -132,10 +144,12 @@ class CourtController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified court from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
      */
     public function destroy($id)
     {

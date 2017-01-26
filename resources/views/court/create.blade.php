@@ -1,3 +1,5 @@
+<!-- @author Dessaules Loïc -->
+
 @extends('layout')
 
 @section('content')

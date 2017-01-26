@@ -1,8 +1,13 @@
 <?php
 
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Model of tournaments table.
+ *
+ * @author Dessaules Loïc
+ */
 
 class Tournament extends Model
 {

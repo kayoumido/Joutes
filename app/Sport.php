@@ -4,6 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Model of sports table.
+ *
+ * @author Dessaules Loïc
+ */
+
 class Sport extends Model
 {
 	// I added this because when I try to save() Sport value an updated_At "xy" error appears

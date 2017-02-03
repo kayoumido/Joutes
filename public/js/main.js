@@ -1,6 +1,9 @@
 $( document ).ready(function() {
 
-	$("#multiple-teams-select").select2();
+	$("#multiple-teams-select").select2({
+		placeholder: 'teams',
+  		allowClear: true
+  	});
 
     // Create custom delete alert when we click on a .button-delete
     // @author Dessaules Loïc

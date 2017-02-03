@@ -27,7 +27,7 @@ img.return{
     width: 50px;
 }
 
-/* WELCOM VIEW */
+/* WELCOME VIEW */
 .tile {
     height: 150px;
     background-color: #F1f1f1;
@@ -54,7 +54,7 @@ table a{
 	text-decoration: none;
 	color: #333;
 }
-td, th { 
+td, th {
 	border: 1px solid #CCC;
 	height: 30px;
 }
@@ -114,5 +114,3 @@ select.allSameStyle, input.allSameStyle{
 	width:164px;
 	height:28px;
 }
-
-

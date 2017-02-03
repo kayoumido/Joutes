@@ -1,0 +1,15 @@
+header.header {
+    background-color: #fff;
+}
+
+header.header .navbar-brand {
+    height: 100px; !important
+}
+
+.navbar-brand img {
+    height: 100%; !important
+}
+
+.navbar-nav li a {
+    line-height: 75px;
+}

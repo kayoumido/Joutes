@@ -116,6 +116,12 @@ class TournamentController extends Controller
             foreach ($courts as $court) {
                 $tournament->courts()->attach($court->id);
             }
+            // if there are teams, save them on the tournaments_has_team table
+            if(!empty($request->input('teams'))){
+                foreach ($request->input('teams') as $team) {
+                    $tournament->teams()->attach($team);
+                }
+            }
             return redirect()->route('tournaments.index');
         }
     }

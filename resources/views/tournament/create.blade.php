@@ -47,7 +47,7 @@
 			<br>
 			<br>
 			{{ Form::label('teams', 'Équipes participantes :') }}
-			{{ Form::select('teams', $dropdownListTeams, null, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
+			{{ Form::select('teams[]', $dropdownListTeams, null, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
 			<br>
 			<br>
 			{{ Form::button('Créer', array('class' => 'btn btn-success formSend')) }}

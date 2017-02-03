@@ -43,6 +43,13 @@ class EventTournamentController extends Controller
                 // This is done because, these informations aren't found when getting info from tournament.
                 $tournament['sport']  = $sport->name;
                 $tournament['courts'] = $court_names;
+
+                // remove unwanted elements from array
+                unset($tournament['start_date']);
+                unset($tournament['end_date']);
+                unset($tournament['start_time']);
+                unset($tournament['end_time']);
+                unset($tournament['fk_events']);
             }
 
             return $tournaments;
@@ -95,9 +102,19 @@ class EventTournamentController extends Controller
 
             // adding found sport and courts to tournaments array.
             // This is done because, these informations aren't found when getting info from tournament.
-            $tournament['sport']  = empty($sport) ? "No sports" : $sport->name;
-            $tournament['courts'] = $court_names;
-            $tournament['teams']  = $team_names;
+            $tournament['sport']        = empty($sport) ? "No sports" : $sport->name;
+            $tournament['courts']       = $court_names;
+            $tournament['teams']        = $team_names;
+            // Theses elements are added to array and set to nothing because they aren't managed yet.
+            $tournament['group_matchs'] = null;
+            $tournament['winner']       = null;
+
+            // remove unwanted elements from array
+            unset($tournament['start_date']);
+            unset($tournament['end_date']);
+            unset($tournament['start_time']);
+            unset($tournament['end_time']);
+            unset($tournament['fk_events']);
 
             return $tournament;
         }

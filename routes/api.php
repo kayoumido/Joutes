@@ -13,18 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::resource('events', 'EventController', [ 'only' => [
-//     'index', 'show'
-// ]]);
-//
-// Route::resource('events.tournaments', 'TournamentController', [ 'only' => [
-//     'index', 'show'
-// ]]);
-//
-// Route::resource('events.teams', 'TeamController', [ 'only' => [
-//     'index', 'show'
-// ]]);
-
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {

@@ -1,5 +1,7 @@
 $( document ).ready(function() {
-    	
+
+	$("#multiple-teams-select").select2();
+
     // Create custom delete alert when we click on a .button-delete
     // @author Dessaules Loïc
     // @modified by Dessauges Antoine

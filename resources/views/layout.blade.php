@@ -10,6 +10,7 @@
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 
         <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" />
@@ -39,6 +40,7 @@
         <script src="https://use.fontawesome.com/e153ca534d.js"></script>
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+        <script src="{{ asset('js/select2.full.min.js') }}"></script>
         
         <script src="{{ asset('js/main.js') }}"></script>
     </body>

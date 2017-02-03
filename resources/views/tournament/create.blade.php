@@ -29,7 +29,7 @@
 			<br>
 			<br>
 			{{ Form::label('Sport', 'Sport :') }}
-			{{ Form::select('sport', $dropdownList, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
+			{{ Form::select('sport', $dropdownListSports, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 			<br>
 			(la liste contient uniquement les sports qui ont au minimum un terrain lié)
 			<br>
@@ -44,6 +44,10 @@
 			<br>
 			{{ Form::label('endDate', 'Date de fin :') }}
 			{{ Form::date('endDate', \Carbon\Carbon::now(), array('class' => 'allSameStyle')) }}
+			<br>
+			<br>
+			{{ Form::label('teams', 'Équipes participantes :') }}
+			{{ Form::select('teams', $dropdownListTeams, null, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
 			<br>
 			<br>
 			{{ Form::button('Créer', array('class' => 'btn btn-success formSend')) }}

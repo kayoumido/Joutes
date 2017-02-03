@@ -55,6 +55,10 @@
 			{{ Form::date('endDate', $tournament->end_date, array('class' => 'allSameStyle')) }}
 			<br>
 			<br>
+			{{ Form::label('teams', 'Équipes participantes :') }}
+			{{ Form::select('teams[]', $dropdownListTeams, $teamsAreParticipatingId, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
+			<br>
+			<br>
 			{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}
 			
 		{{ Form::close() }}

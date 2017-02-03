@@ -152,6 +152,13 @@ class TournamentController extends Controller
     {
         $tournament = Tournament::find($id);
         $dropdownListSports = $this->getDropDownListSports();
+        $dropdownListTeams = $this->getDropDownListTeams();
+        $teamsAreParticipating = $tournament->teams;
+        if(count($teamsAreParticipating) > 0){
+            foreach ($teamsAreParticipating as $team) {
+                $teamsAreParticipatingId[] = $team->id;
+            }
+        }
 
         // normal case, there is a court linked to the tournament
         if(isset($tournament->courts[0])){
@@ -160,7 +167,11 @@ class TournamentController extends Controller
             // Court has been deleted so we don't have any sport linked
             $sport = null; 
         }
-        return view('tournament.edit')->with('tournament', $tournament)->with('dropdownListSports', $dropdownListSports)->with('sport', $sport);
+        return view('tournament.edit')->with('tournament', $tournament)
+                                      ->with('dropdownListSports', $dropdownListSports)
+                                      ->with('sport', $sport)
+                                      ->with('dropdownListTeams', $dropdownListTeams)
+                                      ->with('teamsAreParticipatingId', $teamsAreParticipatingId);
     }
 
     /**

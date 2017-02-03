@@ -64,14 +64,14 @@ $( document ).ready(function() {
     	
     	var search = $('.search').val().toLowerCase();
 
-    	$('.searchIn tr').each( function() {
+    	$('.searchIn tr, .searchIn .hideSearch').each( function() {
 
     		var teamName = $(this).find(".name").text().toLowerCase();
 
     		if(teamName.indexOf(search) < 0)
-    			$(this).hide();
+    			$(this).hide( "fast");
     		else
-    			$(this).show();
+    			$(this).show( "fast");
 
     	});
 

@@ -191,3 +191,11 @@ select.allSameStyle, input.allSameStyle{
 	font-size: 70px;
     border: 0;
 }
+
+.boxList .search{
+	position: absolute;
+    width: 140px;
+    top: 36px;
+    right: 12px;
+    border-radius: 0;
+}

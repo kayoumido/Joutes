@@ -6,15 +6,17 @@
 		<a href="/"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
 		<h1>Tournois</h1>
 
-		<div class="row">
+		<input type="search" placeholder="Recherche" class="search form-control">
+
+		<div class="row searchIn">
 
 			@foreach ($tournaments as $tournament)
-				<div class="col-md-4">
+				<div class="col-md-4 hideSearch">
 					<a href="{{route('tournaments.show', $tournament->id)}}" title="Voir le tournoi">
 						<div class="box">
 
 							<div class="img">
-								<div class="title"> {{$tournament->name}} </div>
+								<div class="title name"> {{$tournament->name}} </div>
 							</div>
 							<div class="infos">
 								<div class="sport"> {{ $tournament->courts[0]->sport->name }} </div>
@@ -35,10 +37,6 @@
 			@endforeach
 
 		</div>
-
-
-	
-
 
 
 		<a href="{{route('tournaments.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>

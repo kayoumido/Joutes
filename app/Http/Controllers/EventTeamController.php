@@ -23,8 +23,8 @@ class EventTeamController extends Controller
         if ($request->is('api/*')) {
 
             // get event tournaments
-            $tournaments = Event::findOrFail($event_id)->tournaments;
-            $teams       = [];
+            $tournaments   = Event::findOrFail($event_id)->tournaments;
+            $teams['teams'] = [];
 
             // loop through tournaments to get teams
             foreach ($tournaments as $tournament) {
@@ -33,7 +33,10 @@ class EventTeamController extends Controller
                 foreach ($tournament_teams as $team) {
 
                     $team['sports'] = $team->sports();
-                    $teams[]        = $team;
+
+                    unset($team['pivot']);
+
+                    array_push($teams['team'], $team);
                 }
             }
 
@@ -66,7 +69,25 @@ class EventTeamController extends Controller
             }
 
             // get team sports
-            $team['sports'] = $team->sports();
+            $team['sports']       = $team->sports();
+            $team['tournaments']  = $team->tournaments;
+            $team['participants'] = $team->participants;
+            $team['status']       = null;
+            $team['match']        = null;
+
+            // remove unwanted elements from tournament
+            foreach ($team['tournaments'] as $tournament) {
+                unset($tournament['start_date']);
+                unset($tournament['end_date']);
+                unset($tournament['start_time']);
+                unset($tournament['end_time']);
+                unset($tournament['fk_events']);
+                unset($tournament['pivot']);
+            }
+            // remove unwanted elements from participants
+            foreach ($team['participants'] as $participant) {
+                unset($participant['pivot']);
+            }
 
             return $team;
         }

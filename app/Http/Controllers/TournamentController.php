@@ -219,18 +219,6 @@ class TournamentController extends Controller
                         $sportName = $courtAlreadyExists->sport->name;
                     }
                 }
-
-                // Updating of teams participate to a tournament
-                // we delete all entries on DB (tournaments_has_teams table) who correspond to the current tournament
-                // And if there is one ore more teams on the form, we will add them to the intermediate table
-                // More simple like that in a first time 
-                $tournamentAlreadyExists->teams()->detach();
-                if($request->input('teams') > 0){
-                  $teamsFromUpdateForm = $request->input('teams');
-                  foreach ($teamsFromUpdateForm as $teamFromUpdateForm) {
-                     $tournamentAlreadyExists->teams()->attach($teamFromUpdateForm);
-                  }
-                }
             }        
             
             if($sameNameAndSport){
@@ -287,6 +275,18 @@ class TournamentController extends Controller
             // We add the good entries with good courts changed 
             foreach ($courtsOfSport as $courtOfSport) {
                 $tournament->courts()->attach($courtOfSport->id);
+            }
+
+            // Updating of teams participate to a tournament
+            // we delete all entries on DB (tournaments_has_teams table) who correspond to the current tournament
+            // And if there is one ore more teams on the form, we will add them to the intermediate table
+            // More simple like that in a first time 
+            $tournament->teams()->detach();
+            if($request->input('teams') > 0){
+              $teamsFromUpdateForm = $request->input('teams');
+              foreach ($teamsFromUpdateForm as $teamFromUpdateForm) {
+                 $tournament->teams()->attach($teamFromUpdateForm);
+              }
             }
 
             return redirect()->route('tournaments.index');

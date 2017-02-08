@@ -7,7 +7,7 @@
 		<a href="{{ route('tournaments.index') }}"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>	
 		<h1>Modifier un tournoi</h1>
 
-		@if ($errors->any() || isset($customErrors) || empty($dropdownList) /*DropDownList is empty if all court deleted*/)
+		@if ($errors->any() || isset($customErrors) || empty($dropdownListSports) /*dropdownListSports is empty if all court deleted*/)
 			<div class="alert alert-danger">
 				@if ($errors->any())
 		            @foreach ($errors->all() as $error)
@@ -19,7 +19,7 @@
 		                {{ $customError }}<br>        
 		            @endforeach
 		        @endif
-		        @if(empty($dropdownList)/*Sport is empty if we deleted all sport*/)
+		        @if(empty($dropdownListSports)/*Sport is empty if we deleted all sport*/)
 		        	Veuillez creer un sport et le lié à un terrain, ou en choisir un.
 		        @endif
 	        </div>
@@ -32,11 +32,11 @@
 			<br>
 			<br>
 			{{ Form::label('Sport', 'Sport :') }}
-			@if(!empty($dropdownList) && !empty($sport)/*Normal case : a sport is linked to the tournament*/)
-				{{ Form::select('sport', $dropdownList, $sport->id, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
+			@if(!empty($dropdownListSports) && !empty($sport)/*Normal case : a sport is linked to the tournament*/)
+				{{ Form::select('sport', $dropdownListSports, $sport->id, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 			@else
 				<!-- court doesn't exists ... -->
-				{{ Form::select('sport', $dropdownList, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
+				{{ Form::select('sport', $dropdownListSports, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 			
 			@endif
 			<br>
@@ -53,6 +53,14 @@
 			<br>
 			{{ Form::label('endDate', 'Date de fin :') }}
 			{{ Form::date('endDate', $tournament->end_date, array('class' => 'allSameStyle')) }}
+			<br>
+			<br>
+			{{ Form::label('teams', 'Équipes participantes :') }}
+			@if(!empty($teamsAreParticipatingId))
+				{{ Form::select('teams[]', $dropdownListTeams, $teamsAreParticipatingId, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
+			@else
+				{{ Form::select('teams[]', $dropdownListTeams, null, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
+			@endif
 			<br>
 			<br>
 			{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}

@@ -31,6 +31,24 @@
 			@endforeach
 		</div>
 
+		<div class="list-group">
+		  	<div class="list-group-item active" style="background-color:#636b6f; border-color: #636b6f">
+		    	<h4 class="list-group-item-heading">Équipe(s)</h4>
+		  	</div>
+		  	@if(count($tournament->teams) > 0)
+		  		@foreach ($tournament->teams as $team)
+			  		<div class="list-group-item">
+						{{ $team->name }}
+					</div>
+				@endforeach
+			@else
+				<div class="list-group-item">
+					Aucune équipe pour l'instant ...
+				</div>
+		  	@endif
+		  	
+		</div>
+
 
 	</div>
 @stop

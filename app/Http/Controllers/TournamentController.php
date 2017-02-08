@@ -158,6 +158,8 @@ class TournamentController extends Controller
             foreach ($teamsAreParticipating as $team) {
                 $teamsAreParticipatingId[] = $team->id;
             }
+        }else{
+          $teamsAreParticipatingId = null;
         }
 
         // normal case, there is a court linked to the tournament

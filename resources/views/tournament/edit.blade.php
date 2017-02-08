@@ -56,7 +56,11 @@
 			<br>
 			<br>
 			{{ Form::label('teams', 'Équipes participantes :') }}
-			{{ Form::select('teams[]', $dropdownListTeams, $teamsAreParticipatingId, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
+			@if(!empty($teamsAreParticipatingId))
+				{{ Form::select('teams[]', $dropdownListTeams, $teamsAreParticipatingId, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
+			@else
+				{{ Form::select('teams[]', $dropdownListTeams, null, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
+			@endif
 			<br>
 			<br>
 			{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}

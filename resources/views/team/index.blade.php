@@ -3,14 +3,14 @@
 
 @section('content')
 
-	<div id="container">
+	<div class="container">
 		<a href="/"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
 
 		<h1>Teams</h1>
 		
 		<input type="search" placeholder="Recherche" class="search form-control">
 
-		<table>
+		<table class="table">
 
 			<thead>
 				<tr>
@@ -23,7 +23,7 @@
 
 			  	@foreach ($teams as $team)
 					<tr>
-				      <td class="name"> <a href="{{ route('teams.show', $team->id) }}" alt="Afficher la team"> {{ $team->name }} </a> </td>
+				      <th scope="row" class="name"> <a href="{{ route('teams.show', $team->id) }}" alt="Afficher la team"> {{ $team->name }} </a> </th>
 				      <td> 
 					      <a href="{{ route('teams.edit', $team->id) }}" alt="Modifier la team"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
 					      {{ Form::open(array('url' => route('teams.destroy', $team->id), 'method' => 'delete')) }}

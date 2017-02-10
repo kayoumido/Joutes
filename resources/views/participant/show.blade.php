@@ -3,7 +3,7 @@
 
 @section('content')
 
-	<div id="container">
+	<div class="container">
 		<a href="{{ route('participants.index') }}"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
 
 		<h1> {{ $participant->last_name }} {{ $participant->first_name }}</h1>
@@ -22,7 +22,7 @@
 				Aucun équipe lié à ce membre !
 			</div>
 		@else
-			<table>
+			<table class="table">
 
 				<thead>
 					<tr>
@@ -35,7 +35,7 @@
 
 				  	@foreach ($participant->teams as $team) 
 						<tr>
-					      <td class="name"> {{ $team->name }} </td>
+					      <th scope="row" class="name"> {{ $team->name }} </th>
 					      <td> 
 						      {{ Form::open(array('url' => route('teams.participants.destroy', [$team->pivot['fk_participants'], $team->pivot['fk_teams']]), 'method' => 'delete')) }}
 						      	<button type="submit" class="button-delete" data-type="memberTeam" data-name='"{{ $participant->last_name }} {{ $participant->first_name }}" de "{{ $team->name }}"'>

@@ -36,7 +36,7 @@ class EventTeamController extends Controller
 
                     unset($team['pivot']);
 
-                    array_push($teams['team'], $team);
+                    array_push($teams['teams'], $team);
                 }
             }
 

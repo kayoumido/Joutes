@@ -8,13 +8,13 @@
 		@else
 			<a href="/">
 		@endif
-		<img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
+		<i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		@if ($fromEvent)
 			<h1>Tournois de l'évenement {{ $eventName }}</h1>
 		@else
 			<h1>Tournois</h1>
 		@endif
-		
+
 
 		<input type="search" placeholder="Recherche" class="search form-control">
 
@@ -33,10 +33,10 @@
 								<div class="hour"> {{$tournament->start_time}} à {{$tournament->end_time}} </div>
 								<div class="date"> {{$tournament->start_date->format('d.m.Y')}} au {{$tournament->end_date->format('d.m.Y')}} </div>
 
-								<a href="{{route('tournaments.edit', $tournament->id)}}" title="Éditer le tournoi" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+								<a href="{{route('tournaments.edit', $tournament->id)}}" title="Éditer le tournoi" class="edit"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></i></a>
 								{{ Form::open(array('url' => route('tournaments.destroy', $tournament->id), 'method' => 'delete')) }}
 									<button type="button" class="button-delete" data-name="{{ $tournament->name }}" data-type="tournament">
-					                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+					                    <i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
 					                </button>
 								{{ Form::close() }}
 							</div>

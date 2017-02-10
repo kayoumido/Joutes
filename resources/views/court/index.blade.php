@@ -4,7 +4,7 @@
 
 @section('content')
 	<div id="container">
-		<a href="/"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
+		<a href="/"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		<h1>Terrains</h1>
 		<table>
 			<tr>
@@ -17,10 +17,10 @@
 					<td class="name" style="width:40%">{{$court->name}}</td>
 					<td class="description" style="width:40%">{{$court->sport->name}}</td>
 					<td class="action">
-						<a href="{{route('courts.edit',$court->id)}}" title="Éditer le terrain" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<a href="{{route('courts.edit',$court->id)}}" title="Éditer le terrain" class="edit"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></i></a>
 						{{ Form::open(array('url' => route('courts.destroy', $court->id), 'method' => 'delete')) }}
 							<button type="button" class="button-delete" data-name="{{ $court->name }}" data-type="court">
-			                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+			                    <i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
 			                </button>
 						{{ Form::close() }}
 					</td>

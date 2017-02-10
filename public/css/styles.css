@@ -1,5 +1,5 @@
 /* Colours
-	#9EE493 
+	#9EE493
 	#446CB3
 	#50514F
  */
@@ -34,7 +34,7 @@ a:hover {
 	margin-right: 20px;
 	float: left;
     width: 50px;
-	color: #9EE493;
+	color: #50514F;
 }
 
 /* WELCOME VIEW */
@@ -55,7 +55,7 @@ a:hover {
 	cursor: pointer;
 }
 
-/* TABLE */ 
+/* TABLE */
 table thead th {
     color: #fff;
     background-color: #50514F;

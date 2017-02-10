@@ -4,11 +4,9 @@
 @section('content')
 	<div class="container boxList">
 		@if ($fromEvent)
-			<a href="{{ route('events.index') }}">
-		@else
-			<a href="/">
+			<a href="{{ route('events.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		@endif
-		<i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
+		
 		@if ($fromEvent)
 			<h1>Tournois de l'évenement {{ $eventName }}</h1>
 		@else

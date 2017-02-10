@@ -33,7 +33,7 @@
                 </div>
                 <div id="navbar-collapse" class="navbar-collapse collapse" aria-expanded="false">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ route('events.index') }}">Accueil</a></li>
+                        <li><a href="{{ route('events.index') }}">Evénements</a></li>
                         <li><a href="{{ route('sports.index') }}">Sports</a></li>
                         <li><a href="{{ route('courts.index') }}">Terrains</a></li>
                         <li><a href="{{ route('tournaments.index') }}">Tournois</a></li>

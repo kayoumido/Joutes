@@ -3,7 +3,6 @@
 
 @section('content')
 	<div class="container boxList">
-		<a href="/"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		<h1>Evénements</h1>
 
 		<input type="search" placeholder="Recherche" class="search form-control">

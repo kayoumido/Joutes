@@ -20,3 +20,35 @@ header.header .navbar-brand {
     background: none;
     color: #9EE493 !important;
 }
+
+footer.footer {
+    background-color: #446CB3;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 25px 0;
+    margin-top: 100px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+footer.footer a {
+    color: #fff !important;
+}
+footer.footer .container .row div {
+    display: inline-block;
+}
+footer.footer .copyright {
+    margin-right: 25px
+}
+footer.footer .show-devs {
+    margin-right: 10px
+}
+footer.footer .dev-names.hide {
+    display: none;
+}
+footer.footer .dev-names.show {
+    display: inline-block !important;
+}
+footer.footer .dev {
+    margin-right: 5px
+}

@@ -3,8 +3,18 @@
 
 @section('content')
 	<div class="container boxList">
-		<a href="/"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
-		<h1>Tournois</h1>
+		@if ($fromEvent)
+			<a href="{{ route('events.index') }}">
+		@else
+			<a href="/">
+		@endif
+		<img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
+		@if ($fromEvent)
+			<h1>Tournois de l'évenement {{ $eventName }}</h1>
+		@else
+			<h1>Tournois</h1>
+		@endif
+		
 
 		<input type="search" placeholder="Recherche" class="search form-control">
 

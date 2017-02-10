@@ -20,7 +20,10 @@ class TournamentController extends Controller
     public function index()
     {
         $tournaments = Tournament::all();
-        return view('tournament.index')->with('tournaments', $tournaments);
+        return view('tournament.index', array(
+            "tournaments" => $tournaments,
+            "fromEvent" => false
+        ));
     }
 
     /**

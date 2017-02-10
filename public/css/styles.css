@@ -175,6 +175,7 @@ select.allSameStyle, input.allSameStyle{
 	position: relative;
 	border: 1px solid #adadad;
 	padding: 10px;
+    min-height: 50px;
 }
 
 .box .infos .fa-pencil{

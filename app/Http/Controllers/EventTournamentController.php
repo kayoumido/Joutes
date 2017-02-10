@@ -55,7 +55,10 @@ class EventTournamentController extends Controller
             return $tournaments;
         }
 
-        return true;
+
+        $tournaments = Event::findOrFail($event_id)->tournaments;
+        return view('tournament.index')->with('tournaments', $tournaments);
+    
     }
 
     /**

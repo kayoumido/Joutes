@@ -23,3 +23,6 @@ Route::resource('teams', 'TeamController');
 Route::resource('teams.participants', 'TeamParticipantController', ['only' => ['destroy', 'store']]);
 
 Route::resource('participants', 'ParticipantController');
+
+Route::resource('events', 'EventController');
+Route::resource('events.tournaments', 'EventTournamentController', [ 'only' => ['index', 'show']]);

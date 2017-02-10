@@ -17,12 +17,15 @@ class EventController extends Controller
      */
     public function index(Request $request) {
 
+        $events = Event::all();
+
         // check is it's an api request
         if ($request->is('api/*')) {
-            return Event::All();
+            return $events;
         }
+        
+        return view('event.index')->with('events', $events);
 
-        return true;
     }
 
     /**

@@ -36,6 +36,7 @@
                         <li><a href="/">Accueil</a></li>
                         <li><a href="{{ route('sports.index') }}">Sports</a></li>
                         <li><a href="{{ route('courts.index') }}">Terrains</a></li>
+                        <li><a href="{{ route('events.index') }}">Evénements</a></li>
                         <li><a href="{{ route('tournaments.index') }}">Tournois</a></li>
                         <li><a href="{{ route('teams.index') }}">Equipes</a></li>
                         <li><a href="{{ route('participants.index') }}">Participants</a></li>

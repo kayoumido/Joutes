@@ -39,6 +39,13 @@
 					</div>
 				</a>
 			</div>
+			<div class="col-lg-4 col-md-3 col-sm-4 col-xs-6">
+				<a href="{{ route('events.index') }}" title="Voir toutes les événement">
+					<div class="tile">
+						Evénements
+					</div>
+				</a>
+			</div>
 		</div>
 	</div>
 

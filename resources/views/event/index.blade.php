@@ -20,12 +20,12 @@
 							</div>
 							<div class="infos">
 
-								<a href="{{route('events.edit', $event->id)}}" title="Éditer le événement" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
+								<!-- <a href="{{route('events.edit', $event->id)}}" title="Éditer le événement" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
 								{{ Form::open(array('url' => route('events.destroy', $event->id), 'method' => 'delete')) }}
 									<button type="button" class="button-delete" data-name="{{ $event->name }}" data-type="tournament">
 					                    <i class="fa fa-trash-o fa-lg action" aria-hidden="true"></i>
 					                </button>
-								{{ Form::close() }}
+								{{ Form::close() }} -->
 							</div>
 
 						</div>
@@ -36,7 +36,7 @@
 		</div>
 
 
-		<a href="{{route('events.create')}}" title="Créer un événement"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
+		<!-- <a href="{{route('events.create')}}" title="Créer un événement"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a> -->
 
 	</div>
 @stop

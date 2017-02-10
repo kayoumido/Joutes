@@ -27,16 +27,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">
+                    <a class="navbar-brand" href="{{ route('events.index') }}">
                         <img src="{{ asset('images/logo.png') }}" alt="">
                     </a>
                 </div>
                 <div id="navbar-collapse" class="navbar-collapse collapse" aria-expanded="false">
                     <ul class="nav navbar-nav">
-                        <li><a href="/">Accueil</a></li>
+                        <li><a href="{{ route('events.index') }}">Accueil</a></li>
                         <li><a href="{{ route('sports.index') }}">Sports</a></li>
                         <li><a href="{{ route('courts.index') }}">Terrains</a></li>
-                        <li><a href="{{ route('events.index') }}">Evénements</a></li>
                         <li><a href="{{ route('tournaments.index') }}">Tournois</a></li>
                         <li><a href="{{ route('teams.index') }}">Equipes</a></li>
                         <li><a href="{{ route('participants.index') }}">Participants</a></li>

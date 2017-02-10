@@ -33,8 +33,8 @@
 		</table>
 
 		<br>
-
-		<a href="{{route('courts.create')}}" title="Créer un terrain"><input type="button" value="Nouveau", class="btn btn-primary"></a>
+		
+		<a href="{{route('courts.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
 
 	</div>
 @stop

@@ -1,6 +1,7 @@
 /* Colours
-	#9EE493
+	#9EE493 
 	#446CB3
+	#50514F
  */
 
 /* GENERAL */
@@ -57,12 +58,12 @@ a:hover {
 /* TABLE */ 
 table thead th {
     color: #fff;
-    background-color: #9EE493;
-    border-color: #9EE493 !important;
+    background-color: #50514F;
+    border-color: #50514F !important;
 }
 
 table th, table td{
-	border-color: #9EE493 !important;
+	border-color: #50514F !important;
 }
 
 /* table {
@@ -205,9 +206,9 @@ select.allSameStyle, input.allSameStyle{
 	margin-right: 0;
 }
 
-.boxList .fa-plus-circle{
+.fa-plus-circle{
 	position: fixed;
-	bottom: 45px;
+	bottom: 90px;
 	right: 16%;
     border-radius: 50%;
 	font-size: 70px;
@@ -222,7 +223,7 @@ select.allSameStyle, input.allSameStyle{
 .container .search{
 	position: absolute;
     width: 140px;
-    top: 36px;
+    top: 12px;
     right: 12px;
     border-radius: 0;
 }

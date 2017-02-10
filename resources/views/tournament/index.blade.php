@@ -48,8 +48,7 @@
 
 		</div>
 
-
-		<a href="{{route('tournaments.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+		<a href="{{route('tournaments.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
 
 	</div>
 @stop

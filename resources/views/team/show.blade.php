@@ -4,7 +4,7 @@
 @section('content')
 
 
-	<div id="container">
+	<div class="container">
 		<a href="{{ route('teams.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
 		<h1> {{ $team->name }}</h1>

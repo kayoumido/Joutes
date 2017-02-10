@@ -34,7 +34,7 @@
 
 		<br>
 
-		<a href="{{route('sports.create')}}" title="Créer un sport"><input type="button" value="Nouveau", class="btn btn-primary"></a>
+		<a href="{{route('sports.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
 
 	</div>
 @stop

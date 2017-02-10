@@ -14,3 +14,9 @@ header.header .navbar-brand {
     line-height: 75px;
     color: #fff !important
 }
+
+.navbar-nav li a:hover,
+.navbar-nav li a:focus {
+    background: none;
+    color: #9EE493 !important;
+}

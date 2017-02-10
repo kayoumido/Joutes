@@ -3,11 +3,11 @@
 
 @section('content')
 
-	<div class="container">
-		<a href="/"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
+	<div id="container">
+		<a href="/"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
 		<h1>Teams</h1>
-		
+
 		<input type="search" placeholder="Recherche" class="search form-control">
 
 		<table class="table">
@@ -28,14 +28,14 @@
 					      <a href="{{ route('teams.edit', $team->id) }}" alt="Modifier la team"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
 					      {{ Form::open(array('url' => route('teams.destroy', $team->id), 'method' => 'delete')) }}
 					      	<button type="submit" class="button-delete">
-					      		<i class="fa fa-trash-o" aria-hidden="true"></i>
+					      		<i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
 					      	</button>
 					      {{ Form::close() }}
 				      </td>
 				    </tr>
 
 				@endforeach
-		    	
+
 		  	</tbody>
 
 		</table>

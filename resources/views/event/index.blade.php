@@ -3,7 +3,7 @@
 
 @section('content')
 	<div class="container boxList">
-		<a href="/"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
+		<a href="/"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		<h1>Evénements</h1>
 
 		<input type="search" placeholder="Recherche" class="search form-control">
@@ -20,12 +20,12 @@
 							</div>
 							<div class="infos">
 
-								<a href="{{route('events.edit', $event->id)}}" title="Éditer le événement" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+								<!-- <a href="{{route('events.edit', $event->id)}}" title="Éditer le événement" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
 								{{ Form::open(array('url' => route('events.destroy', $event->id), 'method' => 'delete')) }}
 									<button type="button" class="button-delete" data-name="{{ $event->name }}" data-type="tournament">
-					                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+					                    <i class="fa fa-trash-o fa-lg action" aria-hidden="true"></i>
 					                </button>
-								{{ Form::close() }}
+								{{ Form::close() }} -->
 							</div>
 
 						</div>
@@ -36,7 +36,7 @@
 		</div>
 
 
-		<a href="{{route('events.create')}}" title="Créer un événement"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+		<!-- <a href="{{route('events.create')}}" title="Créer un événement"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a> -->
 
 	</div>
 @stop

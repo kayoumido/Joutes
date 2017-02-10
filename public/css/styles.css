@@ -1,6 +1,8 @@
 /* Colours
 	#9EE493
 	#446CB3
+	#50514F
+	#d81111 : trash icon
  */
 
 /* GENERAL */
@@ -13,8 +15,9 @@ body{
 	width: 640px;
 	margin: 0px auto;
 }
-h1{
+h1 {
    	padding-top: 5px;
+   	margin-top: 0;
 	margin-bottom: 25px;
 }
 
@@ -28,10 +31,15 @@ a:hover {
 	color: #636b6f;
 }
 
-img.return{
+select{
+	border-radius: 0 !important;
+}
+
+.return{
 	margin-right: 20px;
 	float: left;
     width: 50px;
+	color: #50514F;
 }
 
 /* WELCOME VIEW */
@@ -53,7 +61,22 @@ img.return{
 }
 
 /* TABLE */
-table {
+table thead th {
+    color: #fff;
+    background-color: #50514F;
+    border-color: #50514F !important;
+}
+
+table th, table td{
+	border-color: #50514F !important;
+}
+
+table .options{
+    width: 128px !important;
+    text-align: left;
+}
+
+/* table {
 	width: 100%;
 	color: #333;
 	border-collapse: collapse;
@@ -91,13 +114,19 @@ tr:nth-child(even) td {
 tr:nth-child(odd) td {
 	background: #F1F1F1;
 }
+*/
 
 /* FONT AWESOM ICONS */
-i.fa {
-	font-size: 20px;
-}
 i.fa:hover {
 	cursor: pointer;
+}
+i.fa.action {
+	float: left;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+/*i.fa {
+	font-size: 20px;
 }
 i.fa.fa-pencil {
 	float: left;
@@ -106,7 +135,7 @@ i.fa.fa-pencil {
 }
 i:hover{
 	text-decoration: none;
-}
+}*/
 
 /* BUTTONS */
 .button-delete{
@@ -128,10 +157,6 @@ select.allSameStyle, input.allSameStyle{
 /* IMAGE BOX */
 .boxList{
 	position: relative;
-}
-
-.boxList .return{
-	margin-top: 20px;
 }
 
 .box .img{
@@ -180,8 +205,8 @@ select.allSameStyle, input.allSameStyle{
 
 .box .infos .fa-pencil{
 	position: absolute;
-	right: 30px;
-	top: 14px;
+	right: 40px;
+	top: 15px;
 }
 
 .box .infos .button-delete{
@@ -191,20 +216,28 @@ select.allSameStyle, input.allSameStyle{
 	margin-right: 0;
 }
 
-.boxList .fa-plus-circle{
+.button-delete{
+	color: #d81111;
+}
+
+.fa-plus-circle{
 	position: fixed;
-	bottom: 45px;
+	bottom: 90px;
 	right: 16%;
     border-radius: 50%;
 	font-size: 70px;
     border: 0;
-    color: #446CB3;
+    color: #50514F;
 }
 
-.boxList .search{
+.container{
+	position: relative;
+}
+
+.container .search{
 	position: absolute;
     width: 140px;
-    top: 36px;
+    top: 12px;
     right: 12px;
     border-radius: 0;
 }

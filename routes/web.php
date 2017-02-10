@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Route::resource('sports', 'SportController');
 Route::resource('courts', 'CourtController');

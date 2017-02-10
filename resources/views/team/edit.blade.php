@@ -2,7 +2,8 @@
 @extends('layout')
 
 @section('content')
-	<div id="container">	
+	<div id="container">
+		<a href="{{ route('teams.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		<h1>Editer une team</h1>
 
 		@if(isset($error))
@@ -20,7 +21,7 @@
 		{{ Form::close() }}
 
 		<br>
-		
-		<a href="{{ route('teams.index') }}"><input type="button" class="btn btn-primary" value="Retour"></a>
+
+
 	</div>
 @stop

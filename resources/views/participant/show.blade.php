@@ -4,7 +4,7 @@
 @section('content')
 
 	<div class="container">
-		<a href="{{ route('participants.index') }}"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
+		<a href="{{ route('participants.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
 		<h1> {{ $participant->last_name }} {{ $participant->first_name }}</h1>
 
@@ -33,20 +33,20 @@
 
 				<tbody>
 
-				  	@foreach ($participant->teams as $team) 
+				  	@foreach ($participant->teams as $team)
 						<tr>
 					      <th scope="row" class="name"> {{ $team->name }} </th>
-					      <td> 
+					      <td>
 						      {{ Form::open(array('url' => route('teams.participants.destroy', [$team->pivot['fk_participants'], $team->pivot['fk_teams']]), 'method' => 'delete')) }}
 						      	<button type="submit" class="button-delete" data-type="memberTeam" data-name='"{{ $participant->last_name }} {{ $participant->first_name }}" de "{{ $team->name }}"'>
-						      		<i class="fa fa-trash-o" aria-hidden="true"></i> 
+						      		<i class="fa fa-trash-o fa-lg action" aria-hidden="true"></i>
 						      	</button>
 						      {{ Form::close() }}
 					      </td>
 					    </tr>
 
 					@endforeach
-			    	
+
 			  	</tbody>
 
 			</table>
@@ -61,14 +61,14 @@
 		@else
 			{{ Form::open(array('url' => route('teams.participants.store',  $participant->id), 'method' => 'post')) }}
 
-				
+
 				{{ Form::select('team', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
 
 
 			{{ Form::close() }}
-		
+
 		@endif
 
 	</div>
-	
+
 @stop

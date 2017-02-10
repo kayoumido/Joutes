@@ -4,10 +4,10 @@
 @section('content')
 
 	<div class="container">
-		<a href="/"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
+		<a href="/"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
 		<h1>Participants</h1>
-		
+
 		<input type="search" placeholder="Recherche" class="search form-control">
 
 		<table class="table">
@@ -26,7 +26,7 @@
 				    </tr>
 
 				@endforeach
-		    	
+
 		  	</tbody>
 
 		</table>

@@ -62,7 +62,7 @@
                             © 2017 - Centre professionnel du Nord vaudois
                         </div>
                         <div class="devs">
-                            <a href="#" class="show-devs">Devloppeurs</a>
+                            <a href="#" class="show-devs">Développeurs</a>
 
                             <div class="dev-names hide">
                                 <a href="#" class="dev">Doran Kayoumi</a>

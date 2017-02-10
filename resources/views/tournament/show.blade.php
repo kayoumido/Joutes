@@ -4,7 +4,7 @@
 
 @section('content')
 	<div class="container">
-		<a href="{{ route('tournaments.index') }}"><img src="{{ asset("images/return-arrow.png") }}" alt="Retour en arrière" class="return"></a>
+		<a href="{{ route('tournaments.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		<h1>{{ $tournament->name }}</h1>
 
 		@if(isset($tournament->courts[0]))
@@ -35,7 +35,7 @@
 			</tbody>
 		</table>
 
-		
+
 		<table class="table">
 			<thead>
 				<tr>

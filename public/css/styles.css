@@ -2,6 +2,7 @@
 	#9EE493
 	#446CB3
 	#50514F
+	#d81111 : trash icon
  */
 
 /* GENERAL */
@@ -195,8 +196,8 @@ select.allSameStyle, input.allSameStyle{
 
 .box .infos .fa-pencil{
 	position: absolute;
-	right: 30px;
-	top: 14px;
+	right: 40px;
+	top: 15px;
 }
 
 .box .infos .button-delete{
@@ -204,6 +205,7 @@ select.allSameStyle, input.allSameStyle{
 	right: 10px;
 	top: 14px;
 	margin-right: 0;
+	color: #d81111;
 }
 
 .fa-plus-circle{

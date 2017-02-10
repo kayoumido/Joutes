@@ -15,6 +15,7 @@ body{
 }
 h1 {
    	padding-top: 5px;
+   	margin-top: 0;
 	margin-bottom: 25px;
 }
 
@@ -145,10 +146,6 @@ select.allSameStyle, input.allSameStyle{
 /* IMAGE BOX */
 .boxList{
 	position: relative;
-}
-
-.boxList .return{
-	margin-top: 20px;
 }
 
 .box .img{

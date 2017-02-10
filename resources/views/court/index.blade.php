@@ -11,14 +11,14 @@
 				<tr>
 					<th>Nom</th>
 					<th>Sport</th>
-					<th>Action</th>
+					<th class="options">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($courts as $court)
 					<tr>
-						<th scope="row" class="name" style="width:40%">{{$court->name}}</th>
-						<td class="description" style="width:40%">{{$court->sport->name}}</td>
+						<th scope="row" class="name" >{{$court->name}}</th>
+						<td class="description" >{{$court->sport->name}}</td>
 						<td class="action">
 							<a href="{{route('courts.edit',$court->id)}}" title="Éditer le terrain" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
 							{{ Form::open(array('url' => route('courts.destroy', $court->id), 'method' => 'delete')) }}

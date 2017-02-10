@@ -27,7 +27,7 @@
 				<thead>
 					<tr>
 						<th>Nom du membre</th>
-						<th>Options</th>
+						<th class="options">Actions</th>
 					</tr>
 				</thead>
 

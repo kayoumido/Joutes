@@ -31,6 +31,10 @@ a:hover {
 	color: #636b6f;
 }
 
+select{
+	border-radius: 0 !important;
+}
+
 .return{
 	margin-right: 20px;
 	float: left;
@@ -65,6 +69,11 @@ table thead th {
 
 table th, table td{
 	border-color: #50514F !important;
+}
+
+table .options{
+    width: 128px !important;
+    text-align: left;
 }
 
 /* table {
@@ -205,6 +214,9 @@ select.allSameStyle, input.allSameStyle{
 	right: 10px;
 	top: 14px;
 	margin-right: 0;
+}
+
+.button-delete{
 	color: #d81111;
 }
 

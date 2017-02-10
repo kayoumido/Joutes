@@ -11,7 +11,7 @@
 				<tr>
 					<th>Nom</th>
 					<th>Description</th>
-					<th>Action</th>
+					<th class="options">Actions</th>
 				</tr>
 			</thead>
 			<tbody>

@@ -27,7 +27,7 @@
 				<thead>
 					<tr>
 						<th>Nom de l'équipe</th>
-						<th>Options</th>
+						<th class="options">Actions</th>
 					</tr>
 				</thead>
 

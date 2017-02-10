@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
 
         <title>Joutes</title>
-        
+
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" type="text/css" />
@@ -55,14 +55,31 @@
 
             </div><!-- page -->
 
-        <footer>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="copyright">
+                            © 2017 - Centre professionnel du Nord vaudois
+                        </div>
+                        <div class="devs">
+                            <a href="#" class="show-devs">Devloppeurs</a>
 
+                            <div class="dev-names hide">
+                                <a href="#" class="dev">Doran Kayoumi</a>
+                                <a href="#" class="dev">Loïc Dessaules</a>
+                                <a href="#" class="dev">Antoine Dessauges</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </footer>
 
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/sweetalert.min.js') }}"></script>
         <script src="{{ asset('js/select2.full.min.js') }}"></script>
-        
+
         <script src="{{ asset('js/main.js') }}"></script>
     </body>
 </html>

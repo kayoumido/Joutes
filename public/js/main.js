@@ -1,5 +1,14 @@
 $( document ).ready(function() {
 
+	$('.show-devs').click(function() {
+		if ($('.dev-names').hasClass('hide')) {
+			$('.dev-names').removeClass('hide').addClass('show');
+		}
+		else {
+			$('.dev-names').removeClass('show').addClass('hide');
+		}
+	});
+
     // Create custom delete alert when we click on a .button-delete
     // @author Dessaules Loïc
     // @modified by Dessauges Antoine
@@ -23,13 +32,13 @@ $( document ).ready(function() {
 		        break;
 		    case "tournament":
 		    	title = "Voulez-vous vraiment supprimer le tournois \""+name+"\" ?";
-		        break;  
+		        break;
           	case "teamMember":
 		    	title = "Voulez-vous vraiment supprimer \""+name+"\" de cette équipe ?";
 		        break;
 		    case "memberTeam":
 		    	title = "Voulez-vous vraiment retirer "+name+" ?";
-		        break;  
+		        break;
 		}
 
 		alertConfirm(form, title, text);
@@ -54,14 +63,14 @@ $( document ).ready(function() {
 				if ($(".addMember")[0]) //if class exit on this page
 					$('.addMember').find("option")[0].selected = true;//display defaut select
 			}
-				
+
 		});
   	}
 
   	// Search in a table and display only result who correspond to the search
   	// @author Dessauges Antoine
   	$('.search').on('input',function(e){
-    	
+
     	var search = $('.search').val().toLowerCase();
 
     	$('.searchIn tr, .searchIn .hideSearch').each( function() {
@@ -76,7 +85,7 @@ $( document ).ready(function() {
     	});
 
     });
-   
+
    	// Open confirm pop-up when select change
   	// @author Dessauges Antoine
   	$( ".addMember" ).change(function() {
@@ -85,7 +94,7 @@ $( document ).ready(function() {
 		var form = $(this).parent();
 		if($(this).attr("name") == "team")
 			var title = "Voulez-vous ajouter ce participant à l'équipe \""+name+"\" ?";
-		else 
+		else
   			var title = "Voulez-vous ajouter \""+name+"\" à l'équipe ?";
 
 	  	alertConfirm(form, title, '');
@@ -108,7 +117,7 @@ $( document ).ready(function() {
 		var form = $(this).parent();
 		var formId = form.attr('id');
 		var error = '';
-		
+
 		switch(formId) {
 		    case "formSport":
 		    	var nameValue = $('#formSport #name').val();
@@ -124,7 +133,7 @@ $( document ).ready(function() {
 		    		error += 'Le champ Description peut avoir maximum 45 caractères.<br>';
 		    	}
 		        break;
-	        
+
 	        case "formCourt":
 	        	var nameValue = $('#formCourt #name').val();
 		    	var sportValue = $('#formCourt #sport').val(); // '' = empty, 1-2-3-... = sport

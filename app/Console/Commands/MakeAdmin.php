@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 
 class MakeAdmin extends Command
 {
@@ -39,13 +40,13 @@ class MakeAdmin extends Command
     public function handle()
     {
         $username = $this->argument('username');
-        $password = bcrypt($this->argument('password'));
+        $password = Hash::make($this->argument('password'));
 
-        if(User::where('name', '=', $username)->exists()){
+        if(User::where('username', '=', $username)->exists()){
             $this->line("Erreur: L'utilisateur $username existe déjà.");
         }else{
             $user = new User;
-            $user->name = $username;
+            $user->username = $username;
             $user->password = $password;
             $user->save();
             $this->line("L'utilisateur $username a bien été créé.");

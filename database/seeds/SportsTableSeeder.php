@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SportsTableSeeder extends Seeder
+class sportsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,22 +11,46 @@ class SportsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sports')->insert([
+        DB::table('participants')->insert([
             [
-                'name' => 'Football',
-                'description' => 'Equipes de 9',
+                'name' => "Football",
+                'description' => "Par équipe de 11",
             ],
             [
-                'name' => 'Rugby',
-                'description' => null,
+                'name' => "Volley",
+                'description' => "",
             ],
             [
-                'name' => 'Volley',
-                'description' => null,
+                'name' => "Tennis",
+                'description' => "Simple ou double",
             ],
             [
-                'name' => 'Hockey',
-                'description' => 'Equipes de 11',
+                'name' => "Badminton",
+                'description' => "",
+            ],
+            [
+                'name' => "Basketball",
+                'description' => "",
+            ],
+            [
+                'name' => "Rugby",
+                'description' => "",
+            ],
+            [
+                'name' => "Judo",
+                'description' => "Individuel",
+            ],
+            [
+                'name' => "Beachvolley",
+                'description' => "",
+            ],
+            [
+                'name' => "Unihockey",
+                'description' => "Par équipe de 5",
+            ],
+            [
+                'name' => "Petanque",
+                'description' => "",
             ]
         ]);
     }

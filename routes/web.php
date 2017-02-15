@@ -26,3 +26,5 @@ Route::resource('participants', 'ParticipantController');
 
 Route::resource('events', 'EventController');
 Route::resource('events.tournaments', 'EventTournamentController', [ 'only' => ['index', 'show']]);
+
+Route::resource('import', 'ImportController', ['only' => ['index', 'store']]);

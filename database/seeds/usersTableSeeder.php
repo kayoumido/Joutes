@@ -14,7 +14,7 @@ class usersTableSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'name' => "admin",
-                'password' => "$2y$10$MR3E4eGshzS3NO/2ueVQcuZt9Li4nGJ8fBBI8FUWZVqxNsv4DzgVS",
+                'password' => '$2y$10$MR3E4eGshzS3NO/2ueVQcuZt9Li4nGJ8fBBI8FUWZVqxNsv4DzgVS',
             ]
         ]);
     }

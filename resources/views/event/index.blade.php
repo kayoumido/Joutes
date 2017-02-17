@@ -19,6 +19,7 @@
 							</div>
 							<div class="infos">
 
+								<a href="{{route('events.import.index', $event->id)}}"><i class="fa fa-download fa-lg action" aria-hidden="true"></i></a>
 								<!-- <a href="{{route('events.edit', $event->id)}}" title="Éditer le événement" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
 								{{ Form::open(array('url' => route('events.destroy', $event->id), 'method' => 'delete')) }}
 									<button type="button" class="button-delete" data-name="{{ $event->name }}" data-type="tournament">

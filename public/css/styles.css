@@ -152,6 +152,10 @@ select.allSameStyle, input.allSameStyle{
 	width:164px;
 	height:28px;
 }
+#login-form label{
+	width: 140px;
+	text-align: left;
+}
 
 
 /* IMAGE BOX */

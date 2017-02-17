@@ -1,21 +1,22 @@
-{{ Form::open(array('url' => route('login.store'), 'method' => 'post')) }}
+<!-- @author Dessaules Loïc -->
 
-	{{ Form::label('username', 'Username : ') }}
-	{{ Form::text('username', null) }}
-	<br>
-	{{ Form::label('password', 'Password : ') }}
-	{{ Form::password('password', null) }}
-	<br>
-	<br>
-	{{ Form::submit('Connexion') }}
+@extends('layout')
 
-{{ Form::close() }}
-
-@if ($connected)
-	<p>You are connected</p>
-	{{ Form::open(array('url' => route('login.destroy', 0), 'method' => 'delete')) }}
-		{{ Form::submit('Déconnexion') }}
-	{{ Form::close() }}
-@else
-	<p>You aren't connected</p>
-@endif
+@section('content')
+	<div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+				{{ Form::open(array('url' => route('admin.store'), 'method' => 'post', 'id' => 'login-form')) }}
+					{{ Form::label('username', 'Nom d\'utilisateur : ') }}
+					{{ Form::text('username', null, array('required' => '')) }}
+					<br>
+					{{ Form::label('password', 'Mot de passe : ') }}
+					{{ Form::password('password', null) }}
+					<br>
+					<br>
+					{{ Form::submit('Connexion', array('class' => 'btn btn-success')) }}
+				{{ Form::close() }}
+			</div>
+		</div>
+	</div>
+@stop

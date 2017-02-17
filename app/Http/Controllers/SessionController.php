@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class SessionController extends Controller
 {
@@ -15,11 +16,7 @@ class SessionController extends Controller
      */
     public function index() // I used index method and no create to have joutes/login and no joutes/login/create
     {   
-        $connected = false;
-        if(Auth::check()){
-            $connected = true;
-        }
-        return view('session.create')->with('connected', $connected);
+        return view('session.create');
     }
 
     /**
@@ -31,9 +28,10 @@ class SessionController extends Controller
     public function store(Request $request)
     {
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
-            // Authentication passed...
+            return redirect(route('events.index')); 
+            
         }
-        return redirect(route('login.index')); 
+        return Redirect::back();
     }
 
     /**
@@ -43,10 +41,10 @@ class SessionController extends Controller
      *
      * @author Dessaules Loïc
      */
-    public function destroy($id = 0)
+    public function destroy($id)
     {
         Auth::logout();
-        return redirect()->route('login.index');
+        return Redirect::back();
     }
 
 }

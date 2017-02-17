@@ -39,6 +39,7 @@
                         <li><a href="{{ route('tournaments.index') }}">Tournois</a></li>
                         <li><a href="{{ route('teams.index') }}">Equipes</a></li>
                         <li><a href="{{ route('participants.index') }}">Participants</a></li>
+                        <li><a href="{{ route('import.index') }}">Import</a></li>
                     </ul>
                 </div>
             </nav>

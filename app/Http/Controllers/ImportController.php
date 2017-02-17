@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use \File;
+use App\Tournament;
+use App\Participant;
 use Illuminate\Http\Request;
 
 class ImportController extends Controller {
@@ -46,7 +48,8 @@ class ImportController extends Controller {
             'teams' => array(
                 'folder' => 'Activites',
                 'names'  => array(
-                    'Equipes.xml'
+                    'Equipes.xml',
+                    'Participants.xml'
                 )
             ),
         );
@@ -61,10 +64,10 @@ class ImportController extends Controller {
             if (strpos($file, 'enseignants') !== false) {
 
                 foreach ($xml['Teacher'] as $participant) {
-                    $participants[] = array(
+                    $participants[(string)$participant->Id] = array(
                         'id'        => (string)$participant->Id,
-                        'firstname' => (string)$participant->Firstname,
-                        'lastname'  => (string)$participant->Lastname,
+                        'first_name' => (string)$participant->Firstname,
+                        'last_name'  => (string)$participant->Lastname,
                     );
                 }
 
@@ -72,18 +75,95 @@ class ImportController extends Controller {
             else if (strpos($file, 'etudiants') !== false) {
 
                 foreach ($xml['CurrentStudent'] as $participant) {
-                    $participants[] = array(
+                    $participants[(string)$participant->Id] = array(
                         'id'        => (string)$participant->Id,
-                        'firstname' => (string)$participant->Firstname,
-                        'lastname'  => (string)$participant->Lastname,
+                        'first_name' => (string)$participant->Firstname,
+                        'last_name'  => (string)$participant->Lastname,
                     );
                 }
 
             }
         }
+        $activities = array();
+        // load activities file
+        foreach ($filenames['activities']['names'] as $file) {
+            $xml = (array)simplexml_load_string(File::get($path . '/' . $filenames['activities']['folder'] . '/' . $file));
 
-        dd($participants);
+            foreach ($xml['Activite'] as $activity) {
+                $activities[] = (string)$activity->Nom;
+            }
+        }
 
-        return $path;
+        /*
+        $teams = array();
+        // load team files
+        foreach ($filenames['teams']['names'] as $file) {
+            // loop through activities
+            foreach ($activities as $activity) {
+                // build path to current file
+                $file_path = $path . '/' . $filenames['teams']['folder'] . '/' . $activity . '/' . $file;
+                // check if file exists
+                if (File::exists($file_path)) {
+                    $xml = (array)simplexml_load_string(File::get($file_path));
+                }
+                else {
+                    continue;
+                }
+                // check what file is used
+                if ($file === 'Equipes.xml') {
+                    // loop through teams
+                    foreach ($xml['Equipe'] as $team) {
+
+                        $members = array();
+                        foreach ($team->JoueurId as $member) {
+                            $members[] = (string)$member;
+                        }
+                        $teams[] = array(
+                            'name'    => (string)$team->NomEquipe,
+                            'captain' => (string)$team->Capitaine,
+                            'members' => $members
+                        );
+                    }
+                }
+                else if ($file === 'Participants.xml') {
+
+                    if (!is_array($xml['JoueurId'])) {
+
+                        $participant = $participants[(string)$xml['JoueurId']];
+
+                        $teams[] = array(
+                            'name'    => $participant['firstname'] . ' ' . $participant['lastname'],
+                            'captain' => $xml['JoueurId'],
+                            'members' => array($xml['JoueurId'])
+                        );
+                    }
+                    else {
+                        foreach ($xml['JoueurId'] as $member) {
+
+                            $participant = $participants[(string)$member];
+
+                            $teams[] = array(
+                                'name'    => $participant['firstname'] . ' ' . $participant['lastname'],
+                                'captain' => $member,
+                                'members' => array($member)
+                            );
+                        }
+                    }
+                }
+            }
+        }
+
+        // dd($participants);
+
+        // Tournament::create();
+        */
+        foreach ($participants as $participant) {
+
+            if (!Participant::find($participant['id'])) {
+                Participant::create($participant);
+            }
+        }
+
+        return 'true';
     }
 }

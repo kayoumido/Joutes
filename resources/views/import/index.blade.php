@@ -5,7 +5,7 @@
         <a href="/"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
         <h1>Import data</h1>
 
-        {{ Form::open(array('url' => route('import.store'), 'method' => 'post', 'id' => 'formSport')) }}
+        {{ Form::open(array('url' => route('events.import.store', $event_id), 'method' => 'post', 'id' => 'formSport')) }}
 
 			{{-- {{ Form::label('xml-file', 'Fichier XML :') }}
 			{{ Form::file('xml', array('class' => 'form-control')) }} --}}

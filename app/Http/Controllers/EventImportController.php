@@ -57,5 +57,43 @@ class EventImportController extends Controller {
                 )
             ),
         );
+
+        $participants = array();
+        // load participant files
+        foreach ($filenames['participants']['names'] as $file) {
+
+            $xml = (array)simplexml_load_string(File::get($path . '/' . $filenames['participants']['folder'] . '/' . $file));
+
+
+            if (strpos($file, 'enseignants') !== false) {
+
+                foreach ($xml['Teacher'] as $participant) {
+                    $participants[(string)$participant->Id] = array(
+                        'id'        => (string)$participant->Id,
+                        'first_name' => (string)$participant->Firstname,
+                        'last_name'  => (string)$participant->Lastname,
+                    );
+                }
+
+            }
+            else if (strpos($file, 'etudiants') !== false) {
+
+                foreach ($xml['CurrentStudent'] as $participant) {
+                    $participants[(string)$participant->Id] = array(
+                        'id'        => (string)$participant->Id,
+                        'first_name' => (string)$participant->Firstname,
+                        'last_name'  => (string)$participant->Lastname,
+                    );
+                }
+
+            }
+        }
+
+        foreach ($participants as $participant) {
+
+            if (!Participant::find($participant['id'])) {
+                Participant::create($participant);
+            }
+        }
     }
 }

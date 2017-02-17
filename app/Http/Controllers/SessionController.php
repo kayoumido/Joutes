@@ -14,8 +14,12 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() // I used index method and no create to have joutes/login and no joutes/login/create
-    {
-        return view('session.create');
+    {   
+        $connected = false;
+        if(Auth::check()){
+            $connected = true;
+        }
+        return view('session.create')->with('connected', $connected);
     }
 
     /**
@@ -28,11 +32,21 @@ class SessionController extends Controller
     {
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             // Authentication passed...
-            //return redirect()->intended('dashboard');
-            echo "OUI";
-        }else{
-        	echo bcrypt($request->input('password'));
         }
+        return redirect(route('login.index')); 
+    }
+
+    /**
+     * Disconnected the current connected user
+     *
+     * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
+     */
+    public function destroy($id = 0)
+    {
+        Auth::logout();
+        return redirect()->route('login.index');
     }
 
 }

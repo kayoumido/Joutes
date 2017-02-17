@@ -13,8 +13,10 @@ class User extends Model implements Authenticatable
 
 	/* Implemented methods from Authenticatable */
 	public function getAuthIdentifierName(){
+        return $this->username;
 	}
     public function getAuthIdentifier(){
+        return $this->id;
     }
     public function getAuthPassword(){
     	return $this->password;

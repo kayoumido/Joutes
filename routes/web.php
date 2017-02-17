@@ -28,4 +28,4 @@ Route::resource('events', 'EventController');
 Route::resource('events.tournaments', 'EventTournamentController', [ 'only' => ['index', 'show']]);
 
 
-Route::resource('login', 'SessionController', ['only' => ['index', 'store']]);
+Route::resource('login', 'SessionController', ['only' => ['index', 'store', 'destroy']]);

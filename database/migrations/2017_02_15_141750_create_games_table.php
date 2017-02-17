@@ -21,12 +21,12 @@ class CreateGamesTable extends Migration
             $table->date('date');
             $table->time('start_time'); 
             $table->enum('type', ['Simple', 'Retour']);
-            $table->integer('team1_id')->unsigned(); 
+            $table->integer('teams1_id')->unsigned(); 
             $table->integer('teams2_id')->unsigned(); 
             $table->integer('pools_id')->unsigned(); 
             $table->integer('courts_id')->unsigned(); 
 
-            $table->foreign('team1_id')->references('id')->on('teams'); 
+            $table->foreign('teams1_id')->references('id')->on('teams'); 
             $table->foreign('teams2_id')->references('id')->on('teams'); 
             $table->foreign('pools_id')->references('id')->on('pools'); 
             $table->foreign('courts_id')->references('id')->on('courts'); 

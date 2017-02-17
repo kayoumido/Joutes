@@ -11,7 +11,7 @@ class sportsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('participants')->insert([
+        DB::table('sports')->insert([
             [
                 'name' => "Football",
                 'description' => "Par équipe de 11",

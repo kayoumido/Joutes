@@ -18,11 +18,11 @@ class CreatePoolsTeamsTable extends Migration
             $table->integer('rank_in_pool'); 
             $table->integer('pools_id')->unsigned();
             $table->integer('teams_id')->unsigned(); 
-            $table->integer('parent_pool_id')->unsigned()->nullable(); 
+            $table->integer('from_pool_id')->unsigned()->nullable(); 
  
             $table->foreign('pools_id')->references('id')->on('pools'); 
             $table->foreign('teams_id')->references('id')->on('teams'); 
-            $table->foreign('parent_pool_id')->references('id')->on('pools'); 
+            $table->foreign('from_pool_id')->references('id')->on('pools'); 
         }); 
     }
 

@@ -20,7 +20,7 @@ class CreateGamesTable extends Migration
             $table->integer('score_team2');
             $table->date('date');
             $table->time('start_time'); 
-            $table->enum('type', ['Simple', 'Retour']);
+            $table->string('type', 45);
             $table->integer('teams1_id')->unsigned(); 
             $table->integer('teams2_id')->unsigned(); 
             $table->integer('pools_id')->unsigned(); 

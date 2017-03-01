@@ -48,8 +48,9 @@ class MakeAdmin extends Command
             $user = new User;
             $user->username = $username;
             $user->password = $password;
+            $user->role = 'administrator';
             $user->save();
-            $this->line("L'utilisateur $username a bien été créé.");
+            $this->line("L'administrateur $username a bien été créé.");
         }
 
     }

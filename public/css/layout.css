@@ -21,6 +21,20 @@ header.header .navbar-brand {
     color: #9EE493 !important;
 }
 
+header .navbar button, header .navbar input[type=submit]{
+    margin-top: 30px;
+    margin-right: 25px;
+}
+header .navbar .user-infos{
+    color: #FFF;
+    display: inline-flex;
+} 
+header .navbar .user-infos span{
+    margin-top: 35px;
+    padding-right: 21px;
+    font-size: 18px;
+}
+
 footer.footer {
     background-color: #446CB3;
     color: #fff;

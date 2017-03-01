@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\MakeAdmin::class
+        Commands\MakeAdmin::class,
+        Commands\MakeWritter::class
     ];
 
     /**

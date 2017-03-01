@@ -17,7 +17,7 @@ class CreatePoolsTable extends Migration
             $table->increments('id'); 
             $table->time('start_time'); 
             $table->time('end_time')->nullable();
-            $table->integer('number'); 
+            $table->string('poolName', 100); 
             $table->integer('tournaments_id')->unsigned(); 
  
             $table->foreign('tournaments_id')->references('id')->on('tournaments'); 

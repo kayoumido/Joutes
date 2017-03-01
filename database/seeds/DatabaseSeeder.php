@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(teamsTableSeeder::class);
         $this->call(participants_teamsTableSeeder::class);
         $this->call(poolsTableSeeder::class);
-        $this->call(pool_teamsTableSeeder::class);
+        $this->call(pools_teamsTableSeeder::class);
         $this->call(gamesTableSeeder::class);
     }
 }

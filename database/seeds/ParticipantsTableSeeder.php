@@ -171,7 +171,8 @@ class participantsTableSeeder extends Seeder
             [
                 'first_name' => "Henrique",
                 'last_name' => "Rolao",
-            ],  [
+            ],  
+            [
                 'first_name' => "Lionel",
                 'last_name' => "Hurner",
             ],
@@ -218,6 +219,54 @@ class participantsTableSeeder extends Seeder
             [
                 'first_name' => "René",
                 'last_name' => "Aloui",
+            ],
+             [
+                'first_name' => "Fred",
+                'last_name' => "Johnson",
+            ],
+            [
+                'first_name' => "Marie",
+                'last_name' => "Dena",
+            ],
+            [
+                'first_name' => "Loic",
+                'last_name' => "Meyer",
+            ],
+            [
+                'first_name' => "Rebecca",
+                'last_name' => "Bey",
+            ],
+            [
+                'first_name' => "Maurice",
+                'last_name' => "Riponne",
+            ],
+            [
+                'first_name' => "Marine",
+                'last_name' => "Polen",
+            ],
+            [
+                'first_name' => "Brendan",
+                'last_name' => "Demantia",
+            ],
+            [
+                'first_name' => "Oliver",
+                'last_name' => "Skyes",
+            ],
+            [
+                'first_name' => "Cidjey",
+                'last_name' => "Johnson",
+            ],
+            [
+                'first_name' => "Erika",
+                'last_name' => "Amiguet",
+            ],
+            [
+                'first_name' => "Coralie",
+                'last_name' => "Amiguet",
+            ],
+            [
+                'first_name' => "André",
+                'last_name' => "Rod",
             ]
             
         ]);

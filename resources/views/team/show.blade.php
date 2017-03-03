@@ -37,7 +37,7 @@
 						<tr>
 					      <th scope="row" class="name"> {{ $participant->last_name }} {{ $participant->first_name }} </th>
 					      <td> 
-						      {{ Form::open(array('url' => route('teams.participants.destroy', [$participant->pivot['fk_participants'], $participant->pivot['fk_teams']]), 'method' => 'delete')) }}
+						      {{ Form::open(array('url' => route('teams.participants.destroy', [$participant->pivot['participant_id'], $participant->pivot['team_id']]), 'method' => 'delete')) }}
 						      	<button type="submit" class="button-delete" data-type="teamMember" data-name="{{ $participant->last_name }} {{ $participant->first_name }}">
 						      		<i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
 						      	</button>

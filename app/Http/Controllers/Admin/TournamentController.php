@@ -20,10 +20,9 @@ class TournamentController extends Controller
      */
     public function create()
     {
-        dd("dwdw");
-        /*$dropdownListSports = $this->getDropDownListSports();
+        $dropdownListSports = $this->getDropDownListSports();
         $dropdownListTeams = $this->getDropDownListTeams();
-        return view('tournament.create')->with('dropdownListSports', $dropdownListSports)->with('dropdownListTeams', $dropdownListTeams);*/
+        return view('tournament.create')->with('dropdownListSports', $dropdownListSports)->with('dropdownListTeams', $dropdownListTeams);
     }
 
     /**

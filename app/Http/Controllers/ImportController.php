@@ -14,7 +14,9 @@ class ImportController extends Controller {
      * @author Doran Kayoumi
      */
     public function index() {
+        /*
         return view('import.index');
+        */
     }
 
     /**
@@ -24,6 +26,7 @@ class ImportController extends Controller {
      * @author Doran Kayoumi
      */
     public function store(Request $request) {
+
         // temporary path building
         $path = storage_path() . '/xml';
 
@@ -84,6 +87,7 @@ class ImportController extends Controller {
 
             }
         }
+
         $activities = array();
         // load activities file
         foreach ($filenames['activities']['names'] as $file) {
@@ -94,7 +98,6 @@ class ImportController extends Controller {
             }
         }
 
-        /*
         $teams = array();
         // load team files
         foreach ($filenames['teams']['names'] as $file) {
@@ -156,7 +159,7 @@ class ImportController extends Controller {
         // dd($participants);
 
         // Tournament::create();
-        */
+
         foreach ($participants as $participant) {
 
             if (!Participant::find($participant['id'])) {

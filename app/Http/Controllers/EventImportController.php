@@ -105,17 +105,19 @@ class EventImportController extends Controller {
 
             foreach ($xml['Activite'] as $activity) {
                 // check if activity is found in sport table
-                if (!Sport::find((string)$activity->Nom)) {
+                if (!Sport::where('name', (string)$activity->Nom)->exists()) {
+                    // create new sport
                     $sport       = new Sport();
                     $sport->name = (string)$activity->Nom;
                     $sport->save();
                 }
                 else {
-                    $sport = Sport::find((string)$activity->Nom);
+                    $sport = Sport::where('name', (string)$activity->Nom)->first();
                 }
 
                 // check if activity is found in Tournament table
-                if (!Tournament::find((string)$activity->Nom)) {
+                // if (!Tournament::find((string)$activity->Nom)) {
+                if (!Tournament::where('name', (string)$activity->Nom)->exists()) {
                     $tournament             = new Tournament();
                     $tournament->name       = (string)$activity->Nom;
                     $tournament->start_date = Carbon::now()->toDateTimeString();
@@ -130,7 +132,6 @@ class EventImportController extends Controller {
         }
 
         $activities = Tournament::all();
-        //dd($activities[0]->name);
         // load team files
         foreach ($filenames['teams']['names'] as $file) {
             // loop through activities
@@ -139,6 +140,7 @@ class EventImportController extends Controller {
                 $file_path = $path . '/' . $filenames['teams']['folder'] . '/' . $activity->name . '/' . $file;
                 // check if file exists
                 if (File::exists($file_path)) {
+                    // load it
                     $xml = (array)simplexml_load_string(File::get($file_path));
                 }
                 else {
@@ -151,95 +153,73 @@ class EventImportController extends Controller {
                     foreach ($xml['Equipe'] as $data) {
 
                         // check if team already exists
-                        if (!Team::where('name', $data->NomEquipe)->exists()) {
-
+                        if (!Team::where('name', (string)$data->NomEquipe)->exists()) {
                             // create team
-                            $team = new Team();
+                            $team       = new Team();
                             $team->name = (string)$data->NomEquipe;
                             $team->save();
                         }
                         else {
-
+                            // retrieve it from db
                             $team = Team::where('name', $data->NomEquipe)->first();
-                            //dd($team->name);
-                            // get it from db
                         }
-
-                        $members = array();
+                        // loop threw team participants
                         foreach ($data->JoueurId as $member) {
-                            $team->participants()->attach($member);
-                            //$members[] = (string)$member;
+                            // atach participant to team
+                            $team->participants()->sync([strval($member)], false);
                         }
-
-                        // $teams[] = array(
-                        //     'name'    => (string)$team->NomEquipe,
-                        //     'captain' => (string)$team->Capitaine,
-                        //     'members' => $members
-                        // );
                     }
                 }
                 else if ($file === 'Participants.xml') {
 
-                    // if (!is_array($xml['JoueurId'])) {
-                    //
-                    //     // find participant in db
-                    //     $participant = Participant::find($xml['JoueurId']);
-                    //
-                    //     // build team name
-                    //     $teamname = $participant->first_name . ' ' . $participant->last_name;
-                    //
-                    //     // check if team already exists
-                    //     if (!Team::find($teamname)) {
-                    //         // create it
-                    //         $team = new Team();
-                    //         $team->name = $teamname;
-                    //         $team->save();
-                    //     }
-                    //     else {
-                    //         // get it from db
-                    //         $team = Team::find($teamname);
-                    //     }
-                    //
-                    //     $team->participants()->attach($participant->id);
-                    //
-                    //     // $participant = $participants[(string)$xml['JoueurId']];
-                    //
-                    //     // $teams[] = array(
-                    //     //     'name'    => $participant['firstname'] . ' ' . $participant['lastname'],
-                    //     //     'captain' => $xml['JoueurId'],
-                    //     //     'members' => array($xml['JoueurId'])
-                    //     // );
-                    // }
-                    // else {
-                    //     foreach ($xml['JoueurId'] as $member) {
-                    //
-                    //         // find participant in db
-                    //         $participant = Participant::find($member);
-                    //
-                    //         // build team name
-                    //         $teamname = $participant->first_name . ' ' . $participant->last_name;
-                    //
-                    //         // check if team already exists
-                    //         if (!Team::find($teamname)) {
-                    //             // create it
-                    //             $team = new Team();
-                    //             $team->name = $teamname;
-                    //             $team->save();
-                    //         }
-                    //         else {
-                    //             // get it from db
-                    //             $team = Team::find($teamname);
-                    //         }
-                    //
-                    //         $team->participants()->attach($participant->id);
-                    //
-                    //         // $teams[] = array(
-                    //         //     'name'    => $participant['firstname'] . ' ' . $participant['lastname'],
-                    //         //     'captain' => $member,
-                    //         //     'members' => array($member)
-                    //         // );
-                    //     }
-                    // }
+                    // check if xml only contains one participant
+                    if (!is_array($xml['JoueurId'])) {
+                        // find participant in db
+                        $participant = Participant::find($xml['JoueurId']);
+
+                        // build team name
+                        $teamname = $participant->first_name . ' ' . $participant->last_name;
+
+                        // check if team already exists
+                        if (!Team::where('name', $teamname)->exists()) {
+                            // create it
+                            $team = new Team();
+                            $team->name = (string)$teamname;
+                            $team->save();
+                        }
+                        else {
+                            // retrieve it from db
+                            $team = Team::where('name', $teamname)->first();
+                        }
+
+                        // atach participant to team if relation doesn't exist
+                        $team->participants()->sync([$participant->id], false);
+                    }
+                    else if (is_array($xml['JoueurId'])) {
+                        // loop through participants
+                        foreach ($xml['JoueurId'] as $member) {
+
+                            // find participant in db
+                            $participant = Participant::find($member);
+
+                            // build team name
+                            $teamname = $participant->first_name . ' ' . $participant->last_name;
+
+                            // check if team already exists
+                            if (!Team::find($teamname)) {
+                                // create it
+                                $team = new Team();
+                                $team->name = $teamname;
+                                $team->save();
+                            }
+                            else {
+                                // retrieve it from db
+                                $team = Team::find($teamname);
+                            }
+                            // atach participant to team if relation doesn't exist
+                            $team->participants()->sync([$participant->id], false);
+                        }
+                    }
                 }
             }
         }

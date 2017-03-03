@@ -11,7 +11,7 @@ class pools_teamsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pools_teams')->insert([
+        DB::table('contender')->insert([
 
         	//POOL 1
             [

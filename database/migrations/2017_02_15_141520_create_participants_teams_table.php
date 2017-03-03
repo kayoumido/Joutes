@@ -21,6 +21,7 @@ class CreateParticipantsTeamsTable extends Migration
 
             $table->foreign('participants_id')->references('id')->on('participants'); 
             $table->foreign('teams_id')->references('id')->on('teams'); 
+
         }); 
     }
 

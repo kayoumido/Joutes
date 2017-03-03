@@ -18,7 +18,6 @@ class CreatePoolsTable extends Migration
             $table->time('start_time'); 
             $table->time('end_time')->nullable();
             $table->string('poolName', 100);
-            $table->string('poolMode', 100); 
             $table->integer('stage');
             $table->string('gameType', 45); 
 

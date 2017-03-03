@@ -60,9 +60,8 @@
 		@else
 			{{ Form::open(array('url' => route('teams.participants.store',  $team->id), 'method' => 'post')) }}
 
-
+				{{ Form::checkbox('isCapitain', true) }} Capitain
 				{{ Form::select('pepole', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
-
 
 			{{ Form::close() }}
 

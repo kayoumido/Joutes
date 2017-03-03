@@ -58,13 +58,15 @@ class TeamParticipantController extends Controller
     public function store(Request $request, $id)
     {
 
+        $isCapitain = $request->input('isCapitain') ? true : false;
+
         //redirect to the correct page with message
         if (URL::previous() === URL::route('teams.show', ['id' => $id])){
 
             $idParticipant = $request->input('pepole'); 
             $team = Team::find($id);
             
-            $team->participants()->attach($idParticipant); //add the row in intemrediate table 
+            $team->participants()->attach([$idParticipant => array('isCapitain' => $isCapitain )]); //add the row in intemrediate table 
 
             $participant = Participant::find($idParticipant);
             $participantName = $participant->last_name. " " .$participant->first_name;
@@ -78,7 +80,6 @@ class TeamParticipantController extends Controller
 
             $idTeam= $request->input('team'); 
             $team = Team::find($idTeam);
-            $isCapitain = $request->input('isCapitaine') ? true : false;
 
             $team->participants()->attach([$id => array('isCapitain' => $isCapitain )]); //add the row in intemrediate table 
 

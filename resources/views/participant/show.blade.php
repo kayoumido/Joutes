@@ -61,7 +61,7 @@
 		@else
 			{{ Form::open(array('url' => route('teams.participants.store',  $participant->id), 'method' => 'post')) }}
 				
-				{{ Form::checkbox('isCapitaine', true) }} Capitaine
+				{{ Form::checkbox('isCapitain', true) }} Capitain
 				{{ Form::select('team', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
 
 

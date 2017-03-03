@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Sport; // This is the linked model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

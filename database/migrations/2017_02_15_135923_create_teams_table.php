@@ -13,10 +13,13 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('teams', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 45);
-        });
+        Schema::create('teams', function (Blueprint $table) { 
+            $table->increments('id'); 
+            $table->string('name', 100); 
+            $table->integer('tournaments_id')->unsigned(); 
+ 
+            $table->foreign('tournaments_id')->references('id')->on('tournaments'); 
+        }); 
     }
 
     /**
@@ -26,6 +29,6 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('teams'); 
     }
 }

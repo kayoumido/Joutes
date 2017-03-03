@@ -13,6 +13,6 @@ class Participant extends Model
 
     public function teams()
     {
-        return $this->belongsToMany('App\Team', 'participants_has_teams', 'fk_participants' ,'fk_teams');
+        return $this->belongsToMany('App\Team');
     }
 }

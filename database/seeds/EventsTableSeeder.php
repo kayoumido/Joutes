@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class EventsTableSeeder extends Seeder
+class eventsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,10 +13,16 @@ class EventsTableSeeder extends Seeder
     {
         DB::table('events')->insert([
             [
-                'name' => 'Joutes 2016',
+                'name' => "Joute 2014",
+                'img' => "20120611_114612",
             ],
             [
-                'name' => 'Joutes 2018',
+                'name' => "Joute 2015",
+                'img' => "20090611_114532",
+            ],
+            [
+                'name' => "Joute 2016",
+                'img' => "20120605_114532",
             ]
         ]);
     }

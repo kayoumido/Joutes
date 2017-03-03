@@ -16,7 +16,7 @@ class Event extends Model
      * @author Doran Kayoumi
      */
     public function tournaments() {
-        return $this->hasMany('App\Tournament', 'fk_events');
+        return $this->hasMany('App\Tournament');
     }
 
     /**

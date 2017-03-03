@@ -11,7 +11,7 @@ class Team extends Model
 
     public function participants()
     {
-        return $this->belongsToMany('App\Participant', 'participants_has_teams', 'fk_teams' ,'fk_participants');
+        return $this->belongsToMany('App\Participant')->withPivot('isCapitain');
     }
 
 	/**

@@ -231,5 +231,6 @@ class EventImportController extends Controller {
             }
         }
 
+        return redirect()->route('events.index');
     }
 }

@@ -78,8 +78,9 @@ class TeamParticipantController extends Controller
 
             $idTeam= $request->input('team'); 
             $team = Team::find($idTeam);
+            $isCapitain = $request->input('isCapitaine') ? true : false;
 
-            $team->participants()->attach($id); //add the row in intemrediate table 
+            $team->participants()->attach([$id => array('isCapitain' => $isCapitain )]); //add the row in intemrediate table 
 
             $participant = Participant::find($id);
             $participantName = $participant->last_name. " " .$participant->first_name;

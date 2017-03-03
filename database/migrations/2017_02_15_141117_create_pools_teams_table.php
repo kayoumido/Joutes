@@ -13,15 +13,15 @@ class CreatePoolsTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pools_teams', function (Blueprint $table) { 
+        Schema::create('pool_team', function (Blueprint $table) { 
             $table->increments('id'); 
             $table->integer('rank_in_pool'); 
-            $table->integer('pools_id')->unsigned();
-            $table->integer('teams_id')->unsigned(); 
+            $table->integer('pool_id')->unsigned();
+            $table->integer('team_id')->unsigned(); 
             $table->integer('from_pool_id')->unsigned()->nullable(); 
  
-            $table->foreign('pools_id')->references('id')->on('pools'); 
-            $table->foreign('teams_id')->references('id')->on('teams'); 
+            $table->foreign('pool_id')->references('id')->on('pools'); 
+            $table->foreign('team_id')->references('id')->on('teams'); 
             $table->foreign('from_pool_id')->references('id')->on('pools'); 
         }); 
     }
@@ -33,6 +33,6 @@ class CreatePoolsTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pools_teams');
+        Schema::dropIfExists('pool_team');
     }
 }

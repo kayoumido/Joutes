@@ -13,7 +13,7 @@ class RenamePoolsTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::rename('pools_teams', 'contender');
+        Schema::rename('pool_team', 'contender');
     }
 
     /**

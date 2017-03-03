@@ -23,13 +23,15 @@ Route::resource('admin', 'SessionController', ['only' => ['index', 'store', 'des
 
 
 /* Routes who need authentification */
-Route::resource('events', 'Admin\EventController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
-Route::resource('tournaments', 'Admin\TournamentController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
-Route::resource('sports', 'Admin\SportController');
-Route::resource('courts', 'Admin\CourtController');
-Route::resource('teams', 'Admin\TeamController');
-Route::resource('participants', 'Admin\ParticipantController');
-Route::resource('teams.participants', 'Admin\TeamParticipantController', ['only' => ['destroy', 'store']]);
+Route::group(['middleware'=>'checkIsAdmin'],function(){
+	Route::resource('events', 'Admin\EventController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+	Route::resource('tournaments', 'Admin\TournamentController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+	Route::resource('sports', 'Admin\SportController');
+	Route::resource('courts', 'Admin\CourtController');
+	Route::resource('teams', 'Admin\TeamController');
+	Route::resource('participants', 'Admin\ParticipantController');
+	Route::resource('teams.participants', 'Admin\TeamParticipantController', ['only' => ['destroy', 'store']]);
+});
 
 
 

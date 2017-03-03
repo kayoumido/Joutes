@@ -116,16 +116,13 @@ class EventImportController extends Controller {
                 }
 
                 // check if activity is found in Tournament table
-                // if (!Tournament::find((string)$activity->Nom)) {
                 if (!Tournament::where('name', (string)$activity->Nom)->exists()) {
                     $tournament             = new Tournament();
                     $tournament->name       = (string)$activity->Nom;
                     $tournament->start_date = Carbon::now()->toDateTimeString();
-                    $tournament->end_date   = Carbon::now()->toDateTimeString(); // temp
-                    $tournament->start_time = date("H:i"); // temp
-                    $tournament->end_time   = date("H:i"); // temp
-                    $tournament->fk_events  = $event;
-                    //$tournament->fk_sports  = $sport->id;
+                    $tournament->img        = '';
+                    $tournament->events_id  = $event;
+                    $tournament->sports_id  = $sport->id;
                     $tournament->save();
                 }
             }
@@ -155,8 +152,9 @@ class EventImportController extends Controller {
                         // check if team already exists
                         if (!Team::where('name', (string)$data->NomEquipe)->exists()) {
                             // create team
-                            $team       = new Team();
-                            $team->name = (string)$data->NomEquipe;
+                            $team                 = new Team();
+                            $team->name           = (string)$data->NomEquipe;
+                            $team->tournaments_id = $activity->id;
                             $team->save();
                         }
                         else {
@@ -166,7 +164,9 @@ class EventImportController extends Controller {
                         // loop threw team participants
                         foreach ($data->JoueurId as $member) {
                             // atach participant to team
-                            $team->participants()->sync([strval($member)], false);
+                            $team->participants()->sync([
+                                strval($member) => array ( 'isCapitain' => strval($member) == strval($data->Capitaine) )
+                            ], false);
                         }
                     }
                 }
@@ -185,6 +185,7 @@ class EventImportController extends Controller {
                             // create it
                             $team = new Team();
                             $team->name = (string)$teamname;
+                            $team->tournaments_id = $activity->id;
                             $team->save();
                         }
                         else {
@@ -193,7 +194,9 @@ class EventImportController extends Controller {
                         }
 
                         // atach participant to team if relation doesn't exist
-                        $team->participants()->sync([$participant->id], false);
+                        $team->participants()->sync([
+                            $participant->id => array ( 'isCapitain' => true )
+                        ], false);
                     }
                     else if (is_array($xml['JoueurId'])) {
                         // loop through participants
@@ -210,6 +213,7 @@ class EventImportController extends Controller {
                                 // create it
                                 $team = new Team();
                                 $team->name = $teamname;
+                                $team->tournaments_id = $activity->id;
                                 $team->save();
                             }
                             else {
@@ -217,11 +221,15 @@ class EventImportController extends Controller {
                                 $team = Team::find($teamname);
                             }
                             // atach participant to team if relation doesn't exist
-                            $team->participants()->sync([$participant->id], false);
+                            $team->participants()->sync([
+                                $participant->id => array ( 'isCapitain' => true)
+                            ], false);
                         }
                     }
+
                 }
             }
         }
+
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use App\Court; // This is the linked model
 use App\Sport; // This is the linked model
 use Illuminate\Http\Request;

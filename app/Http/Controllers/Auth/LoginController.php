@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/events';
 
     /**
      * Create a new controller instance.
@@ -36,4 +36,18 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    /* I define that laravel have to use the "username" field for login in place of "email" by default */
+    public function username(){
+        return 'username';
+    }
+
+    public function authenticate($request){
+        if (Auth::attempt(['username' => $request->input("username"), 'username' => $request->input("password")])) {
+            // Authentication passed...
+            //return redirect()->intended('dashboard');
+            echo "OOOOKKKKK";
+        }
+    }
+
 }

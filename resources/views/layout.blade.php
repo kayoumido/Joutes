@@ -40,6 +40,18 @@
                         <li><a href="{{ route('teams.index') }}">Equipes</a></li>
                         <li><a href="{{ route('participants.index') }}">Participants</a></li>
                     </ul>
+                    <div class="nav navbar-nav navbar-right">
+                        <div class="user-infos">
+                            @if(Auth::check())
+                                <span>{{ Auth::user()->username }}</span>
+                                {{ Form::open(array('url' => route('admin.destroy', 0), 'method' => 'delete')) }}
+                                    {{ Form::submit('Déconnexion', array('class' => 'btn btn-danger')) }}
+                                {{ Form::close() }}
+                            @else
+                                <a href="{{ route('admin.index') }}"><button type="button" class="btn btn-success">Connexion</button></a>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>

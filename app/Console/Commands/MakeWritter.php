@@ -6,21 +6,21 @@ use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
-class MakeAdmin extends Command
+class MakeWritter extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:admin {username} {password}';
+    protected $signature = 'make:writter {username} {password}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new administrator';
+    protected $description = 'Create a new writter';
 
     /**
      * Create a new command instance.
@@ -48,9 +48,9 @@ class MakeAdmin extends Command
             $user = new User;
             $user->username = $username;
             $user->password = $password;
-            $user->role = 'administrator';
+            $user->role = 'writter';
             $user->save();
-            $this->line("L'administrateur $username a bien été créé.");
+            $this->line("Le rédacteur $username a bien été créé.");
         }
 
     }

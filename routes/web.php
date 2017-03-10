@@ -25,7 +25,7 @@ Route::resource('admin', 'SessionController', ['only' => ['index', 'store', 'des
 /* Routes who need authentification */
 // Prefix admin is here to have an url like that : .../admin/tournaments/create
 // It will add the "admin" prefix before each "critical" URLs
-//Route::group(['middleware'=>'checkIsAdmin', 'prefix'=>'admin', 'namespace' => 'Admin'],function(){
+Route::group([/*'middleware'=>'checkIsAdmin', */'prefix'=>'admin', 'namespace' => 'Admin'],function(){
 	Route::resource('events', 'EventController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 	Route::resource('tournaments', 'TournamentController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 	Route::resource('sports', 'SportController');
@@ -33,7 +33,7 @@ Route::resource('admin', 'SessionController', ['only' => ['index', 'store', 'des
 	Route::resource('teams', 'TeamController');
 	Route::resource('participants', 'ParticipantController');
 	Route::resource('teams.participants', 'TeamParticipantController', ['only' => ['destroy', 'store']]);
-//});
+});
 
 
 

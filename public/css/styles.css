@@ -209,6 +209,12 @@ select.allSameStyle, input.allSameStyle{
 	top: 15px;
 }
 
+.box .infos .import {
+	border: none !important;
+	background-color: transparent !important;
+	color: #9EE493 !important;
+}
+
 .box .infos .button-delete{
 	position: absolute;
 	right: 10px;

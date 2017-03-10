@@ -1,5 +1,14 @@
 $( document ).ready(function() {
 
+	// set click event on import button
+	$('.import').click(function(event) {
+		// prevent button default action
+		event.preventDefault();
+
+		// submit form
+		$(this).parent().submit();
+	});
+
 	$('.show-devs').click(function() {
 		if ($('.dev-names').hasClass('hide')) {
 			$('.dev-names').removeClass('hide').addClass('show');

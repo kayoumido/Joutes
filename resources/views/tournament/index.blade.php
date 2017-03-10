@@ -28,8 +28,7 @@
 							</div>
 							<div class="infos">
 								<div class="sport"> {{ $tournament->sport->name }} </div>
-								<div class="hour"> {{$tournament->start_time}} à {{$tournament->end_time}} </div>
-								<div class="date"> {{$tournament->start_date->format('d.m.Y')}} au {{$tournament->end_date->format('d.m.Y')}} </div>
+								<div class="date"> {{$tournament->start_date->format('d.m.Y à H:i')}} </div>
 
 								@if(Auth::check())
 									@if(Auth::user()->role == 'administrator')

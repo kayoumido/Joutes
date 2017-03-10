@@ -23,13 +23,17 @@ Route::resource('admin', 'SessionController', ['only' => ['index', 'store', 'des
 
 
 /* Routes who need authentification */
-Route::resource('events', 'Admin\EventController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
-Route::resource('tournaments', 'Admin\TournamentController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
-Route::resource('sports', 'Admin\SportController');
-Route::resource('courts', 'Admin\CourtController');
-Route::resource('teams', 'Admin\TeamController');
-Route::resource('participants', 'Admin\ParticipantController');
-Route::resource('teams.participants', 'Admin\TeamParticipantController', ['only' => ['destroy', 'store']]);
+// Prefix admin is here to have an url like that : .../admin/tournaments/create
+// It will add the "admin" prefix before each "critical" URLs
+Route::group(['middleware'=>'checkIsAdmin', 'prefix'=>'admin', 'namespace' => 'Admin'],function(){
+	Route::resource('events', 'EventController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+	Route::resource('tournaments', 'TournamentController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+	Route::resource('sports', 'SportController');
+	Route::resource('courts', 'CourtController');
+	Route::resource('teams', 'TeamController');
+	Route::resource('participants', 'ParticipantController');
+	Route::resource('teams.participants', 'TeamParticipantController', ['only' => ['destroy', 'store']]);
+});
 
 
 

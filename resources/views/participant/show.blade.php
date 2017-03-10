@@ -37,7 +37,7 @@
 						<tr>
 					      <th scope="row" class="name"> {{ $team->name }} </th>
 					      <td>
-						      {{ Form::open(array('url' => route('teams.participants.destroy', [$team->pivot['fk_participants'], $team->pivot['fk_teams']]), 'method' => 'delete')) }}
+						      {{ Form::open(array('url' => route('teams.participants.destroy', [$team->pivot['participant_id'], $team->pivot['team_id']]), 'method' => 'delete')) }}
 						      	<button type="submit" class="button-delete" data-type="memberTeam" data-name='"{{ $participant->last_name }} {{ $participant->first_name }}" de "{{ $team->name }}"'>
 						      		<i class="fa fa-trash-o fa-lg action" aria-hidden="true"></i>
 						      	</button>
@@ -60,8 +60,8 @@
 			</div>
 		@else
 			{{ Form::open(array('url' => route('teams.participants.store',  $participant->id), 'method' => 'post')) }}
-
-
+				
+				{{ Form::checkbox('isCapitain', true) }} Capitain
 				{{ Form::select('team', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
 
 

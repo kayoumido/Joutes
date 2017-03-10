@@ -25,6 +25,6 @@ class Sport extends Model
 	 * @author Doran Kayoumi
 	 */
     public function courts() {
-        return $this->hasMany('App\Court', 'fk_sports');
+        return $this->hasMany('App\Court');
     }
 }

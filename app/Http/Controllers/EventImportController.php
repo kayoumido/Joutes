@@ -121,8 +121,8 @@ class EventImportController extends Controller {
                     $tournament->name       = (string)$activity->Nom;
                     $tournament->start_date = Carbon::now()->toDateTimeString();
                     $tournament->img        = '';
-                    $tournament->events_id  = $event;
-                    $tournament->sports_id  = $sport->id;
+                    $tournament->event_id  = $event;
+                    $tournament->sport_id  = $sport->id;
                     $tournament->save();
                 }
             }
@@ -154,7 +154,7 @@ class EventImportController extends Controller {
                             // create team
                             $team                 = new Team();
                             $team->name           = (string)$data->NomEquipe;
-                            $team->tournaments_id = $activity->id;
+                            $team->tournament_id = $activity->id;
                             $team->save();
                         }
                         else {
@@ -185,7 +185,7 @@ class EventImportController extends Controller {
                             // create it
                             $team = new Team();
                             $team->name = (string)$teamname;
-                            $team->tournaments_id = $activity->id;
+                            $team->tournament_id = $activity->id;
                             $team->save();
                         }
                         else {
@@ -213,7 +213,7 @@ class EventImportController extends Controller {
                                 // create it
                                 $team = new Team();
                                 $team->name = $teamname;
-                                $team->tournaments_id = $activity->id;
+                                $team->tournament_id = $activity->id;
                                 $team->save();
                             }
                             else {

@@ -22,7 +22,7 @@ class Team extends Model
 	 * @author Doran Kayoumi
 	 */
     public function tournaments() {
-        return $this->belongsToMany('App\Tournament', 'tournaments_has_teams', 'fk_teams', 'fk_tournaments');
+        return $this->belongsToMany('App\Tournament');
     }
 
 	/**

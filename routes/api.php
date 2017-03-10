@@ -21,7 +21,7 @@ $api->version('v1', function ($api) {
         'index', 'show'
     ]]);
     header('Access-Control-Allow-Origin: *');
-    $api->resource('events.tournaments', 'App\Http\Controllers\API\EventTournamentController', [ 'only' => [
+    $api->resource('events.tournaments', 'App\Http\Controllers\EventTournamentController', [ 'only' => [
         'index', 'show'
     ]]);
     header('Access-Control-Allow-Origin: *');

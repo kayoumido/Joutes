@@ -19,11 +19,11 @@ class CreateTournamentsTable extends Migration
             $table->string('name', 45); 
             $table->dateTime('start_date'); 
             $table->string('img',45); 
-            $table->integer('events_id')->unsigned();
-            $table->integer('sports_id')->unsigned(); 
+            $table->integer('event_id')->unsigned();
+            $table->integer('sport_id')->unsigned(); 
  
-            $table->foreign('events_id')->references('id')->on('events'); 
-            $table->foreign('sports_id')->references('id')->on('sports'); 
+            $table->foreign('event_id')->references('id')->on('events'); 
+            $table->foreign('sport_id')->references('id')->on('sports'); 
         }); 
     }
 

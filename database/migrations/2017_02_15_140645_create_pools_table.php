@@ -19,11 +19,15 @@ class CreatePoolsTable extends Migration
             $table->time('end_time')->nullable();
             $table->string('poolName', 100);
             $table->integer('stage');
-            $table->string('gameType', 45); 
+            $table->integer('poolSize'); 
 
-            $table->integer('tournaments_id')->unsigned(); 
+            $table->integer('tournament_id')->unsigned();
+            $table->integer('mode_id')->unsigned();
+            $table->integer('gameType_id')->unsigned();
  
-            $table->foreign('tournaments_id')->references('id')->on('tournaments'); 
+            $table->foreign('tournament_id')->references('id')->on('tournaments');
+            $table->foreign('mode_id')->references('id')->on('poolModes'); 
+            $table->foreign('gameType_id')->references('id')->on('gameTypes'); 
         }); 
     }
 

@@ -4,7 +4,9 @@
 
 @section('content')
 	<div class="container">
-		<a href="{{ route('tournaments.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
+
+		<a href="{{URL::previous()}}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
+
 		<h1>{{ $tournament->name }}</h1>
 
 		@if(isset($tournament->sport))

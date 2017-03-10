@@ -16,17 +16,17 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) { 
  
             $table->increments('id');
-            $table->integer('score_team1'); 
-            $table->integer('score_team2');
+            $table->integer('score_contender1'); 
+            $table->integer('score_contender2');
             $table->date('date');
             $table->time('start_time'); 
-            $table->integer('teams1_id')->unsigned(); 
-            $table->integer('teams2_id')->unsigned();  
-            $table->integer('courts_id')->unsigned(); 
+            $table->integer('contender1_id')->unsigned(); 
+            $table->integer('contender2_id')->unsigned();  
+            $table->integer('court_id')->unsigned(); 
 
-            $table->foreign('teams1_id')->references('id')->on('teams'); 
-            $table->foreign('teams2_id')->references('id')->on('teams'); 
-            $table->foreign('courts_id')->references('id')->on('courts'); 
+            $table->foreign('contender1_id')->references('id')->on('contenders'); 
+            $table->foreign('contender2_id')->references('id')->on('contenders'); 
+            $table->foreign('court_id')->references('id')->on('courts'); 
 
         }); 
     }

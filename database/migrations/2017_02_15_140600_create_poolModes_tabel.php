@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenamePoolsTeamsTable extends Migration
+class CreatePoolModesTabel extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,13 @@ class RenamePoolsTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::rename('pool_team', 'contender');
+       Schema::create('poolModes', function (Blueprint $table) { 
+ 
+            $table->increments('id'); 
+            $table->string('modeDescription', 100); 
+            $table->integer('planningAlgorithm'); 
+    
+        }); 
     }
 
     /**
@@ -23,6 +29,6 @@ class RenamePoolsTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contender');
+        Schema::dropIfExists('poolModes'); 
     }
 }

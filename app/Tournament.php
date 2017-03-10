@@ -48,6 +48,6 @@ class Tournament extends Model
      * @author Doran Kayoumi
      */
     public function teams() {
-        return $this->belongsToMany('App\Team');
+        return $this->hasMany('App\Team');
     }
 }

@@ -36,8 +36,8 @@ class Tournament extends Model
      *
      * @author Doran Kayoumi
      */
-    public function courts() {
-        return $this->belongsToMany('App\Court', 'tournaments_has_courts', 'fk_tournaments', 'fk_courts');
+    public function sport() {
+        return $this->belongsTo('App\Sport');
     }
 
     /**

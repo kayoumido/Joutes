@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 class User extends Model implements Authenticatable
 {	
-	protected $fillable = ['username', 'password', 'role'];
+	protected $fillable = ['username', 'password'];
 	public $timestamps = false;
 	protected $hidden = array('password');
 
@@ -27,8 +27,12 @@ class User extends Model implements Authenticatable
     }
     public function getRememberTokenName(){
     }
-    public function getRole(){
-        return $this->role;
+
+
+
+
+    public function role(){
+        return $this->belongsTo('App\Role');
     }
 
 }

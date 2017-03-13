@@ -23,7 +23,7 @@ class Court extends Model
      * @author Doran Kayoumi
      */
     public function sport(){
-        return $this->belongsTo(Sport::class, "fk_sports");
+        return $this->belongsTo(Sport::class);
     }
 
 }

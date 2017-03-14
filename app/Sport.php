@@ -27,4 +27,8 @@ class Sport extends Model
     public function courts() {
         return $this->hasMany('App\Court');
     }
+
+	public function tournaments() {
+		return $this->hasMany('App\Tournament');
+	}
 }

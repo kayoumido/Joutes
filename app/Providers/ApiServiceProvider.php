@@ -23,6 +23,12 @@ class ApiServiceProvider extends RouteServiceProvider
         app('Dingo\Api\Exception\Handler')->register(function (ModelNotFoundException $exception) {
             throw new NotFoundHttpException($exception->getMessage() ,$previous = $exception);
         });
+
+        app('Dingo\Api\Transformer\Factory')->setAdapter(function ($app) {
+            $fractal = new \League\Fractal\Manager;
+            $fractal->setSerializer(new \App\Http\Response\NoDataArraySerializer);
+            return new \Dingo\Api\Transformer\Adapter\Fractal($fractal);
+        });
     }
 
     /**

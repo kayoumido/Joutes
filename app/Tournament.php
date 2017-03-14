@@ -30,7 +30,7 @@ class Tournament extends Model
     }
 
     /**
-     * Create a new belongs to many relationship instance between Tournament and Court
+     * Create a new belongs to relationship instance between Tournament and Sport
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      *

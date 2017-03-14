@@ -174,9 +174,6 @@ class TournamentController extends Controller
         if(!preg_match($patternDate, $request->input('startDate'))){
             $customErrors[] = "Le champ Date de début doit être sous la forme : jj.mm.YYYY.";
         }
-        if(!preg_match($patternDate, $request->input('endDate'))){
-            $customErrors[] = "Le champ Date de fin doit être sous la forme : jj.mm.YYYY.";
-        }
 
         // Check if the name of the new tournaments and his sport is already linked in the DB
         // example : Tournament 1 -> Football // I cannot create a new Tournament 1 -> Football // But I can create a Tournament 1 -> Tennis
@@ -228,11 +225,8 @@ class TournamentController extends Controller
         } else {
             //Save the tournament
             $tournament = Tournament::find($id);
-            $tournament->name = $request->input('name');
-            $tournament->start_date = $request->input('startDate');
-            $tournament->end_date = $request->input('endDate');
-            $tournament->start_time = $request->input('startTime');
-            $tournament->fk_events = 1;
+            $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
+            $tournament->event_id = 1;
             $tournament->update();
 
             // Get the tournament's sport object
@@ -244,26 +238,26 @@ class TournamentController extends Controller
             $courtsOfTournament = $tournament->courts;
 
             // We delete all entries of the current tournament on the intermediate table
-            foreach ($courtsOfTournament as $courtOfTournament) {
+           /* foreach ($courtsOfTournament as $courtOfTournament) {
                 $tournament->courts()->detach($courtOfTournament->id);
             }
 
             // We add the good entries with good courts changed 
             foreach ($courtsOfSport as $courtOfSport) {
                 $tournament->courts()->attach($courtOfSport->id);
-            }
+            }*/
 
             // Updating of teams participate to a tournament
             // we delete all entries on DB (tournaments_has_teams table) who correspond to the current tournament
             // And if there is one ore more teams on the form, we will add them to the intermediate table
             // More simple like that in a first time 
-            $tournament->teams()->detach();
+            /*$tournament->teams()->detach();
             if($request->input('teams') > 0){
               $teamsFromUpdateForm = $request->input('teams');
               foreach ($teamsFromUpdateForm as $teamFromUpdateForm) {
                  $tournament->teams()->attach($teamFromUpdateForm);
               }
-            }
+            }*/
 
             return redirect()->route('tournaments.index');
         }
@@ -299,11 +293,9 @@ class TournamentController extends Controller
         }
         return $dropdownList;
     }
-    // The dropdown contains ONLY sports who have one or more courts linked
+
     private function getDropDownListTeams(){
         $teams = Team::all();
-        // Creation of the array will contain the datas of the dropdown list
-        // This form: array("sport_id 1" => "sport_name 1", "sport_id 2" => "sport_name 2"), ...
         $dropdownList = array();
         for ($i=0; $i < sizeof($teams); $i++) { 
                 $dropdownList[$teams[$i]->id] = $teams[$i]->name; 

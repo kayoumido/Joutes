@@ -48,11 +48,7 @@
 			<br>
 			<br>
 			{{ Form::label('startTime', 'Heure de début :') }}
-			{{ Form::text('startTime', date("H:i", strtotime($tournament->start_time)), array('placeholder' => 'hh:mm')) }}
-			<br>
-			<br>
-			{{ Form::label('endDate', 'Date de fin :') }}
-			{{ Form::date('endDate', $tournament->end_date, array('class' => 'allSameStyle')) }}
+			{{ Form::text('startTime', date("H:i", strtotime($tournament->start_date)), array('placeholder' => 'hh:mm')) }}
 			<br>
 			<br>
 			{{ Form::label('teams', 'Équipes participantes :') }}

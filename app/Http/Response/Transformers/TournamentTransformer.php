@@ -6,13 +6,8 @@ use League\Fractal\TransformerAbstract;
 
 class TournamentTransformer extends TransformerAbstract
 {
-    // public $availableIncludes = [
-    //     "schedules"
-    // ];
     public function transform(Tournament $tournament) {
-    // return array_merge($tournament->toArray(), [
-    //     "sport"=>$tournament->sport->name
-    // ]);
+
         return [
             'id'     => (int) $tournament->id,
             'name'   => (string) $tournament->name,
@@ -23,7 +18,4 @@ class TournamentTransformer extends TransformerAbstract
             'third'  => [],
         ];
     }
-    // public function includeSport(Tournament $tournament) {
-    //     return $this->collection($tournament->schedules, new ScheduleTransformer);
-    // }
 }

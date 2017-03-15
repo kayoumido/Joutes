@@ -26,11 +26,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($tournament->sport->courts as $court)
-		  		<tr>
-					<th scope="row" class="name">{{$court->name}}</th>
-				</tr>
-				@endforeach
+				@if(count($tournament->sport->courts) > 0)
+					@foreach ($tournament->sport->courts as $court)
+			  		<tr>
+						<th scope="row" class="name">{{$court->name}}</th>
+					</tr>
+					@endforeach
+				@else
+					<tr>
+						<th scope="row" class="name">Aucun terrain pour l'instant ...</th>
+					</tr>
+				@endif
 			</tbody>
 		</table>
 

@@ -1,5 +1,10 @@
 <?php
-
+/*
+15.03.2017
+TODO : 
+  - We cannot have same tournament's name with the same sport
+  - Create - update views, we can only choose teams who don't are on any tournament. (and the current tournament's team)
+*/
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;

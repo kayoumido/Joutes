@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\Team;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
-use App\Team;
 
 class Event extends Model
 {

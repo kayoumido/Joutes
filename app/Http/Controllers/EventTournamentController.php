@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Tournament;
 use App\Event;
 use App\Sport;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Tournament;
+use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use App\Http\Response\Transformers\TournamentTransformer;
 use App\Http\Response\Transformers\SingleTournamentTransformer;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EventTournamentController extends Controller
 {

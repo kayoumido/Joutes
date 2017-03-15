@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Response\Transformers;
 
-use App\Tournament;
 use App\Team;
+use App\Tournament;
 use League\Fractal\TransformerAbstract;
 
 class TeamTransformer extends TransformerAbstract

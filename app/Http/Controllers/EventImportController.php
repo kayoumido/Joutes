@@ -209,7 +209,7 @@ class EventImportController extends Controller {
                             $teamname = $participant->first_name . ' ' . $participant->last_name;
 
                             // check if team already exists
-                            if (!Team::find($teamname)) {
+                            if (!Team::where('name', $teamname)->exists()) {
                                 // create it
                                 $team = new Team();
                                 $team->name = $teamname;
@@ -218,7 +218,7 @@ class EventImportController extends Controller {
                             }
                             else {
                                 // retrieve it from db
-                                $team = Team::find($teamname);
+                                $team = Team::where('name', $teamname)->first();
                             }
                             // atach participant to team if relation doesn't exist
                             $team->participants()->sync([

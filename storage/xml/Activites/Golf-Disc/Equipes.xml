@@ -5,4 +5,9 @@
     <Capitaine>1237</Capitaine>
     <JoueurId>1237</JoueurId>
   </Equipe>
+  <Equipe type="array">
+    <NomEquipe>The Boss</NomEquipe>
+    <Capitaine>1237</Capitaine>
+    <JoueurId>1237</JoueurId>
+  </Equipe>
 </Equipes>

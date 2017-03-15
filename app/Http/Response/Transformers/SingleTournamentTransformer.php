@@ -6,6 +6,9 @@ use League\Fractal\TransformerAbstract;
 
 class SingleTournamentTransformer extends TransformerAbstract
 {
+    public $defaultIncludes = [
+        "teams"
+    ];
 
     public function transform(Tournament $tournament) {
 
@@ -20,5 +23,9 @@ class SingleTournamentTransformer extends TransformerAbstract
             'third'         => [],
             'group_matches' => [],
         ];
+    }
+
+    public function includeTeams(Tournament $tournament) {
+        return $this->collection($tournament->teams, new TournamentTeamTransformer);
     }
 }

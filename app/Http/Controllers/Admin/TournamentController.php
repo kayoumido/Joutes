@@ -136,11 +136,11 @@ class TournamentController extends Controller
           $teamsAreParticipatingId = null;
         }
 
-        // normal case, there is a court linked to the tournament
-        if(isset($tournament->courts[0])){
-            $sport = $tournament->courts[0]->sport; // get the sport linked
+        // normal case, there is a sport linked
+        if(isset($tournament->sport)){
+            $sport = $tournament->sport; // get the sport linked
         }else{
-            // Court has been deleted so we don't have any sport linked
+            // Sport has been deleted
             $sport = null; 
         }
         return view('tournament.edit')->with('tournament', $tournament)
@@ -175,7 +175,7 @@ class TournamentController extends Controller
             $customErrors[] = "Le champ Date de début doit être sous la forme : jj.mm.YYYY.";
         }
 
-        // Check if the name of the new tournaments and his sport is already linked in the DB
+        /*// Check if the name of the new tournaments and his sport is already linked in the DB
         // example : Tournament 1 -> Football // I cannot create a new Tournament 1 -> Football // But I can create a Tournament 1 -> Tennis
         if(Tournament::whereRaw('name = ?', $request->input('name'))->exists()){
           $sameNameAndSport = false;
@@ -197,7 +197,7 @@ class TournamentController extends Controller
             if($sameNameAndSport){
                 $customErrors[] = "Le sport \"".$sportName."\" est déjà lié au tournoi \"".$request->input('name')."\"";
             }
-        }
+        }*/
 
         /* LARAVEL VALIDATION */
         // create the validation rules
@@ -208,56 +208,44 @@ class TournamentController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
 
+        /* errors detected */
         if ($validator->fails() || !empty($customErrors)) {
             $tournament = Tournament::find($id);
-            if(isset($tournament->courts[0])){
-                $sport = $tournament->courts[0]->sport;
+            if(isset($tournament->sport)){
+                $sport = $tournament->sport;
             }else{
                 $sport = null;
             }
             
             $dropdownListSports = $this->getDropDownListSports();
+            $dropdownListTeams = $this->getDropDownListTeams();
             return view('tournament.edit')->with('dropdownListSports', $dropdownListSports)
+                                          ->with('dropdownListTeams', $dropdownListTeams)
                                           ->with('tournament', $tournament)
                                           ->with('sport', $sport)
                                           ->with('customErrors', $customErrors)
                                           ->withErrors($validator->errors());
         } else {
+          
             //Save the tournament
             $tournament = Tournament::find($id);
+            $tournament->name = $request->input('name');
             $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
-            $tournament->event_id = 1;
+            $tournament->event_id = 1; // TO CHANGE !!!!!!!!!!!!!
+            $tournament->sport_id = $request->input('sport');
             $tournament->update();
 
-            // Get the tournament's sport object
-            $sport = Sport::find($request->input('sport'));
-            // Get all courts linked (Obligatory because the user can only choose a sport who have one or more courts linked)
-            $courtsOfSport = $sport->courts;
-
-            // Get all courts linked to the current tournament
-            $courtsOfTournament = $tournament->courts;
-
-            // We delete all entries of the current tournament on the intermediate table
-           /* foreach ($courtsOfTournament as $courtOfTournament) {
-                $tournament->courts()->detach($courtOfTournament->id);
+            // Dissociate all teams linked to the tournament
+            foreach ($tournament->teams as $team) {
+              $team->tournament()->dissociate();
+              $team->update();
             }
-
-            // We add the good entries with good courts changed 
-            foreach ($courtsOfSport as $courtOfSport) {
-                $tournament->courts()->attach($courtOfSport->id);
-            }*/
-
-            // Updating of teams participate to a tournament
-            // we delete all entries on DB (tournaments_has_teams table) who correspond to the current tournament
-            // And if there is one ore more teams on the form, we will add them to the intermediate table
-            // More simple like that in a first time 
-            /*$tournament->teams()->detach();
-            if($request->input('teams') > 0){
-              $teamsFromUpdateForm = $request->input('teams');
-              foreach ($teamsFromUpdateForm as $teamFromUpdateForm) {
-                 $tournament->teams()->attach($teamFromUpdateForm);
-              }
-            }*/
+            // Accociate new teams linked
+            foreach ($request->input('teams') as $teamId) {
+              $team = Team::find($teamId);
+              $team->tournament()->associate($tournament);
+              $team->update();
+            }
 
             return redirect()->route('tournaments.index');
         }
@@ -279,7 +267,7 @@ class TournamentController extends Controller
     }
 
 
-    // The dropdown contains ONLY sports who have one or more courts linked
+    /*// The dropdown contains ONLY sports who have one or more courts linked
     private function getDropDownListSports(){
         $sports = Sport::all();
         // Creation of the array will contain the datas of the dropdown list
@@ -292,13 +280,22 @@ class TournamentController extends Controller
             }
         }
         return $dropdownList;
+    }*/
+
+    private function getDropDownListSports(){
+      $sports = Sport::all();
+      $sportsList = array();
+      for ($i=0; $i < sizeof($sports); $i++) { 
+        $sportsList[$sports[$i]->id] = $sports[$i]->name;
+      }
+      return $sportsList;
     }
 
     private function getDropDownListTeams(){
         $teams = Team::all();
         $dropdownList = array();
         for ($i=0; $i < sizeof($teams); $i++) { 
-                $dropdownList[$teams[$i]->id] = $teams[$i]->name; 
+          $dropdownList[$teams[$i]->id] = $teams[$i]->name; 
         }
         return $dropdownList;
     }

@@ -16,7 +16,7 @@ class CreateTeamsTable extends Migration
         Schema::create('teams', function (Blueprint $table) { 
             $table->increments('id'); 
             $table->string('name', 100); 
-            $table->integer('tournament_id')->unsigned(); 
+            $table->integer('tournament_id')->unsigned()->nullable();; 
  
             $table->foreign('tournament_id')->references('id')->on('tournaments'); 
         }); 

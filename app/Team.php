@@ -21,8 +21,8 @@ class Team extends Model
 	 *
 	 * @author Doran Kayoumi
 	 */
-    public function tournaments() {
-        return $this->belongsToMany('App\Tournament');
+    public function tournament() {
+        return $this->belongsTo('App\Tournament');
     }
 
 	/**

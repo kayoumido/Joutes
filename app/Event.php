@@ -9,7 +9,7 @@ use App\Team;
 class Event extends Model
 {
     /**
-     * Create a new has many relationship instance between Event and Tournament
+     * Get event tournaments
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      *
@@ -38,6 +38,16 @@ class Event extends Model
                 return $tournament;
             }
         }
+    }
+
+    /**
+     * Get event teams
+     * @return \Illuminate\Database\Eloquent\Model
+     *
+     * @author Doran Kayoumi
+     */
+    public function teams() {
+        return $this->hasManyThrough('App\Team', 'App\Tournament');
     }
 
     /**

@@ -61,21 +61,13 @@ class Event extends Model
      */
     public function team($id) {
 
-        // get team with given id
-        $team  = Team::findOrFail($id);
+        // all event teams
+        $teams  = $this->teams;
 
-        // get tournaments in which the team is and tournaments in event
-        $t_tournaments = $team->tournaments;
-        $e_tournaments = $this->tournaments;
-
-        // loop through team and event tournaments to see if a tournament matches
-        foreach ($t_tournaments as $t_tournament) {
-
-            foreach ($e_tournaments as $e_tournament) {
-
-                if ($e_tournament->id === $t_tournament->id)
-                    return true;
-            }
+        // loop through teams
+        foreach ($teams as $team) {
+            if ($team->id == $id)
+                return $team;
         }
     }
 }

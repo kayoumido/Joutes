@@ -4,13 +4,13 @@ namespace App\Http\Response\Transformers;
 use App\Tournament;
 use League\Fractal\TransformerAbstract;
 
-class TrounamentTransformer extends TransformerAbstract
+class TournamentTransformer extends TransformerAbstract
 {
     // public $availableIncludes = [
     //     "schedules"
     // ];
     public function transform(Tournament $tournament) {
-    // return array_merge($tournament->toArray(),[
+    // return array_merge($tournament->toArray(), [
     //     "sport"=>$tournament->sport->name
     // ]);
         return [

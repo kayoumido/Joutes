@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use App\Court; // This is the linked model
 use App\Sport; // This is the linked model
 use Illuminate\Http\Request;
@@ -47,7 +49,7 @@ class CourtController extends Controller
         /* CUSTOM SPECIFIC VALIDATION */
         $customError = null;
         // Check if there already is a court with the same name AND sport linked. A court can have many times same name but not for the same sport linked.
-        if(Court::whereRaw('name = ? and fk_sports = ?', [$request->input('name'), $request->input('sport')])->exists()){
+        if(Court::whereRaw('name = ? and sport_id = ?', [$request->input('name'), $request->input('sport')])->exists()){
             $customError = 'Le terrain "'.$request->input('name').'" est déjà lier au sport "'.Sport::find($request->input('sport'))->name.'".';
         }
 
@@ -67,7 +69,7 @@ class CourtController extends Controller
         } else {
             $court = new Court;
             $court->name = $request->input('name');
-            $court->fk_sports = $request->input('sport');
+            $court->sport_id = $request->input('sport');
             $court->save();
 
             return redirect()->route('courts.index');
@@ -118,7 +120,7 @@ class CourtController extends Controller
         /* CUSTOM SPECIFIC VALIDATION */
         $customError = null;
         // Check if there already is a court with the same name AND sport linked. A court can have many times same name but not for the same sport linked.
-        if(Court::whereRaw('name = ? and fk_sports = ?', [$request->input('name'), $request->input('sport')])->exists()){
+        if(Court::whereRaw('name = ? and sport_id = ?', [$request->input('name'), $request->input('sport')])->exists()){
             $customError = 'Le terrain "'.$request->input('name').'" est déjà lier au sport "'.Sport::find($request->input('sport'))->name.'".';
         }
 
@@ -137,7 +139,7 @@ class CourtController extends Controller
             return view('court.edit')->with('dropdownList', $dropdownList)->with('court', $court)->withErrors($validator->errors())->with('customError', $customError);
         } else {
             $court->name = $request->input('name');
-            $court->fk_sports = $request->input('sport');
+            $court->sport_id = $request->input('sport');
             $court->update();
             return redirect()->route('courts.index');
         }

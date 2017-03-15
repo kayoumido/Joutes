@@ -122,8 +122,6 @@ i.fa:hover {
 }
 i.fa.action {
 	float: left;
-    margin-left: 15px;
-    margin-top: 5px;
 }
 /*i.fa {
 	font-size: 20px;
@@ -151,6 +149,10 @@ label {
 select.allSameStyle, input.allSameStyle{
 	width:164px;
 	height:28px;
+}
+#login-form label{
+	width: 140px;
+	text-align: left;
 }
 
 

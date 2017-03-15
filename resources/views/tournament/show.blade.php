@@ -4,11 +4,13 @@
 
 @section('content')
 	<div class="container">
-		<a href="{{ route('tournaments.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
+
+		<a href="{{URL::previous()}}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
+
 		<h1>{{ $tournament->name }}</h1>
 
-		@if(isset($tournament->courts[0]))
-			<p><strong>Sport :</strong> {{ $tournament->courts[0]->sport->name }}</p>
+		@if(isset($tournament->sport))
+			<p><strong>Sport :</strong> {{ $tournament->sport->name }}</p>
 		@else
 			<p><strong>Sport :</strong> Aucun, veuillez en choisir un.</p>
 		@endif
@@ -27,7 +29,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($tournament->courts as $court)
+				@foreach ($tournament->sport->courts as $court)
 		  		<tr>
 					<th scope="row" class="name">{{$court->name}}</th>
 				</tr>

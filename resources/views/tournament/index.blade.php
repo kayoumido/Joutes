@@ -28,15 +28,19 @@
 							</div>
 							<div class="infos">
 								<div class="sport"> {{ $tournament->sport->name }} </div>
-								<div class="hour"> {{$tournament->start_time}} à {{$tournament->end_time}} </div>
-								<div class="date"> {{$tournament->start_date->format('d.m.Y')}} au {{$tournament->end_date->format('d.m.Y')}} </div>
+								<div class="date"> {{$tournament->start_date->format('d.m.Y à H:i')}} </div>
 
-								<a href="{{route('tournaments.edit', $tournament->id)}}" title="Éditer le tournoi" class="edit"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></i></a>
-								{{ Form::open(array('url' => route('tournaments.destroy', $tournament->id), 'method' => 'delete')) }}
-									<button type="button" class="button-delete" data-name="{{ $tournament->name }}" data-type="tournament">
-					                    <i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
-					                </button>
-								{{ Form::close() }}
+								@if(Auth::check())
+									@if(Auth::user()->role == 'administrator')
+										<a href="{{route('tournaments.edit', $tournament->id)}}" title="Éditer le tournoi" class="edit"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></i></a>
+										{{ Form::open(array('url' => route('tournaments.destroy', $tournament->id), 'method' => 'delete')) }}
+											<button type="button" class="button-delete" data-name="{{ $tournament->name }}" data-type="tournament">
+							                    <i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
+							                </button>
+										{{ Form::close() }}
+									@endif
+								@endif
+
 							</div>
 
 						</div>
@@ -46,7 +50,11 @@
 
 		</div>
 
-		<a href="{{route('tournaments.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
+		@if(Auth::check())
+			@if(Auth::user()->role == 'administrator')
+				<a href="{{route('tournaments.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
+			@endif
+		@endif
 
 	</div>
 @stop

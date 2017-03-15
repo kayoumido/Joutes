@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Team;
 use App\Event;
+use Illuminate\Http\Request;
+use Dingo\Api\Routing\Helpers;
+use App\Http\Controllers\Controller;
+use App\Http\Response\Transformers\TeamTransformer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 class EventTeamController extends Controller
 {
+    use Helpers;
+
     /**
      * Display a listing of the resource.
      *
@@ -24,24 +29,9 @@ class EventTeamController extends Controller
         if ($request->is('api/*')) {
 
             // get event tournaments
-            $tournaments   = Event::findOrFail($event_id)->tournaments;
-            $teams['teams'] = [];
+            $teams = Event::findOrFail($event_id)->teams;
 
-            // loop through tournaments to get teams
-            foreach ($tournaments as $tournament) {
-                $tournament_teams = $tournament->teams;
-
-                foreach ($tournament_teams as $team) {
-
-                    $team['sports'] = $team->sports();
-
-                    unset($team['pivot']);
-
-                    array_push($teams['teams'], $team);
-                }
-            }
-
-            return $teams;
+            return $this->response->collection($teams, new TeamTransformer, ['key' => 'teams']);
         }
     }
 

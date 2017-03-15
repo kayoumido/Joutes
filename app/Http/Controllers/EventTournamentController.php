@@ -7,11 +7,12 @@ use App\Tournament;
 use App\Event;
 use App\Sport;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
+use Dingo\Api\Routing\Helpers;
 use App\Http\Response\Transformers\TournamentTransformer;
 
 class EventTournamentController extends Controller
 {
+    use Helpers;
     /**
      * Display a listing of the resource.
      *
@@ -27,47 +28,7 @@ class EventTournamentController extends Controller
             // get event tournaments
             $tournaments = Event::findOrFail($event_id)->tournaments;
 
-            foreach ($tournaments as $tournament) {
-
-                //$tournament->sport;
-                // set tournament sport, courts, and top 3 teams
-                //$tournament->courts = [];
-                //$tournament->winner = '';
-                //$tournament->second = '';
-                //$tournament->third  = '';
-
-                ///unset($tournament['sport_id']);
-                ///unset($tournament['event_id']);
-            }
-
-            // loop through tournaments to get courts and sport
-            // foreach ($tournaments as $tournament) {
-            //
-            //     $court_names = [];
-            //     $sport       = '';
-            //
-            //     // get tournament courts
-            //     $courts = Tournament::findOrFail($tournament->id)->courts;
-            //
-            //     foreach ($courts as $court) {
-            //         $court_names[] = $court->name;
-            //         $sport         = Sport::findOrFail($court->fk_sports);
-            //     }
-            //
-            //     // adding found sport and courts to tournaments array.
-            //     // This is done because, these informations aren't found when getting info from tournament.
-            //     $tournament['sport']  = $sport->name;
-            //     $tournament['courts'] = $court_names;
-            //
-            //     // remove unwanted elements from array
-            //     unset($tournament['start_date']);
-            //     unset($tournament['end_date']);
-            //     unset($tournament['start_time']);
-            //     unset($tournament['end_time']);
-            //     unset($tournament['fk_events']);
-            // }
-
-            return $tournaments;
+            return $this->response->collection($tournaments, new TournamentTransformer);
         }
 
 
@@ -78,7 +39,6 @@ class EventTournamentController extends Controller
             "fromEvent" => true,
             "eventName" => $event->name
         ));
-
 
     }
 

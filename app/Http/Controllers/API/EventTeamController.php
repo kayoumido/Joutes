@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use App\Http\Controllers\Controller;
 use App\Http\Response\Transformers\TeamTransformer;
+use App\Http\Response\Transformers\SingleTeamTransformer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
@@ -51,7 +52,11 @@ class EventTeamController extends Controller
         if ($request->is('api/*')) {
 
             // find event and team with given ids
-            $event = Event::findOrFail($event_id);
+            $team = Event::findOrFail($event_id)->team($team_id);
+
+            return $this->response->item($team, new SingleTeamTransformer, ['key' => 'team']);
+            return $event->team($team_id);
+
             $team  = Team::findOrFail($team_id);
 
             // check if team is in event

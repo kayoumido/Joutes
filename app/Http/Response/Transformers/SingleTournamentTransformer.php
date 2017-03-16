@@ -22,6 +22,7 @@ class SingleTournamentTransformer extends TransformerAbstract
             'second'        => [],
             'third'         => [],
             'group_matches' => [],
+            'stages'        => [],
         ];
     }
 

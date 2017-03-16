@@ -4,6 +4,7 @@
 TODO : 
   - We cannot have same tournament's name with the same sport
   - Create - update views, we can only choose teams who don't are on any tournament. (and the current tournament's team)
+  - Event ID dynamicly
 */
 namespace App\Http\Controllers\Admin;
 
@@ -246,10 +247,12 @@ class TournamentController extends Controller
               $team->update();
             }
             // Accociate new teams linked
-            foreach ($request->input('teams') as $teamId) {
-              $team = Team::find($teamId);
-              $team->tournament()->associate($tournament);
-              $team->update();
+            if(!empty($request->input('teams'))){
+              foreach ($request->input('teams') as $teamId) {
+                $team = Team::find($teamId);
+                $team->tournament()->associate($tournament);
+                $team->update();
+              }
             }
 
             return redirect()->route('tournaments.index');

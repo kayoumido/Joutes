@@ -55,37 +55,6 @@ class EventTeamController extends Controller
             $team = Event::findOrFail($event_id)->team($team_id);
 
             return $this->response->item($team, new SingleTeamTransformer, ['key' => 'team']);
-            return $event->team($team_id);
-
-            $team  = Team::findOrFail($team_id);
-
-            // check if team is in event
-            if (!$event->team($team_id)) {
-                throw new NotFoundHttpException("Team " . $team_id . " doesn't belong to Event " . $event_id);
-            }
-
-            // get team sports
-            $team['sports']       = $team->sports();
-            $team['tournaments']  = $team->tournaments;
-            $team['participants'] = $team->participants;
-            $team['status']       = null;
-            $team['match']        = null;
-
-            // remove unwanted elements from tournament
-            foreach ($team['tournaments'] as $tournament) {
-                unset($tournament['start_date']);
-                unset($tournament['end_date']);
-                unset($tournament['start_time']);
-                unset($tournament['end_time']);
-                unset($tournament['fk_events']);
-                unset($tournament['pivot']);
-            }
-            // remove unwanted elements from participants
-            foreach ($team['participants'] as $participant) {
-                unset($participant['pivot']);
-            }
-
-            return $team;
         }
     }
 }

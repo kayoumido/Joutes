@@ -2,9 +2,8 @@
 /*
 15.03.2017
 TODO : 
-  - We cannot have same tournament's name with the same sport
+  - We cannot have same tournament's name with the same sport -> OK -> TO TEST
   - Create - update views, we can only choose teams who don't are on any tournament. (and the current tournament's team)
-  - Event ID dynamicly
 */
 namespace App\Http\Controllers\Admin;
 
@@ -181,29 +180,15 @@ class TournamentController extends Controller
             $customErrors[] = "Le champ Date de début doit être sous la forme : jj.mm.YYYY.";
         }
 
-        /*// Check if the name of the new tournaments and his sport is already linked in the DB
+        // Check if the name of the new tournaments and his sport already exists in the DB
         // example : Tournament 1 -> Football // I cannot create a new Tournament 1 -> Football // But I can create a Tournament 1 -> Tennis
-        if(Tournament::whereRaw('name = ?', $request->input('name'))->exists()){
-          $sameNameAndSport = false;
-          $tournamentsAlreadyExists = Tournament::whereRaw('name = ?', $request->input('name'))->get();
+        if(Tournament::where('name',$request->input('name'))
+                     ->where('sport_id', $request->input('sport')) // second where = and
+                     ->count() >= 1){
+          $sportName = Sport::find($request->input('sport'))->name;
+          $customErrors[] = "Le sport \"".$sportName."\" est déjà lié au tournoi \"".$request->input('name')."\"";
+        }
 
-            foreach ($tournamentsAlreadyExists as $tournamentAlreadyExists) {
-                $courtsAlreadyExists = $tournamentAlreadyExists->courts;
-                foreach ($courtsAlreadyExists as $courtAlreadyExists) {
-                    // For the edit mode, if I change for example only the date of the current tournament: The name and the sport already exists on DB, so the
-                    // id of the same tournament's name must be not the same id as the current tournament's id in edit mode.
-                    // now, we can edit the current's tournament :)
-                    if($courtAlreadyExists->fk_sports == $request->input('sport') && $tournamentAlreadyExists->id != $id){
-                        $sameNameAndSport = true;
-                        $sportName = $courtAlreadyExists->sport->name;
-                    }
-                }
-            }        
-            
-            if($sameNameAndSport){
-                $customErrors[] = "Le sport \"".$sportName."\" est déjà lié au tournoi \"".$request->input('name')."\"";
-            }
-        }*/
 
         /* LARAVEL VALIDATION */
         // create the validation rules
@@ -237,7 +222,6 @@ class TournamentController extends Controller
             $tournament = Tournament::find($id);
             $tournament->name = $request->input('name');
             $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
-            $tournament->event_id = 1; // TO CHANGE !!!!!!!!!!!!!
             $tournament->sport_id = $request->input('sport');
             $tournament->update();
 

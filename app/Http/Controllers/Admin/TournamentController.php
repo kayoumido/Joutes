@@ -126,32 +126,38 @@ class TournamentController extends Controller
      *
      * @author Dessaules Loïc
      */
-    public function edit($id)
-    {
-        $tournament = Tournament::find($id);
-        $dropdownListSports = $this->getDropDownListSports();
-        $dropdownListTeams = $this->getDropDownListTeams();
-        $teamsAreParticipating = $tournament->teams;
-        if(count($teamsAreParticipating) > 0){
-            foreach ($teamsAreParticipating as $team) {
-                $teamsAreParticipatingId[] = $team->id;
-            }
-        }else{
-          $teamsAreParticipatingId = null;
-        }
+    public function edit($id){ 
+      $tournament = Tournament::find($id);
+      $dropdownListSports = $this->getDropDownListSports();
 
-        // normal case, there is a sport linked
-        if(isset($tournament->sport)){
-            $sport = $tournament->sport; // get the sport linked
-        }else{
-            // Sport has been deleted
-            $sport = null; 
-        }
-        return view('tournament.edit')->with('tournament', $tournament)
-                                      ->with('dropdownListSports', $dropdownListSports)
-                                      ->with('sport', $sport)
-                                      ->with('dropdownListTeams', $dropdownListTeams)
-                                      ->with('teamsAreParticipatingId', $teamsAreParticipatingId);
+      $teamsWithoutTournament = Team::whereNull('tournament_id')->get();
+      $teamsAreParticipating = $tournament->teams;
+
+      // We have to display on the dropdown, the teams who are participating to the tournament AND the teams who don't have a tournament linked.
+      $allTeamsForDropdown = $teamsAreParticipating->merge($teamsWithoutTournament);
+      $dropdownListTeams = $this->getDropDownListTeams($allTeamsForDropdown);
+
+      // Create array with ID of each teams who participating because I need this to display participating teams in the "placeholder" of the select
+      if(count($teamsAreParticipating) > 0){
+          foreach ($teamsAreParticipating as $team) {
+              $teamsAreParticipatingId[] = $team->id;
+          }
+      }else{
+        $teamsAreParticipatingId = null;
+      }
+
+      // normal case, there is a sport linked
+      if(isset($tournament->sport)){
+          $sport = $tournament->sport; // get the sport linked
+      }else{
+          // Sport has been deleted
+          $sport = null; 
+      }
+      return view('tournament.edit')->with('tournament', $tournament)
+                                    ->with('dropdownListSports', $dropdownListSports)
+                                    ->with('sport', $sport)
+                                    ->with('dropdownListTeams', $dropdownListTeams)
+                                    ->with('teamsAreParticipatingId', $teamsAreParticipatingId);
     }
 
     /**
@@ -292,8 +298,7 @@ class TournamentController extends Controller
       return $sportsList;
     }
 
-    private function getDropDownListTeams(){
-        $teams = Team::all();
+    private function getDropDownListTeams($teams){
         $dropdownList = array();
         for ($i=0; $i < sizeof($teams); $i++) { 
           $dropdownList[$teams[$i]->id] = $teams[$i]->name; 

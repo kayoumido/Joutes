@@ -16,11 +16,8 @@
 		@endif
 
 		<p>
-			<strong>Date de début :</strong> {{ date("d.m.Y", strtotime($tournament->start_date)) }}
-			<br>
-			<strong>Date de fin :</strong> {{ date("d.m.Y", strtotime($tournament->end_date)) }}
+			<strong>Début du tournois :</strong> {{ $tournament->start_date->format('d.m.Y à H:i') }}
 		</p>
-		<p><strong>Heure de début :</strong> {{ date("H:i", strtotime($tournament->start_time)) }} </p>
 
 		<table class="table">
 			<thead>
@@ -29,11 +26,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($tournament->sport->courts as $court)
-		  		<tr>
-					<th scope="row" class="name">{{$court->name}}</th>
-				</tr>
-				@endforeach
+				@if(count($tournament->sport->courts) > 0)
+					@foreach ($tournament->sport->courts as $court)
+			  		<tr>
+						<th scope="row" class="name">{{$court->name}}</th>
+					</tr>
+					@endforeach
+				@else
+					<tr>
+						<th scope="row" class="name">Aucun terrain pour l'instant ...</th>
+					</tr>
+				@endif
 			</tbody>
 		</table>
 
@@ -52,9 +55,9 @@
 						</tr>
 					@endforeach
 				@else
-					<div class="list-group-item">
-						Aucune équipe pour l'instant ...
-					</div>
+					<tr>
+						<td>Aucune équipe pour l'instant ...</td>
+					</tr>
 			  	@endif
 			</tbody>
 		</table>

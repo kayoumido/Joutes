@@ -182,9 +182,6 @@ $( document ).ready(function() {
 		    	if(!patternDate.test(startDateValue)){
 		    		error += 'Le champ Date de début ne doit pas être vide et doit être sous la forme jj.mm.aaaa.<br>';
 		    	}
-		    	if(!patternDate.test(endDateValue)){
-		    		error += 'Le champ Date de début ne doit pas être vide et doit être sous la forme jj.mm.aaaa.<br>';
-		    	}
 		    	break;
 		}
 

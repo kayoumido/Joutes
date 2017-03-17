@@ -13,10 +13,12 @@ class EventController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessauges Antoine
      */
     public function create()
     {
-        //
+        return view('event.create');
     }
 
     /**

@@ -62,12 +62,27 @@ class Event extends Model
     public function team($id) {
 
         // all event teams
-        $teams  = $this->teams;
+        $teams = $this->teams;
 
         // loop through teams
         foreach ($teams as $team) {
             if ($team->id == $id)
                 return $team;
         }
+    }
+
+    public function participants() {
+        // get event teams
+        $teams = $this->teams;
+        // create empty array for participants
+        $participants = [];
+
+        foreach ($teams as $team) {
+            foreach ($team->participants as $participant) {
+                $participants[] = ($participant);
+            }
+        }
+
+        return collect($participants)->unique("id");
     }
 }

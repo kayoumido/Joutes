@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 class Event extends Model
 {
+
+    public $timestamps = false;
+
     /**
      * Get event tournaments
      *

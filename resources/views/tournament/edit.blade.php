@@ -31,17 +31,16 @@
 			{{ Form::text('name', $tournament->name) }}
 			<br>
 			<br>
+
+			{{ Form::select('sport', array('Terrains' => $dropdownListSports, 'Sans terrains' => $dropdownListSports), $sport->id, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
+
 			{{ Form::label('Sport', 'Sport :') }}
 			@if(!empty($dropdownListSports) && !empty($sport)/*Normal case : a sport is linked to the tournament*/)
 				{{ Form::select('sport', $dropdownListSports, $sport->id, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
-			@else
-				<!-- court doesn't exists ... -->
-				{{ Form::select('sport', $dropdownListSports, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 
+			@else
+				{{ Form::select('sport', $dropdownListSports, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 			@endif
-			<br>
-			
-			(la liste contient uniquement les sports qui ont au minimum un terrain lié)
 			<br>
 			<br>
 			{{ Form::label('startDate', 'Date de début :') }}

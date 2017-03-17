@@ -54,13 +54,17 @@ class EventController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified event from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessauges Antoine
      */
     public function destroy($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $event->delete();
+        return redirect()->route('events.index');
     }
 }

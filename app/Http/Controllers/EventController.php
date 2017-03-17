@@ -46,4 +46,6 @@ class EventController extends Controller
 
         return true;
     }
+
+    
 }

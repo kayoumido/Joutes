@@ -2,7 +2,6 @@
 /*
 15.03.2017
 TODO : 
-  - We cannot have same tournament's name with the same sport -> OK -> TO TEST
   - Create - update views, we can only choose teams who don't are on any tournament. (and the current tournament's team)
 */
 namespace App\Http\Controllers\Admin;
@@ -185,6 +184,7 @@ class TournamentController extends Controller
         if(Tournament::where('name',$request->input('name'))
                      ->where('sport_id', $request->input('sport')) // second where = and
                      ->count() >= 1){
+          // Check if we are updating the current tournament who have not other same tournament as itself
           $tournaments = Tournament::where('name',$request->input('name'))->where('sport_id', $request->input('sport'))->get();
           $modifyCurrentTournament = false;
           foreach ($tournaments as $tournament) {

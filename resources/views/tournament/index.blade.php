@@ -50,11 +50,11 @@
 
 		</div>
 
-		@if(Auth::check())
+		<!--@if(Auth::check())
 			@if(Auth::user()->role == 'administrator')
 				<a href="{{route('tournaments.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
 			@endif
-		@endif
-
+		@endif-->
+		
 	</div>
 @stop

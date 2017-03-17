@@ -40,6 +40,7 @@
 
 			@endif
 			<br>
+			
 			(la liste contient uniquement les sports qui ont au minimum un terrain lié)
 			<br>
 			<br>

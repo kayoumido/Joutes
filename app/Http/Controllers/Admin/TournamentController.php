@@ -185,8 +185,17 @@ class TournamentController extends Controller
         if(Tournament::where('name',$request->input('name'))
                      ->where('sport_id', $request->input('sport')) // second where = and
                      ->count() >= 1){
-          $sportName = Sport::find($request->input('sport'))->name;
-          $customErrors[] = "Le sport \"".$sportName."\" est déjà lié au tournoi \"".$request->input('name')."\"";
+          $tournaments = Tournament::where('name',$request->input('name'))->where('sport_id', $request->input('sport'))->get();
+          $modifyCurrentTournament = false;
+          foreach ($tournaments as $tournament) {
+            if($tournament->id == $id){
+              $modifyCurrentTournament = true;
+            }
+          }
+          if(!$modifyCurrentTournament){
+            $sportName = Sport::find($request->input('sport'))->name;
+            $customErrors[] = "Le sport \"".$sportName."\" est déjà lié au tournoi \"".$request->input('name')."\"";
+          }
         }
 
 

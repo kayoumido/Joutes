@@ -13,14 +13,14 @@ class CreateCourtsTable extends Migration
      */
     public function up()
     {
-        Schema::create('courts', function (Blueprint $table) {
-
-            $table->increments('id');
-            $table->integer('fk_sports')->unsigned();
-            $table->string('name', 45);
-
-            $table->foreign('fk_sports')->references('id')->on('sports')->onDelete('cascade');
-        });
+        Schema::create('courts', function (Blueprint $table) { 
+ 
+            $table->increments('id'); 
+            $table->integer('sport_id')->unsigned(); 
+            $table->string('name', 45); 
+ 
+            $table->foreign('sport_id')->references('id')->on('sports')->onDelete('cascade'); 
+        }); 
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateCourtsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courts');
+         Schema::dropIfExists('courts');
     }
 }

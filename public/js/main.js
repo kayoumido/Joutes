@@ -1,5 +1,14 @@
 $( document ).ready(function() {
 
+	// set click event on import button
+	$('.import').click(function(event) {
+		// prevent button default action
+		event.preventDefault();
+
+		// submit form
+		$(this).parent().submit();
+	});
+
 	$('.show-devs').click(function() {
 		if ($('.dev-names').hasClass('hide')) {
 			$('.dev-names').removeClass('hide').addClass('show');
@@ -171,9 +180,6 @@ $( document ).ready(function() {
 		    		error += 'Le champ Heure de début ne doit pas être vide et doit être sous la forme hh:mm.<br>';
 		    	}
 		    	if(!patternDate.test(startDateValue)){
-		    		error += 'Le champ Date de début ne doit pas être vide et doit être sous la forme jj.mm.aaaa.<br>';
-		    	}
-		    	if(!patternDate.test(endDateValue)){
 		    		error += 'Le champ Date de début ne doit pas être vide et doit être sous la forme jj.mm.aaaa.<br>';
 		    	}
 		    	break;

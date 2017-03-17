@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Team;
 use App\Event;
+use Illuminate\Http\Request;
+use Dingo\Api\Routing\Helpers;
+use App\Http\Controllers\Controller;
+use App\Http\Response\Transformers\TeamTransformer;
+use App\Http\Response\Transformers\SingleTeamTransformer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 class EventTeamController extends Controller
 {
+    use Helpers;
+
     /**
      * Display a listing of the resource.
      *
@@ -24,24 +30,9 @@ class EventTeamController extends Controller
         if ($request->is('api/*')) {
 
             // get event tournaments
-            $tournaments   = Event::findOrFail($event_id)->tournaments;
-            $teams['teams'] = [];
+            $teams = Event::findOrFail($event_id)->teams;
 
-            // loop through tournaments to get teams
-            foreach ($tournaments as $tournament) {
-                $tournament_teams = $tournament->teams;
-
-                foreach ($tournament_teams as $team) {
-
-                    $team['sports'] = $team->sports();
-
-                    unset($team['pivot']);
-
-                    array_push($teams['teams'], $team);
-                }
-            }
-
-            return $teams;
+            return $this->response->collection($teams, new TeamTransformer, ['key' => 'teams']);
         }
     }
 
@@ -61,36 +52,9 @@ class EventTeamController extends Controller
         if ($request->is('api/*')) {
 
             // find event and team with given ids
-            $event = Event::findOrFail($event_id);
-            $team  = Team::findOrFail($team_id);
+            $team = Event::findOrFail($event_id)->team($team_id);
 
-            // check if team is in event
-            if (!$event->team($team_id)) {
-                throw new NotFoundHttpException("Team " . $team_id . " doesn't belong to Event " . $event_id);
-            }
-
-            // get team sports
-            $team['sports']       = $team->sports();
-            $team['tournaments']  = $team->tournaments;
-            $team['participants'] = $team->participants;
-            $team['status']       = null;
-            $team['match']        = null;
-
-            // remove unwanted elements from tournament
-            foreach ($team['tournaments'] as $tournament) {
-                unset($tournament['start_date']);
-                unset($tournament['end_date']);
-                unset($tournament['start_time']);
-                unset($tournament['end_time']);
-                unset($tournament['fk_events']);
-                unset($tournament['pivot']);
-            }
-            // remove unwanted elements from participants
-            foreach ($team['participants'] as $participant) {
-                unset($participant['pivot']);
-            }
-
-            return $team;
+            return $this->response->item($team, new SingleTeamTransformer, ['key' => 'team']);
         }
     }
 }

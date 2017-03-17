@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Event;
+use Illuminate\Support\Facades\Validator;
+use File;
 
 class EventController extends Controller
 {
@@ -26,10 +28,37 @@ class EventController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @author Dessauges Antoine
      */
     public function store(Request $request)
     {
-        //
+        
+        // create the validation rules
+        $rules = array(
+            'name' => 'required|min:3|max:35|unique:events,name',
+            'img' => 'required|image|mimes:jpeg,png,jpg'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return view('event.create')->withErrors($validator->errors());
+        } else {
+
+            //move and rename img
+            $imageName = date('Y_m_d-H_i_s').'.'.pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);  
+            File::move($_FILES['img']['tmp_name'], storage_path().'/img/'.$imageName);
+            
+            //create and save event
+            $event = new Event;
+            $event->name = $request->name;
+            $event->img = $imageName;
+            $event->save();
+            
+            return redirect()->route('events.index');
+        }
+
     }
 
     /**

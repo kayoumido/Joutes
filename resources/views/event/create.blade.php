@@ -15,13 +15,13 @@
 	        </div>
         @endif
 
-		{{ Form::open(array('url' => route('events.store'), 'method' => 'post', 'id' => 'formSport')) }}
+		{{ Form::open(array('url' => route('events.store'), 'method' => 'post', 'enctype' => 'multipart/form-data')) }}
 
 			{{ Form::label('name', 'Nom : ') }}
 			{{ Form::text('name', null) }}
 			<br>
-			{{ Form::label('image', 'Image : ') }}
-			{!! Form::file('image', null) !!}
+			{{ Form::label('img', 'Image : ') }}
+			{{ Form::file('img', null) }}
 			<br>
 			<br>
 			{{ Form::button('Créer', array('class' => 'btn btn-success formSend')) }}

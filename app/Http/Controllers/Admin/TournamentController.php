@@ -128,14 +128,18 @@ class TournamentController extends Controller
      */
     public function edit($id){ 
       $tournament = Tournament::find($id);
-      $dropdownListSports = $this->getDropDownListSports();
+
+      // Get all sport with one or more court linked
+      $dropdownListSportsWithCourt = $this->getDropDownListSportsWithCourt();
+      $dropdownListSportsWithNoCourt = $this->getDropDownListSportsWithNoCourt();
+
 
       $teamsWithoutTournament = Team::whereNull('tournament_id')->get();
       $teamsAreParticipating = $tournament->teams;
-
-      // We have to display on the dropdown, the teams who are participating to the tournament AND the teams who don't have a tournament linked.
+      // We have to display in the dropdown only the teams who are participating to the tournament AND the teams who don't have a tournament linked.
       $allTeamsForDropdown = $teamsAreParticipating->merge($teamsWithoutTournament);
       $dropdownListTeams = $this->getDropDownListTeams($allTeamsForDropdown);
+
 
       // Create array with ID of each teams who participating because I need this to display participating teams in the "placeholder" of the select
       if(count($teamsAreParticipating) > 0){
@@ -154,7 +158,8 @@ class TournamentController extends Controller
           $sport = null; 
       }
       return view('tournament.edit')->with('tournament', $tournament)
-                                    ->with('dropdownListSports', $dropdownListSports)
+                                    ->with('dropdownListSportsWithCourt', $dropdownListSportsWithCourt)
+                                    ->with('dropdownListSportsWithNoCourt', $dropdownListSportsWithNoCourt)
                                     ->with('sport', $sport)
                                     ->with('dropdownListTeams', $dropdownListTeams)
                                     ->with('teamsAreParticipatingId', $teamsAreParticipatingId);
@@ -291,6 +296,7 @@ class TournamentController extends Controller
 
     private function getDropDownListSports(){
       $sports = Sport::all();
+      // generate good array => "sportId" => "sportName"
       $sportsList = array();
       for ($i=0; $i < sizeof($sports); $i++) { 
         $sportsList[$sports[$i]->id] = $sports[$i]->name;
@@ -298,12 +304,46 @@ class TournamentController extends Controller
       return $sportsList;
     }
 
-    private function getDropDownListTeams($teams){
-        $dropdownList = array();
-        for ($i=0; $i < sizeof($teams); $i++) { 
-          $dropdownList[$teams[$i]->id] = $teams[$i]->name; 
+    private function getDropDownListSportsWithCourt(){
+      $sportsWithCourt = Sport::join('courts', 'sports.id', '=', 'courts.sport_id')->select('sports.*')->distinct()->get();
+      // generate good array => "sportId" => "sportName"
+      $sportsList = array();
+      for ($i=0; $i < sizeof($sportsWithCourt); $i++) { 
+        $sportsList[$sportsWithCourt[$i]->id] = $sportsWithCourt[$i]->name;
+      }
+      return $sportsList;
+    }
+
+    private function getDropDownListSportsWithNoCourt(){
+      $sportsWithCourt = Sport::join('courts', 'sports.id', '=', 'courts.sport_id')->select('sports.*')->distinct()->get();
+      // Get all sport with no court linked -> in an array
+      foreach (Sport::all() as $sport) {
+        $same = false;
+        foreach ($sportsWithCourt as $sportWithCourt) {      
+          if($sport->id == $sportWithCourt->id){
+            $same = true;
+          }
         }
-        return $dropdownList;
+        if(!$same){
+          $sportsWithNoCourt[] = $sport;
+        }
+      }
+
+      // generate good array => "sportId" => "sportName"
+      $sportsList = array();
+      for ($i=0; $i < sizeof($sportsWithNoCourt); $i++) { 
+        $sportsList[$sportsWithNoCourt[$i]->id] = $sportsWithNoCourt[$i]->name;
+      }
+      return $sportsList;
+    }
+
+    private function getDropDownListTeams($teams){
+      // generate good array => "sportId" => "sportName"
+      $dropdownList = array();
+      for ($i=0; $i < sizeof($teams); $i++) { 
+        $dropdownList[$teams[$i]->id] = $teams[$i]->name; 
+      }
+      return $dropdownList;
     }
 
 }

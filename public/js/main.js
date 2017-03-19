@@ -163,7 +163,6 @@ $( document ).ready(function() {
 		    	var sportValue = $('#formTournament #sport').val();
 		    	var startDateValue = $('#formTournament #startDate').val();
 		    	var startTimeValue = $('#formTournament #startTime').val();
-		    	var endDateValue = $('#formTournament #endDate').val();
 
 		    	var patternName = /^[a-zA-Z0-9-_ ]{3,45}$/;
 		    	var patternSport = /^[0-9]+$/; // '' = empty, 1-2-3-... = sport

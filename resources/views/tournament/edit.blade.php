@@ -7,7 +7,7 @@
 		<a href="{{ route('tournaments.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>	
 		<h1>Modifier un tournoi</h1>
 
-		@if ($errors->any() || isset($customErrors) || empty($dropdownListSports) /*dropdownListSports is empty if all court deleted*/)
+		@if ($errors->any() || isset($customErrors))
 			<div class="alert alert-danger">
 				@if ($errors->any())
 		            @foreach ($errors->all() as $error)
@@ -19,9 +19,6 @@
 		                {{ $customError }}<br>
 		            @endforeach
 		        @endif
-		        @if(empty($dropdownListSports)/*Sport is empty if we deleted all sport*/)
-		        	Veuillez creer un sport et le lié à un terrain, ou en choisir un.
-		        @endif
 	        </div>
         @endif
 
@@ -32,16 +29,11 @@
 			<br>
 			<br>
 			{{ Form::label('Sport', 'Sport :') }}
-			@if(!empty($dropdownListSports) && !empty($sport)/*Normal case : a sport is linked to the tournament*/)
-				{{ Form::select('sport', $dropdownListSports, $sport->id, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
+			@if(!empty($sport)/*Normal case : a sport is linked to the tournament*/)
+				{{ Form::select('sport', array('Terrain(s) lié(s)' => $dropdownListSportsWithCourt, 'Aucun terrain lié' => $dropdownListSportsWithNoCourt), $sport->id, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 			@else
-				<!-- court doesn't exists ... -->
-				{{ Form::select('sport', $dropdownListSports, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
-
+				{{ Form::select('sport', array('Avec terrains' => $dropdownListSportsWithCourt, 'Sans terrains' => $dropdownListSportsWithNoCourt), null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 			@endif
-			<br>
-			
-			(la liste contient uniquement les sports qui ont au minimum un terrain lié)
 			<br>
 			<br>
 			{{ Form::label('startDate', 'Date de début :') }}

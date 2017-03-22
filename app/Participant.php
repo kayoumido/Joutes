@@ -15,4 +15,17 @@ class Participant extends Model
     {
         return $this->belongsToMany('App\Team')->withPivot('isCapitain');;
     }
+
+    public function tournaments() {
+        // get event teams
+        $teams = $this->teams;
+        // create empty array for participants
+        $tournaments = [];
+
+        foreach ($teams as $team) {
+            $tournaments[] = $team->tournament;
+        }
+
+        return collect($tournaments)->unique("id");
+    }
 }

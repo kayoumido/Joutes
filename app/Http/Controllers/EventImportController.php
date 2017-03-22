@@ -165,7 +165,7 @@ class EventImportController extends Controller {
                         foreach ($data->JoueurId as $member) {
                             // atach participant to team
                             $team->participants()->sync([
-                                strval($member) => array ( 'isCapitain' => strval($member) == strval($data->Capitaine) )
+                                strval($member) => array ( 'isCaptain' => strval($member) == strval($data->Capitaine) )
                             ], false);
                         }
                     }
@@ -195,7 +195,7 @@ class EventImportController extends Controller {
 
                         // atach participant to team if relation doesn't exist
                         $team->participants()->sync([
-                            $participant->id => array ( 'isCapitain' => true )
+                            $participant->id => array ( 'isCaptain' => true )
                         ], false);
                     }
                     else if (is_array($xml['JoueurId'])) {
@@ -222,7 +222,7 @@ class EventImportController extends Controller {
                             }
                             // atach participant to team if relation doesn't exist
                             $team->participants()->sync([
-                                $participant->id => array ( 'isCapitain' => true)
+                                $participant->id => array ( 'isCaptain' => true)
                             ], false);
                         }
                     }

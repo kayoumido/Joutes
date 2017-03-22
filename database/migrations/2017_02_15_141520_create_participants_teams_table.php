@@ -17,7 +17,7 @@ class CreateParticipantsTeamsTable extends Migration
  
             $table->integer('participant_id')->unsigned(); 
             $table->integer('team_id')->unsigned(); 
-            $table->boolean('isCapitain');
+            $table->boolean('isCaptain');
 
             $table->foreign('participant_id')->references('id')->on('participants'); 
             $table->foreign('team_id')->references('id')->on('teams'); 

@@ -11,6 +11,7 @@ class Event extends Model
 {
 
     public $timestamps = false;
+    protected $fillable = array('name', 'img'); 
 
     /**
      * Get event tournaments

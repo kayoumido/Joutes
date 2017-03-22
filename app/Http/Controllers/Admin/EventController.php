@@ -48,7 +48,7 @@ class EventController extends Controller
 
             //move and rename img
             $imageName = date('Y_m_d-H_i_s').'.'.pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);  
-            File::move($_FILES['img']['tmp_name'], storage_path().'/img/'.$imageName);
+            File::move($_FILES['img']['tmp_name'], storage_path().'/app/public/img/'.$imageName);
             
             //create and save event
             $event = new Event;
@@ -66,10 +66,12 @@ class EventController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @author  Dessauges Antoine
      */
     public function edit($id)
     {
-        //
+        $event = Event::find($id);
+        return view('event.edit')->with('event', $event);
     }
 
     /**
@@ -78,10 +80,41 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @author  Dessauges Antoine
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+
+        // create the validation rules
+        $rules = array(
+            'name' => 'required|min:3|max:35',
+            'img' => 'image|mimes:jpeg,png,jpg'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return view('event.edit')->with('event', $event)->withErrors($validator->errors());
+        } else {
+
+            //move and rename img if new is choose
+            if($_FILES['img']['name'] != ""){
+
+                //delete old file
+                $oldFile = $event->img;
+                File::delete(storage_path().'/app/public/img/'.$oldFile);
+
+                //add new file
+                $imageName = date('Y_m_d-H_i_s').'.'.pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);  
+                File::move($_FILES['img']['tmp_name'], storage_path().'/app/public/img/'.$imageName);
+                $event->img = $imageName;
+            }
+
+            $event->name = $request->input('name');
+            $event->update();
+            return redirect()->route('events.index');
+        }
     }
 
     /**

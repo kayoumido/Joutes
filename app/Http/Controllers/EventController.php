@@ -24,7 +24,8 @@ class EventController extends Controller
             return $events;
         }
         
-        return view('event.index')->with('events', $events);
+        $storagePath = storage_path().'/img/';
+        return view('event.index')->with('events', $events)->with('storagePath', $storagePath);
 
     }
 

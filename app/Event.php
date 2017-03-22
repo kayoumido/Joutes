@@ -85,4 +85,15 @@ class Event extends Model
 
         return collect($participants)->unique("id");
     }
+
+    public function participant($id) {
+
+        $participants = $this->participants();
+
+        // loop through teams
+        foreach ($participants as $participant) {
+            if ($participant->id == $id)
+                return $participant;
+        }
+    }
 }

@@ -17,7 +17,7 @@ class CreatePoolsTeamsTable extends Migration
             $table->increments('id'); 
             $table->integer('rank_in_pool'); 
             $table->integer('pool_id')->unsigned();
-            $table->integer('team_id')->unsigned(); 
+            $table->integer('team_id')->unsigned()->nullable(); 
             $table->integer('pool_from_id')->unsigned()->nullable(); 
  
             $table->foreign('pool_id')->references('id')->on('pools'); 

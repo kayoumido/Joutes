@@ -20,8 +20,8 @@ class CreateGamesTable extends Migration
             $table->integer('score_contender2')->nullable();
             $table->date('date');
             $table->time('start_time'); 
-            $table->integer('contender1_id')->unsigned(); 
-            $table->integer('contender2_id')->unsigned();  
+            $table->integer('contender1_id')->unsigned()->nullable(); 
+            $table->integer('contender2_id')->unsigned()->nullable();  
             $table->integer('court_id')->unsigned(); 
 
             $table->foreign('contender1_id')->references('id')->on('contenders'); 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Event;
-use App\Participant;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use App\Http\Controllers\Controller;
@@ -42,6 +41,7 @@ class EventParticipantController extends Controller {
      * @author Doran Kayoumi
      */
     public function show(Request $request, $event_id, $participant_id) {
+        // get wanted participant
         $participant = Event::findOrFail($event_id)->participant($participant_id);
 
         return $this->response->item($participant, new SingleParticipantTransformer, ['key' => 'participant']);

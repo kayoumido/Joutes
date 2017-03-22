@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Team;
 use App\Event;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;

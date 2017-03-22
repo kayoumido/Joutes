@@ -12,12 +12,13 @@
 			@foreach ($events as $event)
 				<div class="col-md-4 hideSearch">
 					<div class="box">
-					<img src="{{ url('event_img/'.$event->img) }}" alt="Image de l'événement">
-						<a href="{{route('events.tournaments.index', $event->id)}}" title="Voir l'événement">
-							<div class="img">
+						<div class="imgBox">
+							<img src="{{ url('event_img/'.$event->img) }}" alt="Image de l'événement">
+							<a href="{{route('events.tournaments.index', $event->id)}}" title="Voir l'événement">
 								<div class="title name"> {{$event->name}} </div>
-							</div>
-						</a>
+							</a>
+						</div>
+					
 						<div class="infos">
 							@if(Auth::check())
 								@if(Auth::user()->role == 'administrator')

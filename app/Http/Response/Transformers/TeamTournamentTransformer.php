@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Response\Transformers;
 
-
 use App\Tournament;
 use League\Fractal\TransformerAbstract;
 

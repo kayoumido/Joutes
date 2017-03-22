@@ -15,7 +15,7 @@ class CreatePoolsTeamsTable extends Migration
     {
         Schema::create('contenders', function (Blueprint $table) { 
             $table->increments('id'); 
-            $table->integer('rank_in_pool'); 
+            $table->integer('rank_in_pool')->nullable(); 
             $table->integer('pool_id')->unsigned();
             $table->integer('team_id')->unsigned()->nullable(); 
             $table->integer('pool_from_id')->unsigned()->nullable(); 

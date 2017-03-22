@@ -12,6 +12,7 @@
 			@foreach ($events as $event)
 				<div class="col-md-4 hideSearch">
 					<div class="box">
+					<img src="{{ url('event_img/'.$event->img) }}" alt="Image de l'événement">
 						<a href="{{route('events.tournaments.index', $event->id)}}" title="Voir l'événement">
 							<div class="img">
 								<div class="title name"> {{$event->name}} </div>
@@ -26,7 +27,7 @@
 
 									<a href="{{route('events.edit', $event->id)}}" title="Éditer le événement" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
 									
-								{{-- 	{{ Form::open(array('url' => route('events.destroy', $event->id), 'method' => 'delete')) }}
+									{{--{{ Form::open(array('url' => route('events.destroy', $event->id), 'method' => 'delete')) }}
 										<button type="button" class="button-delete" data-name="{{ $event->name }}" data-type="tournament">
 						                    <i class="fa fa-trash-o fa-lg action" aria-hidden="true"></i>
 						                </button>

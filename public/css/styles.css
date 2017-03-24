@@ -163,6 +163,15 @@ select.allSameStyle, input.allSameStyle{
     position: relative;
 }
 
+/* provisoire jsuqua l affichage dyanmquie des image tournois*/.box .img{ 
+  position: relative; 
+  background-image: url("../images/Desert.jpg"); 
+  background-position: center; 
+  background-size: cover; 
+  height: 200px; 
+}
+/* end provisoire */
+
 .box .imgBox img{
     width: 100%;
     height: auto;

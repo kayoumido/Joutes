@@ -308,6 +308,7 @@ class TournamentController extends Controller
     private function getDropDownListSportsWithNoCourt(){
       $sportsWithCourt = Sport::join('courts', 'sports.id', '=', 'courts.sport_id')->select('sports.*')->distinct()->get();
 
+      $sportsWithNoCourt = array();
       foreach (Sport::all() as $sport) {
         $same = false;
         foreach ($sportsWithCourt as $sportWithCourt) {      

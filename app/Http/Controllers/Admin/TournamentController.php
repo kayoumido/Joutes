@@ -97,7 +97,7 @@ class TournamentController extends Controller
             $tournament = new Tournament;
             $tournament->name = $request->input('name');
             $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
-            $tournament->event_id = $request->input('eventId'); // !!!!!!!!!!!!!!!!! TO CHANGE !!!!!!!!!!!!!!!!
+            $tournament->event_id = $request->input('eventId');
             $tournament->img = 'changeLater';
             $tournament->sport_id = $request->input('sport');
             $tournament->save();

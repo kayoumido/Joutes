@@ -157,6 +157,22 @@ $( document ).ready(function() {
 		    		error += 'Aucun sport sélectionné.<br>';
 		    	}
 		        break;
+		    
+		    case "formEvent": 
+	        	var nameValue = $('#formEvent #name').val();
+	        	var imgValue = $('#formEvent #img').val();
+
+		    	var patternName = /^[a-zA-Z0-9-_ ]{3,20}$/;
+
+		    	if(!patternName.test(nameValue)){
+		    		error += 'Le champ Nom ne doit pas être vide et doit avoir entre 3 et 20 caractères.<br>';
+		    	}
+		    	//if image is not empty but only if this is on the create event (edit event image can be null and conserve the oldest image)
+		    	if(imgValue == '' && $('#formEvent').is('.add')){
+		    		error += 'Le champ Image ne doit pas être vide.<br>';
+		    	}
+
+		        break;
 
 		    case "formTournament":
 		    	var nameValue = $('#formTournament #name').val();

@@ -15,7 +15,7 @@
 	        </div>
         @endif
 
-		{{ Form::open(array('url' => route('events.update', $event->id), 'method' => 'put', 'enctype' => 'multipart/form-data')) }}
+		{{ Form::open(array('url' => route('events.update', $event->id), 'method' => 'put', 'id' => 'formEvent', 'enctype' => 'multipart/form-data')) }}
 
 			{{ Form::label('name', 'Nom : ') }}
 			{{ Form::text('name', $event->name) }}

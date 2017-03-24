@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class Event extends Model
 {
+
+    public $timestamps = false;
+    protected $fillable = array('name', 'img'); 
+
     /**
      * Get event tournaments
      *

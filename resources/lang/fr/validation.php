@@ -144,5 +144,6 @@ return [
         'time'                  => 'Heure',
         'available'             => 'Disponible',
         'size'                  => 'Taille',
+        'img'                   => 'Image',
     ],
 ];

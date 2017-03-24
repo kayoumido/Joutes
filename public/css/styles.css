@@ -157,16 +157,24 @@ select.allSameStyle, input.allSameStyle{
 
 
 /* IMAGE BOX */
-.boxList{
-	position: relative;
+.box .imgBox{
+    overflow: hidden;
+    height: 200px;
+    position: relative;
 }
 
-.box .img{
-	position: relative;
-	background-image: url("../images/Desert.jpg");
-	background-position: center;
-	background-size: cover;
-	height: 200px;
+/* provisoire jsuqua l affichage dyanmquie des image tournois*/.box .img{ 
+  position: relative; 
+  background-image: url("../images/Desert.jpg"); 
+  background-position: center; 
+  background-size: cover; 
+  height: 200px; 
+}
+/* end provisoire */
+
+.box .imgBox img{
+    width: 100%;
+    height: auto;
 }
 
 .box{
@@ -186,8 +194,7 @@ select.allSameStyle, input.allSameStyle{
 	-webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-
-.box .img .title{
+.box .title{
 	position: absolute;
 	bottom: 0;
 	color: white;

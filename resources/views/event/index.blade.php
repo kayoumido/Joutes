@@ -26,11 +26,11 @@
 
 									<a href="{{route('events.edit', $event->id)}}" title="Éditer le événement" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
 									
-									{{ Form::open(array('url' => route('events.destroy', $event->id), 'method' => 'delete')) }}
+									<!--{{ Form::open(array('url' => route('events.destroy', $event->id), 'method' => 'delete')) }}
 										<button type="button" class="button-delete" data-name="{{ $event->name }}" data-type="tournament">
 						                    <i class="fa fa-trash-o fa-lg action" aria-hidden="true"></i>
 						                </button>
-									{{ Form::close() }}
+									{{ Form::close() }}-->
 								@endif
 							@endif
 						</div>

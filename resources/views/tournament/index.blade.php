@@ -33,11 +33,11 @@
 								@if(Auth::check())
 									@if(Auth::user()->role == 'administrator')
 										<a href="{{route('tournaments.edit', $tournament->id)}}" title="Éditer le tournoi" class="edit"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></i></a>
-										{{ Form::open(array('url' => route('tournaments.destroy', $tournament->id), 'method' => 'delete')) }}
+										<!--{{ Form::open(array('url' => route('tournaments.destroy', $tournament->id), 'method' => 'delete')) }}
 											<button type="button" class="button-delete" data-name="{{ $tournament->name }}" data-type="tournament">
 							                    <i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
 							                </button>
-										{{ Form::close() }}
+										{{ Form::close() }}-->
 									@endif
 								@endif
 

@@ -24,6 +24,8 @@
 
 		{{ Form::open(array('url' => route('tournaments.store'), 'method' => 'post', 'id' => 'formTournament')) }}
 
+			{{ Form::hidden('eventId', $event->id) }}
+
 			{{ Form::label('name', 'Nom :') }}
 			{{ Form::text('name', null) }}
 			<br>

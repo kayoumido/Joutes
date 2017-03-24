@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Tournament;
 use App\Sport;
 use App\Team;
+use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,8 +23,9 @@ class TournamentController extends Controller
      *
      * @author Dessaules Loïc
      */
-    public function create()
+    public function create(Request $request)
     {
+        $event = Event::find($request->input("event"));
         // Get all sports with one or more court linked
         $dropdownListSportsWithCourt = $this->getDropDownListSportsWithCourt();
         // Get all sports who have no court linked
@@ -32,7 +34,8 @@ class TournamentController extends Controller
         $dropdownListTeams = $this->getDropDownListTeams(null);
         return view('tournament.create')->with('dropdownListSportsWithCourt', $dropdownListSportsWithCourt)
                                         ->with('dropdownListSportsWithNoCourt', $dropdownListSportsWithNoCourt)
-                                        ->with('dropdownListTeams', $dropdownListTeams);
+                                        ->with('dropdownListTeams', $dropdownListTeams)
+                                        ->with('event', $event);
     }
 
     /**
@@ -94,7 +97,7 @@ class TournamentController extends Controller
             $tournament = new Tournament;
             $tournament->name = $request->input('name');
             $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
-            $tournament->event_id = 1; // !!!!!!!!!!!!!!!!! TO CHANGE !!!!!!!!!!!!!!!!
+            $tournament->event_id = $request->input('eventId'); // !!!!!!!!!!!!!!!!! TO CHANGE !!!!!!!!!!!!!!!!
             $tournament->img = 'changeLater';
             $tournament->sport_id = $request->input('sport');
             $tournament->save();

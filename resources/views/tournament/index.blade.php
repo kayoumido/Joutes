@@ -8,7 +8,7 @@
 		@endif
 		
 		@if ($fromEvent)
-			<h1>Tournois de l'évenement {{ $eventName }}</h1>
+			<h1>Tournois de l'évenement {{ $event->name }}</h1>
 		@else
 			<h1>Tournois</h1>
 		@endif
@@ -50,9 +50,9 @@
 
 		</div>
 
-		@if(Auth::check())
+		@if(Auth::check() && $fromEvent)
 			@if(Auth::user()->role == 'administrator')
-				<a href="{{route('tournaments.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
+				<a href="{{route('tournaments.create', ['event' => $event->id])}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
 			@endif
 		@endif
 		

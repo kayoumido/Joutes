@@ -36,7 +36,7 @@ class EventTournamentController extends Controller
         return view('tournament.index', array(
             "tournaments" => $tournaments,
             "fromEvent" => true,
-            "eventName" => $event->name
+            "event" => $event
         ));
 
     }

@@ -23,9 +23,14 @@ class EventController extends Controller
         if ($request->is('api/*')) {
             return $events;
         }
-        
-        $storagePath = storage_path().'/img/';
-        return view('event.index')->with('events', $events)->with('storagePath', $storagePath);
+
+        foreach ($events as $event) {
+            if (empty($event->img)) {
+                $event->img = 'default.jpg';
+            }
+        }
+
+        return view('event.index')->with('events', $events);
 
     }
 
@@ -48,5 +53,5 @@ class EventController extends Controller
         return true;
     }
 
-    
+
 }

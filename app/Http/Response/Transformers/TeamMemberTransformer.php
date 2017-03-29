@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Response\Transformers;
 
-
 use App\Participant;
 use League\Fractal\TransformerAbstract;
 
@@ -11,7 +10,7 @@ class TeamMemberTransformer extends TransformerAbstract
 
         return [
             'firstname' => $participant->first_name,
-            'lastname' => $participant->last_name,
+            'lastname'  => $participant->last_name,
         ];
     }
 }

@@ -15,9 +15,9 @@ class CreatePoolsTable extends Migration
     {
          Schema::create('pools', function (Blueprint $table) { 
             $table->increments('id'); 
-            $table->time('start_time'); 
+            $table->time('start_time')->nullable(); 
             $table->time('end_time')->nullable();
-            $table->string('poolName', 100);
+            $table->string('poolName', 45);
             $table->integer('stage');
             $table->integer('poolSize'); 
 

@@ -18,7 +18,7 @@ class CreateTournamentsTable extends Migration
             $table->increments('id'); 
             $table->string('name', 45); 
             $table->dateTime('start_date'); 
-            $table->string('img',45); 
+            $table->string('img',45)->nullable(); 
             $table->integer('event_id')->unsigned();
             $table->integer('sport_id')->unsigned(); 
  

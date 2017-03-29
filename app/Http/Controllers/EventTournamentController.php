@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\Sport;
-use App\Tournament;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use App\Http\Response\Transformers\TournamentTransformer;
@@ -38,7 +36,7 @@ class EventTournamentController extends Controller
         return view('tournament.index', array(
             "tournaments" => $tournaments,
             "fromEvent" => true,
-            "eventName" => $event->name
+            "event" => $event
         ));
 
     }

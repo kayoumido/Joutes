@@ -8,7 +8,7 @@
 		@endif
 		
 		@if ($fromEvent)
-			<h1>Tournois de l'évenement {{ $eventName }}</h1>
+			<h1>Tournois de l'évenement {{ $event->name }}</h1>
 		@else
 			<h1>Tournois</h1>
 		@endif
@@ -33,11 +33,11 @@
 								@if(Auth::check())
 									@if(Auth::user()->role == 'administrator')
 										<a href="{{route('tournaments.edit', $tournament->id)}}" title="Éditer le tournoi" class="edit"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></i></a>
-										{{ Form::open(array('url' => route('tournaments.destroy', $tournament->id), 'method' => 'delete')) }}
+										<!--{{ Form::open(array('url' => route('tournaments.destroy', $tournament->id), 'method' => 'delete')) }}
 											<button type="button" class="button-delete" data-name="{{ $tournament->name }}" data-type="tournament">
 							                    <i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
 							                </button>
-										{{ Form::close() }}
+										{{ Form::close() }}-->
 									@endif
 								@endif
 
@@ -50,11 +50,11 @@
 
 		</div>
 
-		<!--@if(Auth::check())
+		@if(Auth::check() && $fromEvent)
 			@if(Auth::user()->role == 'administrator')
-				<a href="{{route('tournaments.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
+				<a href="{{route('tournaments.create', ['event' => $event->id])}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
 			@endif
-		@endif-->
+		@endif
 		
 	</div>
 @stop

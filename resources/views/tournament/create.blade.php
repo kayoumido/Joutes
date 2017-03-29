@@ -24,14 +24,14 @@
 
 		{{ Form::open(array('url' => route('tournaments.store'), 'method' => 'post', 'id' => 'formTournament')) }}
 
+			{{ Form::hidden('eventId', $event->id) }}
+
 			{{ Form::label('name', 'Nom :') }}
 			{{ Form::text('name', null) }}
 			<br>
 			<br>
 			{{ Form::label('Sport', 'Sport :') }}
-			{{ Form::select('sport', $dropdownListSports, null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
-			<br>
-			(la liste contient uniquement les sports qui ont au minimum un terrain lié)
+			{{ Form::select('sport', array('Avec terrains' => $dropdownListSportsWithCourt, 'Sans terrains' => $dropdownListSportsWithNoCourt), null, array('placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport')) }}
 			<br>
 			<br>
 			{{ Form::label('startDate', 'Date de début :') }}
@@ -40,10 +40,6 @@
 			<br>
 			{{ Form::label('startTime', 'Heure de début :') }}
 			{{ Form::text('startTime', null, array('placeholder' => 'hh:mm')) }}
-			<br>
-			<br>
-			{{ Form::label('endDate', 'Date de fin :') }}
-			{{ Form::date('endDate', \Carbon\Carbon::now(), array('class' => 'allSameStyle')) }}
 			<br>
 			<br>
 			{{ Form::label('teams', 'Équipes participantes :') }}

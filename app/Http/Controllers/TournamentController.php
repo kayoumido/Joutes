@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Tournament;
-use App\Sport;
-use App\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 

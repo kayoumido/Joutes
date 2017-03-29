@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePoolModesTabel extends Migration
+class CreatePoolModesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreatePoolModesTabel extends Migration
        Schema::create('poolModes', function (Blueprint $table) { 
  
             $table->increments('id'); 
-            $table->string('modeDescription', 100); 
+            $table->string('modeDescription', 1000); 
             $table->integer('planningAlgorithm'); 
     
         }); 

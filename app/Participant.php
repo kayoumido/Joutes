@@ -13,6 +13,19 @@ class Participant extends Model
 
     public function teams()
     {
-        return $this->belongsToMany('App\Team')->withPivot('isCapitain');;
+        return $this->belongsToMany('App\Team')->withPivot('isCaptain');;
+    }
+
+    public function tournaments() {
+        // get event teams
+        $teams = $this->teams;
+        // create empty array for participants
+        $tournaments = [];
+
+        foreach ($teams as $team) {
+            $tournaments[] = $team->tournament;
+        }
+
+        return collect($tournaments)->unique("id");
     }
 }

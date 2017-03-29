@@ -52,6 +52,10 @@
 			@endif
 			<br>
 			<br>
+			{{ Form::label('img', 'Image : ') }}
+			{{ Form::file('img', null) }}
+			<br>
+			<br>
 			{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}
 
 		{{ Form::close() }}

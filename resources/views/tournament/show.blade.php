@@ -63,5 +63,19 @@
 		</table>
 
 
+		<ul class="nav nav-tabs">
+			@for ($i = 1; $i <= $totalStage; $i++)
+				@if ($i == 1)
+					<li class="nav-item">
+						<a class="nav-link active" href="#">Phase {{$i}}</a>
+					</li>
+				@else
+					<li class="nav-item">
+						<a class="nav-link" href="#">Phase {{$i}}</a>
+					</li>
+				@endif
+			@endfor
+		</ul>
+		<!-- https://v4-alpha.getbootstrap.com/components/navs/#javascript-behavior -->
 	</div>
 @stop

@@ -21,10 +21,6 @@ Route::resource('tournaments', 'TournamentController', ['only' => ['index', 'sho
 Route::resource('events.tournaments', 'EventTournamentController', [ 'only' => ['index', 'show']]);
 Route::resource('admin', 'SessionController', ['only' => ['index', 'store', 'destroy']]);
 
-# Route to download apk
-Route::get('/download', function() {
-    return view('download.index');
-});
 
 /* Routes who need authentification */
 // Prefix admin is here to have an url like that : .../admin/tournaments/create

@@ -34,5 +34,9 @@ $api->version('v1', function ($api) {
         $api->resource('events.participants', 'App\Http\Controllers\API\EventParticipantController', [ 'only' => [
             'index', 'show'
         ]]);
+
+        $api->resource('schedule', 'App\Http\Controllers\API\MatchScheduleController', [ 'only' => [
+            'index'
+        ]]);
     });
 });

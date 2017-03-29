@@ -54,7 +54,7 @@
 
 		@if(Auth::check() && $fromEvent)
 			@if(Auth::user()->role == 'administrator')
-				<a href="{{route('tournaments.create', ['event' => $event->id])}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
+				<a href="{{route('events.tournaments.create', $event->id)}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
 			@endif
 		@endif
 		

@@ -31,7 +31,8 @@ Route::get('/download', function() {
 // It will add the "admin" prefix before each "critical" URLs
 Route::group(['middleware'=>'checkIsAdmin', 'prefix'=>'admin', 'namespace' => 'Admin'],function(){
 	Route::resource('events', 'EventController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
-	Route::resource('tournaments', 'TournamentController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+	Route::resource('tournaments', 'TournamentController', ['only' => ['edit', 'update', 'destroy']]);
+	Route::resource('events.tournaments', 'EventTournamentController', [ 'only' => ['create', 'store']]);
 	Route::resource('sports', 'SportController');
 	Route::resource('courts', 'CourtController');
 	Route::resource('teams', 'TeamController');

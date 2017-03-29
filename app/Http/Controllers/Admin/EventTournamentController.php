@@ -10,8 +10,104 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use File;
 
-class TournamentController extends Controller
+class EventTournamentController extends Controller
 {
+    /**
+     * Show the form for creating a new tournament.
+     *
+     * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
+     */
+    public function create(Request $request, $eventId)
+    {
+        // Get all sports with one or more court linked
+        $dropdownListSportsWithCourt = $this->getDropDownListSportsWithCourt();
+        // Get all sports who have no court linked
+        $dropdownListSportsWithNoCourt = $this->getDropDownListSportsWithNoCourt();
+        // Get only the teams who don't participate to any tournament AND the teams who are participating to the tournament
+        $dropdownListTeams = $this->getDropDownListTeams(null);
+        return view('tournament.create')->with('dropdownListSportsWithCourt', $dropdownListSportsWithCourt)
+                                        ->with('dropdownListSportsWithNoCourt', $dropdownListSportsWithNoCourt)
+                                        ->with('dropdownListTeams', $dropdownListTeams)
+                                        ->with('eventId', $eventId);
+    }
+
+    /**
+     * Store a newly created tournament in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     *
+     * @author Dessaules Loïc
+     */
+    public function store(Request $request, $eventId)
+    {
+        /* CUSTOM SPECIFIC VALIDATION */
+        $customErrors = array();
+
+        $patternTime =  '/^([01]\d|2[0-3]):?([0-5]\d)$/';
+        $patternDate = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/';
+        // The time must be HH:MM
+        if(!preg_match($patternTime, $request->input('startTime'))){
+            $customErrors[] =  "Le champ Heure de début doit être sous la forme : hh:mm.";
+        }
+        // The date must be jj:mm:YYYY (laravel cast in YYYY-jj-mm)
+        if(!preg_match($patternDate, $request->input('startDate'))){
+            $customErrors[] = "Le champ Date de début doit être sous la forme : jj.mm.YYYY.";
+        }
+
+        // Check if the name of the new tournaments and his sport already exists in the DB
+        // example : Tournament 1 -> Football // I cannot create a new Tournament 1 -> Football // But I can create a Tournament 1 -> Tennis
+        if(Tournament::where('name',$request->input('name'))
+                     ->where('sport_id', $request->input('sport')) // second where = and
+                     ->count() >= 1){
+            $sportName = Sport::find($request->input('sport'))->name;
+            $customErrors[] = "Le sport \"".$sportName."\" est déjà lié au tournoi \"".$request->input('name')."\"";
+        }
+
+        /* LARAVEL VALIDATION */
+        // create the validation rules
+        $rules = array(
+            'name' => 'required|min:3|max:40',
+            'sport' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails() || !empty($customErrors)) {
+
+            // Get all sports with one or more court linked
+            $dropdownListSportsWithCourt = $this->getDropDownListSportsWithCourt();
+            // Get all sports who have no court linked
+            $dropdownListSportsWithNoCourt = $this->getDropDownListSportsWithNoCourt();
+            // Get only the teams who don't participate to any tournament AND the teams who are participating to the tournament
+            $dropdownListTeams = $this->getDropDownListTeams(null);
+
+            return view('tournament.create')->with('dropdownListSportsWithCourt', $dropdownListSportsWithCourt)
+                                            ->with('dropdownListSportsWithNoCourt', $dropdownListSportsWithNoCourt)
+                                            ->with('dropdownListTeams', $dropdownListTeams)
+                                            ->withErrors($validator->errors())
+                                            ->with('customErrors', $customErrors);
+        } else {
+
+            //move and rename img
+            $imageName = date('Y_m_d-H_i_s').'.'.pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);  
+            File::move($_FILES['img']['tmp_name'], public_path().'/tournament_img/'.$imageName);
+
+            //Save the tournament
+            $tournament = new Tournament;
+            $tournament->name = $request->input('name');
+            $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
+            $tournament->event_id = $eventId;
+            $tournament->img = $imageName;
+            $tournament->sport_id = $request->input('sport');
+            $tournament->save();
+
+            return redirect()->route('tournaments.index');
+        }
+    }
 
     /**
      * Show the form for editing the specified tournament.
@@ -57,135 +153,6 @@ class TournamentController extends Controller
                                     ->with('dropdownListTeams', $dropdownListTeams)
                                     ->with('teamsAreParticipatingId', $teamsAreParticipatingId);
     }
-
-    /**
-     * Update the specified tournament in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     *
-     * @author Dessaules Loïc
-     */
-    public function update(Request $request, $id)
-    {
-        /* CUSTOM SPECIFIC VALIDATION */
-        $customErrors = array();
-
-        $patternTime =  '/^([01]\d|2[0-3]):?([0-5]\d)$/';
-        $patternDate = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/';
-        // The time must be HH:MM
-        if(!preg_match($patternTime, $request->input('startTime'))){
-            $customErrors[] =  "Le champ Heure de début doit être sous la forme : hh:mm.";
-        }
-        // The date must be jj:mm:YYYY (laravel cast in YYYY-jj-mm)
-        if(!preg_match($patternDate, $request->input('startDate'))){
-            $customErrors[] = "Le champ Date de début doit être sous la forme : jj.mm.YYYY.";
-        }
-
-        // Check if the name of the new tournaments and his sport already exists in the DB
-        // example : Tournament 1 -> Football // I cannot create a new Tournament 1 -> Football // But I can create a Tournament 1 -> Tennis
-        if(Tournament::where('name',$request->input('name'))
-                     ->where('sport_id', $request->input('sport')) // second where = and
-                     ->count() >= 1){
-          // Check if we are updating the current tournament who have not other same tournament as itself
-          $tournaments = Tournament::where('name',$request->input('name'))->where('sport_id', $request->input('sport'))->get();
-          $modifyCurrentTournament = false;
-          foreach ($tournaments as $tournament) {
-            if($tournament->id == $id){
-              $modifyCurrentTournament = true;
-            }
-          }
-          if(!$modifyCurrentTournament){
-            $sportName = Sport::find($request->input('sport'))->name;
-            $customErrors[] = "Le sport \"".$sportName."\" est déjà lié au tournoi \"".$request->input('name')."\"";
-          }
-        }
-
-
-        /* LARAVEL VALIDATION */
-        // create the validation rules
-        $rules = array(
-            'name' => 'required|min:3|max:40',
-            'sport' => 'required',
-            'img' => 'image|mimes:jpeg,png,jpg'
-        );
-
-        $validator = Validator::make($request->all(), $rules);
-
-        /* errors detected */
-        if ($validator->fails() || !empty($customErrors)) {
-            $tournament = Tournament::find($id);
-            if(isset($tournament->sport)){
-                $sport = $tournament->sport;
-            }else{
-                $sport = null;
-            }
-            
-            $dropdownListSports = $this->getDropDownListSports();
-            $dropdownListTeams = $this->getDropDownListTeams();
-            return view('tournament.edit')->with('dropdownListSports', $dropdownListSports)
-                                          ->with('dropdownListTeams', $dropdownListTeams)
-                                          ->with('tournament', $tournament)
-                                          ->with('sport', $sport)
-                                          ->with('customErrors', $customErrors)
-                                          ->withErrors($validator->errors());
-        } else {
-          
-            $tournament = Tournament::find($id);
-
-            //move and rename img if new is choose
-            if($_FILES['img']['name'] != ""){
-
-                //delete old file
-                $oldFile = $tournament->img;
-                File::delete(public_path().'/uploads/'.$oldFile);
-
-                //add new file
-                $imageName = date('Y_m_d-H_i_s').'.'.pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);  
-                File::move($_FILES['img']['tmp_name'], public_path().'/tournament_img/'.$imageName);
-                $tournament->img = $imageName;
-            }
-
-            //Save the tournament
-            $tournament->name = $request->input('name');
-            $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
-            $tournament->sport_id = $request->input('sport');
-            $tournament->update();
-
-            // Dissociate all teams linked to the tournament
-            foreach ($tournament->teams as $team) {
-              $team->tournament()->dissociate();
-              $team->update();
-            }
-            // Accociate new teams linked
-            if(!empty($request->input('teams'))){
-              foreach ($request->input('teams') as $teamId) {
-                $team = Team::find($teamId);
-                $team->tournament()->associate($tournament);
-                $team->update();
-              }
-            }
-
-            return redirect()->route('tournaments.index');
-        }
-    }
-
-    /**
-     * Remove the specified tournament from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     *
-     * @author Dessaules Loïc
-     */
-    public function destroy($id)
-    {
-        $tournament = Tournament::findOrFail($id);
-        $tournament->delete();
-        return redirect()->route('tournaments.index');
-    }
-
 
     /**
      * Get an array: "sportId" => "sportName", of ALL sports

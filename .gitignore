@@ -8,3 +8,5 @@ Homestead.yaml
 .env
 
 public/event_img/
+
+public/tournament_img/

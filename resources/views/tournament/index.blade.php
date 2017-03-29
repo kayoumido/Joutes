@@ -22,10 +22,12 @@
 				<div class="col-md-4 hideSearch">
 					<a href="{{route('tournaments.show', $tournament->id)}}" title="Voir le tournoi">
 						<div class="box">
-
-							<div class="img">
+							
+							<div class="imgBox">
+								<img src="{{ url('tournament_img/'.$tournament->img) }}" alt="Image de l'événement">
 								<div class="title name"> {{$tournament->name}} </div>
 							</div>
+
 							<div class="infos">
 								<div class="sport"> {{ $tournament->sport->name }} </div>
 								<div class="date"> {{$tournament->start_date->format('d.m.Y à H:i')}} </div>

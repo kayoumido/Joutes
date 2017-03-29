@@ -22,7 +22,7 @@
 	        </div>
         @endif
 
-		{{ Form::open(array('url' => route('tournaments.store'), 'method' => 'post', 'id' => 'formTournament', 'enctype' => 'multipart/form-data')) }}
+		{{ Form::open(array('url' => route('tournaments.store'), 'method' => 'post', 'class' => 'add', 'id' => 'formTournament', 'enctype' => 'multipart/form-data')) }}
 
 			{{ Form::hidden('eventId', $event->id) }}
 

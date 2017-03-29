@@ -234,6 +234,8 @@ class TournamentController extends Controller
                                           ->withErrors($validator->errors());
         } else {
           
+            $tournament = Tournament::find($id);
+
             //move and rename img if new is choose
             if($_FILES['img']['name'] != ""){
 
@@ -248,7 +250,6 @@ class TournamentController extends Controller
             }
 
             //Save the tournament
-            $tournament = Tournament::find($id);
             $tournament->name = $request->input('name');
             $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
             $tournament->sport_id = $request->input('sport');

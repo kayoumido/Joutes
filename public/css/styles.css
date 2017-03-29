@@ -247,3 +247,34 @@ select.allSameStyle, input.allSameStyle{
     right: 12px;
     border-radius: 0;
 }
+
+/* Page 404 */
+#error404{
+	text-align: center;
+}
+
+#error404 .content{
+	margin: 50px 0 30px 0;
+}
+
+#error404 h1{
+	font-size: 100px;
+}
+
+#error404 #text{
+	font-size: 50px;
+	margin-bottom: 37px;
+}
+
+#error404 a{	
+    font-size: 20px;
+    border: 2px solid #446CB3;
+    padding: 10px 20px;
+    -webkit-transition: .5s; /* Safari */
+    transition: .5s;
+}
+
+#error404 a:hover{	
+    background-color: #446CB3;
+    color: white;
+}

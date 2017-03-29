@@ -18,6 +18,13 @@ class TournamentController extends Controller
     public function index()
     {
         $tournaments = Tournament::all();
+
+        foreach ($tournaments as $tournament) {
+            if (empty($tournament->img)) {
+                $tournament->img = 'default.jpg';
+            }
+        }
+
         return view('tournament.index', array(
             "tournaments" => $tournaments,
             "fromEvent" => false

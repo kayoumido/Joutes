@@ -13,6 +13,7 @@ use App\Team;
 use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use File;
 
 class TournamentController extends Controller
 {
@@ -75,30 +76,38 @@ class TournamentController extends Controller
         // create the validation rules
         $rules = array(
             'name' => 'required|min:3|max:40',
-            'sport' => 'required'
+            'sport' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg'
         );
 
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails() || !empty($customErrors)) {
+
             // Get all sports with one or more court linked
-        $dropdownListSportsWithCourt = $this->getDropDownListSportsWithCourt();
-        // Get all sports who have no court linked
-        $dropdownListSportsWithNoCourt = $this->getDropDownListSportsWithNoCourt();
-        // Get only the teams who don't participate to any tournament AND the teams who are participating to the tournament
-        $dropdownListTeams = $this->getDropDownListTeams(null);
+            $dropdownListSportsWithCourt = $this->getDropDownListSportsWithCourt();
+            // Get all sports who have no court linked
+            $dropdownListSportsWithNoCourt = $this->getDropDownListSportsWithNoCourt();
+            // Get only the teams who don't participate to any tournament AND the teams who are participating to the tournament
+            $dropdownListTeams = $this->getDropDownListTeams(null);
+
             return view('tournament.create')->with('dropdownListSportsWithCourt', $dropdownListSportsWithCourt)
                                             ->with('dropdownListSportsWithNoCourt', $dropdownListSportsWithNoCourt)
                                             ->with('dropdownListTeams', $dropdownListTeams)
                                             ->withErrors($validator->errors())
                                             ->with('customErrors', $customErrors);
         } else {
+
+            //move and rename img
+            $imageName = date('Y_m_d-H_i_s').'.'.pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);  
+            File::move($_FILES['img']['tmp_name'], public_path().'/tournament_img/'.$imageName);
+
             //Save the tournament
             $tournament = new Tournament;
             $tournament->name = $request->input('name');
             $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
             $tournament->event_id = $request->input('eventId');
-            $tournament->img = 'changeLater';
+            $tournament->img = $imageName;
             $tournament->sport_id = $request->input('sport');
             $tournament->save();
 
@@ -200,7 +209,8 @@ class TournamentController extends Controller
         // create the validation rules
         $rules = array(
             'name' => 'required|min:3|max:40',
-            'sport' => 'required'
+            'sport' => 'required',
+            'img' => 'image|mimes:jpeg,png,jpg'
         );
 
         $validator = Validator::make($request->all(), $rules);
@@ -224,8 +234,22 @@ class TournamentController extends Controller
                                           ->withErrors($validator->errors());
         } else {
           
-            //Save the tournament
             $tournament = Tournament::find($id);
+
+            //move and rename img if new is choose
+            if($_FILES['img']['name'] != ""){
+
+                //delete old file
+                $oldFile = $tournament->img;
+                File::delete(public_path().'/uploads/'.$oldFile);
+
+                //add new file
+                $imageName = date('Y_m_d-H_i_s').'.'.pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);  
+                File::move($_FILES['img']['tmp_name'], public_path().'/tournament_img/'.$imageName);
+                $tournament->img = $imageName;
+            }
+
+            //Save the tournament
             $tournament->name = $request->input('name');
             $tournament->start_date = $request->input('startDate')." ". $request->input('startTime').":00";
             $tournament->sport_id = $request->input('sport');

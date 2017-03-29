@@ -22,7 +22,7 @@
 	        </div>
         @endif
 
-		{{ Form::open(array('url' => route('tournaments.store'), 'method' => 'post', 'id' => 'formTournament')) }}
+		{{ Form::open(array('url' => route('tournaments.store'), 'method' => 'post', 'class' => 'add', 'id' => 'formTournament', 'enctype' => 'multipart/form-data')) }}
 
 			{{ Form::hidden('eventId', $event->id) }}
 
@@ -44,6 +44,10 @@
 			<br>
 			{{ Form::label('teams', 'Équipes participantes :') }}
 			{{ Form::select('teams[]', $dropdownListTeams, null, array('class' => 'allSameStyle', 'id' => 'multiple-teams-select', 'multiple')) }}
+			<br>
+			<br>
+			{{ Form::label('img', 'Image : ') }}
+			{{ Form::file('img', null) }}
 			<br>
 			<br>
 			{{ Form::button('Créer', array('class' => 'btn btn-success formSend')) }}

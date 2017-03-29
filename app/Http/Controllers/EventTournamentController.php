@@ -33,6 +33,13 @@ class EventTournamentController extends Controller
 
         $event = Event::findOrFail($event_id);
         $tournaments = $event->tournaments;
+
+        foreach ($tournaments as $tournament) {
+            if (empty($tournament->img)) {
+                $tournament->img = 'default.jpg';
+            }
+        }
+
         return view('tournament.index', array(
             "tournaments" => $tournaments,
             "fromEvent" => true,

@@ -179,7 +179,8 @@ $( document ).ready(function() {
 		    	var sportValue = $('#formTournament #sport').val();
 		    	var startDateValue = $('#formTournament #startDate').val();
 		    	var startTimeValue = $('#formTournament #startTime').val();
-
+		    	var imgValue = $('#formTournament #img').val();
+		    	
 		    	var patternName = /^[a-zA-Z0-9-_ ]{3,45}$/;
 		    	var patternSport = /^[0-9]+$/; // '' = empty, 1-2-3-... = sport
 		    	var patternDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
@@ -196,6 +197,10 @@ $( document ).ready(function() {
 		    	}
 		    	if(!patternDate.test(startDateValue)){
 		    		error += 'Le champ Date de début ne doit pas être vide et doit être sous la forme jj.mm.aaaa.<br>';
+		    	}
+		    	//if image is not empty but only if this is on the create event (edit event image can be null and conserve the oldest image)
+		    	if(imgValue == '' && $('#formTournament').is('.add')){
+		    		error += 'Le champ Image ne doit pas être vide.<br>';
 		    	}
 		    	break;
 		}

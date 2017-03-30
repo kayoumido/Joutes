@@ -83,13 +83,15 @@
 			@for ($i = 1; $i <= $totalStage; $i++)
 				@if ($i == 1)
 					<div class="tab-pane active" id="stage{{$i}}" role="tabpanel">
-						..1.
-					</div>
 				@else
 					<div class="tab-pane" id="stage{{$i}}" role="tabpanel">
-						Phase {{$i}}
-					</div>
 				@endif
+						@foreach ($pools as $pool)
+							@if ($pool->stage == $i)
+								{{$pool->poolName}}<br>
+							@endif
+						@endforeach
+					</div>
 			@endfor
 		</div>
 

@@ -89,7 +89,7 @@
                 </div>
             </div>
         </footer>
-
+        
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/sweetalert.min.js') }}"></script>
         <script src="{{ asset('js/select2.full.min.js') }}"></script>

@@ -63,19 +63,34 @@
 		</table>
 
 
-		<ul class="nav nav-tabs">
+
+		<!-- Stages and pools -->
+		<ul class="nav nav-tabs" role="tablist" id="stages-tabs" data-count="{{$totalStage}}">
 			@for ($i = 1; $i <= $totalStage; $i++)
 				@if ($i == 1)
-					<li class="nav-item">
-						<a class="nav-link active" href="#">Phase {{$i}}</a>
+					<li class="nav-item active">
+						<a class="nav-link active" data-toggle="tab" href="#stage{{$i}}" role="tab">Phase {{$i}}</a>
 					</li>
 				@else
 					<li class="nav-item">
-						<a class="nav-link" href="#">Phase {{$i}}</a>
+						<a class="nav-link" data-toggle="tab" href="#stage{{$i}}" role="tab">Phase {{$i}}</a>
 					</li>
 				@endif
 			@endfor
 		</ul>
-		<!-- https://v4-alpha.getbootstrap.com/components/navs/#javascript-behavior -->
-	</div>
+
+		<div class="tab-content">
+			@for ($i = 1; $i <= $totalStage; $i++)
+				@if ($i == 1)
+					<div class="tab-pane active" id="stage{{$i}}" role="tabpanel">
+						..1.
+					</div>
+				@else
+					<div class="tab-pane" id="stage{{$i}}" role="tabpanel">
+						Phase {{$i}}
+					</div>
+				@endif
+			@endfor
+		</div>
+
 @stop

@@ -27,6 +27,6 @@ class Game extends Model {
     }
 
     public function team2() {
-        return $this->contender1->team;
+        return $this->contender2->team;
     }
 }

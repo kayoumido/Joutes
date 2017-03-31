@@ -14,7 +14,7 @@ class Pool extends Model
 	//protected $fillable = array('fk_sports', 'name'); // -> We have to define all data we use on our courts table (For use : ->all())
 
     /**
-     * Create a new belongs to relationship instance between Court and Sport
+     * Create a new belongs to relationship instance between pool and Tournament
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      *
@@ -24,4 +24,14 @@ class Pool extends Model
         return $this->belongsTo(Tournament::class);
     }
 
+    /**
+     * Create a new hasManyThrough relationship instance between pool and games between contenders
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     * @author Loïc Dessaules
+     */
+    public function games(){
+        return $this->hasmanyThrough(Game::class, Contender::class, 'pool_id', 'contender1_id');
+    }
 }

@@ -124,7 +124,7 @@ $( document ).ready(function() {
 	/* TOURNAMENT SHOW : STAGES AND POOLS TABS */
 	$totalStages = $("#stages-tabs").attr("data-count");
 	for (var i = 0; i < $totalStages; i++) {
-		$('#stage'+i+' a').click(function (e) {
+		$('#stage'+i+' a.nav-link').click(function (e) {
 		  	e.preventDefault();
 		  	$(this).tab('show');
 		});

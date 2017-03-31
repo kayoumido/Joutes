@@ -86,11 +86,20 @@
 				@else
 					<div class="tab-pane" id="stage{{$i}}" role="tabpanel">
 				@endif
-						@foreach ($pools as $pool)
-							@if ($pool->stage == $i)
-								{{$pool->poolName}}<br>
-							@endif
-						@endforeach
+						<table class="table">
+							<tbody>
+								@foreach ($pools as $pool)
+									@if ($pool->stage == $i)
+									<tr>
+										<th scope="row" class="name">
+											<a href="{{route('tournaments.pools.show', [$tournament->id, $pool->id])}}">{{$pool->poolName}}</a>
+										</th>
+									</tr>
+									@endif
+								@endforeach
+							</tbody>
+						</table>
+						
 					</div>
 			@endfor
 		</div>

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('barebone')
 
 @section('content')
     <h1>Hello</h1>

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 class ScheduleController extends Controller {
 
     public function index() {
-        return view('schedule.index');
+
+        $schedule  = json_decode($this->api->get('schedule'));
+
+        return view('schedule.index', array(
+            'schedule' => $schedule
+        ));
     }
 }

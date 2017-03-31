@@ -20,6 +20,7 @@ Route::resource('events', 'EventController', ['only' => ['index', 'show']]);
 Route::resource('tournaments', 'TournamentController', ['only' => ['index', 'show']]);
 Route::resource('events.tournaments', 'EventTournamentController', [ 'only' => ['index', 'show']]);
 Route::resource('admin', 'SessionController', ['only' => ['index', 'store', 'destroy']]);
+Route::resource('schedule', 'ScheduleController', ['only' => ['index']]);
 
 
 /* Routes who need authentification */

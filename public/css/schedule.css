@@ -1,0 +1,8 @@
+.match {
+    background-color: lightblue;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+    text-align: center;
+    padding: 50px;
+    margin-bottom: 25px;
+}

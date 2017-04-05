@@ -19,49 +19,54 @@
 			<strong>Début du tournois :</strong> {{ $tournament->start_date->format('d.m.Y à H:i') }}
 		</p>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Terrain(s)</th>
-				</tr>
-			</thead>
-			<tbody>
-				@if(count($tournament->sport->courts) > 0)
-					@foreach ($tournament->sport->courts as $court)
-			  		<tr>
-						<th scope="row" class="name">{{$court->name}}</th>
-					</tr>
-					@endforeach
-				@else
-					<tr>
-						<th scope="row" class="name">Aucun terrain pour l'instant ...</th>
-					</tr>
-				@endif
-			</tbody>
-		</table>
-
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Équipe(s)</th>
-				</tr>
-			</thead>
-			<tbody>
-				@if(count($tournament->teams) > 0)
-			  		@foreach ($tournament->teams as $team)
-			  			<tr>
-							<th scope="row" class="name">{{$team->name}}</th>
+		<div class="row">
+			<div class="col-lg-6">
+				<table id="teams-table" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th>Équipe(s)</th>
 						</tr>
-					@endforeach
-				@else
-					<tr>
-						<td>Aucune équipe pour l'instant ...</td>
-					</tr>
-			  	@endif
-			</tbody>
-		</table>
+					</thead>
+					<tbody>
+						@if(count($tournament->teams) > 0)
+					  		@foreach ($tournament->teams as $team)
+					  			<tr>
+									<td>{{$team->name}}</td>
+								</tr>
+							@endforeach
+						@else
+							<tr>
+								<td>Aucune équipe pour l'instant ...</td>
+							</tr>
+					  	@endif
+					</tbody>
+				</table>
+			</div>
 
+			<div class="col-lg-6">
+				<table id="courts-table" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th>Terrain(s)</th>
+						</tr>
+					</thead>
+					<tbody>
+						@if(count($tournament->sport->courts) > 0)
+							@foreach ($tournament->sport->courts as $court)
+					  		<tr>
+								<td>{{$court->name}}</td>
+							</tr>
+							@endforeach
+						@else
+							<tr>
+								<td>Aucun terrain pour l'instant ...</td>
+							</tr>
+						@endif
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
 
 		@if (sizeof($tournament->pools) > 0)
 			<!-- Stages and pools -->
@@ -86,14 +91,14 @@
 					@else
 						<div class="tab-pane" id="stage{{$i}}" role="tabpanel">
 					@endif
-							<table class="table">
+							<table class="pools-table table table-hover table-striped table-bordered" cellspacing="0" width="100%">
 								<tbody>
 									@foreach ($pools as $pool)
 										@if ($pool->stage == $i)
 										<tr>
-											<th scope="row" class="name">
+											<td>
 												<a href="{{route('tournaments.pools.show', [$tournament->id, $pool->id])}}">{{$pool->poolName}}</a>
-											</th>
+											</td>
 										</tr>
 										@endif
 									@endforeach
@@ -103,6 +108,7 @@
 						</div>
 				@endfor
 			</div>
+
 		@endif
 		
 

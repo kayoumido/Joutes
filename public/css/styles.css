@@ -61,7 +61,7 @@ select{
 }
 
 /* TABLE */
-table thead th {
+/*table thead th {
     color: #fff;
     background-color: #50514F;
     border-color: #50514F !important;
@@ -143,9 +143,9 @@ i:hover{
 }
 
 /* FORM */
-label {
+/*label {
 	width:115px;
-}
+}*/
 select.allSameStyle, input.allSameStyle{
 	width:164px;
 	height:28px;

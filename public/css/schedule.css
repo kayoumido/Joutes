@@ -1,5 +1,6 @@
 .schedule {
     font-family: lato;
+    padding-top: 50px;
 }
 
 .schedule .row {
@@ -7,7 +8,7 @@
     margin-right: 0;
 }
 .match {
-    background-color: #9EE493;
+    background-color: #446CB3;
     color: #fafafa;
     border-radius: 3px;
     box-shadow: 1px 1px 1px rgba(0,0,0,.2);

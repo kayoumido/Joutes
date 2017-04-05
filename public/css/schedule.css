@@ -1,8 +1,19 @@
+.schedule-row {
+    margin-left: 0;
+    margin-right: 0;
+}
 .match {
     background-color: lightblue;
     border-radius: 3px;
     box-shadow: 1px 1px 1px rgba(0,0,0,.2);
-    text-align: center;
-    padding: 50px;
+    padding: 15px;
     margin-bottom: 25px;
+}
+
+.info {
+    font-size: 8rem;
+}
+
+.team-name {
+    font-size: 4rem;
 }

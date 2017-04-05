@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Tournament;
+use App\Pool;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,6 +44,15 @@ class TournamentController extends Controller
     public function show($id)
     {
         $tournament = Tournament::find($id);
-        return view('tournament.show')->with('tournament', $tournament);
+        $pools = $tournament->pools;
+        $totalStage = 0;
+        foreach ($pools as $pool) {
+            if($pool->stage > $totalStage){
+                $totalStage = $pool->stage;
+            }
+        }
+        return view('tournament.show')->with('tournament', $tournament)
+                                      ->with('pools', $pools)
+                                      ->with('totalStage', $totalStage);
     }
 }

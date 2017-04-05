@@ -63,5 +63,47 @@
 		</table>
 
 
-	</div>
+		@if (sizeof($tournament->pools) > 0)
+			<!-- Stages and pools -->
+			<ul class="nav nav-tabs" role="tablist" id="stages-tabs" data-count="{{$totalStage}}">
+				@for ($i = 1; $i <= $totalStage; $i++)
+					@if ($i == 1)
+						<li class="nav-item active">
+							<a class="nav-link active" data-toggle="tab" href="#stage{{$i}}" role="tab">Phase {{$i}}</a>
+						</li>
+					@else
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#stage{{$i}}" role="tab">Phase {{$i}}</a>
+						</li>
+					@endif
+				@endfor
+			</ul>
+
+			<div class="tab-content">
+				@for ($i = 1; $i <= $totalStage; $i++)
+					@if ($i == 1)
+						<div class="tab-pane active" id="stage{{$i}}" role="tabpanel">
+					@else
+						<div class="tab-pane" id="stage{{$i}}" role="tabpanel">
+					@endif
+							<table class="table">
+								<tbody>
+									@foreach ($pools as $pool)
+										@if ($pool->stage == $i)
+										<tr>
+											<th scope="row" class="name">
+												<a href="{{route('tournaments.pools.show', [$tournament->id, $pool->id])}}">{{$pool->poolName}}</a>
+											</th>
+										</tr>
+										@endif
+									@endforeach
+								</tbody>
+							</table>
+							
+						</div>
+				@endfor
+			</div>
+		@endif
+		
+
 @stop

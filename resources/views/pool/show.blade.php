@@ -4,33 +4,6 @@
 
 @section('content')
 
-	<style type="text/css">
-		div#match-block{
-			text-align: center;
-		}
-		div#match-block h3{
-			margin-bottom:30px;
-		}
-		table#matches{
-		    width: 500px;
-    		margin: 0px auto;
-    		font-size: 17px;
-		}
-		table#matches tr{
-    		height: 35px;
-		}
-		table#matches td.contender1{
-		    width: 125px;
-			text-align: left;
-		}
-		table#matches td.contender2{
-			width: 125px;
-			text-align: right;
-		}
-
-
-	</style>
-
 	<div class="container">
         <a href="{{URL::previous()}}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 

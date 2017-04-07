@@ -21,7 +21,7 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<table id="teams-table" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="teams-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th>Équipe(s)</th>
@@ -44,7 +44,7 @@
 			</div>
 
 			<div class="col-lg-6">
-				<table id="courts-table" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="courts-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th>Terrain(s)</th>
@@ -91,14 +91,17 @@
 					@else
 						<div class="tab-pane" id="stage{{$i}}" role="tabpanel">
 					@endif
-							<table class="pools-table table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+							<table class="pools-table table table-hover table-striped table-bordered" cellspacing="0" width="100%" data-tournament="{{$tournament->id}}">
+								<thead>
+									<tr>
+										<th>Poules</th>
+									</tr>
+								</thead>
 								<tbody>
 									@foreach ($pools as $pool)
 										@if ($pool->stage == $i)
 										<tr>
-											<td>
-												<a href="{{route('tournaments.pools.show', [$tournament->id, $pool->id])}}">{{$pool->poolName}}</a>
-											</td>
+											<td data-id="{{$pool->id}}">{{$pool->poolName}}</td>
 										</tr>
 										@endif
 									@endforeach

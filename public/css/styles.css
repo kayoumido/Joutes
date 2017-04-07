@@ -61,6 +61,18 @@ select{
 }
 
 /* TABLE */
+
+table.table th{
+	background-color: #636b6f;
+	color:#FFF;
+}
+
+ul.nav-tabs li.active a{
+	font-weight: bold;
+}
+table.pools-table td:hover{
+	cursor: pointer;
+}
 /*table thead th {
     color: #fff;
     background-color: #50514F;

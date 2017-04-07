@@ -189,9 +189,9 @@ $( document ).ready(function() {
 	});
 
 	// Redirect on the pool.show when click on a cell
-	$('.pools-table tr').click(function(){
+	$('.pools-table tr td').click(function(){
 		var tournament_id = $(".pools-table").data("tournament");
-		var pool_id = $(this).children('td').data("id");
+		var pool_id = $(this).data("id");
 		window.location.replace(tournament_id+"/pools/"+pool_id);
 	});
 

@@ -10,7 +10,12 @@ use App\Http\Response\Transformers\ScheduleTransformer;
 class ScheduleController extends Controller {
 
     public function index(Request $request) {
-        $games = Game::all();
+
+        $after = empty($request->after) ? '0' : $request->after;
+
+        $games = Game::schedule($request->limit);
+
+        dd($games);
 
         return $this->response->collection($games, new ScheduleTransformer, ['key' => 'games']);
     }

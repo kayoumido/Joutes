@@ -2,6 +2,7 @@
 namespace App\Http\Response\Transformers;
 
 use App\Game;
+use App\Team;
 use League\Fractal\TransformerAbstract;
 
 class ScheduleTransformer extends TransformerAbstract
@@ -12,8 +13,8 @@ class ScheduleTransformer extends TransformerAbstract
         return [
             'id'        => (int)    $game->id,
             'teams'     => [
-                $game->team1(),
-                $game->team2(),
+                $game->team1()->name,
+                $game->team2()->name,
             ],
             'court'     => (string) $game->court->name,
             'sport'     => (string) $game->court->sport->name,

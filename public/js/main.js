@@ -180,7 +180,28 @@ $( document ).ready(function() {
 		    }
 	    }
 	});
-
+	$('#pool-rankings-table').DataTable({
+		"language": {
+	        "decimal":        "",
+		    "emptyTable":     "Aucune données disponible",
+		    "info":           "_START_ à _END_ sur _TOTAL_ entrées",
+		    "infoEmpty":      "0 à 0 sur 0 entrées",
+		    "infoFiltered":   "(Total de _MAX_ total entrées)",
+		    "infoPostFix":    "",
+		    "thousands":      ",",
+		    "lengthMenu":     "Voir _MENU_ entrée",
+		    "loadingRecords": "Chargement...",
+		    "processing":     "En traitement...",
+		    "search":         "Rechercher:",
+		    "zeroRecords":    "Aucune données trouvées",
+		    "paginate": {
+		        "first":      "Première",
+		        "last":       "Dernière",
+		        "next":       "Suivant",
+		        "previous":   "Précédent"
+		    }
+	    }
+	});
 	$('.pools-table').DataTable({
 		"paging":   false,
         "ordering": false,

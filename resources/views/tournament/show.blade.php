@@ -67,9 +67,8 @@
 			</div>
 		</div>
 		
-
+		<h2>Visualisation du tournoi</h2>
 		@if (sizeof($tournament->pools) > 0)
-			<h2>Visualisation du tournoi</h2>
 			<!-- Stages and pools -->
 			<ul class="nav nav-tabs" role="tablist" id="stages-tabs" data-count="{{$totalStage}}">
 				@for ($i = 1; $i <= $totalStage; $i++)
@@ -112,7 +111,8 @@
 						</div>
 				@endfor
 			</div>
-
+		@else
+			Indisponible pour le moment ...
 		@endif
 		
 

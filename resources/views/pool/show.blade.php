@@ -26,23 +26,54 @@
 						</tr>
 					@else
 						@if(empty($game->score_contender1))
-								<tr>
-									<td class="contender1">{{$game->contender1->team->name}}</td>
-									<td>{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
-									<td class="contender2">{{$game->contender2->team->name}}</td>
-								</tr>
+							<tr>
+								<td class="contender1">{{$game->contender1->team->name}}</td>
+								<td>{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
+								<td class="contender2">{{$game->contender2->team->name}}</td>
+							</tr>
 						@else
-							
-								<tr>
-									<td class="contender1">{{$game->contender1->team->name}}</td>
-									<td>{{$game->score_contender1}} - {{$game->score_contender2}}</td>
-									<td class="contender2">{{$game->contender2->team->name}}</td>
-								</tr>
+							<tr>
+								<td class="contender1">{{$game->contender1->team->name}}</td>
+								<td>{{$game->score_contender1}} - {{$game->score_contender2}}</td>
+								<td class="contender2">{{$game->contender2->team->name}}</td>
+							</tr>
 						@endif
 					@endif
 				@endforeach
 			</table>
 
+			<h2>Classement actuel</h2>
+
+			@if(sizeof($pool->rankings()) > 0)
+				<table id="pool-rankings-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Équipes</th>
+							<th>Pts</th>
+							<th>G</th>
+							<th>P</th>
+							<th>N</th>
+							<th>+/-</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for ($i = 0; $i < sizeof($pool->rankings()); $i++)
+							<tr>
+								<td>{{$i+1}}</td>
+								<td>{{$pool->rankings()[$i]["team"]}}</td>
+								<td>{{$pool->rankings()[$i]["score"]}}</td>
+								<td>{{$pool->rankings()[$i]["W"]}}</td>
+								<td>{{$pool->rankings()[$i]["L"]}}</td>
+								<td>{{$pool->rankings()[$i]["D"]}}</td>
+								<td>{{$pool->rankings()[$i]["+-"]}}</td>
+							</tr>
+						@endfor
+					</tbody>
+				</table>
+			@else
+				Indisponible
+			@endif
 		</div>
 
 	</div>

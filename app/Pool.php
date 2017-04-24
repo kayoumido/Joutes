@@ -35,6 +35,13 @@ class Pool extends Model
         return $this->hasmanyThrough(Game::class, Contender::class, 'pool_id', 'contender1_id');
     }
 
+    /**
+     * Return an array with the current rankings on the pool
+     *
+     * @return Array
+     *
+     * @author Loïc Dessaules
+     */
     public function rankings(){
         $teams = $this->teams();
         $games = $this->games;
@@ -79,18 +86,42 @@ class Pool extends Model
                         }
                     }
                 }
-                $rankings[$team] = array(
+                $rankings[] = array(
+                    "team" => $team,
                     "score" => $score,
-                    "G" => $win,
+                    "W" => $win,
                     "L" => $loose,
                     "D" => $draw,
                     "+-" => $goalBalance
                 ); 
             }
+            $rankings = $this->sort($rankings);
         }
         return($rankings);
     }
 
+    /**
+     * Return an array sorted by score. More info for the sorting function:
+     * http://php.net/manual/en/function.array-multisort.php
+     * http://stackoverflow.com/questions/3232965/sort-multidimensional-array-by-multiple-keys
+     *
+     * @return Array
+     * 
+     * @param Array
+     *
+     * @author Loïc Dessaules
+     */
+    private function sort($rankings_row){
+        $rankings_sort = array();
+        foreach($rankings_row as $key=>$value) {
+            $rankings_sort['score'][$key] = $value['score'];
+            $rankings_sort['+-'][$key] = $value['+-'];
+        }
+        # sort by score desc and then +/- desc
+        array_multisort($rankings_sort['score'], SORT_DESC, $rankings_sort['+-'], SORT_DESC, $rankings_row);
+
+        return $rankings_row;
+    }
 
     /**
      * Return all teams which participate to the pool. The returned array is : "team_id" => "team_name"
@@ -109,7 +140,6 @@ class Pool extends Model
                 $teams[$game->contender2->team->id] = $game->contender2->team->name;
             }
         }
-        dd($teams);
         return $teams;
     }
 }

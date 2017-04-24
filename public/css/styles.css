@@ -86,15 +86,25 @@ table#matches{
 }
 table#matches tr{
 	height: 35px;
+	border: 1px solid #DDD;
+}
+table#matches tr:nth-child(even){
+	background-color: #FFF;
+}
+table#matches tr:nth-child(odd){
+	background-color: #f9f9f9;
 }
 table#matches td.contender1{
     width: 125px;
 	text-align: left;
+	padding-left:10px;
 }
 table#matches td.contender2{
 	width: 125px;
 	text-align: right;
+	padding-right: 10px;
 }
+
 /*table thead th {
     color: #fff;
     background-color: #50514F;

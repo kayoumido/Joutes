@@ -21,7 +21,7 @@
 
 			  	@foreach ($participants as $participant)
 					<tr>
-				      <th scope="row" class="name"> <a href="{{ route('participants.show', $participant->id) }}" alt="Afficher la participant"> {{ $participant->last_name }} {{ $participant->first_name }} </a> </th>
+				      <td class="name"> <a href="{{ route('participants.show', $participant->id) }}" alt="Afficher la participant"> {{ $participant->last_name }} {{ $participant->first_name }} </a> </td>
 				    </tr>
 
 				@endforeach

@@ -16,7 +16,7 @@
 			<tbody>
 				@foreach ($courts as $court)
 					<tr>
-						<th scope="row" class="name" >{{$court->name}}</th>
+						<td>{{$court->name}}</td>
 						<td class="description" >{{$court->sport->name}}</td>
 						<td class="action">
 							<a href="{{route('courts.edit',$court->id)}}" title="Éditer le terrain" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>

@@ -22,7 +22,7 @@
 
 			  	@foreach ($teams as $team)
 					<tr>
-				      <th scope="row" class="name"> <a href="{{ route('teams.show', $team->id) }}" alt="Afficher la team"> {{ $team->name }} </a> </th>
+				      <td class="name"> <a href="{{ route('teams.show', $team->id) }}" alt="Afficher la team"> {{ $team->name }} </a> </td>
 				      <td>
 					      <a href="{{ route('teams.edit', $team->id) }}" alt="Modifier la team"> <i class="fa fa-pencil fa-lg action" aria-hidden="true"></i> </a>
 					      {{ Form::open(array('url' => route('teams.destroy', $team->id), 'method' => 'delete')) }}

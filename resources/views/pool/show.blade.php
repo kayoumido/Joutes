@@ -25,7 +25,7 @@
 							<td class="contender2">À définir</td>
 						</tr>
 					@else
-						@if(empty($game->score_contender1))
+						@if(empty($game->score_contender1) || empty($game->score_contender2))
 							<tr>
 								<td class="contender1">{{$game->contender1->team->name}}</td>
 								<td>{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>

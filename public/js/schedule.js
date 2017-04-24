@@ -5,7 +5,7 @@ $(document).ready(function() {
         dataType    : 'json',
         cache       : false,
         data        : {
-            limit: Math.round($(document).height() / 173),
+            limit: Math.round($(document).height() / 173) - 1,
             after: "11:00"
         },
         error : function(xhr, options, error) {

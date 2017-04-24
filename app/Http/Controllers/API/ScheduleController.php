@@ -15,8 +15,6 @@ class ScheduleController extends Controller {
 
         $games = Game::schedule($request->limit);
 
-        dd($games);
-
-        return $this->response->collection($games, new ScheduleTransformer, ['key' => 'games']);
+        return $this->response->collection($games, new ScheduleTransformer);
     }
 }

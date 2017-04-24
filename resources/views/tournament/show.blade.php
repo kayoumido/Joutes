@@ -24,7 +24,7 @@
 				<table id="teams-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Équipe(s)</th>
+							<th>Liste des participants</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -47,7 +47,7 @@
 				<table id="courts-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Terrain(s)</th>
+							<th>Liste des terrains</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -69,6 +69,7 @@
 		
 
 		@if (sizeof($tournament->pools) > 0)
+			<h2>Visualisation du tournoi</h2>
 			<!-- Stages and pools -->
 			<ul class="nav nav-tabs" role="tablist" id="stages-tabs" data-count="{{$totalStage}}">
 				@for ($i = 1; $i <= $totalStage; $i++)

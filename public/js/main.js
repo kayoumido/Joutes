@@ -135,8 +135,7 @@ $( document ).ready(function() {
 
 	// Init Datatable on our table -> https://datatables.net/
     // @author Dessaules Loïc
-
-	$('#courts-table').DataTable({
+	var tableFrTranslate = {
 		"language": {
 	        "decimal":        "",
 		    "emptyTable":     "Aucune données disponible",
@@ -157,51 +156,11 @@ $( document ).ready(function() {
 		        "previous":   "Précédent"
 		    }
 	    }
-	});
-	$('#teams-table').DataTable({
-		"language": {
-	        "decimal":        "",
-		    "emptyTable":     "Aucune données disponible",
-		    "info":           "_START_ à _END_ sur _TOTAL_ entrées",
-		    "infoEmpty":      "0 à 0 sur 0 entrées",
-		    "infoFiltered":   "(Total de _MAX_ total entrées)",
-		    "infoPostFix":    "",
-		    "thousands":      ",",
-		    "lengthMenu":     "Voir _MENU_ entrée",
-		    "loadingRecords": "Chargement...",
-		    "processing":     "En traitement...",
-		    "search":         "Rechercher:",
-		    "zeroRecords":    "Aucune données trouvées",
-		    "paginate": {
-		        "first":      "Première",
-		        "last":       "Dernière",
-		        "next":       "Suivant",
-		        "previous":   "Précédent"
-		    }
-	    }
-	});
-	$('#pool-rankings-table').DataTable({
-		"language": {
-	        "decimal":        "",
-		    "emptyTable":     "Aucune données disponible",
-		    "info":           "_START_ à _END_ sur _TOTAL_ entrées",
-		    "infoEmpty":      "0 à 0 sur 0 entrées",
-		    "infoFiltered":   "(Total de _MAX_ total entrées)",
-		    "infoPostFix":    "",
-		    "thousands":      ",",
-		    "lengthMenu":     "Voir _MENU_ entrée",
-		    "loadingRecords": "Chargement...",
-		    "processing":     "En traitement...",
-		    "search":         "Rechercher:",
-		    "zeroRecords":    "Aucune données trouvées",
-		    "paginate": {
-		        "first":      "Première",
-		        "last":       "Dernière",
-		        "next":       "Suivant",
-		        "previous":   "Précédent"
-		    }
-	    }
-	});
+	};
+	
+	$('#courts-table').DataTable(tableFrTranslate);
+	$('#teams-table').DataTable(tableFrTranslate);
+	$('#pool-rankings-table').DataTable(tableFrTranslate);
 	$('.pools-table').DataTable({
 		"paging":   false,
         "ordering": false,

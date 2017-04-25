@@ -158,8 +158,11 @@ $( document ).ready(function() {
 	    }
 	};
 	
+	$('#sports-table').DataTable(tableFrTranslate);
 	$('#courts-table').DataTable(tableFrTranslate);
 	$('#teams-table').DataTable(tableFrTranslate);
+	$('#participants-table').DataTable(tableFrTranslate);
+	$('#participants-show-table').DataTable(tableFrTranslate);
 	$('#pool-rankings-table').DataTable(tableFrTranslate);
 	$('.pools-table').DataTable({
 		"paging":   false,

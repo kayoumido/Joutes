@@ -5,19 +5,19 @@
 @section('content')
 	<div class="container">
 		<h1>Terrains</h1>
-		<table class="table">
+		<table id="courts-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th>Nom</th>
 					<th>Sport</th>
-					<th class="options">Actions</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($courts as $court)
 					<tr>
 						<td>{{$court->name}}</td>
-						<td class="description" >{{$court->sport->name}}</td>
+						<td>{{$court->sport->name}}</td>
 						<td class="action">
 							<a href="{{route('courts.edit',$court->id)}}" title="Éditer le terrain" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
 							{{ Form::open(array('url' => route('courts.destroy', $court->id), 'method' => 'delete')) }}

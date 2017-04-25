@@ -7,23 +7,21 @@
 
 		<h1>Teams</h1>
 
-		<input type="search" placeholder="Recherche" class="search form-control">
-
-		<table class="table">
+		<table id="teams-table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 
 			<thead>
 				<tr>
 					<th>Nom de l'équipe</th>
-					<th class="options">Actions</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 
-			<tbody class="searchIn">
+			<tbody>
 
 			  	@foreach ($teams as $team)
 					<tr>
-				      <td class="name"> <a href="{{ route('teams.show', $team->id) }}" alt="Afficher la team"> {{ $team->name }} </a> </td>
-				      <td>
+				      <td> <a href="{{ route('teams.show', $team->id) }}" alt="Afficher la team"> {{ $team->name }} </a> </td>
+				      <td class="action">
 					      <a href="{{ route('teams.edit', $team->id) }}" alt="Modifier la team"> <i class="fa fa-pencil fa-lg action" aria-hidden="true"></i> </a>
 					      {{ Form::open(array('url' => route('teams.destroy', $team->id), 'method' => 'delete')) }}
 					      	<button type="submit" class="button-delete">

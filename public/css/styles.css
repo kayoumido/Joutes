@@ -104,6 +104,9 @@ table#matches td.contender2{
 	text-align: right;
 	padding-right: 10px;
 }
+table#sports-table td.action, table#courts-table td.action, table#teams-table td.action, table#participants-show-table td.action{
+	width: 5%;
+}
 
 /*table thead th {
     color: #fff;

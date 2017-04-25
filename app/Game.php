@@ -60,7 +60,8 @@ class Game extends Model {
      *
      * @author Doran Kayoumi
      */
-    public static function schedule($limit, $after = 0) {
+    public static function schedule($limit, $after = '0') {
+        
         $games = self::where('start_time', '>=', $after)
             ->orderBy('date', 'ASC')
             ->orderBy('start_time', 'ASC')

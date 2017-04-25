@@ -18,6 +18,7 @@ $( document ).ready(function() {
 		}
 	});
 
+
     // Create custom delete alert when we click on a .button-delete
     // @author Dessaules Loïc
     // @modified by Dessauges Antoine
@@ -122,6 +123,7 @@ $( document ).ready(function() {
 
 
 	/* TOURNAMENT SHOW : STAGES AND POOLS TABS */
+	// @author Dessaules Loïc
 	$totalStages = $("#stages-tabs").attr("data-count");
 	for (var i = 0; i < $totalStages; i++) {
 		$('#stage'+i+' a.nav-link').click(function (e) {
@@ -129,6 +131,49 @@ $( document ).ready(function() {
 		  	$(this).tab('show');
 		});
 	}
+
+
+	// Init Datatable on our table -> https://datatables.net/
+    // @author Dessaules Loïc
+	var tableFrTranslate = {
+		"language": {
+	        "decimal":        "",
+		    "emptyTable":     "Aucune données disponible",
+		    "info":           "_START_ à _END_ sur _TOTAL_ entrées",
+		    "infoEmpty":      "0 à 0 sur 0 entrées",
+		    "infoFiltered":   "(Total de _MAX_ total entrées)",
+		    "infoPostFix":    "",
+		    "thousands":      ",",
+		    "lengthMenu":     "Voir _MENU_ entrée",
+		    "loadingRecords": "Chargement...",
+		    "processing":     "En traitement...",
+		    "search":         "Rechercher:",
+		    "zeroRecords":    "Aucune données trouvées",
+		    "paginate": {
+		        "first":      "Première",
+		        "last":       "Dernière",
+		        "next":       "Suivant",
+		        "previous":   "Précédent"
+		    }
+	    }
+	};
+	
+	$('#courts-table').DataTable(tableFrTranslate);
+	$('#teams-table').DataTable(tableFrTranslate);
+	$('#pool-rankings-table').DataTable(tableFrTranslate);
+	$('.pools-table').DataTable({
+		"paging":   false,
+        "ordering": false,
+        "info":     false,
+        "bFilter": false
+	});
+
+	// Redirect on the pool.show when click on a cell
+	$('.pools-table tr td').click(function(){
+		var tournament_id = $(".pools-table").data("tournament");
+		var pool_id = $(this).data("id");
+		window.location.replace(tournament_id+"/pools/"+pool_id);
+	});
 
 
   	/* FORM VALIDATIONS */

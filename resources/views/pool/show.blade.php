@@ -4,33 +4,6 @@
 
 @section('content')
 
-	<style type="text/css">
-		div#match-block{
-			text-align: center;
-		}
-		div#match-block h3{
-			margin-bottom:30px;
-		}
-		table#matches{
-		    width: 500px;
-    		margin: 0px auto;
-    		font-size: 17px;
-		}
-		table#matches tr{
-    		height: 35px;
-		}
-		table#matches td.contender1{
-		    width: 125px;
-			text-align: left;
-		}
-		table#matches td.contender2{
-			width: 125px;
-			text-align: right;
-		}
-
-
-	</style>
-
 	<div class="container">
         <a href="{{URL::previous()}}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
@@ -52,24 +25,55 @@
 							<td class="contender2">À définir</td>
 						</tr>
 					@else
-						@if(empty($game->score_contender1))
-								<tr>
-									<td class="contender1">{{$game->contender1->team->name}}</td>
-									<td>{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
-									<td class="contender2">{{$game->contender2->team->name}}</td>
-								</tr>
+						@if(empty($game->score_contender1) || empty($game->score_contender2))
+							<tr>
+								<td class="contender1">{{$game->contender1->team->name}}</td>
+								<td>{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
+								<td class="contender2">{{$game->contender2->team->name}}</td>
+							</tr>
 						@else
-							
-								<tr>
-									<td class="contender1">{{$game->contender1->team->name}}</td>
-									<td>{{$game->score_contender1}} - {{$game->score_contender2}}</td>
-									<td class="contender2">{{$game->contender2->team->name}}</td>
-								</tr>
+							<tr>
+								<td class="contender1">{{$game->contender1->team->name}}</td>
+								<td>{{$game->score_contender1}} - {{$game->score_contender2}}</td>
+								<td class="contender2">{{$game->contender2->team->name}}</td>
+							</tr>
 						@endif
 					@endif
 				@endforeach
 			</table>
 
+			<h2>Classement actuel</h2>
+
+			@if(sizeof($pool->rankings()) > 0)
+				<table id="pool-rankings-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Équipes</th>
+							<th>Pts</th>
+							<th>G</th>
+							<th>P</th>
+							<th>N</th>
+							<th>+/-</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for ($i = 0; $i < sizeof($pool->rankings()); $i++)
+							<tr>
+								<td>{{$i+1}}</td>
+								<td>{{$pool->rankings()[$i]["team"]}}</td>
+								<td>{{$pool->rankings()[$i]["score"]}}</td>
+								<td>{{$pool->rankings()[$i]["W"]}}</td>
+								<td>{{$pool->rankings()[$i]["L"]}}</td>
+								<td>{{$pool->rankings()[$i]["D"]}}</td>
+								<td>{{$pool->rankings()[$i]["+-"]}}</td>
+							</tr>
+						@endfor
+					</tbody>
+				</table>
+			@else
+				Indisponible
+			@endif
 		</div>
 
 	</div>

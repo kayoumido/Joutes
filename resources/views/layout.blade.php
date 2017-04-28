@@ -6,16 +6,14 @@
 
         <title>Joutes</title>
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" type="text/css" />
-        <link href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/app.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/select2.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
         <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" />
-
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
         
     </head>
     <body>
@@ -92,11 +90,11 @@
             </div>
         </footer>
         
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/sweetalert.min.js') }}"></script>
-        <script src="{{ asset('js/select2.full.min.js') }}"></script>
-        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js"></script>
+        <script src="{{ asset('js/vendor/app.js') }}"></script>
+        <script src="{{ asset('js/vendor/sweetalert.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/select2.full.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/dataTables.bootstrap4.min.js') }}"></script>
 
         <script src="{{ asset('js/main.js') }}"></script>
     </body>

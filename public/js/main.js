@@ -168,6 +168,9 @@ $( document ).ready(function() {
         "bFilter": false
 	});
 
+	// datatables add a container fluid, I don't want that, so I delete the class
+	$('.dataTables_wrapper').removeClass('container-fluid');
+
 	// Redirect on the pool.show when click on a cell
 	$('.pools-table tr td').click(function(){
 		var tournament_id = $(".pools-table").data("tournament");

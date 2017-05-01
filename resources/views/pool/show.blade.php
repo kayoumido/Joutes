@@ -45,7 +45,7 @@
 			<h2>Classement actuel</h2>
 
 			@if(sizeof($pool->rankings()) > 0)
-				<table id="pool-rankings-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="pool-rankings-table" class="table table-striped table-bordered translate" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th>#</th>

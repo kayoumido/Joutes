@@ -12,8 +12,25 @@ class Schedule {
     }
 
     static updateSchedule(container) {
+
+        console.log('gsrezwerzrzrwt');
+
         container.children('.row').each(function() {
-            console.log(this);
+
+            let gametime = $(this).children('.match').children('.time').text();
+
+            // get current time
+            let dt           = new Date();
+            let hours        = (dt.getHours() < 10) ? `0${dt.getHours()}` : dt.getHours();
+            let minutes      = (dt.getMinutes() < 10) ? `0${dt.getMinutes()}` : dt.getMinutes();
+            let current_time = `${hours}:${minutes}`;
+
+            if (gametime < current_time) {
+                console.log('yay');
+                this.remove();
+
+                Schedule.initSchedule(1);
+            }
         });
         // alert('Update');
     }
@@ -31,6 +48,9 @@ class Schedule {
                 console.log(xhr);
                 console.log(options);
                 console.log(error);
+            },
+            success : function(data) {
+                console.log(data);
             }
         });
     }

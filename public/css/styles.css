@@ -236,7 +236,7 @@ select.allSameStyle, input.allSameStyle{
 .container .search{
 	position: absolute;
     width: 140px;
-    top: 12px;
+    top: 80px;
     right: 12px;
     border-radius: 0;
 }

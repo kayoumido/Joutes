@@ -83,14 +83,14 @@
                     </a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="@if(Route::is('events.index')) active @endif"><a href="{{ route('events.index') }}">Evénements</a></li>
-                    <li class="@if(Route::is('tournaments.index')) active @endif"><a href="{{ route('tournaments.index') }}">Tournois</a></li>
+                    <li class="@if(Route::is('events.index')) active @endif"><a href="{{ route('events.index') }}"> <i class="fa fa-calendar" aria-hidden="true"></i> Evénements</a></li>
+                    <li class="@if(Route::is('tournaments.index')) active @endif"><a href="{{ route('tournaments.index') }}"> <i class="fa fa-trophy" aria-hidden="true"></i> Tournois</a></li>
                     @if(Auth::check())
                         @if(Auth::user()->role == 'administrator')
-                            <li class="@if(Route::is('sports.index')) active @endif"><a href="{{ route('sports.index') }}">Sports</a></li>
-                            <li class="@if(Route::is('courts.index')) active @endif"><a href="{{ route('courts.index') }}">Terrains</a></li>
-                            <li class="@if(Route::is('teams.index')) active @endif"><a href="{{ route('teams.index') }}">Equipes</a></li>
-                            <li class="@if(Route::is('participants.index')) active @endif"><a href="{{ route('participants.index') }}">Participants</a></li>
+                            <li class="@if(Route::is('sports.index')) active @endif"><a href="{{ route('sports.index') }}"> <i class="fa fa-futbol-o" aria-hidden="true"></i> Sports</a></li>
+                            <li class="@if(Route::is('courts.index')) active @endif"><a href="{{ route('courts.index') }}"> <i class="fa fa-map-marker" aria-hidden="true"></i> Terrains</a></li>
+                            <li class="@if(Route::is('teams.index')) active @endif"><a href="{{ route('teams.index') }}"> <i class="fa fa-users" aria-hidden="true"></i> Equipes</a></li>
+                            <li class="@if(Route::is('participants.index')) active @endif"><a href="{{ route('participants.index') }}"> <i class="fa fa-user" aria-hidden="true"></i> Participants</a></li>
                         @endif
                     @endif
                 </ul>

@@ -61,15 +61,14 @@ class Game extends Model {
      * @author Doran Kayoumi
      */
     public static function schedule($limit, $after = '0') {
-        
+
         $games = self::where('start_time', '>=', $after)
             ->orderBy('date', 'ASC')
             ->orderBy('start_time', 'ASC')
-            ->get()
-            ->take($limit);
+            ->get();
 
         $games = (new self)->cleanEmptyContender($games);
 
-        return $games;
+        return $games->take($limit);
     }
 }

@@ -18,7 +18,7 @@
 			
 			<table id="matches">
 				@foreach ($pool->games as $game)
-					@if (empty($game->contender1->team))
+					@if (empty($game->contender1->team) || empty($game->contender2->team))
 						<tr>
 							<td class="contender1">À définir</td>
 							<td>{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>

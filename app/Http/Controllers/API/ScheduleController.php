@@ -14,9 +14,6 @@ class ScheduleController extends Controller {
 
         // get current date time
         $dt = Carbon::now("Europe/Berlin");
-        // for development purposes it's set to 10
-        $dt->hour   = 9;
-        $dt->minute = 0;
 
         $games = Game::schedule($request->limit, $dt->toTimeString());
 

@@ -124,6 +124,9 @@ i.fa:hover {
 i.fa.action {
 	float: left;
 }
+.isCaptain {
+    color: #FFDC00;
+}
 
 /* BUTTONS */
 .button-delete{

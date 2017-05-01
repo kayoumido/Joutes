@@ -21,7 +21,6 @@
 					<tr>
 				      <td data-id="{{$participant->id}}">{{ $participant->last_name }} {{ $participant->first_name }}</td>
 				    </tr>
-
 				@endforeach
 
 		  	</tbody>

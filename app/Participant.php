@@ -13,7 +13,7 @@ class Participant extends Model
 
     public function teams()
     {
-        return $this->belongsToMany('App\Team')->withPivot('isCaptain');;
+        return $this->belongsToMany('App\Team')->withPivot('isCaptain');
     }
 
     public function tournaments() {

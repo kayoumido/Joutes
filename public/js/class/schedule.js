@@ -76,9 +76,9 @@ class Schedule {
                         <div class="info time col-md-2">${match.time}</div>
                         <div class="info venue col-md-1">A</div>
                         <div class="info contenders col-md-8">
-                            <div class="team-name col-md-5">${match.teams[0]}</div>
-                            <div class="team-name col-md-2">vs</div>
-                            <div class="team-name col-md-5">${match.teams[1]}</div>
+                            <div class="team-name col-md-5 text-right">${match.teams[0]}</div>
+                            <div class="team-name col-md-2 text-center">vs</div>
+                            <div class="team-name col-md-5 text-left">${match.teams[1]}</div>
                         </div>
                         <div class="info sport col-md-1 text-right">
                             <i class="fa fa-apple" aria-hidden="true"></i>

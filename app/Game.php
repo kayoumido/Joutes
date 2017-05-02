@@ -37,7 +37,7 @@ class Game extends Model {
      *
      * @author Doran Kayoumi
      */
-    private function cleanEmptyContender($games)
+    public static function cleanEmptyContender($games)
     {
         // loop through games to find ones where contenders don't have teams
         foreach ($games as $key => $game) {
@@ -67,7 +67,7 @@ class Game extends Model {
             ->orderBy('start_time', 'ASC')
             ->get();
 
-        $games = (new self)->cleanEmptyContender($games);
+        $games = self::cleanEmptyContender($games);
 
         return $games->take($limit);
     }

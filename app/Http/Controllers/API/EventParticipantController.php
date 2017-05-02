@@ -4,14 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Event;
 use Illuminate\Http\Request;
-use Dingo\Api\Routing\Helpers;
 use App\Http\Controllers\Controller;
 use App\Http\Response\Transformers\ParticipantTransformer;
 use App\Http\Response\Transformers\SingleParticipantTransformer;
 
 class EventParticipantController extends Controller {
 
-    use Helpers;
 
     /**
      * Display a listing of the resource.

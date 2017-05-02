@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Event;
 use Illuminate\Http\Request;
-use Dingo\Api\Routing\Helpers;
 use App\Http\Controllers\Controller;
 use App\Http\Response\Transformers\TeamTransformer;
 use App\Http\Response\Transformers\SingleTeamTransformer;
@@ -13,8 +12,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EventTeamController extends Controller
 {
-    use Helpers;
-
     /**
      * Display a listing of the resource.
      *

@@ -13,8 +13,6 @@ class Schedule {
 
     static updateSchedule(container) {
 
-        console.log('gsrezwerzrzrwt');
-
         container.children('.row').each(function() {
 
             let gametime = $(this).children('.match').children('.time').text();

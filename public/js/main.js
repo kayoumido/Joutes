@@ -157,7 +157,7 @@ $( document ).ready(function() {
 		    }
 	    }
 	};
-	
+
 	$('.translate').DataTable(tableFrTranslate);
 	$('#pools-table').DataTable({
 		"paging":   false,
@@ -171,7 +171,7 @@ $( document ).ready(function() {
 
 	// Redirect when click on a cell
 	$('#pools-table tr td').click(function(){
-		var tournament_id = $(".pools-table").data("tournament");
+		var tournament_id = $("#pools-table").data("tournament");
 		var pool_id = $(this).data("id");
 		window.location.replace(tournament_id+"/pools/"+pool_id);
 	});
@@ -235,8 +235,8 @@ $( document ).ready(function() {
 		    		error += 'Aucun sport sélectionné.<br>';
 		    	}
 		        break;
-		    
-		    case "formEvent": 
+
+		    case "formEvent":
 	        	var nameValue = $('#formEvent #name').val();
 	        	var imgValue = $('#formEvent #img').val();
 
@@ -258,7 +258,7 @@ $( document ).ready(function() {
 		    	var startDateValue = $('#formTournament #startDate').val();
 		    	var startTimeValue = $('#formTournament #startTime').val();
 		    	var imgValue = $('#formTournament #img').val();
-		    	
+
 		    	var patternName = /^[a-zA-Z0-9-_ ]{3,45}$/;
 		    	var patternSport = /^[0-9]+$/; // '' = empty, 1-2-3-... = sport
 		    	var patternDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;

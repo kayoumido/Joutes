@@ -1,7 +1,7 @@
 class Schedule {
     constructor() {}
 
-    static initSchedule(limit) {
+    static init(limit) {
         var self = new Schedule();
 
         var result = self.matches(limit);
@@ -11,46 +11,50 @@ class Schedule {
         });
     }
 
-    static updateSchedule(container) {
+    static refresh(container, limit) {
+        var self = new Schedule();
 
         console.log('gsrezwerzrzrwt');
 
         container.children('.row').each(function() {
 
             let gametime = $(this).children('.match').children('.time').text();
+            let lastgametime = container.children('.row').last().children('.match').children('.time').text();
 
-            // get current time
-            let dt           = new Date();
-            let hours        = (dt.getHours() < 10) ? `0${dt.getHours()}` : dt.getHours();
-            let minutes      = (dt.getMinutes() < 10) ? `0${dt.getMinutes()}` : dt.getMinutes();
-            let current_time = `${hours}:${minutes}`;
+            var result = self.matches(limit, gametime, lastgametime);
 
-            if (gametime < current_time) {
-                console.log('yay');
-                this.remove();
-
-                Schedule.initSchedule(1);
-            }
+            result.done(function(data) {
+                if (!$.isEmptyObject(data)) {
+                    self.htmldisplay(data, container)
+                }
+            });
         });
-        // alert('Update');
     }
 
-    matches (limit) {
+    /**
+     * Get matches from server
+     * @param  {int}  limit number of matches wanted
+     * @param  {time} next  time at which the next match will take place
+     * @param  {time} last  time ar which the last match, client has, will take place
+     * @return {promise}
+     *
+     * @author Doran Kayoumi
+     */
+    matches (limit, next = null, last = null) {
         return $.ajax({
             url         : '/api/schedule',
             method      : 'GET',
             dataType    : 'json',
             cache       : false,
             data        : {
-                limit: limit
+                limit : limit,
+                next  : next,
+                last  : last
             },
             error : function(xhr, options, error) {
                 console.log(xhr);
                 console.log(options);
                 console.log(error);
-            },
-            success : function(data) {
-                console.log(data);
             }
         });
     }

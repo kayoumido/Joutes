@@ -159,12 +159,6 @@ $( document ).ready(function() {
 	};
 
 	$('.translate').DataTable(tableFrTranslate);
-	$('#pools-table').DataTable({
-		"paging":   false,
-        "ordering": false,
-        "info":     false,
-        "bFilter": false
-	});
 
 	// datatables add a container fluid, I don't want that, so I delete the class
 	$('.dataTables_wrapper').removeClass('container-fluid');

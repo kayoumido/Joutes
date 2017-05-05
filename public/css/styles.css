@@ -277,6 +277,10 @@ select.allSameStyle, input.allSameStyle{
 	text-align: center;
 }
 
+.pools #pools-table{
+	min-height: 90px;
+}
+
 .pools #pools-table td{
 	padding: 6px !important;
 	text-align: center;

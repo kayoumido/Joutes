@@ -68,49 +68,46 @@
 		</div>
 		
 		<h2>Visualisation du tournoi</h2>
-		@if (sizeof($tournament->pools) > 0)
-			<!-- Stages and pools -->
-			<ul class="nav nav-tabs" role="tablist" id="stages-tabs" data-count="{{$totalStage}}">
-				@for ($i = 1; $i <= $totalStage; $i++)
-					@if ($i == 1)
-						<li class="nav-item active">
-							<a class="nav-link active" data-toggle="tab" href="#stage{{$i}}" role="tab">Phase {{$i}}</a>
-						</li>
-					@else
-						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#stage{{$i}}" role="tab">Phase {{$i}}</a>
-						</li>
-					@endif
-				@endfor
-			</ul>
 
-			<div class="tab-content">
-				@for ($i = 1; $i <= $totalStage; $i++)
-					@if ($i == 1)
-						<div class="tab-pane active" id="stage{{$i}}" role="tabpanel">
-					@else
-						<div class="tab-pane" id="stage{{$i}}" role="tabpanel">
-					@endif
-							<table id="pools-table" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%" data-tournament="{{$tournament->id}}">
-								<thead>
-									<tr>
-										<th>Poules</th>
-									</tr>
-								</thead>
-								<tbody>
-									@foreach ($pools as $pool)
-										@if ($pool->stage == $i)
-										<tr>
-											<td data-id="{{$pool->id}}">{{$pool->poolName}}</td>
-										</tr>
-										@endif
-									@endforeach
-								</tbody>
-							</table>
-							
-						</div>
-				@endfor
-			</div>
+		<!-- Stages and pools -->
+		@if (sizeof($tournament->pools) > 0)
+
+			<table class="table pools">
+				<thead>
+					<tr>
+						<th class="sizedTh"></th>
+						@for ($i = 1; $i <= $totalStage; $i++)	
+
+							<th class="nav-item">
+								Phase {{$i}}
+							</th>
+
+						@endfor
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="verticalText"><span>Poules</span></th>
+						@for ($i = 1; $i <= $totalStage; $i++)
+							<td class="noPadding">
+								<table id="pools-table" class="table-hover table-striped table-bordered" width="100%" data-tournament="{{$tournament->id}}">
+									<tbody>
+										@foreach ($pools as $pool)
+											@if ($pool->stage == $i)
+											<tr>
+												<td data-id="{{$pool->id}}">{{$pool->poolName}}</td>
+											</tr>
+											@endif
+										@endforeach
+									</tbody>
+								</table>
+							</td>
+						@endfor
+					</tr>
+
+
+				</tbody>
+			</table>
 		@else
 			Indisponible pour le moment ...
 		@endif

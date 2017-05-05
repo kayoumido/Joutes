@@ -271,3 +271,36 @@ select.allSameStyle, input.allSameStyle{
     background-color: #446CB3;
     color: white;
 }
+
+.pools th{
+	font-size: 18px;
+	text-align: center;
+}
+
+.pools #pools-table td{
+	padding: 6px !important;
+	text-align: center;
+}
+
+.sizedTh{
+	width: 10px;
+}
+
+.noPadding{
+	padding: 0 !important;
+}
+
+.verticalText{
+    vertical-align: middle !important;
+    padding: 0 !important;
+    font-size: 18px;
+}
+
+.verticalText span{
+	-webkit-transform:rotate(-90deg);
+    -moz-transform:rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform:rotate(-90deg);
+    transform: rotate(-90deg);
+    display: block;
+}

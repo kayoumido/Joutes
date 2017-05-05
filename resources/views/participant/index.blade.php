@@ -7,7 +7,7 @@
 
 		<h1>Participants</h1>
 
-		<table id="participants-table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+		<table id="participants-table" class="table table-striped table-bordered table-hover translate" cellspacing="0" width="100%">
 
 			<thead>
 				<tr>
@@ -19,9 +19,8 @@
 
 			  	@foreach ($participants as $participant)
 					<tr>
-				      <td> <a href="{{ route('participants.show', $participant->id) }}" alt="Afficher la participant"> {{ $participant->last_name }} {{ $participant->first_name }} </a> </td>
+				      <td data-id="{{$participant->id}}">{{ $participant->last_name }} {{ $participant->first_name }}</td>
 				    </tr>
-
 				@endforeach
 
 		  	</tbody>

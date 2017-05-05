@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
-use Dingo\Api\Routing\Helpers;
 use App\Http\Response\Transformers\TournamentTransformer;
 use App\Http\Response\Transformers\SingleTournamentTransformer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EventTournamentController extends Controller
 {
-    use Helpers;
     /**
      * Display a listing of the resource.
      *

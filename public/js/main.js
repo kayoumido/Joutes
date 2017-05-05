@@ -157,14 +157,9 @@ $( document ).ready(function() {
 		    }
 	    }
 	};
-	
-	$('#sports-table').DataTable(tableFrTranslate);
-	$('#courts-table').DataTable(tableFrTranslate);
-	$('#teams-table').DataTable(tableFrTranslate);
-	$('#participants-table').DataTable(tableFrTranslate);
-	$('#participants-show-table').DataTable(tableFrTranslate);
-	$('#pool-rankings-table').DataTable(tableFrTranslate);
-	$('.pools-table').DataTable({
+
+	$('.translate').DataTable(tableFrTranslate);
+	$('#pools-table').DataTable({
 		"paging":   false,
         "ordering": false,
         "info":     false,
@@ -174,12 +169,33 @@ $( document ).ready(function() {
 	// datatables add a container fluid, I don't want that, so I delete the class
 	$('.dataTables_wrapper').removeClass('container-fluid');
 
-	// Redirect on the pool.show when click on a cell
-	$('.pools-table tr td').click(function(){
-		var tournament_id = $(".pools-table").data("tournament");
+	// Redirect when click on a cell
+	$('#pools-table tr td').click(function(){
+		var tournament_id = $("#pools-table").data("tournament");
 		var pool_id = $(this).data("id");
 		window.location.replace(tournament_id+"/pools/"+pool_id);
 	});
+
+	$('#teams-table tr td').click(function(){
+		var team_id = $(this).data("id");
+		window.location.replace("teams/"+team_id);
+	});
+
+	$('#teams-show-table tr td').click(function(){
+		var participant_id = $(this).data("id");
+		window.location.replace("/admin/participants/"+participant_id);
+	});
+
+	$('#participants-table tr td').click(function(){
+		var participant_id = $(this).data("id");
+		window.location.replace("participants/"+participant_id);
+	});
+
+	$('#participants-show-table tr td').click(function(){
+		var team_id = $(this).data("id");
+		window.location.replace("/admin/teams/"+team_id);
+	});
+
 
 
   	/* FORM VALIDATIONS */
@@ -219,8 +235,8 @@ $( document ).ready(function() {
 		    		error += 'Aucun sport sélectionné.<br>';
 		    	}
 		        break;
-		    
-		    case "formEvent": 
+
+		    case "formEvent":
 	        	var nameValue = $('#formEvent #name').val();
 	        	var imgValue = $('#formEvent #img').val();
 
@@ -242,7 +258,7 @@ $( document ).ready(function() {
 		    	var startDateValue = $('#formTournament #startDate').val();
 		    	var startTimeValue = $('#formTournament #startTime').val();
 		    	var imgValue = $('#formTournament #img').val();
-		    	
+
 		    	var patternName = /^[a-zA-Z0-9-_ ]{3,45}$/;
 		    	var patternSport = /^[0-9]+$/; // '' = empty, 1-2-3-... = sport
 		    	var patternDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;

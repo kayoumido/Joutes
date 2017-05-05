@@ -21,7 +21,7 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<table id="teams-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="tournament-teams-table" class="table table-striped table-bordered translate" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th>Liste des participants</th>
@@ -44,7 +44,7 @@
 			</div>
 
 			<div class="col-lg-6">
-				<table id="courts-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="tournament-courts-table" class="table table-striped table-bordered translate" cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th>Liste des terrains</th>
@@ -91,7 +91,7 @@
 					@else
 						<div class="tab-pane" id="stage{{$i}}" role="tabpanel">
 					@endif
-							<table class="pools-table table table-hover table-striped table-bordered" cellspacing="0" width="100%" data-tournament="{{$tournament->id}}">
+							<table id="pools-table" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%" data-tournament="{{$tournament->id}}">
 								<thead>
 									<tr>
 										<th>Poules</th>

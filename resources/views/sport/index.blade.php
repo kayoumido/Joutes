@@ -5,7 +5,7 @@
 @section('content')
 	<div class="container">
 		<h1>Sports</h1>
-		<table id="sports-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+		<table id="sports-table" class="table table-striped table-bordered translate" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th>Nom</th>

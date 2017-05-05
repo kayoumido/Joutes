@@ -7,7 +7,7 @@
 
 		<h1>Teams</h1>
 
-		<table id="teams-table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+		<table id="teams-table" class="table table-striped table-bordered table-hover translate" cellspacing="0" width="100%">
 
 			<thead>
 				<tr>
@@ -20,7 +20,7 @@
 
 			  	@foreach ($teams as $team)
 					<tr>
-				      <td> <a href="{{ route('teams.show', $team->id) }}" alt="Afficher la team"> {{ $team->name }} </a> </td>
+				      <td data-id="{{$team->id}}">{{ $team->name }}</td>
 				      <td class="action">
 					      <a href="{{ route('teams.edit', $team->id) }}" alt="Modifier la team"> <i class="fa fa-pencil fa-lg action" aria-hidden="true"></i> </a>
 					      {{ Form::open(array('url' => route('teams.destroy', $team->id), 'method' => 'delete')) }}

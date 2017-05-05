@@ -1,5 +1,12 @@
 $( document ).ready(function() {
 
+
+	// Login popup
+	$("#login_link").click(function(){
+		$('#login_popup').modal();
+	});
+	
+
 	// set click event on import button
 	$('.import').click(function(event) {
 		// prevent button default action

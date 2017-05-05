@@ -143,9 +143,19 @@ select.allSameStyle, input.allSameStyle{
 	width:164px;
 	height:28px;
 }
-#login-form label{
+/*#login-form label{
 	width: 140px;
 	text-align: left;
+}*/
+#login_popup #login-form input[type=text], #login-form input[type=password]{
+	width: 100%;
+	margin-bottom: 10px;
+}
+span#login_link{
+	font-weight: bold;
+}
+span#login_link:hover{
+	cursor: pointer;
 }
 
 

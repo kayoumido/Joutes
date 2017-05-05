@@ -34,9 +34,10 @@ class SessionController extends Controller
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return redirect(route('events.index')); 
         }else{
-            $error["message"] = "Nom d'utilisateur ou mot de passe incorrecte";
+            /*$error["message"] = "Nom d'utilisateur ou mot de passe incorrecte";
             $error["username"] = $request->input("username");
-            return view('session.create')->with("error", $error);
+            return view('session.create')->with("error", $error);*/
+            return "Salut";
         }
     }
 

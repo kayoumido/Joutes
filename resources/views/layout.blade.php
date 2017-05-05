@@ -42,11 +42,12 @@
                     <br>
                     {{ Form::label('password', 'Mot de passe : ') }}
                     {{ Form::password('password', null) }}
+                    {{ Form::hidden('_token', csrf_token(), array('id' => 'token')) }}
                     <br>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                {{ Form::submit('Connexion', array('class' => 'btn btn-primary btn-login-form')) }}
+                <button type="button" class="btn btn-primary btn-login-form">Connexion</button>
             </div>
             {{ Form::close() }}
         </div><!-- /.modal-content -->

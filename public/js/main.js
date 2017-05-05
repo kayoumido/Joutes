@@ -5,6 +5,34 @@ $( document ).ready(function() {
 	$("#login_link").click(function(){
 		$('#login_popup').modal();
 	});
+
+	$("#login_popup .btn-login-form").click(function(){
+		var username = $("#login-form #username").val();
+		var password = $("#login-form #password").val();
+		var token = $("#login-form #token").val();
+		
+		// Ajaj Posting data
+	  	$.ajax({
+            url         : '/admin',
+            method      : 'POST',
+            dataType    : 'json',
+            headers		: {'X-CSRF-TOKEN': token},
+            cache       : false,
+            data        : {
+                username: username,
+                password: password,
+                _token: token
+            },
+            error : function(xhr, options, error) {
+                console.log(xhr);
+                console.log(options);
+                console.log(error);
+            },
+            success : function(data) {
+                console.log(data);
+            }
+        });
+	});
 	
 
 	// set click event on import button

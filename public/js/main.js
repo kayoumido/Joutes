@@ -4,6 +4,7 @@ $( document ).ready(function() {
 	// Login popup
 	$("#login_link").click(function(){
 		$('#login_popup').modal();
+		$("#login_popup .modal-body .error").remove();
 	});
 
 	$("#login_popup .btn-login-form").click(function(){
@@ -15,21 +16,22 @@ $( document ).ready(function() {
 	  	$.ajax({
             url         : '/admin',
             method      : 'POST',
-            dataType    : 'json',
+            dataType    : 'html',
             headers		: {'X-CSRF-TOKEN': token},
-            cache       : false,
             data        : {
                 username: username,
                 password: password,
-                _token: token
-            },
-            error : function(xhr, options, error) {
-                console.log(xhr);
-                console.log(options);
-                console.log(error);
             },
             success : function(data) {
-                console.log(data);
+                var res = data.split("::");
+                if(res[0] == "accepted"){
+                	window.location.href = res[1];
+                }else{
+                	var error = res[1];
+                	$("#login_popup .modal-body .error").remove();
+                	$("#login_popup .modal-body").append('<div class="error">'+error+'</div>');
+            	 	$("#login-form #password").val("");
+                }
             }
         });
 	});

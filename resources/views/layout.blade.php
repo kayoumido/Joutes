@@ -26,11 +26,6 @@
                 <h4 class="modal-title">Connexion</h4>
             </div>
             <div class="modal-body">
-                @if(isset($error))
-                    <div class="alert alert-danger">
-                        {{ $error["message"] }}
-                    </div>
-                @endif
 
                 {{ Form::open(array('url' => route('admin.store'), 'method' => 'post', 'id' => 'login-form')) }}
                     {{ Form::label('username', 'Nom d\'utilisateur : ') }}

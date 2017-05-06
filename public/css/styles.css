@@ -151,6 +151,9 @@ select.allSameStyle, input.allSameStyle{
 	width: 100%;
 	margin-bottom: 10px;
 }
+#login_popup .error{
+    color: #e84e4f;
+}
 span#login_link{
 	font-weight: bold;
 }

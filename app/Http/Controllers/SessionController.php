@@ -34,7 +34,7 @@ class SessionController extends Controller
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return "accepted::".url()->previous();
         }else{
-            $error = "Nom d'utilisateur ou mot de passe incorrecte";
+            $error = "Nom d'utilisateur ou mot de passe incorrect";
             return "refused::".$error;
         }
     }

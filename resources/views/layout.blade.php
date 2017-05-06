@@ -17,6 +17,39 @@
         
     </head>
     <body>
+
+<div id="login_popup" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Connexion</h4>
+            </div>
+            <div class="modal-body">
+
+                {{ Form::open(array('url' => route('admin.store'), 'method' => 'post', 'id' => 'login-form')) }}
+                    {{ Form::label('username', 'Nom d\'utilisateur : ') }}
+                    @if(isset($error))
+                        {{ Form::text('username', $error['username'], array('required' => '')) }}
+                    @else
+                        {{ Form::text('username', null, array('required' => '')) }}
+                    @endif
+                    <br>
+                    {{ Form::label('password', 'Mot de passe : ') }}
+                    {{ Form::password('password', null) }}
+                    {{ Form::hidden('_token', csrf_token(), array('id' => 'token')) }}
+                    <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-login-form">Connexion</button>
+            </div>
+            {{ Form::close() }}
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
         {{-- <header class="header">
             <nav class="navbar">
                 <div class="navbar-header">
@@ -66,7 +99,7 @@
                         {{ Form::button('<i class="fa fa-power-off" aria-hidden="true"></i>', array('type' => 'submit','class' => 'logout')) }}
                     {{ Form::close() }}
                 @else
-                    <a class="login" href="{{ route('admin.index') }}">Connexion</a>
+                    <span id="login_link">Connexion</span>
                 @endif
             </div>
         </div>

@@ -378,3 +378,26 @@ span#login_link:hover{
 .dataTables_filter input[type=search]{
 	border-radius: 0;
 }
+
+#tournament-teams-table_wrapper .row:first-child .col-md-6:first-child{
+	float: right;
+}
+
+#tournament-teams-table_wrapper .row:first-child .col-md-6:nth-child(2){
+	float: left;
+	padding-left: 9px;
+}
+
+#tournament-teams-table_wrapper .row:first-child .col-md-6:nth-child(2) #tournament-teams-table_filter{
+	text-align: left;
+}
+
+#teams-table_wrapper .row:first-child .col-md-6:nth-child(2),
+#participants-table_wrapper .row:first-child .col-md-6:nth-child(2){
+	float: right !important;
+	margin-top: 12px !important;
+}
+
+#titleTeam, #titleParticipant{
+	float: left;
+}

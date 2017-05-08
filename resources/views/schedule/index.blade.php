@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="schedule">
+        <div class="schedule" data-tournament="{{ $tournament_id }}">
+
         </div>
     </div>
 @stop

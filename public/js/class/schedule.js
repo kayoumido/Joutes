@@ -1,17 +1,17 @@
 class Schedule {
     constructor() {}
 
-    static init(limit) {
+    static init(limit, tournament_id) {
         var self = new Schedule();
 
-        var result = self.matches(limit);
+        var result = self.matches(limit, tournament_id);
 
         result.done(function(data) {
             self.htmldisplay(data, $('.schedule'));
         });
     }
 
-    static refresh(container, limit) {
+    static refresh(container, limit, tournament_id) {
         var self = new Schedule();
 
         container.children('.row').each(function() {
@@ -19,7 +19,7 @@ class Schedule {
             let gametime = $(this).children('.match').children('.time').text();
             let lastgametime = container.children('.row').last().children('.match').children('.time').text();
 
-            var result = self.matches(limit, gametime, lastgametime);
+            var result = self.matches(limit, tournament_id, gametime, lastgametime);
 
             result.done(function(data) {
                 if (!$.isEmptyObject(data)) {
@@ -38,9 +38,9 @@ class Schedule {
      *
      * @author Doran Kayoumi
      */
-    matches (limit, next = null, last = null) {
+    matches (limit, tournament_id, next = null, last = null) {
         return $.ajax({
-            url         : '/api/schedule',
+            url         : '/api/tournaments/' + tournament_id + '/schedule',
             method      : 'GET',
             dataType    : 'json',
             cache       : false,

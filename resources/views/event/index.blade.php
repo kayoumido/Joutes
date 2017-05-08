@@ -29,17 +29,17 @@
 						@if(Auth::check())
 							@if(Auth::user()->role == 'administrator')
 								<div class="infos">
-									{{ Form::open(array('url' => route('events.import.store', $event->id), 'method' => 'post')) }}
+									{{-- {{ Form::open(array('url' => route('events.import.store', $event->id), 'method' => 'post')) }}
 										{{ Form::button('', array('class' => 'import fa fa-download fa-lg action')) }}
-									{{ Form::close() }}
+									{{ Form::close() }} --}}
 
 									<a href="{{route('events.edit', $event->id)}}" title="Éditer le événement" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
 
-									<!--{{ Form::open(array('url' => route('events.destroy', $event->id), 'method' => 'delete')) }}
+									{{-- {{ Form::open(array('url' => route('events.destroy', $event->id), 'method' => 'delete')) }}
 										<button type="button" class="button-delete" data-name="{{ $event->name }}" data-type="tournament">
 						                    <i class="fa fa-trash-o fa-lg action" aria-hidden="true"></i>
 						                </button>
-									{{ Form::close() }}-->
+									{{ Form::close() }} --}}
 								</div>
 							@endif
 						@endif

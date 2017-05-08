@@ -21,7 +21,7 @@ Route::resource('tournaments', 'TournamentController', ['only' => ['index', 'sho
 Route::resource('events.tournaments', 'EventTournamentController', [ 'only' => ['index', 'show']]);
 Route::resource('tournaments.pools', 'TournamentPoolController');
 Route::resource('admin', 'SessionController', ['only' => ['index', 'store', 'destroy']]);
-Route::resource('schedule', 'ScheduleController', ['only' => ['index']]);
+Route::resource('tournaments.schedule', 'ScheduleController', ['only' => ['index']]);
 
 # Route to download apk
 Route::get('/download', function() {

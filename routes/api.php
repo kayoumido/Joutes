@@ -35,7 +35,7 @@ $api->version('v1', function ($api) {
             'index', 'show'
         ]]);
 
-        $api->resource('schedule', 'App\Http\Controllers\API\ScheduleController', [ 'only' => [
+        $api->resource('tournaments.schedule', 'App\Http\Controllers\API\ScheduleController', [ 'only' => [
             'index'
         ]]);
     });

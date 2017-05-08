@@ -391,3 +391,12 @@ span#login_link:hover{
 #tournament-teams-table_wrapper .row:first-child .col-md-6:nth-child(2) #tournament-teams-table_filter{
 	text-align: left;
 }
+
+#teams-table_wrapper .row:first-child .col-md-6:nth-child(2){
+	float: right !important;
+	margin-top: 12px !important;
+}
+
+#titleTeam{
+	float: left;
+}

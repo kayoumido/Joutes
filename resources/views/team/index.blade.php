@@ -5,7 +5,7 @@
 
 	<div class="container">
 
-		<h1>Teams</h1>
+		<h1>Equipes</h1>
 
 		<table id="teams-table" class="table table-striped table-bordered table-hover translate" cellspacing="0" width="100%">
 

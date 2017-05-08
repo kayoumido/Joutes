@@ -9,7 +9,7 @@
 
 		<h1 class="tournamentName">
 			{{ $tournament->name }}
-			<a href="/" class="greenBtn" title="Créer un événement">Affichage écran geant</i></a>
+			<a href="{{ route('tournaments.schedule.index', $tournament->id) }}" class="greenBtn" title="Créer un événement">Affichage écran geant</i></a>
 		</h1>
 
 		<div class="right">
@@ -71,7 +71,7 @@
 				</table>
 			</div>
 		</div>
-		
+
 		<h2>Visualisation du tournoi</h2>
 
 		<!-- Stages and pools -->
@@ -81,7 +81,7 @@
 				<thead>
 					<tr>
 						<th class="sizedTh"></th>
-						@for ($i = 1; $i <= $totalStage; $i++)	
+						@for ($i = 1; $i <= $totalStage; $i++)
 
 							<th class="nav-item">
 								Phase {{$i}}
@@ -116,6 +116,6 @@
 		@else
 			Indisponible pour le moment ...
 		@endif
-		
+
 
 @stop

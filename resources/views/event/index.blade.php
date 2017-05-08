@@ -3,7 +3,14 @@
 
 @section('content')
 	<div class="container boxList">
-		<h1>Evénements</h1>
+		<h1>
+			Evénements
+			@if(Auth::check())
+				@if(Auth::user()->role == 'administrator')
+					<a href="{{route('events.create')}}" class="greenBtn" title="Créer un événement">Ajouter</i></a>
+				@endif
+			@endif
+		</h1>
 
 		<input type="search" placeholder="Recherche" class="search form-control">
 
@@ -42,12 +49,6 @@
 			@endforeach
 
 		</div>
-
-		@if(Auth::check())
-			@if(Auth::user()->role == 'administrator')
-				<a href="{{route('events.create')}}" title="Créer un événement"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
-			@endif
-		@endif
 
 	</div>
 @stop

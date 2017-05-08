@@ -4,7 +4,10 @@
 
 @section('content')
 	<div class="container">
-		<h1>Terrains</h1>
+		<h1>
+			Terrains
+			<a href="{{route('courts.create')}}" class="greenBtn" title="Créer un tournoi">Ajouter</i></a>
+		</h1>
 		<table id="courts-table" class="table table-striped table-bordered translate" cellspacing="0" width="100%">
 			<thead>
 				<tr>
@@ -30,10 +33,6 @@
 				@endforeach
 			</tbody>
 		</table>
-
-		<br>
-		
-		<a href="{{route('courts.create')}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
 
 	</div>
 @stop

@@ -14,6 +14,14 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+    /*mix.sass('app.scss')
+       .webpack('app.js');*/
+       mix.scripts([
+        	"custom/alert-popup.js",
+        	"custom/footer.js",
+        	"custom/form-validations.js",
+        	"custom/login-popup.js",
+        	"custom/select2.js",
+        	"custom/tables.js"
+    	]);
 });

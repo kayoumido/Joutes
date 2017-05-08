@@ -183,6 +183,6 @@
         <script src="{{ asset('js/vendor/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('js/vendor/dataTables.bootstrap4.min.js') }}"></script>
 
-        <script src="{{ asset('js/main.js') }}"></script>
+        <script src="{{ asset('js/all.js') }}"></script>
     </body>
 </html>

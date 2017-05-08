@@ -372,3 +372,9 @@ span#login_link:hover{
 .dataTables_paginate .paginate_button a{
 	color: #636b6f !important;
 }
+
+.dataTables_paginate .paginate_button.previous a,
+.dataTables_paginate .paginate_button.next a,
+.dataTables_filter input[type=search]{
+	border-radius: 0;
+}

@@ -19,9 +19,13 @@ class Schedule {
             let gametime = $(this).children('.match').children('.time').text();
             let lastgametime = container.children('.row').last().children('.match').children('.time').text();
 
+            if (!gametime) return true;
+
+
             var result = self.matches(limit, tournament_id, gametime, lastgametime);
 
             result.done(function(data) {
+
                 if (!$.isEmptyObject(data)) {
                     self.htmldisplay(data, container)
                 }

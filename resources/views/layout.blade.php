@@ -37,7 +37,6 @@
                     <br>
                     {{ Form::label('password', 'Mot de passe : ') }}
                     {{ Form::password('password', null) }}
-                    {{ Form::hidden('_token', csrf_token(), array('id' => 'token')) }}
                     <br>
             </div>
             <div class="modal-footer">

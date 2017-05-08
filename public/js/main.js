@@ -1,17 +1,21 @@
 $( document ).ready(function() {
 
-
 	// Login popup
-	$("#login_link").click(function(){
+	$("#login_link").click(function() {
 		$('#login_popup').modal();
 		$("#login_popup .modal-body .error").remove();
 	});
+	// Set focus when the popup loaded
+	$('#login_popup').on('shown.bs.modal', function(){
+		$("#username").focus();
+	})
+
 
 	$("#login_popup .btn-login-form").click(function(event){
 		event.preventDefault();
 		var username = $("#login-form #username").val();
 		var password = $("#login-form #password").val();
-		var token = $("#login-form #token").val();
+		var token = $("#login-form input[name=_token]").val();
 		
 		// Ajaj Posting data
 	  	$.ajax({

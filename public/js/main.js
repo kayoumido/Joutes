@@ -172,7 +172,7 @@ $( document ).ready(function() {
 
 	// Init Datatable on our table -> https://datatables.net/
     // @author Dessaules Loïc
-	var tableFrTranslate = {
+	var tableFrTranslateWithoutAllInfos = {
 		"language": {
 	        "decimal":        "",
 		    "emptyTable":     "Aucune données disponible",
@@ -192,10 +192,42 @@ $( document ).ready(function() {
 		        "next":       "Suivant",
 		        "previous":   "Précédent"
 		    }
-	    }
+	    },
+	    "paging":   false,
+        "info":     false,
+        "searching":	false,
 	};
 
-	$('.translate').DataTable(tableFrTranslate);
+	var tableFrTranslateWithoutEntries = {
+		"language": {
+	        "decimal":        "",
+		    "emptyTable":     "Aucune données disponible",
+		    "info":           "_START_ à _END_ sur _TOTAL_ entrées",
+		    "infoEmpty":      "0 à 0 sur 0 entrées",
+		    "infoFiltered":   "(Total de _MAX_ total entrées)",
+		    "infoPostFix":    "",
+		    "thousands":      ",",
+		    "lengthMenu":     "Voir _MENU_ entrée",
+		    "loadingRecords": "Chargement...",
+		    "processing":     "En traitement...",
+		    "search":         "Rechercher:",
+		    "zeroRecords":    "Aucune données trouvées",
+		    "paginate": {
+		        "first":      "Première",
+		        "last":       "Dernière",
+		        "next":       "Suivant",
+		        "previous":   "Précédent"
+		    }
+	    },
+        "bLengthChange":     false,
+	};
+
+	// Specific table without the top-left élément (nb x - y entries)
+	$('#tournament-teams-table').DataTable(tableFrTranslateWithoutEntries);
+	$('#teams-table').DataTable(tableFrTranslateWithoutEntries);
+	$('#participants-table').DataTable(tableFrTranslateWithoutEntries);
+	// All tables without all data, just the table
+	$('.translate').DataTable(tableFrTranslateWithoutAllInfos);
 
 	// datatables add a container fluid, I don't want that, so I delete the class
 	$('.dataTables_wrapper').removeClass('container-fluid');
@@ -204,27 +236,32 @@ $( document ).ready(function() {
 	$('#pools-table tr td').click(function(){
 		var tournament_id = $("#pools-table").data("tournament");
 		var pool_id = $(this).data("id");
-		window.location.replace(tournament_id+"/pools/"+pool_id);
+		window.location.href = tournament_id+"/pools/"+pool_id;
 	});
 
 	$('#teams-table tr td').click(function(){
 		var team_id = $(this).data("id");
-		window.location.replace("teams/"+team_id);
+		window.location.href = "teams/"+team_id;
 	});
 
 	$('#teams-show-table tr td').click(function(){
 		var participant_id = $(this).data("id");
-		window.location.replace("/admin/participants/"+participant_id);
+		window.location.href = "/admin/participants/"+participant_id;
 	});
 
 	$('#participants-table tr td').click(function(){
 		var participant_id = $(this).data("id");
-		window.location.replace("participants/"+participant_id);
+		window.location.href = "participants/"+participant_id;
 	});
 
 	$('#participants-show-table tr td').click(function(){
 		var team_id = $(this).data("id");
-		window.location.replace("/admin/teams/"+team_id);
+		window.location.href = "/admin/teams/"+team_id;
+	});
+
+	$('#tournament-teams-table tr td').click(function(){
+		var team_id = $(this).data("id");
+		window.location.href = "/admin/teams/"+team_id;
 	});
 
 

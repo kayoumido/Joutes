@@ -7,7 +7,7 @@
 
 		<h1>Participants</h1>
 
-		<table id="participants-table" class="table table-striped table-bordered table-hover translate" cellspacing="0" width="100%">
+		<table id="participants-table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 
 			<thead>
 				<tr>

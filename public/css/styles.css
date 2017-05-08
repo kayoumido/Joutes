@@ -113,8 +113,12 @@ table#pools-table td:hover,
 table#teams-table td:hover,
 table#teams-show-table td:hover,
 table#participants-table td:hover,
+table#tournament-teams-table td:hover,
 table#participants-show-table td:hover{
 	cursor: pointer;
+}
+div#tournament-courts-table_wrapper{
+	margin-top:40px;
 }
 
 /* FONT AWESOM ICONS */

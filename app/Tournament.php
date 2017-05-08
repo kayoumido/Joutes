@@ -2,6 +2,7 @@
 
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * Model of tournaments table.
@@ -60,5 +61,30 @@ class Tournament extends Model
      */
     public function pools() {
         return $this->hasMany('App\Pool');
+    }
+
+    /**
+     * Get all active games of a tournament
+     * @param  integer  $limit - number of games wanted
+     * @param  time     $after - Time after which games are wanted
+     * @return collection
+     *
+     * @author Doran Kayoumi
+     */
+    public function GetActiveGames($limit, $after = 0) {
+
+        $pools = $this->pools;
+
+        $tournament_games = new Collection();
+
+        foreach ($pools as $pool) {
+            $pool_games = $pool->games->where('start_time', '>=', $after);
+            $pool_games = Game::cleanEmptyContender($pool_games);
+
+            if (count($pool_games) !== 0)
+                $tournament_games = $tournament_games->merge($pool_games);
+        }
+
+        return $tournament_games->sortBy('start_time')->take($limit);
     }
 }

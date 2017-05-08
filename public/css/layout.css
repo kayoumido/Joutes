@@ -1,67 +1,111 @@
-header.header {
-    background-color: #446CB3;
-}
-
-header.header .navbar-brand {
-    height: 100px; !important
-}
-
-.navbar-brand img {
-    height: 100%; !important
-}
-
-.navbar-nav li a {
-    line-height: 75px;
-    color: #fff !important
-}
-
-.navbar-nav li a:hover,
-.navbar-nav li a:focus {
-    background: none;
-    color: #9EE493 !important;
-}
-
-header .navbar button, header .navbar input[type=submit]{
-    margin-top: 30px;
-    margin-right: 25px;
-}
-header .navbar .user-infos{
-    color: #FFF;
-    display: inline-flex;
-} 
-header .navbar .user-infos span{
-    margin-top: 35px;
-    padding-right: 21px;
-    font-size: 18px;
-}
-
-footer.footer {
-    background-color: #446CB3;
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 25px 0;
-    margin-top: 100px;
-    bottom: 0;
+.navbar-header{
     width: 100%;
+    background-color: #ededed;
+    text-align: right;
+    padding: 5px;
+    border-bottom: 1px solid #bfbfbf;
+    margin-bottom: 30px;
 }
-footer.footer a {
-    color: #fff !important;
+
+.navbar-header .user-infos{
+    margin-right: 30px;
 }
-footer.footer .container .row div {
+
+.navbar-header .user-infos .username, .navbar-header .login{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.navbar-header .user-infos form{
     display: inline-block;
 }
-footer.footer .copyright {
-    margin-right: 25px
+
+.navbar-header .logout{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    color: rgba(202, 5, 5, 0.8);;
 }
-footer.footer .show-devs {
-    margin-right: 10px
+
+.navbar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 230px;
+    height: 100%;
+    background-color: #2a3f54;
+    color: white;
+    border-radius: 0;
+    margin-bottom: 0;
+    border: 0;
 }
-footer.footer .dev-names.hide {
-    display: none;
+
+.navbar img{
+    width: 100%;
 }
-footer.footer .dev-names.show {
-    display: inline-block !important;
+
+.navbar ul{
+    width: 100%;
+    margin-top: 35px;
 }
-footer.footer .dev {
-    margin-right: 5px
+
+.navbar li{
+    float: initial;
+}
+
+.navbar li a{
+    color: white;
+}
+
+.navbar li i{
+    margin-right: 5px;
+    font-size: 18px;
+    text-align: center;
+    width: 20px;
+}
+
+.navbar li a:hover, .navbar li.active a{
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border-right: 3px solid #9ee493;
+}
+
+.navbar .navbar-bottom{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #172b46;
+    text-align: center;
+    padding: 10px 0;
+    color: white;
+}
+
+.navbar .navbar-bottom footer{
+    text-align: center;
+    color: white;
+    display: inline-block;
+}
+
+.navbar .navbar-bottom .devs a{
+    color: white;
+    display: inherit;
+    line-height: 1.6;
+}
+
+.navbar .navbar-bottom .dev-names{
+    font-size: 12px;
+}
+
+/* Fix the size of the container with the nav width, need to have a media queries for center the content*/
+#page{
+    padding-left: 245px;
+}
+
+@media screen and (max-width: 1430px) {
+    .container{
+        padding-left: 245px;
+    }
+    #page{
+        padding-left: 0;
+    }
 }

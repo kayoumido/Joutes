@@ -6,19 +6,51 @@
 
         <title>Joutes</title>
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/app.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/select2.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/vendor/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
         <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" />
-
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-        <title>Laravel</title>
+        
     </head>
     <body>
-        <header class="header">
+
+<div id="login_popup" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Connexion</h4>
+            </div>
+            <div class="modal-body">
+
+                {{ Form::open(array('url' => route('admin.store'), 'method' => 'post', 'id' => 'login-form')) }}
+                    {{ Form::label('username', 'Nom d\'utilisateur : ') }}
+                    @if(isset($error))
+                        {{ Form::text('username', $error['username'], array('required' => '')) }}
+                    @else
+                        {{ Form::text('username', null, array('required' => '')) }}
+                    @endif
+                    <br>
+                    {{ Form::label('password', 'Mot de passe : ') }}
+                    {{ Form::password('password', null) }}
+                    {{ Form::hidden('_token', csrf_token(), array('id' => 'token')) }}
+                    <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-login-form">Connexion</button>
+            </div>
+            {{ Form::close() }}
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+        {{-- <header class="header">
             <nav class="navbar">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
@@ -58,7 +90,62 @@
                     </div>
                 </div>
             </nav>
-        </header>
+        </header> --}}
+        <div class="navbar-header">
+            <div class="user-infos">
+                @if(Auth::check())
+                    <span class="username">{{ Auth::user()->username }}</span>
+                    {{ Form::open(array('url' => route('admin.destroy', 0), 'method' => 'delete')) }}
+                        {{ Form::button('<i class="fa fa-power-off" aria-hidden="true"></i>', array('type' => 'submit','class' => 'logout')) }}
+                    {{ Form::close() }}
+                @else
+                    <span id="login_link">Connexion</span>
+                @endif
+            </div>
+        </div>
+        <nav class="navbar">
+                <div class="navbar-right">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ route('events.index') }}">
+                        <img src="{{ asset('images/logo.png') }}" alt="">
+                    </a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="@if(Route::is('events.index')) active @endif"><a href="{{ route('events.index') }}"> <i class="fa fa-calendar" aria-hidden="true"></i> Evénements</a></li>
+                    <li class="@if(Route::is('tournaments.index')) active @endif"><a href="{{ route('tournaments.index') }}"> <i class="fa fa-trophy" aria-hidden="true"></i> Tournois</a></li>
+                    @if(Auth::check())
+                        @if(Auth::user()->role == 'administrator')
+                            <li class="@if(Route::is('sports.index')) active @endif"><a href="{{ route('sports.index') }}"> <i class="fa fa-futbol-o" aria-hidden="true"></i> Sports</a></li>
+                            <li class="@if(Route::is('courts.index')) active @endif"><a href="{{ route('courts.index') }}"> <i class="fa fa-map-marker" aria-hidden="true"></i> Terrains</a></li>
+                            <li class="@if(Route::is('teams.index')) active @endif"><a href="{{ route('teams.index') }}"> <i class="fa fa-users" aria-hidden="true"></i> Equipes</a></li>
+                            <li class="@if(Route::is('participants.index')) active @endif"><a href="{{ route('participants.index') }}"> <i class="fa fa-user" aria-hidden="true"></i> Participants</a></li>
+                        @endif
+                    @endif
+                </ul>
+                <div class="nav navbar-nav navbar-bottom">
+
+                    <footer class="footer">
+
+                        <div class="copyright">© CPNV - 2017</div>
+                        <div class="devs">
+                            <a href="#" class="show-devs">Développeurs</a>
+
+                            <div class="dev-names hide">
+                                <a href="#" class="dev">Doran Kayoumi</a>
+                                <a href="#" class="dev">Loïc Dessaules</a>
+                                <a href="#" class="dev">Antoine Dessauges</a>
+                            </div>
+                        </div>
+                    </footer>
+
+
+                </div>
+            </nav>
 
             <div id="page">
 
@@ -70,7 +157,7 @@
 
             </div><!-- page -->
 
-        <footer class="footer">
+        {{-- <footer class="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
@@ -89,11 +176,13 @@
                     </div>
                 </div>
             </div>
-        </footer>
-
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/sweetalert.min.js') }}"></script>
-        <script src="{{ asset('js/select2.full.min.js') }}"></script>
+        </footer> --}}
+        
+        <script src="{{ asset('js/vendor/app.js') }}"></script>
+        <script src="{{ asset('js/vendor/sweetalert.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/select2.full.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/dataTables.bootstrap4.min.js') }}"></script>
 
         <script src="{{ asset('js/main.js') }}"></script>
     </body>

@@ -50,4 +50,15 @@ class Tournament extends Model
     public function teams() {
         return $this->hasMany('App\Team');
     }
+
+    /**
+     * Create a new belongs to many relationship instance between Tournament and Pool
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     *
+     * @author Loïc Dessaules
+     */
+    public function pools() {
+        return $this->hasMany('App\Pool');
+    }
 }

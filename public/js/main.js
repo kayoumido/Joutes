@@ -1,5 +1,42 @@
 $( document ).ready(function() {
 
+
+	// Login popup
+	$("#login_link").click(function(){
+		$('#login_popup').modal();
+		$("#login_popup .modal-body .error").remove();
+	});
+
+	$("#login_popup .btn-login-form").click(function(){
+		var username = $("#login-form #username").val();
+		var password = $("#login-form #password").val();
+		var token = $("#login-form #token").val();
+		
+		// Ajaj Posting data
+	  	$.ajax({
+            url         : '/admin',
+            method      : 'POST',
+            dataType    : 'html',
+            headers		: {'X-CSRF-TOKEN': token},
+            data        : {
+                username: username,
+                password: password,
+            },
+            success : function(data) {
+                var res = data.split("::");
+                if(res[0] == "accepted"){
+                	window.location.href = res[1];
+                }else{
+                	var error = res[1];
+                	$("#login_popup .modal-body .error").remove();
+                	$("#login_popup .modal-body").append('<div class="error">'+error+'</div>');
+            	 	$("#login-form #password").val("");
+                }
+            }
+        });
+	});
+	
+
 	// set click event on import button
 	$('.import').click(function(event) {
 		// prevent button default action
@@ -17,6 +54,7 @@ $( document ).ready(function() {
 			$('.dev-names').removeClass('show').addClass('hide');
 		}
 	});
+
 
     // Create custom delete alert when we click on a .button-delete
     // @author Dessaules Loïc
@@ -120,6 +158,77 @@ $( document ).ready(function() {
 	  	});
 	}
 
+
+	/* TOURNAMENT SHOW : STAGES AND POOLS TABS */
+	// @author Dessaules Loïc
+	$totalStages = $("#stages-tabs").attr("data-count");
+	for (var i = 0; i < $totalStages; i++) {
+		$('#stage'+i+' a.nav-link').click(function (e) {
+		  	e.preventDefault();
+		  	$(this).tab('show');
+		});
+	}
+
+
+	// Init Datatable on our table -> https://datatables.net/
+    // @author Dessaules Loïc
+	var tableFrTranslate = {
+		"language": {
+	        "decimal":        "",
+		    "emptyTable":     "Aucune données disponible",
+		    "info":           "_START_ à _END_ sur _TOTAL_ entrées",
+		    "infoEmpty":      "0 à 0 sur 0 entrées",
+		    "infoFiltered":   "(Total de _MAX_ total entrées)",
+		    "infoPostFix":    "",
+		    "thousands":      ",",
+		    "lengthMenu":     "Voir _MENU_ entrée",
+		    "loadingRecords": "Chargement...",
+		    "processing":     "En traitement...",
+		    "search":         "Rechercher:",
+		    "zeroRecords":    "Aucune données trouvées",
+		    "paginate": {
+		        "first":      "Première",
+		        "last":       "Dernière",
+		        "next":       "Suivant",
+		        "previous":   "Précédent"
+		    }
+	    }
+	};
+
+	$('.translate').DataTable(tableFrTranslate);
+
+	// datatables add a container fluid, I don't want that, so I delete the class
+	$('.dataTables_wrapper').removeClass('container-fluid');
+
+	// Redirect when click on a cell
+	$('#pools-table tr td').click(function(){
+		var tournament_id = $("#pools-table").data("tournament");
+		var pool_id = $(this).data("id");
+		window.location.replace(tournament_id+"/pools/"+pool_id);
+	});
+
+	$('#teams-table tr td').click(function(){
+		var team_id = $(this).data("id");
+		window.location.replace("teams/"+team_id);
+	});
+
+	$('#teams-show-table tr td').click(function(){
+		var participant_id = $(this).data("id");
+		window.location.replace("/admin/participants/"+participant_id);
+	});
+
+	$('#participants-table tr td').click(function(){
+		var participant_id = $(this).data("id");
+		window.location.replace("participants/"+participant_id);
+	});
+
+	$('#participants-show-table tr td').click(function(){
+		var team_id = $(this).data("id");
+		window.location.replace("/admin/teams/"+team_id);
+	});
+
+
+
   	/* FORM VALIDATIONS */
 	// @author Dessaules Loïc
 	$('.formSend').click(function(){
@@ -157,8 +266,8 @@ $( document ).ready(function() {
 		    		error += 'Aucun sport sélectionné.<br>';
 		    	}
 		        break;
-		    
-		    case "formEvent": 
+
+		    case "formEvent":
 	        	var nameValue = $('#formEvent #name').val();
 	        	var imgValue = $('#formEvent #img').val();
 
@@ -180,7 +289,7 @@ $( document ).ready(function() {
 		    	var startDateValue = $('#formTournament #startDate').val();
 		    	var startTimeValue = $('#formTournament #startTime').val();
 		    	var imgValue = $('#formTournament #img').val();
-		    	
+
 		    	var patternName = /^[a-zA-Z0-9-_ ]{3,45}$/;
 		    	var patternSport = /^[0-9]+$/; // '' = empty, 1-2-3-... = sport
 		    	var patternDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;

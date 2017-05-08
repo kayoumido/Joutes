@@ -7,9 +7,7 @@
 
 		<h1>Participants</h1>
 
-		<input type="search" placeholder="Recherche" class="search form-control">
-
-		<table class="table">
+		<table id="participants-table" class="table table-striped table-bordered table-hover translate" cellspacing="0" width="100%">
 
 			<thead>
 				<tr>
@@ -17,13 +15,12 @@
 				</tr>
 			</thead>
 
-			<tbody class="searchIn">
+			<tbody>
 
 			  	@foreach ($participants as $participant)
 					<tr>
-				      <th scope="row" class="name"> <a href="{{ route('participants.show', $participant->id) }}" alt="Afficher la participant"> {{ $participant->last_name }} {{ $participant->first_name }} </a> </th>
+				      <td data-id="{{$participant->id}}">{{ $participant->last_name }} {{ $participant->first_name }}</td>
 				    </tr>
-
 				@endforeach
 
 		  	</tbody>

@@ -22,9 +22,7 @@
 	        </div>
         @endif
 
-		{{ Form::open(array('url' => route('tournaments.store'), 'method' => 'post', 'class' => 'add', 'id' => 'formTournament', 'enctype' => 'multipart/form-data')) }}
-
-			{{ Form::hidden('eventId', $event->id) }}
+		{{ Form::open(array('url' => route('events.tournaments.store', $eventId), 'method' => 'post', 'class' => 'add', 'id' => 'formTournament', 'enctype' => 'multipart/form-data')) }}
 
 			{{ Form::label('name', 'Nom :') }}
 			{{ Form::text('name', null) }}

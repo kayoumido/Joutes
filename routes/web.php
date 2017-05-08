@@ -19,8 +19,15 @@ Route::get('/', function () {
 Route::resource('events', 'EventController', ['only' => ['index', 'show']]);
 Route::resource('tournaments', 'TournamentController', ['only' => ['index', 'show']]);
 Route::resource('events.tournaments', 'EventTournamentController', [ 'only' => ['index', 'show']]);
+Route::resource('tournaments.pools', 'TournamentPoolController');
 Route::resource('admin', 'SessionController', ['only' => ['index', 'store', 'destroy']]);
 Route::resource('schedule', 'ScheduleController', ['only' => ['index']]);
+
+# Route to download apk
+Route::get('/download', function() {
+    return view('download.index');
+});
+
 
 
 /* Routes who need authentification */
@@ -28,7 +35,8 @@ Route::resource('schedule', 'ScheduleController', ['only' => ['index']]);
 // It will add the "admin" prefix before each "critical" URLs
 Route::group(['middleware'=>'checkIsAdmin', 'prefix'=>'admin', 'namespace' => 'Admin'],function(){
 	Route::resource('events', 'EventController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
-	Route::resource('tournaments', 'TournamentController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+	Route::resource('tournaments', 'TournamentController', ['only' => ['edit', 'update', 'destroy']]);
+	Route::resource('events.tournaments', 'EventTournamentController', [ 'only' => ['create', 'store']]);
 	Route::resource('sports', 'SportController');
 	Route::resource('courts', 'CourtController');
 	Route::resource('teams', 'TeamController');

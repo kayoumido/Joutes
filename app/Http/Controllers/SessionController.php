@@ -32,11 +32,10 @@ class SessionController extends Controller
     public function store(Request $request)
     {
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
-            return redirect(route('events.index')); 
+            return "accepted::".url()->previous();
         }else{
-            $error["message"] = "Nom d'utilisateur ou mot de passe incorrecte";
-            $error["username"] = $request->input("username");
-            return view('session.create')->with("error", $error);
+            $error = "Nom d'utilisateur ou mot de passe incorrect";
+            return "refused::".$error;
         }
     }
 
@@ -52,7 +51,7 @@ class SessionController extends Controller
     public function destroy($id)
     {
         Auth::logout();
-        return redirect(route('admin.index'));
+        return redirect(route('events.index'));
     }
 
 }

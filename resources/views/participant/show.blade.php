@@ -22,12 +22,12 @@
 				Aucun équipe lié à ce membre !
 			</div>
 		@else
-			<table class="table">
+			<table id="participants-show-table" class="table table-striped table-bordered table-hover translate" cellspacing="0" width="100%">
 
 				<thead>
 					<tr>
 						<th>Nom de l'équipe</th>
-						<th class="options">Actions</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 
@@ -35,8 +35,8 @@
 
 				  	@foreach ($participant->teams as $team)
 						<tr>
-					      <th scope="row" class="name"> {{ $team->name }} </th>
-					      <td>
+					      <td data-id="{{$team->id}}"> {{ $team->name }} </td>
+					      <td class="action">
 						      {{ Form::open(array('url' => route('teams.participants.destroy', [$team->pivot['participant_id'], $team->pivot['team_id']]), 'method' => 'delete')) }}
 						      	<button type="submit" class="button-delete" data-type="memberTeam" data-name='"{{ $participant->last_name }} {{ $participant->first_name }}" de "{{ $team->name }}"'>
 						      		<i class="fa fa-trash-o fa-lg action" aria-hidden="true"></i>

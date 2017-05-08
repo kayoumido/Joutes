@@ -352,8 +352,23 @@ span#login_link:hover{
 .singleTournament .right{
 	text-align: right;
     float: right;
+    font-size: 16px;
 }
 
 .singleTournament .row{
 	clear: both;
+}
+
+.table th{
+    background-color: #2a3f54 !important;
+}
+
+.dataTables_paginate .paginate_button.active a
+{	background-color: #9ee493 !important;
+	border-color: #9ee493 !important;
+	color: white !important;
+}
+
+.dataTables_paginate .paginate_button a{
+	color: #636b6f !important;
 }

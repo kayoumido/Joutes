@@ -21,17 +21,17 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<table id="tournament-teams-table" class="table table-striped table-bordered translate" cellspacing="0" width="100%">
+				<table id="tournament-teams-table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Liste des participants</th>
+							<th>Liste des équipes participantes</th>
 						</tr>
 					</thead>
 					<tbody>
 						@if(count($tournament->teams) > 0)
 					  		@foreach ($tournament->teams as $team)
 					  			<tr>
-									<td>{{$team->name}}</td>
+									<td data-id="{{$team->id}}">{{$team->name}}</td>
 								</tr>
 							@endforeach
 						@else

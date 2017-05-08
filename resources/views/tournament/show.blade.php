@@ -3,35 +3,40 @@
 @extends('layout')
 
 @section('content')
-	<div class="container">
+	<div class="container singleTournament">
 
 		<a href="{{URL::previous()}}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
-		<h1>{{ $tournament->name }}</h1>
+		<h1 class="tournamentName">
+			{{ $tournament->name }}
+			<a href="/" class="greenBtn" title="Créer un événement">Affichage écran geant</i></a>
+		</h1>
 
-		@if(isset($tournament->sport))
-			<p><strong>Sport :</strong> {{ $tournament->sport->name }}</p>
-		@else
-			<p><strong>Sport :</strong> Aucun, veuillez en choisir un.</p>
-		@endif
+		<div class="right">
+			<div>
+				@if(isset($tournament->sport))
+					<strong>Sport :</strong> {{ $tournament->sport->name }}
+				@else
+					<strong>Sport :</strong> Aucun, veuillez en choisir un.
+				@endif
+			</div>
 
-		<p>
-			<strong>Début du tournois :</strong> {{ $tournament->start_date->format('d.m.Y à H:i') }}
-		</p>
+			<div><strong>Début du tournoi :</strong> {{ $tournament->start_date->format('d.m.Y à H:i') }}</div>
+		</div>
 
 		<div class="row">
 			<div class="col-lg-6">
-				<table id="tournament-teams-table" class="table table-striped table-bordered translate" cellspacing="0" width="100%">
+				<table id="tournament-teams-table" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Liste des participants</th>
+							<th>Liste des équipes participantes</th>
 						</tr>
 					</thead>
 					<tbody>
 						@if(count($tournament->teams) > 0)
 					  		@foreach ($tournament->teams as $team)
 					  			<tr>
-									<td>{{$team->name}}</td>
+									<td data-id="{{$team->id}}">{{$team->name}}</td>
 								</tr>
 							@endforeach
 						@else

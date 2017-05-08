@@ -8,11 +8,18 @@
 		@endif
 		
 		@if ($fromEvent)
-			<h1>Tournois de l'évenement {{ $event->name }}</h1>
+			<h1>
+				Tournois de l'évenement {{ $event->name }}
+				@if(Auth::check() && $fromEvent)
+					@if(Auth::user()->role == 'administrator')
+						<a href="{{route('events.tournaments.create', $event->id)}}" class="greenBtn" title="Créer un tournoi">Ajouter</i></a>
+					@endif
+				@endif
+			</h1>
 		@else
 			<h1>Tournois</h1>
 		@endif
-
+		
 
 		<input type="search" placeholder="Recherche" class="search form-control">
 
@@ -51,12 +58,6 @@
 			@endforeach
 
 		</div>
-
-		@if(Auth::check() && $fromEvent)
-			@if(Auth::user()->role == 'administrator')
-				<a href="{{route('events.tournaments.create', $event->id)}}" title="Créer un tournoi"><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i></a>
-			@endif
-		@endif
 		
 	</div>
 @stop

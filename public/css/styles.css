@@ -36,10 +36,10 @@ select{
 }
 
 .return{
-	margin-right: 20px;
+	margin: -7px 20px 0 0;
 	float: left;
     width: 50px;
-	color: #50514F;
+	color: #2a3f54;
 }
 
 /* WELCOME VIEW */
@@ -107,22 +107,32 @@ table#teams-table td.action,
 table#participants-show-table td.action,
 table#teams-show-table td.action{
 	width: 5%;
+	text-align: center;
+}
+
+table#sports-table td.action form,
+table#courts-table td.action form,
+table#teams-table td.action form,
+table#participants-show-table td.action form,
+table#teams-show-table td.action form{
+	display: inline-block;
 }
 
 table#pools-table td:hover,
 table#teams-table td:hover,
 table#teams-show-table td:hover,
 table#participants-table td:hover,
+table#tournament-teams-table td:hover,
 table#participants-show-table td:hover{
 	cursor: pointer;
+}
+div#tournament-courts-table_wrapper{
+	margin-top:40px;
 }
 
 /* FONT AWESOM ICONS */
 i.fa:hover {
 	cursor: pointer;
-}
-i.fa.action {
-	float: left;
 }
 .isCaptain {
     color: #FFDC00;
@@ -132,7 +142,6 @@ i.fa.action {
 .button-delete{
 	border:none;
 	background: none;
-	margin-right:30px
 }
 
 /* FORM */
@@ -211,8 +220,8 @@ span#login_link:hover{
 
 .box .infos .fa-pencil{
 	position: absolute;
-	right: 40px;
-	top: 15px;
+	right: 15px;
+    bottom: 15px;
 }
 
 .box .infos .import {
@@ -320,4 +329,52 @@ span#login_link:hover{
     -ms-transform:rotate(-90deg);
     transform: rotate(-90deg);
     display: block;
+}
+
+.greenBtn{
+	background-color: #9ee493;
+	color: white;
+    font-size: 16px;
+    padding: 3px 12px;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+
+.greenBtn:hover{
+	color: white;
+	background-color: #8fd084;
+}
+
+.singleTournament .tournamentName{
+	float: left;
+}
+
+.singleTournament .right{
+	text-align: right;
+    float: right;
+    font-size: 16px;
+}
+
+.singleTournament .row{
+	clear: both;
+}
+
+.table th{
+    background-color: #2a3f54 !important;
+}
+
+.dataTables_paginate .paginate_button.active a
+{	background-color: #9ee493 !important;
+	border-color: #9ee493 !important;
+	color: white !important;
+}
+
+.dataTables_paginate .paginate_button a{
+	color: #636b6f !important;
+}
+
+.dataTables_paginate .paginate_button.previous a,
+.dataTables_paginate .paginate_button.next a,
+.dataTables_filter input[type=search]{
+	border-radius: 0;
 }

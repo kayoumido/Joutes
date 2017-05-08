@@ -7,7 +7,8 @@ $( document ).ready(function() {
 		$("#login_popup .modal-body .error").remove();
 	});
 
-	$("#login_popup .btn-login-form").click(function(){
+	$("#login_popup .btn-login-form").click(function(event){
+		event.preventDefault();
 		var username = $("#login-form #username").val();
 		var password = $("#login-form #password").val();
 		var token = $("#login-form #token").val();

@@ -17,7 +17,7 @@ class ScheduleTransformer extends TransformerAbstract
                 $game->team1()->name,
                 $game->team2()->name,
             ],
-            'court'     => (string) $game->court->name,
+            'court'     => (string) $game->court->acronym,
             'sport'     => (string) $game->court->sport->name,
             'date'      => (string) $game->date,
             'time'      => (string) Carbon::parse($game->start_time)->format('H:i'),

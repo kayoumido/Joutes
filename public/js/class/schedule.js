@@ -66,7 +66,6 @@ class Schedule {
      * @param  {array} matches array of games returned from api
      * @param  {class} container container in which the html will be displayed
      * @return {void}
-     * @TODO Change how icon is displayed. For the moment the same icon is displayed for all sports!
      *
      * @author Doran Kayoumi
      */
@@ -80,7 +79,7 @@ class Schedule {
                 <div class="row">
                     <div class="match col-md-12" data-id="${match.id}">
                         <div class="info time col-md-2">${match.time}</div>
-                        <div class="info venue col-md-2 text-center">A</div>
+                        <div class="info venue col-md-2 text-center">${match.court}</div>
                         <div class="info contenders col-md-6">
                             <div class="team-name col-md-5 text-right">${match.teams[0]}</div>
                             <div class="team-name col-md-2 text-center">vs</div>

@@ -1,6 +1,6 @@
 .schedule {
     font-family: lato;
-    padding-top: 5px;
+    padding-top: 25px;
 }
 
 .schedule .row {
@@ -10,10 +10,6 @@
 
 .schedule .header {
     background-color: #353535;
-}
-
-.schedule .header .info {
-    font-size: 5rem;
 }
 
 .schedule .match,
@@ -27,7 +23,8 @@
     font-weight: 800;
 }
 
-.schedule .match .info {
+.schedule .match .info,
+.schedule .header .info {
     font-size: 8rem;
 }
 

@@ -20,7 +20,7 @@
 
 <div id="login_popup" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
+        <div class="modal-content removeRaduis">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Connexion</h4>
@@ -40,7 +40,7 @@
                     <br>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-default removeRaduis" data-dismiss="modal">Fermer</button>
                 <button type="submit" class="btn btn-primary btn-login-form">Connexion</button>
             </div>
             {{ Form::close() }}

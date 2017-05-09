@@ -3,7 +3,7 @@
 @extends('layout')
 
 @section('content')
-	<div id="container">
+	<div class="container">
 		<a href="{{ route('courts.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>	
 		<h1>Créer un terrain</h1>
 
@@ -22,19 +22,18 @@
 
 		{{ Form::open(array('url' => route('courts.store'), 'method' => 'post', 'id' => 'formCourt')) }}
 
-			{{ Form::label('name', 'Nom : ') }}
-			{{ Form::text('name', null) }}
-			<br>
-			{{ Form::label('Sport', 'Sport : ') }}
-			{{ Form::select('sport', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport']) }}
-			<br>
-			<br>
-			{{ Form::button('Créer', array('class' => 'btn btn-success formSend')) }}
+			<div class="form-group">
+				{{ Form::label('name', 'Nom') }}
+				{{ Form::text('name', null, array('class' => 'form-control')) }}
+			</div>
+			<div class="form-group">
+				{{ Form::label('Sport', 'Sport') }}
+				{{ Form::select('sport', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control allSameStyle', 'id' => 'sport']) }}
+			</div>
+
+			<div class="send">{{ Form::button('Créer', array('class' => 'btn btn-success formSend')) }}</div>
 
 		{{ Form::close() }}
-
-		<br>
-
 
 	</div>
 @stop

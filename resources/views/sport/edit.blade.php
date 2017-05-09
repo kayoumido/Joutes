@@ -3,7 +3,7 @@
 @extends('layout')
 
 @section('content')
-	<div id="container">
+	<div class="container">
 		<a href="{{ route('sports.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		<h1>Editer un sport</h1>
 
@@ -22,14 +22,16 @@
 
 		{{ Form::open(array('url' => route('sports.update', $sport->id), 'method' => 'put',  'id' => 'formSport')) }}
 
-			{{ Form::label('name', 'Nom : ') }}
-			{{ Form::text('name', $sport->name) }}
-			<br>
-			{{ Form::label('description', 'Description : ') }}
-			{{ Form::text('description', $sport->description) }}
-			<br>
-			<br>
-			{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}
+			<div class="form-group"> 
+				{{ Form::label('name', 'Nom : ') }}
+				{{ Form::text('name', $sport->name, array('class' => 'form-control')) }}
+			</div>
+			<div class="form-group"> 
+				{{ Form::label('description', 'Description : ') }}
+				{{ Form::text('description', $sport->description, array('class' => 'form-control')) }}
+			</div>
+
+			<div class="send">{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}</div>
 
 		{{ Form::close() }}
 

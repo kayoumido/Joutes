@@ -3,7 +3,7 @@
 @extends('layout')
 
 @section('content')
-	<div id="container">
+	<div class="container">
 		<a href="{{ route('courts.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		<h1>Editer un terrain</h1>
 
@@ -22,14 +22,15 @@
 
 		{{ Form::open(array('url' => route('courts.update', $court->id), 'method' => 'put', 'id' => 'formCourt')) }}
 
-			{{ Form::label('name', 'Nom : ') }}
-			{{ Form::text('name', $court->name) }}
-			<br>
-			{{ Form::label('Sport', 'Sport : ') }}
-			{{ Form::select('sport', $dropdownList, $court->sport->id, ['placeholder' => 'Sélectionner', 'class' => 'allSameStyle', 'id' => 'sport']) }}
-			<br>
-			<br>
-			{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}
+			<div class="form-group">
+				{{ Form::label('name', 'Nom') }}
+				{{ Form::text('name', $court->name, array('class' => 'form-control')) }}
+			</div>
+				<div class="form-group">
+				{{ Form::label('Sport', 'Sport') }}
+				{{ Form::select('sport', $dropdownList, $court->sport->id, ['placeholder' => 'Sélectionner', 'class' => 'form-control allSameStyle', 'id' => 'sport']) }}
+			</div>
+			<div class="send">{{ Form::button('Enregistrer', array('class' => 'btn btn-success formSend')) }}</div>
 
 		{{ Form::close() }}
 

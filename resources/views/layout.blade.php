@@ -184,5 +184,6 @@
         <script src="{{ asset('js/vendor/dataTables.bootstrap4.min.js') }}"></script>
 
         <script src="{{ asset('js/all.js') }}"></script>
+        <script src="{{ asset('js/wip.js') }}"></script>
     </body>
 </html>

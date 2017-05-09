@@ -2,7 +2,7 @@
 @extends('layout')
 
 @section('content')
-	<div id="container">
+	<div class="container">
 		<a href="{{ route('teams.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		<h1>Editer une équipe</h1>
 
@@ -12,11 +12,13 @@
 			</div>
 		@endif
 
-		{{ Form::open(array('url' => route('teams.update', $team->id), 'method' => 'put')) }}
+		{{ Form::open(array('url' => route('teams.update', $team->id), 'method' => 'put', 'id' => 'formTeam')) }}
 
-			{{ Form::label('name', "Nom de l'équipe : ") }}
-			{{ Form::text('name', $team->name) }}
-			{{ Form::submit('Enregistrer', array('class' => 'btn btn-success')) }}
+			<div class="form-group">
+				{{ Form::label('name', "Nom de l'équipe") }}
+				{{ Form::text('name', $team->name, array('class' => 'form-control')) }}
+			</div>
+			<div class="send">{{ Form::submit('Enregistrer', array('class' => 'btn btn-success')) }}</div>
 
 		{{ Form::close() }}
 

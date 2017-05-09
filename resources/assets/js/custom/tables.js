@@ -34,7 +34,8 @@ $( document ).ready(function() {
 		    "lengthMenu":     "Voir _MENU_ entrée",
 		    "loadingRecords": "Chargement...",
 		    "processing":     "En traitement...",
-		    "search":         "Rechercher:",
+		   	"search":         "",
+		    "searchPlaceholder": "Recherche",
 		    "zeroRecords":    "Aucune données trouvées",
 		    "paginate": {
 		        "first":      "Première",
@@ -60,7 +61,8 @@ $( document ).ready(function() {
 		    "lengthMenu":     "Voir _MENU_ entrée",
 		    "loadingRecords": "Chargement...",
 		    "processing":     "En traitement...",
-		    "search":         "Rechercher:",
+		    "search":         "",
+		    "searchPlaceholder": "Recherche",
 		    "zeroRecords":    "Aucune données trouvées",
 		    "paginate": {
 		        "first":      "Première",

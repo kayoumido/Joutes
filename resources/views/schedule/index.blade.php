@@ -7,7 +7,7 @@
                 <div class="header col-md-12">
                     <div class="info time col-md-2">Heure</div>
                     <div class="info venue col-md-2">Terrain</div>
-                    <div class="info contenders col-md-6">Equipes</div>
+                    <div class="info contenders col-md-6 text-center">Equipes</div>
                     <div class="info sport col-md-2">{{ $tournament->sport->name }}</div>
                 </div>
             </div>

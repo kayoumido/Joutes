@@ -18,6 +18,7 @@
 			
 			<table id="matches">
 				@foreach ($pool->games as $game)
+					<!-- No teams - no score -->
 					@if (empty($game->contender1->team) || empty($game->contender2->team))
 						<tr>
 							<td class="contender1">À définir</td>
@@ -25,6 +26,7 @@
 							<td class="contender2">À définir</td>
 						</tr>
 					@else
+						<!-- teams - no score -->
 						@if(empty($game->score_contender1) || empty($game->score_contender2))
 							<tr>
 								<td class="contender1">{{$game->contender1->team->name}}</td>
@@ -32,10 +34,13 @@
 								<td class="contender2">{{$game->contender2->team->name}}</td>
 							</tr>
 						@else
+							<!-- teams and score -->
+							
 							<tr>
 								<td class="contender1">{{$game->contender1->team->name}}</td>
 								<td>{{$game->score_contender1}} - {{$game->score_contender2}}</td>
 								<td class="contender2">{{$game->contender2->team->name}}</td>
+								<td class="edit"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></td>
 							</tr>
 						@endif
 					@endif

@@ -80,10 +80,14 @@ table#matches{
     width: 500px;
 	margin: 0px auto;
 	font-size: 17px;
+	border-left: 1px solid #DDD;
 }
 table#matches tr{
 	height: 35px;
-	border: 1px solid #DDD;
+}
+table#matches td {
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
 }
 table#matches tr:nth-child(even){
 	background-color: #FFF;
@@ -100,6 +104,12 @@ table#matches td.contender2{
 	width: 125px;
 	text-align: right;
 	padding-right: 10px;
+}
+table#matches td.edit {
+    background-color: #F5F8FA;
+    border-left: 1px solid #DDD;
+    border-top: none!important;
+    border-bottom: none!important;
 }
 table#sports-table td.action,
 table#courts-table td.action,

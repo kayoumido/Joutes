@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    $('body').css('overflow','hidden');
+
     // get tournament id
     var tournament_id = $('.schedule').data('tournament');
 

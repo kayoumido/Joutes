@@ -80,8 +80,8 @@ class Schedule {
                 <div class="row">
                     <div class="match col-md-12" data-id="${match.id}">
                         <div class="info time col-md-2">${match.time}</div>
-                        <div class="info venue col-md-1">A</div>
-                        <div class="info contenders col-md-9">
+                        <div class="info venue col-md-2 text-center">A</div>
+                        <div class="info contenders col-md-6">
                             <div class="team-name col-md-5 text-right">${match.teams[0]}</div>
                             <div class="team-name col-md-2 text-center">vs</div>
                             <div class="team-name col-md-5 text-left">${match.teams[1]}</div>

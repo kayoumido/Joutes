@@ -144,18 +144,6 @@ i.fa:hover {
 	background: none;
 }
 
-/* FORM */
-/*label {
-	width:115px;
-}*/
-select.allSameStyle, input.allSameStyle{
-	width:164px;
-	height:28px;
-}
-/*#login-form label{
-	width: 140px;
-	text-align: left;
-}*/
 #login_popup #login-form input[type=text], #login-form input[type=password]{
 	width: 100%;
 	margin-bottom: 10px;
@@ -426,4 +414,14 @@ form .btn-success, form .btn-success:hover, .btn-login-form{
 
 .removeRaduis, .form-control{
 	border-radius: 0;
+}
+
+.select2{
+	display: block;
+	width: 100% !important;
+}
+
+.select2-container--default .select2-selection--multiple{
+	border-radius: 0px;
+    border: 1px solid #ccd0d2;
 }

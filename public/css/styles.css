@@ -425,3 +425,11 @@ form .btn-success, form .btn-success:hover, .btn-login-form{
 	border-radius: 0px;
     border: 1px solid #ccd0d2;
 }
+
+.select2-selection__clear{
+	display: none;
+}
+
+input::placeholder {
+  color: black !important;
+}

@@ -107,19 +107,29 @@ table#matches td.contender2{
 }
 table#matches td.score1{
 	text-align: right;
+	width: 60px;
 }
 table#matches td.score2{
 	text-align: left;
+	width: 60px;
 }
 table#matches td input[type="number"] {
     width: 60px;
     text-align: center;
 }
 table#matches td.action {
+	width: 65px;
     background-color: #F5F8FA;
     border-left: 1px solid #DDD;
     border-top: none!important;
     border-bottom: none!important;
+}
+table#matches td.action i.fa-check-square-o{
+	color: #45BF55;
+}
+table#matches td.action i.fa-times{
+	color: #D40D12;
+    margin-left: 8px;
 }
 table#sports-table td.action,
 table#courts-table td.action,

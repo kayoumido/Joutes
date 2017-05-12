@@ -42,7 +42,7 @@
 								<td> - </td>
 								<td class="score2">{{$game->score_contender2}}</td>
 								<td class="contender2">{{$game->contender2->team->name}}</td>
-								<td class="action"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></td>
+								<td class="action"><i class="fa fa-lg fa-pencil" aria-hidden="true"></td>
 							</tr>
 						@endif
 					@endif

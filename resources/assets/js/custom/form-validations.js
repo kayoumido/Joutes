@@ -2,7 +2,7 @@ $( document ).ready(function() {
 	/* FORM VALIDATIONS */
 	// @author Dessaules Loïc
 	$('.formSend').click(function(){
-		var form = $(this).parent();
+		var form = $(this).parent().parent();
 		var formId = form.attr('id');
 		var error = '';
 

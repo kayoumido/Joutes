@@ -45,5 +45,9 @@ Route::group(['middleware'=>'checkIsAdmin', 'prefix'=>'admin', 'namespace' => 'A
 });
 
 
+Route::group(['middleware'=>'checkIsWritterOrAdmin', 'prefix'=>'admin', 'namespace' => 'Admin'],function(){
+	Route::resource('tournaments.pools.games', 'TournamentPoolGameController', ['only' => 'update']);	
+});
+
 
 Route::resource('events.import', 'EventImportController', ['only' => ['store']]);

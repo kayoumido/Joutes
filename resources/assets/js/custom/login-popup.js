@@ -19,7 +19,7 @@ $( document ).ready(function() {
     	// Ajaj Posting data
       	$.ajax({
             url         : '/admin',
-            method      : 'POST',
+            method      : 'PUT',
             dataType    : 'html',
             headers		: {'X-CSRF-TOKEN': token},
             data        : {

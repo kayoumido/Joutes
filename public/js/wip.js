@@ -76,22 +76,56 @@ $( document ).ready(function() {
 				// Success message
 				var success = $("<div class='alert alert-success' role='alert'>Changement effectué</div>");
 				$("#match-block").prepend(success);
+				// After 2sec, the alert will disappear
+				disappear(success);
+				ajaxCall();
 			}else{
 				// Error message
 				$(".alert").remove();
-				var error = $("<div class='alert alert-danger' role='alert'>Veuillez entrer un chiffre plus grand que 0...</div>")
+				var error = $("<div class='alert alert-danger' role='alert'>Format de score invalide.</div>");
 				$("#match-block").prepend(error);
+				// After 2sec, the alert will disappear
+				disappear(error);
 			}
 		});
 	}
 
 	function valid(score1, score2){
-		var patternNumeric = /^[0-9]+$/;
+		var patternNumeric = /^[0-9]{1,3}$/;
 		if(!patternNumeric.test(score1) || !patternNumeric.test(score2)){
     		return false;
     	}else{
     		return true;
     	}
+	}
+
+	function disappear(alert){
+		alert.fadeTo(2000, 500).slideUp(500, function(){
+		    alert.slideUp(500);
+		});
+	}
+
+	function ajaxCall(){
+		$.ajax({
+            url         : '/admin/tournaments/12/pools/2/games/1',
+            method      : 'PUT',
+            dataType    : 'html',
+            cache       : false,
+            headers     : {            
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')        
+            },
+            data        : {
+        		dwdw : 123
+            },
+            error : function(xhr, options, error) {
+                console.log(xhr);
+                console.log(options);
+                console.log(error);
+            },
+            success : function(data) {
+                console.log(data);
+            }
+        });
 	}
 
 

@@ -23,11 +23,11 @@
 				      <td data-id="{{$team->id}}">{{ $team->name }}</td>
 				      <td class="action">
 					      <a href="{{ route('teams.edit', $team->id) }}" alt="Modifier la team"> <i class="fa fa-pencil fa-lg action" aria-hidden="true"></i> </a>
-					      {{ Form::open(array('url' => route('teams.destroy', $team->id), 'method' => 'delete')) }}
+					      {{-- {{ Form::open(array('url' => route('teams.destroy', $team->id), 'method' => 'delete')) }}
 					      	<button type="submit" class="button-delete">
 					      		<i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
 					      	</button>
-					      {{ Form::close() }}
+					      {{ Form::close() }} --}}
 				      </td>
 				    </tr>
 

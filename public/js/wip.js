@@ -55,39 +55,38 @@ $( document ).ready(function() {
 		});
 
 		$(checkSquare).click(function(){
+			// Success
 			if(valid($(inputScore1).val(), $(inputScore2).val())){
-				// hide success // error message
-				$(".alert").remove();
-				// Remove square and cross icons and recreate pencil icon
-				tdAction.append(pencil);
-				checkSquare.remove();
-				cross.remove();
-				// Place new score on the TDs
-				tdScore1.append($(inputScore1).val());
-				tdScore2.append($(inputScore2).val());
-				// Remove inputs
-				inputScore1.remove();
-				inputScore2.remove();
+				ajaxCall(tdAction);
+			}
+			// Error
+			else{
+				displayAlert("danger", "Format de score invalide");
+			}
+		});
+	}
+	
+	function displayAlert(type, message){	
+		$(".alert").remove();
 
-				// Add listener to new pencil recreate
-				pencil.click(function(){
-					unlockScore($(this));
-				});
-				// Success message
+		switch(type) {
+
+	    	case "danger":
+
+				var errorAlert = $("<div class='alert alert-danger' role='alert'>"+message+"</div>");
+				$("#match-block").prepend(errorAlert);
+				// After 2sec, the alert will disappear
+				disappear(errorAlert);
+		        break;
+
+		    case "success":
+
 				var success = $("<div class='alert alert-success' role='alert'>Changement effectué</div>");
 				$("#match-block").prepend(success);
 				// After 2sec, the alert will disappear
 				disappear(success);
-				ajaxCall();
-			}else{
-				// Error message
-				$(".alert").remove();
-				var error = $("<div class='alert alert-danger' role='alert'>Format de score invalide.</div>");
-				$("#match-block").prepend(error);
-				// After 2sec, the alert will disappear
-				disappear(error);
-			}
-		});
+		        break;
+		}
 	}
 
 	function valid(score1, score2){
@@ -105,9 +104,14 @@ $( document ).ready(function() {
 		});
 	}
 
-	function ajaxCall(){
+	function ajaxCall(tdAction){
+
+		var tournamentId = $("table#matches").data("tournament");
+		var poolId = $("table#matches").data("pool");
+		var gameId = tdAction.parent().data("game");
+
 		$.ajax({
-            url         : '/admin/tournaments/12/pools/2/games/1',
+            url         : '/admin/tournaments/'+tournamentId+'/pools/'+poolId+'/games/'+gameId+'',
             method      : 'PUT',
             dataType    : 'html',
             cache       : false,
@@ -115,15 +119,47 @@ $( document ).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')        
             },
             data        : {
-        		dwdw : 123
+        		score1 : tdAction.parent().children("td.score1").children("input").val(),
+        		score2 : tdAction.parent().children("td.score2").children("input").val()
             },
-            error : function(xhr, options, error) {
-                console.log(xhr);
-                console.log(options);
-                console.log(error);
+            error : function(xhr, options, ajaxError) {
+            	if(xhr.status != 200){
+            		displayAlert("danger", "Une erreur est survenue ...");
+            	}
             },
             success : function(data) {
-                console.log(data);
+            	// Create new pencil icon
+            	var pencil = document.createElement("i");
+				pencil.className += "fa fa-lg fa-pencil";
+				pencil.setAttribute('aria-hidden',"true");
+
+				// Create variable i will use
+				var tdScore1 = tdAction.parent().children("td.score1");
+				var tdScore2 = tdAction.parent().children("td.score2");
+				var pencil = $(pencil);
+                var checkSquare = tdAction.children("i.fa-check-square-o");
+                var cross = tdAction.children("i.fa-times");
+
+				// Remove square and cross icons and add pencil icon
+				tdAction.append(pencil);
+				checkSquare.remove();
+				cross.remove();
+
+				// Place new score on the TDs
+				tdScore1.append(tdScore1.children("input").val());
+				tdScore2.append(tdScore2.children("input").val());
+
+				// Remove inputs
+				tdScore1.children("input").remove();
+				tdScore2.children("input").remove();
+
+				// Add listener to new pencil recreate
+				pencil.click(function(){
+					unlockScore($(this));
+				});
+
+				// Display success message
+				displayAlert("success", "Changement effectué")
             }
         });
 	}

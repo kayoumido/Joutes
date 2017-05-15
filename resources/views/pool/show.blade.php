@@ -16,36 +16,31 @@
 			<h2>Matchs et Résultats</h2>
 			<h3>{{Carbon\Carbon::parse($pool->games[0]->start_time)->format('d.m.Y')}}</h3>
 			
-			<table id="matches">
+			<table id="matches" data-tournament="{{$pool->tournament->id}}" data-pool="{{$pool->id}}">
 				@foreach ($pool->games as $game)
-					<!-- No teams - no score -->
-					@if (empty($game->contender1->team) || empty($game->contender2->team))
-						<tr>
+					<tr data-game="{{$game->id}}">
+						<?php // No teams - no score ?>
+						@if (empty($game->contender1->team) || empty($game->contender2->team))
 							<td class="contender1">À définir</td>
 							<td>{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
 							<td class="contender2">À définir</td>
-						</tr>
-					@else
-						<!-- teams - no score -->
-						@if(empty($game->score_contender1) || empty($game->score_contender2))
-							<tr>
+						@else
+							<?php // teams - no score ?>
+							@if(empty($game->score_contender1) || empty($game->score_contender2))
 								<td class="contender1">{{$game->contender1->team->name}}</td>
 								<td>{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
 								<td class="contender2">{{$game->contender2->team->name}}</td>
-							</tr>
-						@else
-							<!-- teams and score -->
-							
-							<tr>
+							@else
+								<?php //teams and score ?>
 								<td class="contender1">{{$game->contender1->team->name}}</td>
 								<td class="score1">{{$game->score_contender1}}</td>
 								<td> - </td>
 								<td class="score2">{{$game->score_contender2}}</td>
 								<td class="contender2">{{$game->contender2->team->name}}</td>
 								<td class="action"><i class="fa fa-lg fa-pencil" aria-hidden="true"></td>
-							</tr>
+							@endif
 						@endif
-					@endif
+					</tr>
 				@endforeach
 			</table>
 

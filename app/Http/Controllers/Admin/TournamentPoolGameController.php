@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Game;
 
 class TournamentPoolGameController extends Controller
 {
@@ -16,8 +17,11 @@ class TournamentPoolGameController extends Controller
      *
      * @author Dessaules Loïc
      */
-    public function update(Request $request, $tournament, $pool, $game)
+    public function update(Request $request, $tournamentId, $poolId, $gameId)
     {   
-    	return $request->dwdw;
+        $game = Game::find($gameId);
+        $game->score_contender1 = $request->score1;
+        $game->score_contender2 = $request->score2;
+        $game->save();
     }
 }

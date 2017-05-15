@@ -44,7 +44,7 @@ Route::group(['middleware'=>'checkIsAdmin', 'prefix'=>'admin', 'namespace' => 'A
 	Route::resource('teams.participants', 'TeamParticipantController', ['only' => ['destroy', 'store']]);
 });
 
-
+/* Authorization for Writter or Admin*/ 
 Route::group(['middleware'=>'checkIsWritterOrAdmin', 'prefix'=>'admin', 'namespace' => 'Admin'],function(){
 	Route::resource('tournaments.pools.games', 'TournamentPoolGameController', ['only' => 'update']);	
 });

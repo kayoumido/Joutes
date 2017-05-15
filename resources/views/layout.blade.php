@@ -29,8 +29,8 @@
 
                 {{ Form::open(array('url' => route('admin.store'), 'method' => 'post', 'id' => 'login-form')) }}
                     {{ Form::label('username', 'Nom d\'utilisateur : ') }}
-                    @if(isset($error))
-                        {{ Form::text('username', $error['username'], array('required' => '')) }}
+                    @if(isset($errorLogin))
+                        {{ Form::text('username', $errorLogin['username'], array('required' => '')) }}
                     @else
                         {{ Form::text('username', null, array('required' => '')) }}
                     @endif

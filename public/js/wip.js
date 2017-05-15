@@ -110,6 +110,15 @@ $( document ).ready(function() {
 		var poolId = $("table#matches").data("pool");
 		var gameId = tdAction.parent().data("game");
 
+		// Create the loader
+		var opac = document.createElement("div");
+		opac.id += "opac";
+		var imgLoader = document.createElement('img');
+		imgLoader.className += "loader";
+		imgLoader.src = '/images/loader.gif';
+		opac.prepend(imgLoader);
+		document.body.prepend(opac);
+
 		$.ajax({
             url         : '/admin/tournaments/'+tournamentId+'/pools/'+poolId+'/games/'+gameId+'',
             method      : 'PUT',
@@ -126,6 +135,8 @@ $( document ).ready(function() {
             	if(xhr.status != 200){
             		displayAlert("danger", "Une erreur est survenue ...");
             	}
+            	// Remove loader
+				opac.remove();
             },
             success : function(data) {
             	// Create new pencil icon
@@ -160,6 +171,9 @@ $( document ).ready(function() {
 
 				// Display success message
 				displayAlert("success", "Changement effectué")
+
+				// Remove loader
+				opac.remove();
             }
         });
 	}

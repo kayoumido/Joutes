@@ -431,5 +431,5 @@ form .btn-success, form .btn-success:hover, .btn-login-form{
 }
 
 input::placeholder {
-  color: black !important;
+  color: #8c8585 !important;
 }

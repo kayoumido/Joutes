@@ -16,9 +16,11 @@ $( document ).ready(function() {
 		// Create form inputs
 		var inputScore1 = document.createElement("input");
 		inputScore1.setAttribute('type',"number");
+		inputScore1.setAttribute('min',"0");
 		inputScore1.setAttribute('value',score1);
 		var inputScore2 = document.createElement("input");
 		inputScore2.setAttribute('type',"number");
+		inputScore2.setAttribute('min',"0");
 		inputScore2.setAttribute('value',score2);
 		// Append
 		tdScore1.append(inputScore1);
@@ -99,7 +101,7 @@ $( document ).ready(function() {
 	}
 
 	function disappear(alert){
-		alert.fadeTo(2000, 500).slideUp(500, function(){
+		alert.fadeTo(3000, 500).slideUp(500, function(){
 		    alert.slideUp(500);
 		});
 	}

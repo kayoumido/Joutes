@@ -124,7 +124,7 @@ $( document ).ready(function() {
 		$.ajax({
             url         : '/admin/tournaments/'+tournamentId+'/pools/'+poolId+'/games/'+gameId+'',
             method      : 'PUT',
-            dataType    : 'html',
+            dataType    : 'json',
             cache       : false,
             headers     : {            
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')        
@@ -171,6 +171,9 @@ $( document ).ready(function() {
 					unlockScore($(this));
 				});
 
+				// Update the rankings table
+				updateRankingstable(data);
+
 				// Display success message
 				displayAlert("success", "Changement effectué")
 
@@ -178,6 +181,27 @@ $( document ).ready(function() {
 				opac.remove();
             }
         });
+	}
+
+	function updateRankingstable(rankings){
+		// Clear the Tbdy and rebuilt it
+		var tBody = $("#pool-rankings-table tbody");
+		tBody.empty();
+		for (var i = 0; i < rankings.length; i++) {
+			tr = document.createElement("tr");
+			allTds = `
+						<td>`+(i+1)+`</td>
+						<td>`+rankings[i]["team"]+`</td>
+						<td>`+rankings[i]["score"]+`</td>
+						<td>`+rankings[i]["W"]+`</td>
+						<td>`+rankings[i]["L"]+`</td>
+						<td>`+rankings[i]["D"]+`</td>
+						<td>`+rankings[i]["+-"]+`</td>
+					`;
+			tr.innerHTML = allTds;
+			tBody.append(tr);
+		}
+		
 	}
 
 

@@ -83,7 +83,7 @@ $( document ).ready(function() {
 
 		    case "success":
 
-				var success = $("<div class='alert alert-success' role='alert'>Changement effectué</div>");
+				var success = $("<div class='alert alert-success' role='alert'>"+message+"</div>");
 				$("#match-block").prepend(success);
 				// After 2sec, the alert will disappear
 				disappear(success);
@@ -175,7 +175,7 @@ $( document ).ready(function() {
 				updateRankingstable(data);
 
 				// Display success message
-				displayAlert("success", "Changement effectué")
+				displayAlert("success", "Changement effectué et classement mis à jour")
 
 				// Remove loader
 				opac.remove();

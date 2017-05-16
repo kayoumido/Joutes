@@ -3,6 +3,7 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Carbon\Carbon;
 
 /**
  * Model of tournaments table.
@@ -71,14 +72,21 @@ class Tournament extends Model
      *
      * @author Doran Kayoumi
      */
-    public function GetActiveGames($limit, $after = 0) {
+    public function GetActiveGames($limit, $lastgameid = null) {
 
-        $pools = $this->pools;
-
+        $pools            = $this->pools;
+        $dt               = Carbon::now("Europe/Berlin");
+        $timelimiter      = $dt->toTimeString();
         $tournament_games = new Collection();
 
+        // check if a game id was given
+        if ($lastgameid) {
+            $lastgame    = Game::find($lastgameid);
+            $timelimiter = $lastgame->start_time;
+        }
+
         foreach ($pools as $pool) {
-            $pool_games = $pool->games->where('start_time', '>=', $after);
+            $pool_games = $pool->games->where('start_time', '>=', $timelimiter)->where('id', '!=', $lastgameid);
             $pool_games = Game::cleanEmptyContender($pool_games);
 
             if (count($pool_games) !== 0)

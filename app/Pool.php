@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 /**
  * Model of pools table.
  *
@@ -142,4 +144,29 @@ class Pool extends Model
         }
         return $teams;
     }
+
+    /**
+     * Return true or false if the pool is editable by the person connected or no
+     *
+     * @return boolean
+     *
+     * @author Loïc Dessaules
+     */
+    public function isEditable(){
+        if(Auth::check()){
+            $role = Auth::user()->role;
+            if($role == "writter" || $role == "administrator"){
+                if($this->isFinished == 0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
 }

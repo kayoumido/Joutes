@@ -104,6 +104,7 @@ table#matches td.contender2{
 	width: 125px;
 	text-align: right;
 	padding-right: 10px;
+	border-right: 1px solid #DDD;
 }
 table#matches td.score1{
 	text-align: right;
@@ -120,7 +121,7 @@ table#matches td input[type="number"] {
 table#matches td.action {
 	width: 65px;
     background-color: #F5F8FA;
-    border-left: 1px solid #DDD;
+    border-left: none!important;
     border-top: none!important;
     border-bottom: none!important;
 }

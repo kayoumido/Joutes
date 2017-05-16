@@ -18,18 +18,18 @@ class ScheduleController extends Controller {
         $games;
 
         // check if a next match time was given
-        if (empty($request->next)) {
-            $games = $this->getFirst($request->limit, $tournament_id);
+        if (empty($request->first_game_id)) {
+            $games = $this->getFirst($request->nb_matches, $tournament_id);
         }
         else {
-            $games = $this->refresh($request->limit, $tournament_id, $request->next, $request->last);
+            $games = $this->refresh($request->nb_matches, $tournament_id, $request->first_game_id, $request->last_game_id);
         }
 
         return $games;
     }
 
     private function getFirst($limit, $tournament_id) {
-        $games = Tournament::find($tournament_id)->GetActiveGames($limit);
+        $games = Tournament::find($tournament_id)->GetActiveGames($limit , "");
 
         return $this->response->collection($games, new ScheduleTransformer);
     }

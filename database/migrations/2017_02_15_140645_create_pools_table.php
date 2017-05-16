@@ -13,22 +13,23 @@ class CreatePoolsTable extends Migration
      */
     public function up()
     {
-         Schema::create('pools', function (Blueprint $table) { 
-            $table->increments('id'); 
-            $table->time('start_time')->nullable(); 
+         Schema::create('pools', function (Blueprint $table) {
+            $table->increments('id');
+            $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->string('poolName', 45);
             $table->integer('stage');
-            $table->integer('poolSize'); 
+            $table->integer('poolSize');
+            $table->integer('isFinished');
 
             $table->integer('tournament_id')->unsigned();
             $table->integer('mode_id')->unsigned();
             $table->integer('gameType_id')->unsigned();
- 
+
             $table->foreign('tournament_id')->references('id')->on('tournaments');
-            $table->foreign('mode_id')->references('id')->on('poolModes'); 
-            $table->foreign('gameType_id')->references('id')->on('gameTypes'); 
-        }); 
+            $table->foreign('mode_id')->references('id')->on('poolModes');
+            $table->foreign('gameType_id')->references('id')->on('gameTypes');
+        });
     }
 
     /**

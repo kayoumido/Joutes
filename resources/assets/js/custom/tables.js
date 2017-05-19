@@ -106,12 +106,12 @@ $( document ).ready(function() {
 		window.location.href = "participants/"+participant_id;
 	});
 
-	$('#participants-show-table tr td').click(function(){
+	$('#participants-show-table tr td.clickable').click(function(){
 		var team_id = $(this).data("id");
 		window.location.href = "/admin/teams/"+team_id;
 	});
 
-	$('#tournament-teams-table tr td').click(function(){
+	$('#tournament-teams-table tr td.clickable').click(function(){
 		var team_id = $(this).data("id");
 		window.location.href = "/admin/teams/"+team_id;
 	});

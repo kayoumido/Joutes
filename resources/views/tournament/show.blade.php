@@ -36,7 +36,7 @@
 						@if(count($tournament->teams) > 0)
 					  		@foreach ($tournament->teams as $team)
 					  			<tr>
-									<td data-id="{{$team->id}}">{{$team->name}}</td>
+									<td class="clickable" data-id="{{$team->id}}">{{$team->name}}</td>
 								</tr>
 							@endforeach
 						@else
@@ -59,7 +59,7 @@
 						@if(count($tournament->sport->courts) > 0)
 							@foreach ($tournament->sport->courts as $court)
 					  		<tr>
-								<td>{{$court->name}}</td>
+								<td class="clickable">{{$court->name}}</td>
 							</tr>
 							@endforeach
 						@else

@@ -122,7 +122,7 @@ table#pools-table td:hover,
 table#teams-table td:hover,
 table#teams-show-table td:hover,
 table#participants-table td:hover,
-table#tournament-teams-table td:hover,
+table#tournament-teams-table td.clickable:hover,
 table#participants-show-table td:hover{
 	cursor: pointer;
 }

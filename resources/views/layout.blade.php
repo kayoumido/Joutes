@@ -14,7 +14,7 @@
 
         <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" />
-        
+
     </head>
     <body>
 
@@ -176,7 +176,7 @@
                 </div>
             </div>
         </footer> --}}
-        
+
         <script src="{{ asset('js/vendor/app.js') }}"></script>
         <script src="{{ asset('js/vendor/sweetalert.min.js') }}"></script>
         <script src="{{ asset('js/vendor/select2.full.min.js') }}"></script>
@@ -184,5 +184,6 @@
         <script src="{{ asset('js/vendor/dataTables.bootstrap4.min.js') }}"></script>
 
         <script src="{{ asset('js/main.js') }}"></script>
+        <script src="{{ asset('js/tournament.schedule.open.js') }}"></script>
     </body>
 </html>

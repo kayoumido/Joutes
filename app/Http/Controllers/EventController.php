@@ -17,7 +17,7 @@ class EventController extends Controller
      */
     public function index(Request $request) {
 
-        $events = Event::all();
+        $events = Event::all()->sortByDesc("id");
 
         // check is it's an api request
         if ($request->is('api/*')) {

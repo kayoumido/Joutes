@@ -59,13 +59,13 @@
 				<table id="pool-rankings-table" class="table table-striped table-bordered translate" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Équipes</th>
-							<th>Pts</th>
-							<th>G</th>
-							<th>P</th>
-							<th>N</th>
-							<th>+/-</th>
+							<th title="Position">#</th>
+							<th title="Équipes">Équipes</th>
+							<th title="Points">Pts</th>
+							<th title="Matches gagnés">G</th>
+							<th title="Matches perdus">P</th>
+							<th title="Matches nuls">N</th>
+							<th title="Différence but marqués / encaissés">+/-</th>
 						</tr>
 					</thead>
 					<tbody>

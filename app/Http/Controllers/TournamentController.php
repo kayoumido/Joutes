@@ -19,7 +19,7 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        $tournaments = Tournament::all();
+        $tournaments = Tournament::all()->sortBy("start_date");
 
         foreach ($tournaments as $tournament) {
             if (empty($tournament->img)) {

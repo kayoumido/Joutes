@@ -118,6 +118,9 @@ table#matches td input[type="number"] {
     width: 60px;
     text-align: center;
 }
+table#matches td.separator {
+	width: 30px;
+}
 table#matches td.action {
 	width: 65px;
     background-color: #F5F8FA;

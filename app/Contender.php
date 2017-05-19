@@ -18,7 +18,7 @@ class Contender extends Model
      * @author Loïc Dessaules
      */
     public function team(){
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo('App\Team');
     }
 
 }

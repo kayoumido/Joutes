@@ -21,7 +21,7 @@ class Schedule {
 
     /**
      * Refresh schedule
-     * @param  {dom} container     dom element that contains schedule
+     * @param  {jquery} container  container in which the html will be displayed
      * @param  {int} limit         max number of wanted matches
      * @param  {int} tournament_id id of the tournament from which matches will be retrieved
      * @return {void}
@@ -32,21 +32,9 @@ class Schedule {
         var self = new Schedule();
 
         self.replaceOutdated(tournament_id, container);
-        // container.children('.schedule-row').each(function() {
-        //
-        //     var currentrow = $(this);
-        //     let gameid     = $(this).children('.match').data('id');
-        //     let lastgameid = container.children('.row').last().children('.match').data('id');
-        //
-        //     var result = self.matches(limit, tournament_id, gameid, lastgameid);
-        //
-        //     result.done(function(data) {
-        //
-        //         if (!$.isEmptyObject(data)) {
-        //             self.htmldisplay(data, container, currentrow);
-        //         }
-        //     });
-        // });
+
+        // check
+        if ((limit - container.children('.schedule-row').length) > 0) self.completeDisplay(tournament_id, limit, container.children('.schedule-row').length, container);
     }
 
     /**
@@ -82,8 +70,8 @@ class Schedule {
     /**
      * Generates and displays html for schedule
      * @param  {array}  matches    array of games returned from api
-     * @param  {class}  container  container in which the html will be displayed
-     * @param  {jquery} row        {optional} row containing outdated match
+     * @param  {jquery} container  container in which the html will be displayed
+     * @param  {jquery} [row=null] row containing outdated match
      * @return {void}
      *
      * @author Doran Kayoumi
@@ -115,9 +103,15 @@ class Schedule {
         }
     }
 
+    /**
+     * Replace any outdated matches with new ones
+     * @param  {int} tournament_id      id of the tournament from which to get matches
+     * @param  {jquery} container       container in which the html will be displayed
+     * @return {void}
+     *
+     * @author Doran Kayoumi
+     */
     replaceOutdated(tournament_id, container) {
-
-        var self = this;
 
         // loop through schedule rows
         container.children('.schedule-row').each(function() {
@@ -126,27 +120,35 @@ class Schedule {
             let gameid     = $(this).children('.match').data('id');
             let lastgameid = container.children('.row').last().children('.match').data('id');
 
-            var result = self.getMatches(tournament_id, 1, gameid, lastgameid);
+            var result = this.getMatches(tournament_id, 1, gameid, lastgameid);
 
             result.done(function(data) {
-                console.log("Cleaning");
                 if (!$.isEmptyObject(data)) {
-                    self.updateDisplay(data, container, currentrow);
+                    this.updateDisplay(data, container, currentrow);
                 }
             });
         });
     }
 
-    completeDisplay(tournament_id, max_matches, nb_current_matches) {
-        let gameid     = $(this).children('.match').data('id');
+    /**
+     * Fill page with the max amout of matches
+     * @param  {int} tournament_id      id of the tournament from which to get matches
+     * @param  {int} max_matches        max number of matches that can be displayed on the page
+     * @param  {int} nb_current_matches number currently displayed
+     * @param  {jquery} container       container in which the html will be displayed
+     * @return {void}
+     *
+     * @author Doran Kayoumi
+     */
+    completeDisplay(tournament_id, max_matches, nb_current_matches, container) {
+
         let lastgameid = container.children('.row').last().children('.match').data('id');
 
-        var result = self.getMatches(tournament_id, 1, gameid, lastgameid);
+        var result = this.getMatches(tournament_id, (max_matches - nb_current_matches), null, lastgameid);
 
         result.done(function(data) {
-            console.log("Cleaning");
             if (!$.isEmptyObject(data)) {
-                self.updateDisplay(data, container, currentrow);
+                this.updateDisplay(data, container);
             }
         });
     }

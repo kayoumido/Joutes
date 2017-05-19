@@ -113,6 +113,8 @@ class Schedule {
      */
     replaceOutdated(tournament_id, container) {
 
+        var self = this;
+
         // loop through schedule rows
         container.children('.schedule-row').each(function() {
 
@@ -120,11 +122,11 @@ class Schedule {
             let gameid     = $(this).children('.match').data('id');
             let lastgameid = container.children('.row').last().children('.match').data('id');
 
-            var result = this.getMatches(tournament_id, 1, gameid, lastgameid);
+            var result = self.getMatches(tournament_id, 1, gameid, lastgameid);
 
             result.done(function(data) {
                 if (!$.isEmptyObject(data)) {
-                    this.updateDisplay(data, container, currentrow);
+                    self.updateDisplay(data, container, currentrow);
                 }
             });
         });
@@ -142,13 +144,13 @@ class Schedule {
      */
     completeDisplay(tournament_id, max_matches, nb_current_matches, container) {
 
+        var self       = this;
         let lastgameid = container.children('.row').last().children('.match').data('id');
-
-        var result = this.getMatches(tournament_id, (max_matches - nb_current_matches), null, lastgameid);
+        var result     = this.getMatches(tournament_id, (max_matches - nb_current_matches), null, lastgameid);
 
         result.done(function(data) {
             if (!$.isEmptyObject(data)) {
-                this.updateDisplay(data, container);
+                self.updateDisplay(data, container);
             }
         });
     }

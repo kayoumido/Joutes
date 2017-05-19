@@ -9,7 +9,7 @@
 
 		<h1 class="tournamentName">
 			{{ $tournament->name }}
-			<a href="{{ route('tournaments.schedule.index', $tournament->id) }}" class="greenBtn" title="Créer un événement">Affichage écran geant</i></a>
+			<a href="{{ route('tournaments.schedule.index', $tournament->id) }}" class="greenBtn big-screen" title="Affichage écran géant">Affichage écran geant</i></a>
 		</h1>
 
 		<div class="right">

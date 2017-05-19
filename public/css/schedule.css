@@ -7,7 +7,13 @@
     margin-left: 0;
     margin-right: 0;
 }
-.match {
+
+.schedule .header {
+    background-color: #353535;
+}
+
+.schedule .match,
+.schedule .header {
 
     color: #fafafa;
     border-radius: 3px;
@@ -17,11 +23,12 @@
     font-weight: 800;
 }
 
-.info {
+.schedule .match .info,
+.schedule .header .info {
     font-size: 8rem;
 }
 
-.team-name {
+.schedule .match .team-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

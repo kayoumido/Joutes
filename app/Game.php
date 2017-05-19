@@ -51,24 +51,4 @@ class Game extends Model {
 
         return $games;
     }
-
-    /**
-     * Get games for schedule
-     * @param  integer  $limit - number of games wanted
-     * @param  time     $after - Time after which games are wanted
-     * @return array - array of games
-     *
-     * @author Doran Kayoumi
-     */
-    public static function schedule($limit, $after = '0') {
-
-        $games = self::where('start_time', '>=', $after)
-            ->orderBy('date', 'ASC')
-            ->orderBy('start_time', 'ASC')
-            ->get();
-
-        $games = self::cleanEmptyContender($games);
-
-        return $games->take($limit);
-    }
 }

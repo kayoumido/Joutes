@@ -1,11 +1,18 @@
 $(document).ready(function() {
 
-    Schedule.initSchedule(Math.floor($(document).height() / 173));
+    $('body').css('overflow','hidden');
+
+    // get tournament id
+    var tournament_id = $('.schedule').data('tournament');
+
+    console.log(tournament_id);
+
+    // get number of matches that can be displayed
+    var page_limit = Math.floor($(document).height() / 173) - 1;
+
+    Schedule.init(page_limit, tournament_id);
 
     setInterval(function() {
-
-        //$('.schedule').empty();
-        Schedule.updateSchedule($('.schedule'));
-
+        Schedule.refresh($('.schedule'), page_limit, tournament_id);
     }, 10 * 1000); // 60 * 1000ms
 });

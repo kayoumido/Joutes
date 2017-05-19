@@ -17,34 +17,17 @@ class ScheduleController extends Controller {
 
         $games;
 
-        // check if a next match time was given
-        if (empty($request->first_game_id)) {
-            $games = $this->getFirst($request->nb_matches, $tournament_id);
+        // check if a first_game_id was given
+        if (!empty($request->first_game_id)) {
+            // get next match time and current time
+            $time         = Game::find($request->first_game_id)->start_time;
+            $current_time = Carbon::now("Europe/Berlin")->toTimeString();
+
+            // check if an update is needed
+            if ($time > $current_time) return json_encode(new \stdClass);
         }
-        else {
-            $games = $this->refresh($request->nb_matches, $tournament_id, $request->first_game_id, $request->last_game_id);
-        }
 
-        return $games;
-    }
-
-    private function getFirst($limit, $tournament_id) {
-        $games = Tournament::find($tournament_id)->GetActiveGames($limit , "");
-
-        return $this->response->collection($games, new ScheduleTransformer);
-    }
-
-    private function refresh($limit, $tournament_id, $next, $last) {
-
-        // get next match time and current time
-        $time         = Game::find($next)->start_time;
-        $current_time = Carbon::now("Europe/Berlin")->toTimeString();
-
-        // check if an update is needed
-        if ($time > $current_time) return json_encode(new \stdClass);
-
-        // get next games
-        $games = Tournament::find($tournament_id)->GetActiveGames($limit, $last);
+        $games = Tournament::find($tournament_id)->GetActiveGames($request->nb_matches, $request->last_game_id);
 
         return $this->response->collection($games, new ScheduleTransformer);
     }

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Closure;
 
-class CheckIsAdmin
+class CheckIsWritterOrAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,16 @@ class CheckIsAdmin
      */
     public function handle($request, Closure $next)
     {
-        
-        if(!Auth::check()){
-            return redirect(route('events.index'));
-        }else if(Auth::user()->role != 'administrator'){
+        $role = Auth::user()->role;
+
+        if(Auth::check()){
+            if($role == "writter" || $role == "administrator"){
+                return $next($request);
+            }else{
+                return redirect(route('events.index')); 
+            }
+        }else{
             return redirect(route('events.index'));
         }
-
-        return $next($request);
     }
 }

@@ -3,6 +3,7 @@
     <head>
 
         <meta charset="utf-8" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <title>Joutes</title>
 
@@ -184,5 +185,6 @@
         <script src="{{ asset('js/vendor/dataTables.bootstrap4.min.js') }}"></script>
 
         <script src="{{ asset('js/all.js') }}"></script>
+        <script src="{{ asset('js/wip.js') }}"></script>
     </body>
 </html>

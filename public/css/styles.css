@@ -80,10 +80,14 @@ table#matches{
     width: 500px;
 	margin: 0px auto;
 	font-size: 17px;
+	border-left: 1px solid #DDD;
 }
 table#matches tr{
 	height: 35px;
-	border: 1px solid #DDD;
+}
+table#matches td {
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
 }
 table#matches tr:nth-child(even){
 	background-color: #FFF;
@@ -100,6 +104,36 @@ table#matches td.contender2{
 	width: 125px;
 	text-align: right;
 	padding-right: 10px;
+	border-right: 1px solid #DDD;
+}
+table#matches td.score1{
+	text-align: right;
+	width: 60px;
+}
+table#matches td.score2{
+	text-align: left;
+	width: 60px;
+}
+table#matches td input[type="number"] {
+    width: 60px;
+    text-align: center;
+}
+table#matches td.separator {
+	width: 30px;
+}
+table#matches td.action {
+	width: 65px;
+    background-color: #F5F8FA;
+    border-left: none!important;
+    border-top: none!important;
+    border-bottom: none!important;
+}
+table#matches td.action i.fa-check-square-o{
+	color: #45BF55;
+}
+table#matches td.action i.fa-times{
+	color: #D40D12;
+    margin-left: 8px;
 }
 table#sports-table td.action,
 table#courts-table td.action,
@@ -388,6 +422,25 @@ span#login_link:hover{
 
 #titleTeam, #titleParticipant{
 	float: left;
+}
+
+#opac{
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #000;
+    z-index: 1;
+    opacity: 0.8;
+    top:0px;
+    left: 0px;
+    text-align: center;
+}
+#opac img.loader{
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
 }
 
 form .btn-success, form .btn-success:hover, .btn-login-form{

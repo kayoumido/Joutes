@@ -63,7 +63,7 @@ $( document ).ready(function() {
 		    	var patternName = /^[a-zA-Z0-9-_ ]{3,45}$/;
 		    	var patternSport = /^[0-9]+$/; // '' = empty, 1-2-3-... = sport
 		    	var patternDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-		    	var patternTime = /^([01]\d|2[0-3]):?([0-5]\d)$/;
+		    	var patternTime = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
 		    	if(!patternName.test(nameValue)){
 		    		error += 'Le champ Nom ne doit pas être vide et doit avoir entre 3 et 45 caractères.<br>';

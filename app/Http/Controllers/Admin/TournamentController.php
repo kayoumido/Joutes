@@ -72,7 +72,7 @@ class TournamentController extends Controller
         /* CUSTOM SPECIFIC VALIDATION */
         $customErrors = array();
 
-        $patternTime =  '/^([01]\d|2[0-3]):?([0-5]\d)$/';
+        $patternTime =  '/^([01]\d|2[0-3]):([0-5]\d)$/';
         $patternDate = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/';
         // The time must be HH:MM
         if(!preg_match($patternTime, $request->input('startTime'))){
@@ -123,9 +123,13 @@ class TournamentController extends Controller
             }
             
             $dropdownListSports = $this->getDropDownListSports();
-            $dropdownListTeams = $this->getDropDownListTeams();
+            $dropdownListSportsWithCourt = $this->getDropDownListSportsWithCourt();
+            $dropdownListSportsWithNoCourt = $this->getDropDownListSportsWithNoCourt();
+            $dropdownListTeams = $this->getDropDownListTeams($tournament);
             return view('tournament.edit')->with('dropdownListSports', $dropdownListSports)
                                           ->with('dropdownListTeams', $dropdownListTeams)
+                                          ->with('dropdownListSportsWithCourt', $dropdownListSportsWithCourt)
+                                          ->with('dropdownListSportsWithNoCourt', $dropdownListSportsWithNoCourt)
                                           ->with('tournament', $tournament)
                                           ->with('sport', $sport)
                                           ->with('customErrors', $customErrors)

@@ -46,7 +46,7 @@ class EventTournamentController extends Controller
         /* CUSTOM SPECIFIC VALIDATION */
         $customErrors = array();
 
-        $patternTime =  '/^([01]\d|2[0-3]):?([0-5]\d)$/';
+        $patternTime =  '/^([01]\d|2[0-3]):([0-5]\d)$/';
         $patternDate = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/';
         // The time must be HH:MM
         if(!preg_match($patternTime, $request->input('startTime'))){
@@ -89,7 +89,8 @@ class EventTournamentController extends Controller
                                             ->with('dropdownListSportsWithNoCourt', $dropdownListSportsWithNoCourt)
                                             ->with('dropdownListTeams', $dropdownListTeams)
                                             ->withErrors($validator->errors())
-                                            ->with('customErrors', $customErrors);
+                                            ->with('customErrors', $customErrors)
+                                            ->with('eventId', $eventId);
         } else {
 
             //move and rename img

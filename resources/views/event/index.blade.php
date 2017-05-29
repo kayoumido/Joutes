@@ -47,6 +47,9 @@
 					</div>
 				</div>
 			@endforeach
+			@if(count($events) == 0)
+				<div class="col-md-12">Aucun événement pour l'instant...</div>
+			@endif
 
 		</div>
 

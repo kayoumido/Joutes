@@ -16,12 +16,17 @@
 			</thead>
 
 			<tbody>
-
-			  	@foreach ($participants as $participant)
+				@if(count($participants) > 0)
+				  	@foreach ($participants as $participant)
+						<tr>
+					      <td data-id="{{$participant->id}}">{{ $participant->last_name }} {{ $participant->first_name }}</td>
+					    </tr>
+					@endforeach
+				@else
 					<tr>
-				      <td data-id="{{$participant->id}}">{{ $participant->last_name }} {{ $participant->first_name }}</td>
-				    </tr>
-				@endforeach
+						<td>Aucun participant pour l'instant ...</td>
+					</tr>
+			  	@endif
 
 		  	</tbody>
 

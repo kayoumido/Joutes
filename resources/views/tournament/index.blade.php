@@ -56,7 +56,9 @@
 					</a>
 				</div>
 			@endforeach
-
+			@if(count($tournaments) == 0)
+				<div class="col-md-12">Aucun tournoi pour l'instant...</div>
+			@endif
 		</div>
 
 	</div>

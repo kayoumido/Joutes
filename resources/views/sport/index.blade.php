@@ -17,20 +17,26 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($sports as $sport)
+				@if(count($sports) > 0)
+					@foreach ($sports as $sport)
+						<tr>
+							<td>{{$sport->name}}</td>
+							<td>{{$sport->description}}</td>
+							<td class="action">
+								<a href="{{route('sports.edit',$sport->id)}}" title="Éditer le sport" class="edit"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></i></a>
+								<!--{{ Form::open(array('url' => route('sports.destroy', $sport->id), 'method' => 'delete')) }}
+									<button type="button" class="button-delete" data-name="{{ $sport->name }}" data-type="sport">
+					                    <i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
+					                </button>
+								{{ Form::close() }}-->
+							</td>
+						</tr>
+					@endforeach
+				@else
 					<tr>
-						<td>{{$sport->name}}</td>
-						<td>{{$sport->description}}</td>
-						<td class="action">
-							<a href="{{route('sports.edit',$sport->id)}}" title="Éditer le sport" class="edit"><i class="fa fa-lg fa-pencil action" aria-hidden="true"></i></a>
-							<!--{{ Form::open(array('url' => route('sports.destroy', $sport->id), 'method' => 'delete')) }}
-								<button type="button" class="button-delete" data-name="{{ $sport->name }}" data-type="sport">
-				                    <i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>
-				                </button>
-							{{ Form::close() }}-->
-						</td>
+						<td>Aucun sport pour l'instant ...</td>
 					</tr>
-				@endforeach
+			  	@endif
 			</tbody>
 		</table>
 

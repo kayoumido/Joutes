@@ -86,7 +86,7 @@ class Tournament extends Model
         }
 
         foreach ($pools as $pool) {
-            $pool_games = $pool->games->where('start_time', '>=', $timelimiter)->where('id', '!=', $lastgameid);
+            $pool_games = $pool->games->where('start_time', '>=', $timelimiter)->where('id', '!=', $lastgameid)->where('score_contender1', '=', null);
             $pool_games = Game::cleanEmptyContender($pool_games);
 
             if (count($pool_games) !== 0)

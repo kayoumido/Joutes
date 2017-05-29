@@ -36,7 +36,13 @@
 						@if(count($tournament->teams) > 0)
 					  		@foreach ($tournament->teams as $team)
 					  			<tr>
-									<td class="clickable" data-id="{{$team->id}}">{{$team->name}}</td>
+					  				@if(Auth::check())
+                        				@if(Auth::user()->role == 'administrator')
+											<td class="clickable" data-id="{{$team->id}}">{{$team->name}}</td>
+										@endif
+									@else
+										<td data-id="{{$team->id}}">{{$team->name}}</td>
+									@endif
 								</tr>
 							@endforeach
 						@else

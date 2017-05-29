@@ -7,7 +7,7 @@
 	<div class="container">
         <a href="{{URL::previous()}}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
-		<h1>{{$pool->tournament->name}} - {{$pool->poolName}}</h1>
+		<h1>{{$pool->tournament->name}} - Phase {{ $pool->stage }} - {{$pool->poolName}}</h1>
 
 		<br>
 
@@ -15,7 +15,7 @@
 
 			<h2>Matchs et Résultats</h2>
 			<h3>{{Carbon\Carbon::parse($pool->games[0]->start_time)->format('d.m.Y')}}</h3>
-			
+
 			<table id="matches" data-tournament="{{$pool->tournament->id}}" data-pool="{{$pool->id}}">
 				@foreach ($pool->games as $game)
 					<tr data-game="{{$game->id}}">

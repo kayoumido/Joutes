@@ -24,13 +24,18 @@ $( document ).ready(function() {
 
 	        case "formCourt":
 	        	var nameValue = $('#formCourt #name').val();
+	        	var acronymValue = $('#formCourt #acronym').val();
 		    	var sportValue = $('#formCourt #sport').val(); // '' = empty, 1-2-3-... = sport
 
 		    	var patternName = /^[a-zA-Z0-9-_ ]{1,20}$/;
+		    	var patternAcronym = /^[a-zA-Z0-9-_ ]{3,3}$/;
 		    	var patternSport = /^[0-9]+$/;
 
 		    	if(!patternName.test(nameValue)){
 		    		error += 'Le champ Nom ne doit pas être vide et doit avoir entre 1 et 20 caractères.<br>';
+		    	}
+		    	if(!patternAcronym.test(acronymValue)){
+		    		error += 'Le champ Acronym ne doit pas être vide et doit avoir 3 caractères.<br>';
 		    	}
 		    	if(!patternSport.test(sportValue)){
 		    		error += 'Aucun sport sélectionné.<br>';

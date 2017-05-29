@@ -26,7 +26,11 @@
 				{{ Form::label('name', 'Nom') }}
 				{{ Form::text('name', $court->name, array('class' => 'form-control')) }}
 			</div>
-				<div class="form-group">
+			<div class="form-group">
+				{{ Form::label('acronym', 'Acronyme') }}
+				{{ Form::text('acronym', $court->acronym, array('class' => 'form-control')) }}
+			</div>
+			<div class="form-group">
 				{{ Form::label('Sport', 'Sport') }}
 				{{ Form::select('sport', $dropdownList, $court->sport->id, ['placeholder' => 'Sélectionner', 'class' => 'form-control allSameStyle', 'id' => 'sport']) }}
 			</div>

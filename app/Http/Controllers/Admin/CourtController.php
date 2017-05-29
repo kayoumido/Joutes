@@ -58,6 +58,7 @@ class CourtController extends Controller
         // create the validation rules
         $rules = array(
             'name' => 'required|min:1|max:20',
+            'acronym' => 'required|min:3|max:3',
             'sport' => 'required',
         );
 
@@ -69,6 +70,7 @@ class CourtController extends Controller
         } else {
             $court = new Court;
             $court->name = $request->input('name');
+            $court->acronym = $request->input('acronym');
             $court->sport_id = $request->input('sport');
             $court->save();
 
@@ -129,6 +131,7 @@ class CourtController extends Controller
         // create the validation rules
         $rules = array(
             'name' => 'required|min:1|max:20',
+            'acronym' => 'required|min:3|max:3',
             'sport' => 'required',
         );
 
@@ -139,6 +142,7 @@ class CourtController extends Controller
             return view('court.edit')->with('dropdownList', $dropdownList)->with('court', $court)->withErrors($validator->errors())->with('customError', $customError);
         } else {
             $court->name = $request->input('name');
+            $court->acronym = $request->input('acronym');
             $court->sport_id = $request->input('sport');
             $court->update();
             return redirect()->route('courts.index');

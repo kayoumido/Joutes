@@ -50,47 +50,6 @@
 </div><!-- /.modal -->
 
 
-        {{-- <header class="header">
-            <nav class="navbar">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ route('events.index') }}">
-                        <img src="{{ asset('images/logo.png') }}" alt="">
-                    </a>
-                </div>
-                <div id="navbar-collapse" class="navbar-collapse collapse" aria-expanded="false">
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ route('events.index') }}">Evénements</a></li>
-                        <li><a href="{{ route('tournaments.index') }}">Tournois</a></li>
-                        @if(Auth::check())
-                            @if(Auth::user()->role == 'administrator')
-                                <li><a href="{{ route('sports.index') }}">Sports</a></li>
-                                <li><a href="{{ route('courts.index') }}">Terrains</a></li>
-                                <li><a href="{{ route('teams.index') }}">Equipes</a></li>
-                                <li><a href="{{ route('participants.index') }}">Participants</a></li>
-                            @endif
-                        @endif
-                    </ul>
-                    <div class="nav navbar-nav navbar-right">
-                        <div class="user-infos">
-                            @if(Auth::check())
-                                <span>{{ Auth::user()->username }}</span>
-                                {{ Form::open(array('url' => route('admin.destroy', 0), 'method' => 'delete')) }}
-                                    {{ Form::submit('Déconnexion', array('class' => 'btn btn-danger')) }}
-                                {{ Form::close() }}
-                            @else
-                                <a href="{{ route('admin.index') }}"><button type="button" class="btn btn-success">Connexion</button></a>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header> --}}
         <div class="navbar-header">
             <div class="user-infos">
                 @if(Auth::check())
@@ -156,27 +115,6 @@
                 </div><!-- content -->
 
             </div><!-- page -->
-
-        {{-- <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="copyright">
-                            © 2017 - Centre professionnel du Nord vaudois
-                        </div>
-                        <div class="devs">
-                            <a href="#" class="show-devs">Développeurs</a>
-
-                            <div class="dev-names hide">
-                                <a href="#" class="dev">Doran Kayoumi</a>
-                                <a href="#" class="dev">Loïc Dessaules</a>
-                                <a href="#" class="dev">Antoine Dessauges</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer> --}}
 
         <script src="{{ asset('js/vendor/app.js') }}"></script>
         <script src="{{ asset('js/vendor/sweetalert.min.js') }}"></script>

@@ -189,15 +189,7 @@ $( document ).ready(function() {
 		tBody.empty();
 		for (var i = 0; i < rankings.length; i++) {
 			tr = document.createElement("tr");
-			allTds = `
-						<td>`+(i+1)+`</td>
-						<td>`+rankings[i]["team"]+`</td>
-						<td>`+rankings[i]["score"]+`</td>
-						<td>`+rankings[i]["W"]+`</td>
-						<td>`+rankings[i]["L"]+`</td>
-						<td>`+rankings[i]["D"]+`</td>
-						<td>`+rankings[i]["+-"]+`</td>
-					`;
+			allTds = '<td>'+(i+1)+'</td><td>'+rankings[i]["team"]+'</td><td>'+rankings[i]["score"]+'</td><td>'+rankings[i]["W"]+'</td><td>'+rankings[i]["L"]+'</td><td>'+rankings[i]["D"]+'</td><td>'+rankings[i]["+-"]+'</td>';
 			tr.innerHTML = allTds;
 			tBody.append(tr);
 		}

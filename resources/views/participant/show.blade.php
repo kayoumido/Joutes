@@ -35,7 +35,7 @@
 
 				  	@foreach ($participant->teams as $team)
 						<tr>
-					      <td data-id="{{$team->id}}"> {{ $team->name }} </td>
+					      <td data-id="{{$team->id}}" class="clickable"> {{ $team->name }} </td>
 					      <td class="action">
 						      {{ Form::open(array('url' => route('teams.participants.destroy', [$team->pivot['participant_id'], $team->pivot['team_id']]), 'method' => 'delete')) }}
 						      	<button type="submit" class="button-delete" data-type="memberTeam" data-name='"{{ $participant->last_name }} {{ $participant->first_name }}" de "{{ $team->name }}"'>

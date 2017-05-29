@@ -35,9 +35,9 @@
 				  	@foreach ($team->participants as $participant)
 						<tr>
 							@if($participant->pivot->isCaptain)
-								<td data-id="{{$participant->id}}"> {{ $participant->last_name }} {{ $participant->first_name }} <i class="isCaptain fa fa-star" aria-hidden="true"></i></td>
+								<td data-id="{{$participant->id}}" class="clickable"> {{ $participant->last_name }} {{ $participant->first_name }} <i class="isCaptain fa fa-star" aria-hidden="true"></i></td>
 							@else
-								<td data-id="{{$participant->id}}"> {{ $participant->last_name }} {{ $participant->first_name }}</td>
+								<td data-id="{{$participant->id}}" class="clickable"> {{ $participant->last_name }} {{ $participant->first_name }}</td>
 							@endif
 
 					      	<td class="action">

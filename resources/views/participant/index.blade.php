@@ -19,7 +19,7 @@
 				@if(count($participants) > 0)
 				  	@foreach ($participants as $participant)
 						<tr>
-					      <td data-id="{{$participant->id}}">{{ $participant->last_name }} {{ $participant->first_name }}</td>
+					      <td data-id="{{$participant->id}}" class="clickable">{{ $participant->last_name }} {{ $participant->first_name }}</td>
 					    </tr>
 					@endforeach
 				@else

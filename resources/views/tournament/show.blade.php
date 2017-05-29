@@ -106,7 +106,7 @@
 										@foreach ($pools as $pool)
 											@if ($pool->stage == $i)
 											<tr>
-												<td data-id="{{$pool->id}}">{{$pool->poolName}}</td>
+												<td data-id="{{$pool->id}}" class="clickable">{{$pool->poolName}}</td>
 											</tr>
 											@endif
 										@endforeach

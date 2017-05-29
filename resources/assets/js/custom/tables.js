@@ -85,23 +85,23 @@ $( document ).ready(function() {
 	$('.dataTables_wrapper').removeClass('container-fluid');
 
 	// Redirect when click on a cell
-	$('#pools-table tr td').click(function(){
+	$('#pools-table tr td.clickable').click(function(){
 		var tournament_id = $("#pools-table").data("tournament");
 		var pool_id = $(this).data("id");
 		window.location.href = tournament_id+"/pools/"+pool_id;
 	});
 
-	$('#teams-table tr td').click(function(){
+	$('#teams-table tr td.clickable').click(function(){
 		var team_id = $(this).data("id");
 		window.location.href = "teams/"+team_id;
 	});
 
-	$('#teams-show-table tr td').click(function(){
+	$('#teams-show-table tr td.clickable').click(function(){
 		var participant_id = $(this).data("id");
 		window.location.href = "/admin/participants/"+participant_id;
 	});
 
-	$('#participants-table tr td').click(function(){
+	$('#participants-table tr td.clickable').click(function(){
 		var participant_id = $(this).data("id");
 		window.location.href = "participants/"+participant_id;
 	});

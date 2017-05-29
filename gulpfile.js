@@ -23,6 +23,7 @@ elixir((mix) => {
         	"custom/login-popup.js",
         	"custom/select2.js",
         	"custom/tables.js",
-        	"custom/tournament.schedule.open.js"
+        	"custom/tournament.schedule.open.js",
+            "custom/page-return.js"
     	]);
 });

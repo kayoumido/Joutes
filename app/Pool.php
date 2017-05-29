@@ -156,11 +156,11 @@ class Pool extends Model
         if(Auth::check()){
             $role = Auth::user()->role;
             if($role == "writter" || $role == "administrator"){
-                /*if($this->isFinished == 0){
+                if($this->isFinished == 0){
                     return true;
                 }else{
                     return false;
-                }*/
+                }
                 return true;
             }else{
                 return false;

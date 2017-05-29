@@ -4,7 +4,7 @@
 
 @section('content')
 	<div class="container">
-		<a href="{{ route('tournaments.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>	
+		<a href=""><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>	
 		<h1>Créer un tournoi</h1>
 
 		@if ($errors->any() || isset($customErrors))

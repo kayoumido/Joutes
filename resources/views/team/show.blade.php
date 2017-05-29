@@ -5,7 +5,7 @@
 
 
 	<div class="container">
-		<a href="{{ route('teams.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
+		<a href=""><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
 		<h1> {{ $team->name }}</h1>
 
@@ -39,8 +39,8 @@
 							@else
 								<td data-id="{{$participant->id}}"> {{ $participant->last_name }} {{ $participant->first_name }}</td>
 							@endif
-					      
-					      	<td class="action"> 
+
+					      	<td class="action">
 						      	{{ Form::open(array('url' => route('teams.participants.destroy', [$participant->pivot['participant_id'], $participant->pivot['team_id']]), 'method' => 'delete')) }}
 					      			<button type="submit" class="button-delete" data-type="teamMember" data-name="{{ $participant->last_name }} {{ $participant->first_name }}">
 						      		<i class="fa fa-lg fa-trash-o action" aria-hidden="true"></i>

@@ -4,9 +4,9 @@
 @section('content')
 	<div class="container boxList">
 		@if ($fromEvent)
-			<a href="{{ route('events.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
+			<a href=""><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		@endif
-		
+
 		@if ($fromEvent)
 			<h1>
 				Tournois de l'évenement {{ $event->name }}
@@ -19,7 +19,7 @@
 		@else
 			<h1>Tournois</h1>
 		@endif
-		
+
 
 		<input type="search" placeholder="Recherche" class="search form-control">
 
@@ -29,7 +29,7 @@
 				<div class="col-md-4 hideSearch">
 					<a href="{{route('tournaments.show', $tournament->id)}}" title="Voir le tournoi">
 						<div class="box">
-							
+
 							<div class="imgBox">
 								<img src="{{ url('tournament_img/'.$tournament->img) }}" alt="Image de l'événement">
 								<div class="title name"> {{$tournament->name}} </div>
@@ -58,6 +58,6 @@
 			@endforeach
 
 		</div>
-		
+
 	</div>
 @stop

@@ -4,7 +4,7 @@
 @section('content')
 
 	<div class="container">
-		<a href="{{ route('participants.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
+		<a href=""><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
 		<h1> {{ $participant->last_name }} {{ $participant->first_name }}</h1>
 
@@ -60,7 +60,7 @@
 			</div>
 		@else
 			{{ Form::open(array('url' => route('teams.participants.store',  $participant->id), 'method' => 'post')) }}
-				
+
 				{{ Form::checkbox('isCaptain', true) }} Captain
 				{{ Form::select('team', $dropdownList, null, ['placeholder' => 'Sélectionner', 'class' => 'form-control addMember']) }}
 

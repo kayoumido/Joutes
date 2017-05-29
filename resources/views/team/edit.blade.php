@@ -3,7 +3,7 @@
 
 @section('content')
 	<div class="container">
-		<a href="{{ route('teams.index') }}"><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
+		<a href=""><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 		<h1>Editer une équipe</h1>
 
 		@if(isset($error))

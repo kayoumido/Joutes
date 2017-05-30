@@ -10,18 +10,6 @@ class SessionController extends Controller
 {
 
     /**
-     * Show the login form
-     *
-     * @return \Illuminate\Http\Response
-     *
-     * @author Dessaules Loïc
-     */
-    public function index() // I used index method and no create to have joutes/login and no joutes/login/create
-    {   
-        return view('session.create');
-    }
-
-    /**
      * Connect the user
      *
      * @param  \Illuminate\Http\Request  $request

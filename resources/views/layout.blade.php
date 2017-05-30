@@ -117,6 +117,14 @@
             </div><!-- page -->
 
         <script src="{{ asset('js/vendor/app.js') }}"></script>
+
+
+
+<script src="{{ asset('js/shiftMatch.js') }}"></script>
+
+
+
+
         <script src="{{ asset('js/vendor/sweetalert.min.js') }}"></script>
         <script src="{{ asset('js/vendor/select2.full.min.js') }}"></script>
         <script src="{{ asset('js/vendor/jquery.dataTables.min.js') }}"></script>

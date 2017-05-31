@@ -1,5 +1,5 @@
 
-# CPNV - Joutes
+![CPNV joutes logo](https://github.com/CPNV-ES/Joutes/blob/master/public/images/wiki/logo-black.png)
 
 This project was created so the CPNV will be able to manage sport tournaments.
 

@@ -5,8 +5,6 @@ $(document).ready(function() {
     // get tournament id
     var tournament_id = $('.schedule').data('tournament');
 
-    console.log(tournament_id);
-
     // get number of matches that can be displayed
     var page_limit = Math.floor($(document).height() / 173) - 1;
 

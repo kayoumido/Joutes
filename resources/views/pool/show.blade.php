@@ -14,13 +14,13 @@
 		<div id="match-block">
 
 			<h2>Matchs et Résultats</h2>
-			@if(isset($pool->games[0]->start_time))
-				<h3>{{Carbon\Carbon::parse($pool->games[0]->start_time)->format('d.m.Y')}}</h3>
+			@if(isset($games[0]->start_time))
+				<h3>{{Carbon\Carbon::parse($games[0]->start_time)->format('d.m.Y')}}</h3>
 			@endif
 
 			<table id="matches" data-tournament="{{$pool->tournament->id}}" data-pool="{{$pool->id}}">
-				@if(count($pool->games) > 0)
-					@foreach ($pool->games as $game)
+				@if(count($games) > 0)
+					@foreach ($games as $game)
 						<tr data-game="{{$game->id}}">
 							<?php /* No teams - no score */ ?>
 							@if (empty($game->contender1->team) || empty($game->contender2->team))

@@ -47,7 +47,8 @@ class TournamentPoolController extends Controller
     public function show($idTournament, $idPool)
     {
         $pool = Pool::find($idPool);
-        return view('pool.show')->with('pool', $pool);
+        $games = $pool->games->sortBy("start_time");
+        return view('pool.show')->with('pool', $pool)->with('games', $games);
     }
 
     /**

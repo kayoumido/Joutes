@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use \File;
 use Carbon\Carbon;
@@ -9,6 +9,7 @@ use App\Sport;
 use App\Team;
 use App\Participant;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class EventImportController extends Controller {
     /**

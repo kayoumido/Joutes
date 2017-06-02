@@ -29,9 +29,9 @@
 						@if(Auth::check())
 							@if(Auth::user()->role == 'administrator')
 								<div class="infos">
-									{{-- {{ Form::open(array('url' => route('events.import.store', $event->id), 'method' => 'post')) }}
+									{{ Form::open(array('url' => route('events.import.store', $event->id), 'method' => 'post')) }}
 										{{ Form::button('', array('class' => 'import fa fa-download fa-lg action')) }}
-									{{ Form::close() }} --}}
+									{{ Form::close() }}
 
 									<a href="{{route('events.edit', $event->id)}}" title="Éditer le événement" class="edit"><i class="fa fa-pencil fa-lg action" aria-hidden="true"></i></a>
 

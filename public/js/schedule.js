@@ -10,9 +10,9 @@ $(document).ready(function() {
     // get number of matches that can be displayed
     var page_limit = Math.floor($(document).height() / 173) - 1;
 
-    Schedule.init(page_limit, tournament_id);
+    var schedule = new Schedule(page_limit, tournament_id);
 
     setInterval(function() {
-        Schedule.refresh($('.schedule'), page_limit, tournament_id);
+        schedule.refresh($('.schedule'), page_limit, tournament_id);
     }, 10 * 1000); // 60 * 1000ms
 });

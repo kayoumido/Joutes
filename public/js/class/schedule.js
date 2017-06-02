@@ -1,6 +1,4 @@
 class Schedule {
-    constructor() {}
-
     /**
      * Initialise a schedule
      * @param  {int} max_matches   max number of wanted matches
@@ -9,8 +7,8 @@ class Schedule {
      *
      * @author Doran Kayoumi
      */
-    static init(max_matches, tournament_id) {
-        var self = new Schedule();
+    constructor(max_matches, tournament_id) {
+        var self = this;
 
         var result = self.getMatches(tournament_id, max_matches);
 
@@ -28,8 +26,8 @@ class Schedule {
      *
      * @author Doran Kayoumi
      */
-    static refresh(container, limit, tournament_id) {
-        var self = new Schedule();
+    refresh(container, limit, tournament_id) {
+        var self = this;
 
         self.replaceOutdated(tournament_id, container);
 

@@ -486,3 +486,7 @@ form .btn-success, form .btn-success:hover, .btn-login-form{
 input::placeholder {
   color: #8c8585 !important;
 }
+
+#shiftTime{
+	margin-bottom: 20px;
+}

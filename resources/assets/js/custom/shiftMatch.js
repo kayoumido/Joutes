@@ -12,7 +12,7 @@ $( document ).ready(function() {
 
 		//if empty or numeric
 		if(!(shiftTime % 1 === 0 && shiftTime != '')){
-			displayAlert("danger", "Le décalage doit être un numéro entier !");
+			displayAlert("danger", "Le décalage doit être un numéro entier qui correspond a un temps en minute...");
 			return;
 		}
 

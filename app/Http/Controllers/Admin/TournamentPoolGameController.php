@@ -23,6 +23,7 @@ class TournamentPoolGameController extends Controller
 
         $game = Game::find($gameId);
 
+        //edit match score
         if(!empty($request->score1)){
     
             $game->score_contender1 = $request->score1;
@@ -34,7 +35,7 @@ class TournamentPoolGameController extends Controller
 
             return json_encode($rankings);
 
-        }
+        } //shift time (decalage match)
         else if(!empty($request->newTime)){
 
             $game->start_time = $request->newTime;

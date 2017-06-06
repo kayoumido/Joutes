@@ -93,4 +93,81 @@ $( document ).ready(function() {
 		}
 	}
 
+
+
+	//EDIT TIME
+	
+	$("table#matches td.action i.editTime").click(function() {
+		unlockTime($(this));
+	});
+
+	function unlockTime(pencil){
+
+		var tdAction = pencil.parent();
+		var tdTime = tdAction.parent().children("td.separator");
+		var hour = (tdTime.text()).split(":")[0]; 
+		var minute = tdTime.text().split(":")[1];
+
+		var form = '<input type="text" id="formMinuteTime" value="'+hour+'">:<input type="text" id="formMinuteTime" value="'+minute+'">';
+
+		tdTime.text("");
+		tdTime.append(form); 
+
+		// Create and delete icons
+		var checkSquare = document.createElement("i");
+		checkSquare.className += "fa fa-lg fa-check-square-o";
+		checkSquare.setAttribute('aria-hidden',"true");
+		var cross = document.createElement("i");
+		cross.className += "fa fa-lg fa-times";
+		cross.setAttribute('aria-hidden',"true");
+		pencil.after(checkSquare);
+		checkSquare.after(cross);
+
+		pencil.remove();
+		// Discard all things
+		$(cross).click(function(){
+
+			tdTime.text(hour+":"+minute);
+
+			// Remove square and cross icons and recreate pencil icon
+			tdAction.append(pencil);
+			checkSquare.remove();
+			cross.remove();
+
+			// Add listener to new pencil recreate
+			pencil.click(function(){
+				unlockTime($(this));
+			});
+		});
+
+		$(checkSquare).click(function(){
+
+			var newMinute = $("#formMinuteTime").val();
+			var newHour = $("#formMinuteTime").val();
+			var formOk = true;
+			
+			if(true)
+				formOk = false;
+
+			// Success
+			if(formOk){
+				
+
+				alert("succes");
+
+
+
+
+			}
+			// Error
+			else{
+				displayAlert("danger", "Format de temps invalide");
+			}
+		});
+
+	}
+
+
+
+
 });

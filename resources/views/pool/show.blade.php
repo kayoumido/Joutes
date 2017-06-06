@@ -18,6 +18,13 @@
 				<h3>{{Carbon\Carbon::parse($games[0]->start_time)->format('d.m.Y')}}</h3>
 			@endif
 
+			@if($pool->isEditable())
+				{{ Form::open(array('url' => '/')) }}
+				    {{ Form::text('time', '', array('id'=>'shiftTime', 'placeholder'=>'Temps en minutes')) }}
+				    {{ Form::submit('Décaler les matchs', array('id'=>'shiftMatch', 'class'=>'btn-success')) }}
+				{{ Form::close() }}
+			@endif
+
 			<table id="matches" data-tournament="{{$pool->tournament->id}}" data-pool="{{$pool->id}}">
 				@if(count($games) > 0)
 					@foreach ($games as $game)

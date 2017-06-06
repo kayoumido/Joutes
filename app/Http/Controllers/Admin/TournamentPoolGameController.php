@@ -19,15 +19,30 @@ class TournamentPoolGameController extends Controller
      * @author Dessaules Loïc
      */
     public function update(Request $request, $tournamentId, $poolId, $gameId)
-    {   
+    {
+
         $game = Game::find($gameId);
-        $game->score_contender1 = $request->score1;
-        $game->score_contender2 = $request->score2;
-        $game->save();
 
-        $pool = Pool::find($poolId);
-        $rankings = $pool->rankings();
+        //edit match score
+        if(!empty($request->score1)){
+    
+            $game->score_contender1 = $request->score1;
+            $game->score_contender2 = $request->score2;
+            $game->save();
 
-        return json_encode($rankings);
+            $pool = Pool::find($poolId);
+            $rankings = $pool->rankings();
+
+            return json_encode($rankings);
+
+        } //shift time (decalage match)
+        else if(!empty($request->newTime)){
+
+            $game->start_time = $request->newTime;
+            $game->save();
+
+        }
+
     }
+
 }

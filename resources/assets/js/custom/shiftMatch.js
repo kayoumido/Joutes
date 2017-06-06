@@ -51,7 +51,6 @@ $( document ).ready(function() {
 	                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')        
 	            },
 	            data        : {
-	        		newTime : timeDB,
 	        		newTime : timeDB
 	            },
 	            error : function(xhr, options, ajaxError) {
@@ -146,6 +145,7 @@ $( document ).ready(function() {
 			var newHour = $("#formMinuteTime").val();
 			var formOk = true;
 			
+			//TODO valide JS
 			if(true)
 				formOk = false;
 
@@ -153,6 +153,7 @@ $( document ).ready(function() {
 			if(formOk){
 				
 
+				//TODO CALL AJAX
 				alert("succes");
 
 

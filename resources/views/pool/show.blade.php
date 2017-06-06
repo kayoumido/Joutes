@@ -48,7 +48,7 @@
 									<td class="score2"></td>
 									<td class="contender2">{{$game->contender2->team->name}}</td>
 									@if($pool->isEditable())
-										<td class="action"><i class="fa fa-lg fa-pencil " aria-hidden="true"></td>
+										<td class="action"><i class="fa fa-lg fa-pencil editTime" aria-hidden="true"></td>
 									@endif
 								@else
 									<?php /*teams and score*/ ?>

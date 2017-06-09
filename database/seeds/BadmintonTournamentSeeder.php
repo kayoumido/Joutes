@@ -12,15 +12,12 @@ class BadmintonTournamentSeeder extends Seeder
     public function run()
     {
 
-
     	$db     = \Config::get('database.connections.mysql.database');
 		$user   = \Config::get('database.connections.mysql.username');
 		$pass   = \Config::get('database.connections.mysql.password');
 
-		// running command line import in php code
+		// Using mysql instance to pass a sqlfile and execute it 
+        // Because on our sql file we have multiple procedure delimited by DELIMITER and those DELIMITER work ~only on MYSQL...  
 		exec("mysql -u " . $user . " -p" . $pass . " -h ".\Config::get("database.connections.mysql.host")." " . $db . " < ".database_path("sqlFiles/badmintonTournament.sql"));
-
-    	//DB::connection()->getPdo()->exec(file_get_contents(database_path("sqlFiles/badmintonTournament.sql")));
-    	//DB::unprepared(file_get_contents('database/sqlFiles/badmintonTournament.sql'));
     }
 }

@@ -55,11 +55,15 @@
 						</tr>
 					@endforeach
 				@else
-					
+
 					Aucun match pour l'instant ...
-					
+
 			  	@endif
 			</table>
+
+			@if (sizeof($pool->rankings()) > 0)
+				<button type="button" name="button" class="btn btn-info close-pool-btn">Terminer pool</button>
+			@endif
 
 			<h2>Classement actuel</h2>
 
@@ -78,7 +82,7 @@
 					</thead>
 					<tbody>
 						@for ($i = 0; $i < sizeof($pool->rankings()); $i++)
-							<tr>
+							<tr data-id="{{ $pool->rankings()[$i]["team_id"] }}" data-rank="{{$i+1}}">
 								<td>{{$i+1}}</td>
 								<td>{{$pool->rankings()[$i]["team"]}}</td>
 								<td>{{$pool->rankings()[$i]["score"]}}</td>
@@ -94,6 +98,5 @@
 				Indisponible
 			@endif
 		</div>
-
 	</div>
 @stop

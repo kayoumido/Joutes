@@ -7,9 +7,15 @@
 	<div class="container">
         <a href=""><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
-		<h1>{{$pool->tournament->name}} - Phase {{ $pool->stage }} - {{$pool->poolName}}</h1>
+		<h1>
+			{{$pool->tournament->name}} - Phase {{ $pool->stage }} - {{$pool->poolName}}
 
-		<br>
+
+			@if (sizeof($pool->rankings()) > 0 && !$pool->isFinished)
+				<a class="greenBtn close-pool-btn">Terminer la pool</a>
+			@endif
+
+		</h1>
 
 		<div id="match-block">
 
@@ -60,10 +66,6 @@
 
 			  	@endif
 			</table>
-
-			@if (sizeof($pool->rankings()) > 0)
-				<button type="button" name="button" class="btn btn-info close-pool-btn">Terminer pool</button>
-			@endif
 
 			<h2>Classement actuel</h2>
 

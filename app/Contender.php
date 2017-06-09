@@ -21,4 +21,8 @@ class Contender extends Model
         return $this->belongsTo('App\Team');
     }
 
+    public function fromPool(){
+        return $this->belongsTo('App\Pool', 'pool_from_id');
+    }
+
 }

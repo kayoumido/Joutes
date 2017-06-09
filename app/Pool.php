@@ -47,10 +47,15 @@ class Pool extends Model
     public function rankings(){
         $teams = $this->teams();
         $games = $this->games;
-        $games = Game::cleanEmptyContender($games);
+        /*dd($games[1]->contender1->fromPool->poolName);
+        $games = Game::cleanEmptyContender($games);*/
 
         $rankings = array();
 
+
+
+
+        // If all our team are known
         if(!empty($teams)){
             foreach ($teams as $team) {
                 $score = 0;
@@ -98,6 +103,55 @@ class Pool extends Model
                 ); 
             }
             $rankings = $this->sort($rankings);
+        }
+        // If we don't know our teams, we fill with implicite name
+        else{
+            $teams = array();
+            foreach ($games as $game) {
+                // Create the implicite name
+                $impliciteContender1Name = " N° ".$game->contender1->rank_in_pool." pool ".$game->contender1->fromPool->poolName;
+                $impliciteContender2Name = " N° ".$game->contender2->rank_in_pool." pool ".$game->contender2->fromPool->poolName;
+                $contender1exists = false;
+                $contender2exists = false;
+
+                // detect if we already have this name
+                for ($i=0; $i < sizeof($rankings); $i++) { 
+                    if($rankings[$i]['team'] == $impliciteContender1Name){
+                        $contender1exists = true;
+                    }
+                    if($rankings[$i]['team'] == $impliciteContender2Name){
+                        $contender2exists = true;
+                    }
+                }
+
+                $score = 0;
+                $win = 0;
+                $loose = 0;
+                $draw = 0;
+                $goalBalance = 0;
+
+                // Add on the rankings array
+                if(!$contender1exists){
+                    $rankings[] = array(
+                        "team" => $impliciteContender1Name,
+                        "score" => $score,
+                        "W" => $win,
+                        "L" => $loose,
+                        "D" => $draw,
+                        "+-" => $goalBalance
+                    );
+                }
+                if(!$contender2exists){
+                    $rankings[] = array(
+                        "team" => $impliciteContender2Name,
+                        "score" => $score,
+                        "W" => $win,
+                        "L" => $loose,
+                        "D" => $draw,
+                        "+-" => $goalBalance
+                    );
+                }
+            }
         }
         return($rankings);
     }

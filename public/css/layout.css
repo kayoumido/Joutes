@@ -99,6 +99,7 @@
 /* Fix the size of the container with the nav width, need to have a media queries for center the content*/
 #page{
     padding-left: 245px;
+    float: left;
 }
 
 @media screen and (max-width: 1430px) {

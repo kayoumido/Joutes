@@ -29,5 +29,7 @@ class TournamentPoolController extends Controller
         $contender = Contender::where('pool_from_id', $pool_id)->where('rank_in_pool', $request->rank_in_pool)->firstOrFail();
         $contender->team_id = $request->team_id;
         $contender->save();
+
+        return "{}";
     }
 }

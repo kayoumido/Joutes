@@ -26,6 +26,7 @@ elixir((mix) => {
         	"custom/tournament.schedule.open.js",
             "custom/page-return.js",
             "custom/score-edition.js",
-            "custom/import.js"
+            "custom/import.js",
+            "custom/close.pool.js",
     	]);
 });

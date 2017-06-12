@@ -30,6 +30,7 @@ class TournamentPoolController extends Controller
         $contender->team_id = $request->team_id;
         $contender->save();
 
+        // ajax will go into success
         return "{}";
     }
 }

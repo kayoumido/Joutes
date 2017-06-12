@@ -106,6 +106,15 @@ class EventTournamentController extends Controller
             $tournament->sport_id = $request->input('sport');
             $tournament->save();
 
+            // Accociate new teams linked
+            if(!empty($request->input('teams'))){
+              foreach ($request->input('teams') as $teamId) {
+                $team = Team::find($teamId);
+                $team->tournament()->associate($tournament);
+                $team->update();
+              }
+            }
+
             return redirect()->route('tournaments.index');
         }
     }

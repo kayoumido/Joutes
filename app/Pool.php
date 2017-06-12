@@ -64,7 +64,7 @@ class Pool extends Model
                 $draw = 0;
                 $goalBalance = 0;
                 foreach ($games as $game) {
-                    if(!empty($game->score_contender1) || !empty($game->score_contender2)){
+                    if((!empty($game->score_contender1) || !empty($game->score_contender2)) && !empty($game->contender1->team) && !empty($game->contender2->team)){
                         if($game->contender1->team->name == $team || $game->contender2->team->name == $team){
                             // $team do a draw (égalité)
                             if($game->score_contender1 == $game->score_contender2){
@@ -116,7 +116,7 @@ class Pool extends Model
                 $contender2exists = false;
 
                 // detect if we already have this name
-                for ($i=0; $i < sizeof($rankings); $i++) { 
+                for ($i=0; $i < sizeof($rankings); $i++) {
                     if($rankings[$i]['team'] == $impliciteContender1Name){
                         $contender1exists = true;
                     }
@@ -134,6 +134,7 @@ class Pool extends Model
                 // Add on the rankings array
                 if(!$contender1exists){
                     $rankings[] = array(
+						"team_id" => 0,
                         "team" => $impliciteContender1Name,
                         "score" => $score,
                         "W" => $win,
@@ -144,6 +145,7 @@ class Pool extends Model
                 }
                 if(!$contender2exists){
                     $rankings[] = array(
+						"team_id" => 0,
                         "team" => $impliciteContender2Name,
                         "score" => $score,
                         "W" => $win,

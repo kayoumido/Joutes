@@ -52,9 +52,6 @@ class Pool extends Model
 
         $rankings = array();
 
-
-
-
         // If all our team are known
         if(!empty($teams)){
             foreach ($teams as $id => $team) {
@@ -134,7 +131,7 @@ class Pool extends Model
                 // Add on the rankings array
                 if(!$contender1exists){
                     $rankings[] = array(
-						"team_id" => 0,
+						"team_id" => -1,
                         "team" => $impliciteContender1Name,
                         "score" => $score,
                         "W" => $win,
@@ -145,7 +142,7 @@ class Pool extends Model
                 }
                 if(!$contender2exists){
                     $rankings[] = array(
-						"team_id" => 0,
+						"team_id" => -1,
                         "team" => $impliciteContender2Name,
                         "score" => $score,
                         "W" => $win,

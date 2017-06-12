@@ -48,7 +48,23 @@ class TournamentPoolController extends Controller
     {
         $pool = Pool::find($idPool);
         $games = $pool->games->sortBy("start_time");
-        return view('pool.show')->with('pool', $pool)->with('games', $games);
+
+        $rankings = $pool->rankings();
+
+        $complete_ranking = true;
+        foreach ($rankings as $ranking) {
+            if ($ranking["team_id"] == -1) {
+                $complete_ranking = false;
+                break;
+            }
+        }
+
+        // return view('pool.show')->with('pool', $pool)->with('games', $games);
+        return view('pool.show', array(
+            "pool"             => $pool,
+            "games"            => $games,
+            "complete_ranking" => $complete_ranking
+        ));
     }
 
     /**

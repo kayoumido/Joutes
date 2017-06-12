@@ -27,7 +27,7 @@ elixir((mix) => {
             "custom/page-return.js",
             "custom/score-edition.js",
             "custom/shiftMatch.js",
-            "custom/import.js"
+            "custom/import.js",
             "custom/close.pool.js",
     	]);
 });

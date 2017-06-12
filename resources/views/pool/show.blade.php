@@ -36,11 +36,23 @@
 						<tr data-game="{{$game->id}}">
 							<?php /* No teams - no score */ ?>
 							@if (empty($game->contender1->team) || empty($game->contender2->team))
-								<td class="contender1">{{" N° ".$game->contender1->rank_in_pool." pool ".$game->contender1->fromPool->poolName}}</td>
+
+								@if (empty($game->contender1->team))
+									<td class="contender1">{{" N° ".$game->contender1->rank_in_pool." pool ".$game->contender1->fromPool->poolName}}</td>
+								@else
+									<td class="contender1">{{ $game->contender1->team->name }}</td>
+								@endif
+								
 								<td class="score1"></td>
 								<td class="separator sepTime">{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
 								<td class="score2"></td>
-								<td class="contender2">{{" N° ".$game->contender2->rank_in_pool." pool ".$game->contender2->fromPool->poolName}}</td>
+
+								@if (empty($game->contender2->team))
+									<td class="contender2">{{" N° ".$game->contender2->rank_in_pool." pool ".$game->contender2->fromPool->poolName}}</td>
+								@else
+									<td class="contender1">{{ $game->contender2->team->name }}</td>
+								@endif
+
 								@if($pool->isEditable())
 									<td class="action"><i class="fa fa-lg fa-pencil editTime" aria-hidden="true"></td>
 								@endif

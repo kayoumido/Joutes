@@ -30,9 +30,11 @@ $(document).ready(function() {
                 		});
                     }
 
-                    $('.action').each(function() {
+                    $('.action i').each(function() {
                         $(this).remove();
                     });
+
+                    $('.close-pool-btn').remove();
                 },
                 error : function(xhr) {
                     console.error('readyState: ' + xhr.readyState);

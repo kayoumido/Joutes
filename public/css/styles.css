@@ -499,7 +499,7 @@ input::placeholder {
 	width: 100px !important;
 }
 
-.editTime, .editScore, .fa-trophy{
+.editTime, .editScore, table .fa-trophy{
 	float: left;
 	margin-left: 10px;
 }

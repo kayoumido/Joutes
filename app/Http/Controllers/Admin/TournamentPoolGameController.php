@@ -24,8 +24,8 @@ class TournamentPoolGameController extends Controller
         $game = Game::find($gameId);
 
         //edit match score
-        if(!empty($request->score1)){
-    
+        if($request->score1 !== null){
+
             $game->score_contender1 = $request->score1;
             $game->score_contender2 = $request->score2;
             $game->save();

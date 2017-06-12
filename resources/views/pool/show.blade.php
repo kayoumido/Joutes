@@ -33,7 +33,7 @@
 							@if (empty($game->contender1->team) || empty($game->contender2->team))
 								<td class="contender1">À définir</td>
 								<td class="score1"></td>
-								<td class="separator">{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
+								<td class="separator sepTime">{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
 								<td class="score2"></td>
 								<td class="contender2">À définir</td>
 								@if($pool->isEditable())
@@ -44,7 +44,7 @@
 								@if(!isset($game->score_contender1) || !isset($game->score_contender2))
 									<td class="contender1">{{$game->contender1->team->name}}</td>
 									<td class="score1"></td>
-									<td class="separator">{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
+									<td class="separator sepTime">{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
 									<td class="score2"></td>
 									<td class="contender2">{{$game->contender2->team->name}}</td>
 									@if($pool->isEditable())

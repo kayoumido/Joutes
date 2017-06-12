@@ -490,3 +490,13 @@ input::placeholder {
 #shiftTime{
 	margin-bottom: 20px;
 }
+
+#formMinuteTime, #formHourTime{
+	width: 40px;
+    text-align: center;
+    display: inline-block;
+}
+
+.sepTime{
+	width: 100px !important;
+}

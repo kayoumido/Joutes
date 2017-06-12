@@ -10,7 +10,7 @@
 		<h1>
 			{{$pool->tournament->name}} - Phase {{ $pool->stage }} - {{$pool->poolName}}
 
-			@if (sizeof($pool->rankings()) > 0 && !$pool->isFinished && $complete_ranking && Auth::check() && (Auth::user()->role == 'administrator' || Auth::user()->role == 'writter'))
+			@if (sizeof($pool->rankings()) > 0 && !$pool->isFinished && $ranking_completed && $games_completed && Auth::check() && (Auth::user()->role == 'administrator' || Auth::user()->role == 'writter'))
 				<a class="greenBtn close-pool-btn">Terminer la pool</a>
 			@endif
 
@@ -42,7 +42,7 @@
 								@else
 									<td class="contender1">{{ $game->contender1->team->name }}</td>
 								@endif
-								
+
 								<td class="score1"></td>
 								<td class="separator sepTime">{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
 								<td class="score2"></td>

@@ -51,19 +51,28 @@ class TournamentPoolController extends Controller
 
         $rankings = $pool->rankings();
 
-        $complete_ranking = true;
+        $ranking_completed = true;
         foreach ($rankings as $ranking) {
             if ($ranking["team_id"] == -1) {
-                $complete_ranking = false;
+                $ranking_completed = false;
+                break;
+            }
+        }
+
+        $games_completed = true;
+        foreach ($games as $game) {
+            if ($game->score_contender1 === null || $game->score_contender2 === null) {
+                $games_completed = false;
                 break;
             }
         }
 
         // return view('pool.show')->with('pool', $pool)->with('games', $games);
         return view('pool.show', array(
-            "pool"             => $pool,
-            "games"            => $games,
-            "complete_ranking" => $complete_ranking
+            "pool"              => $pool,
+            "games"             => $games,
+            "ranking_completed" => $ranking_completed,
+            "games_completed"   => $games_completed
         ));
     }
 

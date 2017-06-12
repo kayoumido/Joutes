@@ -50,7 +50,7 @@
 								@if (empty($game->contender2->team))
 									<td class="contender2">{{" N° ".$game->contender2->rank_in_pool." pool ".$game->contender2->fromPool->poolName}}</td>
 								@else
-									<td class="contender1">{{ $game->contender2->team->name }}</td>
+									<td class="contender2">{{ $game->contender2->team->name }}</td>
 								@endif
 
 								@if($pool->isEditable())

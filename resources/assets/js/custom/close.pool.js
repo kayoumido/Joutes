@@ -35,9 +35,9 @@ $(document).ready(function() {
                     });
                 },
                 error : function(xhr) {
-                    // console.error(`readyState:      ${xhr.readyState}`);
-                    // console.error(`status:          ${xhr.status}`);
-                    // console.error(`responseText:    ${xhr.responseText}`);
+                    console.error('readyState: ' + xhr.readyState);
+                    console.error('status: ' + xhr.status);
+                    console.error('responseText: ' + xhr.responseText);
                 }
             });
         });

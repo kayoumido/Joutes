@@ -4,6 +4,9 @@ $( document ).ready(function() {
 	});
 
 	function unlockScore(pencil){
+
+		pencil.parent().children('.editTime').hide();
+
 		var tdAction = pencil.parent();
 		var tdScore1 = tdAction.parent().children("td.score1");
 		var tdScore2 = tdAction.parent().children("td.score2");
@@ -39,10 +42,15 @@ $( document ).ready(function() {
 
 		// Discard all things
 		$(cross).click(function(){
+
+			//display edit score btn
+			$(this).parent().children('.editTime').show();
+
 			// Remove square and cross icons and recreate pencil icon
 			tdAction.append(pencil);
-			checkSquare.remove();
+			checkSquare.remove();	
 			cross.remove();
+
 			// Remove inputs
 			inputScore1.remove();
 			inputScore2.remove();
@@ -54,6 +62,7 @@ $( document ).ready(function() {
 			pencil.click(function(){
 				unlockScore($(this));
 			});
+
 		});
 
 		$(checkSquare).click(function(){
@@ -94,7 +103,7 @@ $( document ).ready(function() {
 	function valid(score1, score2){
 		var patternNumeric = /^[0-9]{1,3}$/;
 		if(!patternNumeric.test(score1) || !patternNumeric.test(score2)){
-    		return false;
+    		return false; 
     	}else{
     		return true;
     	}
@@ -125,6 +134,7 @@ $( document ).ready(function() {
             url         : '/admin/tournaments/'+tournamentId+'/pools/'+poolId+'/games/'+gameId+'',
             method      : 'PUT',
             dataType    : 'json',
+            context     : this,
             cache       : false,
             headers     : {            
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')        
@@ -143,7 +153,7 @@ $( document ).ready(function() {
             success : function(data) {
             	// Create new pencil icon
             	var pencil = document.createElement("i");
-				pencil.className += "fa fa-lg fa-pencil";
+				pencil.className += "fa fa-lg fa-trophy";
 				pencil.setAttribute('aria-hidden',"true");
 
 				// Create variable i will use
@@ -153,7 +163,11 @@ $( document ).ready(function() {
                 var checkSquare = tdAction.children("i.fa-check-square-o");
                 var cross = tdAction.children("i.fa-times");
 
+                // Remove time and display "-"
+                checkSquare.parent().parent().children(".separator").text("-");
+
 				// Remove square and cross icons and add pencil icon
+				checkSquare.parent().children(".editTime").remove(); //delete pencil edit time
 				tdAction.append(pencil);
 				checkSquare.remove();
 				cross.remove();
@@ -171,6 +185,8 @@ $( document ).ready(function() {
 					unlockScore($(this));
 				});
 
+				
+
 				// Update the rankings table
 				updateRankingstable(data);
 
@@ -179,6 +195,7 @@ $( document ).ready(function() {
 
 				// Remove loader
 				opac.remove();
+
             }
         });
 	}

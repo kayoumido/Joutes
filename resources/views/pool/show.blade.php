@@ -42,7 +42,7 @@
 								<td class="score2"></td>
 								<td class="contender2">{{" N° ".$game->contender2->rank_in_pool." pool ".$game->contender2->fromPool->poolName}}</td>
 								@if($pool->isEditable())
-									<td class="action"><i class="fa fa-lg fa-pencil editTime" aria-hidden="true"></td>
+									<td class="action"><i class="fa fa-lg fa-clock-o editTime" aria-hidden="true"></i></td>
 								@endif
 							@else
 								<?php /* teams - no score */ ?>
@@ -53,7 +53,7 @@
 									<td class="score2"></td>
 									<td class="contender2">{{$game->contender2->team->name}}</td>
 									@if($pool->isEditable())
-										<td class="action"><i class="fa fa-lg fa-pencil editTime" aria-hidden="true"></td>
+										<td class="action"><i class="fa fa-lg fa-clock-o editTime" aria-hidden="true"></i> <i class="editScore fa fa-trophy fa-lg" aria-hidden="true"></i></td>
 									@endif
 								@else
 									<?php /*teams and score*/ ?>
@@ -63,7 +63,7 @@
 									<td class="score2">{{$game->score_contender2}}</td>
 									<td class="contender2">{{$game->contender2->team->name}}</td>
 									@if($pool->isEditable())
-										<td class="action"><i class="fa fa-lg fa-pencil editScore" aria-hidden="true"></td>
+										<td class="action"><i class="fa fa-lg fa-trophy editScore" aria-hidden="true"></i></td>
 									@endif
 								@endif
 							@endif

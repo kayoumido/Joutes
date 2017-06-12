@@ -106,6 +106,8 @@ $( document ).ready(function() {
 
 	function unlockTime(pencil){
 
+		pencil.parent().children('.editScore').hide();
+
 		var tdAction = pencil.parent();
 		var tdTime = tdAction.parent().children("td.separator");
 		var hour = (tdTime.text()).split(":")[0]; 
@@ -130,10 +132,14 @@ $( document ).ready(function() {
 		// Discard all things
 		$(cross).click(function(){
 
+
+			//display edit score btn
+			$(this).parent().children('.editScore').show();
+
 			tdTime.text(hour+":"+minute);
 
 			// Remove square and cross icons and recreate pencil icon
-			tdAction.append(pencil);
+			tdAction.prepend(pencil);
 			checkSquare.remove();
 			cross.remove();
 
@@ -186,6 +192,9 @@ $( document ).ready(function() {
 	            },
 	            success : function(data) {
 	            	  
+	            	//display edit score btn
+					$(this).parent().children('.editScore').show();
+
 	            	if(newMinute.length == 1)
 	            		newMinute = "0"+newMinute;
 
@@ -195,7 +204,7 @@ $( document ).ready(function() {
 	            	$(this).parent().parent().children(".separator").text(newHour+":"+newMinute);
 
 					// Remove square and cross icons and recreate pencil icon
-					tdAction.append(pencil);
+					tdAction.prepend(pencil);
 					checkSquare.remove();
 					cross.remove();
 

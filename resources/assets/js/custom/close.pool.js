@@ -22,7 +22,7 @@ $(document).ready(function() {
 
                     if (!$('.alert.alert-success').length) {
                         // Display success message
-                        let success = $("<div class='alert alert-success' role='alert'>Le pool à bien été terminé</div>");
+                        var success = $("<div class='alert alert-success' role='alert'>Le pool à bien été terminé</div>");
                         $("#match-block").prepend(success);
                         // After 2sec, the alert will disappear
                         success.fadeTo(3000, 500).slideUp(500, function(){
@@ -35,9 +35,9 @@ $(document).ready(function() {
                     });
                 },
                 error : function(xhr) {
-                    console.error(`readyState:      ${xhr.readyState}`);
-                    console.error(`status:          ${xhr.status}`);
-                    console.error(`responseText:    ${xhr.responseText}`);
+                    // console.error(`readyState:      ${xhr.readyState}`);
+                    // console.error(`status:          ${xhr.status}`);
+                    // console.error(`responseText:    ${xhr.responseText}`);
                 }
             });
         });

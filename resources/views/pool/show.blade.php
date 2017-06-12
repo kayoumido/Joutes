@@ -7,9 +7,14 @@
 	<div class="container">
         <a href=""><i class="fa fa-4x fa-arrow-circle-left return" aria-hidden="true"></i></a>
 
-		<h1>{{$pool->tournament->name}} - Phase {{ $pool->stage }} - {{$pool->poolName}}</h1>
+		<h1>
+			{{$pool->tournament->name}} - Phase {{ $pool->stage }} - {{$pool->poolName}}
 
-		<br>
+			@if (sizeof($pool->rankings()) > 0 && !$pool->isFinished && Auth::check() && (Auth::user()->role == 'administrator' || Auth::user()->role == 'writter'))
+				<a class="greenBtn close-pool-btn">Terminer la pool</a>
+			@endif
+
+		</h1>
 
 		<div id="match-block">
 
@@ -62,9 +67,9 @@
 						</tr>
 					@endforeach
 				@else
-					
+
 					Aucun match pour l'instant ...
-					
+
 			  	@endif
 			</table>
 
@@ -85,7 +90,7 @@
 					</thead>
 					<tbody>
 						@for ($i = 0; $i < sizeof($pool->rankings()); $i++)
-							<tr>
+							<tr data-id="{{ $pool->rankings()[$i]["team_id"] }}" data-rank="{{$i+1}}">
 								<td>{{$i+1}}</td>
 								<td>{{$pool->rankings()[$i]["team"]}}</td>
 								<td>{{$pool->rankings()[$i]["score"]}}</td>
@@ -101,6 +106,5 @@
 				Indisponible
 			@endif
 		</div>
-
 	</div>
 @stop

@@ -28,5 +28,6 @@ elixir((mix) => {
             "custom/score-edition.js",
             "custom/shiftMatch.js",
             "custom/import.js"
+            "custom/close.pool.js",
     	]);
 });

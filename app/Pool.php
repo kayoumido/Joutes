@@ -57,7 +57,7 @@ class Pool extends Model
 
         // If all our team are known
         if(!empty($teams)){
-            foreach ($teams as $team) {
+            foreach ($teams as $id => $team) {
                 $score = 0;
                 $win = 0;
                 $loose = 0;
@@ -82,7 +82,7 @@ class Pool extends Model
                                 $loose++;
                             }
 
-                            // calcul the balance between goal+ ($team) and goal- (contender) 
+                            // calcul the balance between goal+ ($team) and goal- (contender)
                             if($game->contender1->team->name == $team){
                                 $goalBalance += $game->score_contender1;
                                 $goalBalance -= $game->score_contender2;
@@ -94,13 +94,14 @@ class Pool extends Model
                     }
                 }
                 $rankings[] = array(
+					"team_id" => $id,
                     "team" => $team,
                     "score" => $score,
                     "W" => $win,
                     "L" => $loose,
                     "D" => $draw,
                     "+-" => $goalBalance
-                ); 
+                );
             }
             $rankings = $this->sort($rankings);
         }
@@ -162,7 +163,7 @@ class Pool extends Model
      * http://stackoverflow.com/questions/3232965/sort-multidimensional-array-by-multiple-keys
      *
      * @return Array
-     * 
+     *
      * @param Array
      *
      * @author Loïc Dessaules

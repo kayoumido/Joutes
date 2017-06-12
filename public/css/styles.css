@@ -303,7 +303,7 @@ span#login_link:hover{
 	margin-bottom: 37px;
 }
 
-#error404 a{	
+#error404 a{
     font-size: 20px;
     border: 2px solid #446CB3;
     padding: 10px 20px;
@@ -311,7 +311,7 @@ span#login_link:hover{
     transition: .5s;
 }
 
-#error404 a:hover{	
+#error404 a:hover{
     background-color: #446CB3;
     color: white;
 }
@@ -360,6 +360,7 @@ span#login_link:hover{
     padding: 3px 12px;
     border-radius: 5px;
     vertical-align: middle;
+	cursor: pointer;
 }
 
 .greenBtn:hover{
@@ -485,8 +486,4 @@ form .btn-success, form .btn-success:hover, .btn-login-form{
 
 input::placeholder {
   color: #8c8585 !important;
-}
-
-#shiftTime{
-	margin-bottom: 20px;
 }

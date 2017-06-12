@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Contender extends Model
 {
+	public $timestamps = false;
 	/**
      * Create a new belongs to relationship instance between games and contenders (to have the first contender)
      *

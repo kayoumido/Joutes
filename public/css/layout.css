@@ -97,7 +97,7 @@
 }
 
 /* Fix the size of the container with the nav width, need to have a media queries for center the content*/
-#page{
+#page {
     padding-left: 245px;
 }
 
@@ -107,5 +107,6 @@
     }
     #page{
         padding-left: 0;
+        float: left;
     }
 }

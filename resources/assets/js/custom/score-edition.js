@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-	$("table#matches td.action i.fa-pencil").click(function() {
+	$("table#matches td.action i.editScore").click(function() {
 		unlockScore($(this));
 	});
 

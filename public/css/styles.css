@@ -487,3 +487,17 @@ form .btn-success, form .btn-success:hover, .btn-login-form{
 input::placeholder {
   color: #8c8585 !important;
 }
+
+#shiftTime{
+	margin-bottom: 20px;
+}
+
+#formMinuteTime, #formHourTime{
+	width: 40px;
+    text-align: center;
+    display: inline-block;
+}
+
+.sepTime{
+	width: 100px !important;
+}

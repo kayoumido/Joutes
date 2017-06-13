@@ -8,6 +8,7 @@ class Schedule {
      * @author Doran Kayoumi
      */
     constructor(max_matches, tournament_id) {
+        console.log("jkhl");
         var self = this;
 
         var result = self.getMatches(tournament_id, max_matches);
@@ -126,6 +127,9 @@ class Schedule {
                 if (!$.isEmptyObject(data)) {
                     self.updateDisplay(data, container, currentrow);
                 }
+
+                if (data.constructor === Array && $.isEmptyObject(data))
+                    self.updateDisplay(data, container, currentrow);
             });
         });
     }

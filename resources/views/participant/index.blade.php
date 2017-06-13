@@ -12,6 +12,7 @@
 			<thead>
 				<tr>
 					<th>Nom du participant</th>
+					<th>Sport(s)</th>
 				</tr>
 			</thead>
 
@@ -20,6 +21,17 @@
 				  	@foreach ($participants as $participant)
 						<tr>
 					      <td data-id="{{$participant->id}}" class="clickable">{{ $participant->last_name }} {{ $participant->first_name }}</td>
+					      <td>
+							@foreach ($participant->teams as $team)
+								
+								@if($participant->teams->last() == $team)
+									{{ $team->sport->name }}
+								@else
+									{{ $team->sport->name }},
+								@endif
+								
+							@endforeach
+					      </td>
 					    </tr>
 					@endforeach
 				@else

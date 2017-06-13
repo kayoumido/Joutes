@@ -20,6 +20,7 @@ $(document).ready(function() {
                 },
                 success : function(data) {
 
+                    // limit number of alerts to one. This is done because multiple request are made.
                     if (!$('.alert.alert-success').length) {
                         // Display success message
                         var success = $("<div class='alert alert-success' role='alert'>Le pool à bien été terminé</div>");

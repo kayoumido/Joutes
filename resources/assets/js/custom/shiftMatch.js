@@ -16,7 +16,7 @@ $( document ).ready(function() {
 			return;
 		}
 
-		var matches = $('#matches tr .separator');
+		var matches = $('#matches tr .sepTime');
 		var tournamentId = $("table#matches").data("tournament");
 		var poolId = $("table#matches").data("pool");
 

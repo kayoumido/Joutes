@@ -121,10 +121,23 @@ class CourtController extends Controller
 
         /* CUSTOM SPECIFIC VALIDATION */
         $customError = null;
-        // Check if there already is a court with the same name AND sport linked. A court can have many times same name but not for the same sport linked.
-        if(Court::whereRaw('name = ? and sport_id = ?', [$request->input('name'), $request->input('sport')])->exists()){
-            $customError = 'Le terrain "'.$request->input('name').'" est déjà lier au sport "'.Sport::find($request->input('sport'))->name.'".';
+
+        // Check if we are updating the current court who have not other same court as itself
+        $courts = Court::where('name',$request->input('name'))->where('sport_id', $request->input('sport'))->get();
+        $modifyCurrentCourt = false;
+        foreach ($courts as $someCourt) {
+            if($someCourt->id == $id){
+                $modifyCurrentCourt = true;
+            }
         }
+        // If we don't modify the current court
+        if(!$modifyCurrentCourt){
+            // Check if there already is a court with the same name AND sport linked. A court can have many times same name but not for the same sport linked.
+            if(Court::whereRaw('name = ? and sport_id = ?', [$request->input('name'), $request->input('sport')])->exists()){
+                $customError = 'Le terrain "'.$request->input('name').'" est déjà lier au sport "'.Sport::find($request->input('sport'))->name.'".';
+            }
+        }
+
 
 
         /* LARAVEL VALIDATION */

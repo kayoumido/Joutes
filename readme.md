@@ -1,5 +1,5 @@
 
-![CPNV joutes logo](https://github.com/CPNV-ES/Joutes/blob/master/public/images/wiki/logo-black.png)
+![CPNV joutes logo](https://github.com/CPNV-ES/Joutes/blob/master/wiki/logo-black.png)
 
 This project was created so the CPNV will be able to manage sport tournaments.
 
@@ -108,11 +108,7 @@ Once the DB created and configured, you'll need to run the migrations so the dif
 $ php artisan migrate
 ```
 
-To help anyone start working with the porject, we've set up some seeders to populate the database with testing data.
-
-```
-$ php artisan db:seed
-```
+For more details concerning our migrations and to know how you can seed the DB, follow this [Wiki link](https://github.com/CPNV-ES/Joutes/wiki/Migrations-and-Seeds).
 
 So there, now you're up and running and you can start messing arround with the project.
 

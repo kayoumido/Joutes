@@ -51,7 +51,7 @@ php -r "unlink('composer-setup.php');"
 
 _Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world._
 
-if you don't have node.js installed, you can downloaded [here](https://nodejs.org/en/download/)
+if you don't have node.js installed, you can download it [here](https://nodejs.org/en/download/)
 
 ## Installation
 

@@ -11,6 +11,7 @@
                     <div class="info sport col-md-2 text-right">{{ $tournament->sport->name }}</div>
                 </div>
             </div>
+            <div class="match-container"></div>
         </div>
     </div>
 @stop

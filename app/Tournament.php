@@ -76,7 +76,12 @@ class Tournament extends Model
         $tournament_games = new Collection();
 
         foreach ($this->pools as $pool) {
-            $pool_games = $pool->games->where('score_contender1', '=', null)->where('score_contender2', '=', null);
+
+            $pool_games = new Collection();
+
+            foreach ($pool->games as $game)
+                if (is_null($game->score_contender1) && is_null($game->score_contender2)) $pool_games->push($game);
+
             $pool_games = Game::cleanEmptyContender($pool_games);
 
             if (count($pool_games) !== 0)

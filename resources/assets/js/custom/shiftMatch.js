@@ -1,6 +1,14 @@
 $( document ).ready(function() {
 
 	$("#shiftMatch").click(function() {
+		// Create the loader
+		var opac = document.createElement("div");
+		opac.id += "opac";
+		var imgLoader = document.createElement('img');
+		imgLoader.className += "loader";
+		imgLoader.src = '/images/loader.gif';
+		opac.prepend(imgLoader);
+		document.body.prepend(opac);
 
 		event.preventDefault(); // cancel the event
 		shiftMatch($(this));
@@ -56,10 +64,19 @@ $( document ).ready(function() {
 	            error : function(xhr, options, ajaxError) {
 	            	if(xhr.status != 200){
 	            		displayAlert("danger", "Une erreur est survenue ...");
+	            		// Remove loader
+                        opac.remove();
 	            	}
 	            },
 	            success : function(data) {
 	            	$(this).text(timeDOM);
+
+	            	// limit number of alerts to one. This is done because multiple request are made.
+                    if (!$('.alert.alert-success').length) {
+                        displayAlert("success", "Le décalage des heures a bien été effectué");
+                        // Remove loader
+                        opac.remove();
+                    }
 	            }
 	        });
 

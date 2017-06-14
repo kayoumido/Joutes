@@ -1,7 +1,7 @@
 
 ![CPNV joutes logo](https://github.com/CPNV-ES/Joutes/blob/master/wiki/logo-black.png)
 
-This project was created so the CPNV will be able to manage sport tournaments.
+This project was carried out in the CPNV. Its main purpose is to help the sports teacher manage the sports games each year.
 
 # Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

@@ -1,6 +1,16 @@
 $(document).ready(function() {
     $('.close-pool-btn').click(function() {
 
+        // Create the loader
+        var opac = document.createElement("div");
+        opac.id += "opac";
+        var imgLoader = document.createElement('img');
+        imgLoader.className += "loader";
+        imgLoader.src = '/images/loader.gif';
+        opac.prepend(imgLoader);
+        document.body.prepend(opac);
+
+
         var tournament_id = $("table#matches").data("tournament");
         var pool_id       = $("table#matches").data("pool");
 
@@ -29,6 +39,8 @@ $(document).ready(function() {
                         success.fadeTo(3000, 500).slideUp(500, function(){
                 		    success.slideUp(500);
                 		});
+                        // Remove loader
+                        opac.remove();
                     }
 
                     $('.action i').each(function() {
@@ -41,8 +53,12 @@ $(document).ready(function() {
                     console.error('readyState: ' + xhr.readyState);
                     console.error('status: ' + xhr.status);
                     console.error('responseText: ' + xhr.responseText);
+                    // Remove loader
+                    opac.remove();
                 }
             });
+
         });
+
     });
 });

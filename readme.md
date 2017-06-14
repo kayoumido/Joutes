@@ -125,4 +125,4 @@ $ composer dump-autoload
 
 ## Wiki
 
-You have more information converning the projet on the github [wiki](https://github.com/CPNV-ES/Joutes/wiki).
+Any further information can be found in our [wiki](https://github.com/CPNV-ES/Joutes/wiki).

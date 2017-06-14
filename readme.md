@@ -130,3 +130,7 @@ If you run into an error "Class XYZ not found" after seeding the DB, execute the
 ```
 $ composer dump-autoload
 ```
+
+### Wiki
+
+You have more information converning the projet on the github [wiki](https://github.com/CPNV-ES/Joutes/wiki).

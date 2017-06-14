@@ -67,26 +67,16 @@ class Tournament extends Model
     /**
      * Get all active games of a tournament
      * @param  integer  $limit - number of games wanted
-     * @param  time     $after - Time after which games are wanted
      * @return collection
      *
      * @author Doran Kayoumi
      */
-    public function GetActiveGames($limit, $lastgameid = null) {
+    public function GetActiveGames($limit) {
 
-        $pools            = $this->pools;
-        $dt               = Carbon::now("Europe/Berlin");
-        $timelimiter      = $dt->toTimeString();
         $tournament_games = new Collection();
 
-        // check if a game id was given
-        if ($lastgameid) {
-            $lastgame    = Game::find($lastgameid);
-            $timelimiter = $lastgame->start_time;
-        }
-
-        foreach ($pools as $pool) {
-            $pool_games = $pool->games->where('start_time', '>=', $timelimiter)->where('id', '!=', $lastgameid)->where('score_contender1', '=', null);
+        foreach ($this->pools as $pool) {
+            $pool_games = $pool->games->where('score_contender1', '=', null)->where('score_contender2', '=', null);
             $pool_games = Game::cleanEmptyContender($pool_games);
 
             if (count($pool_games) !== 0)

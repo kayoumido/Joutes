@@ -74,9 +74,12 @@ $( document ).ready(function() {
 	            	// limit number of alerts to one. This is done because multiple request are made.
                     if (!$('.alert.alert-success').length) {
                         displayAlert("success", "Le décalage des heures a bien été effectué");
-                        // Remove loader
-                        opac.remove();
                     }
+
+                    if($('#opac').length){
+	                    // Remove loader
+	                    opac.remove();
+                	}
 	            }
 	        });
 
@@ -168,10 +171,18 @@ $( document ).ready(function() {
 
 		$(checkSquare).click(function(){
 
+			// Create the loader
+	        var opac = document.createElement("div");
+	        opac.id += "opac";
+	        var imgLoader = document.createElement('img');
+	        imgLoader.className += "loader";
+	        imgLoader.src = '/images/loader.gif';
+	        opac.prepend(imgLoader);
+	        document.body.prepend(opac);
+
 			var newMinute = $("#formMinuteTime").val();
 			var newHour = $("#formHourTime").val();
 			
-	
 			// if not between 0 and 59, not numeric or empty
 			if( newMinute >= 60 || newMinute < 0 || newMinute % 1 !== 0 || newMinute == ''){
 				displayAlert("danger", "Format de temps invalide"); 
@@ -206,6 +217,8 @@ $( document ).ready(function() {
 	            	if(xhr.status != 200){
 	            		displayAlert("danger", "Une erreur est survenue ...");
 	            	}
+	            	// Remove loader
+                    opac.remove();
 	            },
 	            success : function(data) {
 	            	  
@@ -229,6 +242,11 @@ $( document ).ready(function() {
 					pencil.click(function(){
 						unlockTime($(this));
 					});
+
+					displayAlert("success", "Changement d'heure effectué");
+
+					// Remove loader
+                    opac.remove();
 
 	            }
 	        });

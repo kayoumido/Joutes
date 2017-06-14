@@ -8,29 +8,29 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-We worked on an environment with the following software :
-
-- Ubuntu 16.04
-- Git
-- PHP 7.1
-- Nginx
-- MySQL
-- MariaDB
-- Sqlite3
-- Postgres
-- Composer
-- Node (With Yarn, PM2, Bower, Grunt and Gulp)
-- Redis
-- Memcached
-- Beanstalkd
-
-Not all the software on this list are required.
-
 ### Homestead
+So we could work in exactly the same environment, we've decided to use laravels **_homestead_**
 
 _"Laravel Homestead is an official, pre-packaged Vagrant box that provides you a wonderful development environment without requiring you to install PHP, a web server, and any other server software on your local machine."_
 
-To allow us to have exactly the same work environment, we decided to use Homestead. If you wish to use it, which we recommand you do, you can follow the official documentation [here](https://laravel.com/docs/5.3/homestead)
+If you wish to use it, which we highly recommend you do, you can follow the official documentation [here](https://laravel.com/docs/5.3/homestead). (quick tip: you'll need to generate an rsa key so homestead will work. Follow the solution [here](https://laravel.io/forum/06-04-2014-problem-launching-vagrant-on-homestead)).
+
+If don't want to use homestead, here are the software it includes: 
+* Ubuntu 16.04
+* Git
+* PHP 7.1
+* Nginx
+* MySQL
+* MariaDB
+* Sqlite3
+* Postgres
+* Composer
+* Node (With Yarn, PM2, Grunt and Gulp)
+* Redis
+* Memcached
+* Beanstalkd
+
+Not all the software on this list are required.
 
 ### Composer
 

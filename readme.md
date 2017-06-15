@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-### laravel
+### Laravel
 We use the 5.3 version of Laravel
 
 ### Homestead

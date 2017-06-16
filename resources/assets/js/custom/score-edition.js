@@ -165,6 +165,7 @@ $( document ).ready(function() {
 
                 // Remove time and display "-"
                 checkSquare.parent().parent().children(".separator").text("-");
+                checkSquare.parent().parent().children(".separator").removeClass("sepTime");
 
 				// Remove square and cross icons and add pencil icon
 				checkSquare.parent().children(".editTime").remove(); //delete pencil edit time

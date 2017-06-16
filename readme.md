@@ -119,6 +119,9 @@ If you've used homestead, it might redirect you to the wrong site, so you'll nee
 $ vagrant provision
 ```
 
+### Composer
+When you try to do a `composer install` you might need to activate the `mbstring extension`in your php.ini file
+
 ### DB problems
 If you run into an error "Class XYZ not found" after seeding the DB, execute the following command :
 

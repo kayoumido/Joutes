@@ -65,7 +65,7 @@ First of all you need to clone the project on your local machine. You can either
 $ git clone https://github.com/CPNV-ES/Joutes.git
 ```
 
-_All the following commands must be exectued in the project folder_
+_All the following commands must be exectued in the project folder if you are using homestead, you'll need to be in the folder in homestead_
 
 Now you need to install all the dependencies of the project.
 

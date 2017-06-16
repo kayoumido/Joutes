@@ -85,33 +85,33 @@ $( document ).ready(function() {
 	$('.dataTables_wrapper').removeClass('container-fluid');
 
 	// Redirect when click on a cell
-	$('#pools-table tr td.clickable').click(function(){
+	$('#pools-table').on('click', 'td.clickable', function(){
 		var tournament_id = $("#pools-table").data("tournament");
 		var pool_id = $(this).data("id");
 		window.location.href = tournament_id+"/pools/"+pool_id;
 	});
 
-	$('#teams-table tr td.clickable').click(function(){
+	$('#teams-table').on('click', 'td.clickable', function(){
 		var team_id = $(this).data("id");
 		window.location.href = "teams/"+team_id;
 	});
 
-	$('#teams-show-table tr td.clickable').click(function(){
+	$('#teams-show-table').on('click', 'td.clickable', function(){
 		var participant_id = $(this).data("id");
 		window.location.href = "/admin/participants/"+participant_id;
 	});
 
-	$('#participants-table tr td.clickable').click(function(){
+	$('#participants-table').on('click', 'td.clickable', function(){
 		var participant_id = $(this).data("id");
 		window.location.href = "participants/"+participant_id;
 	});
 
-	$('#participants-show-table tr td.clickable').click(function(){
+	$('#participants-show-table').on('click', 'td.clickable', function(){
 		var team_id = $(this).data("id");
 		window.location.href = "/admin/teams/"+team_id;
 	});
 
-	$('#tournament-teams-table tr td.clickable').click(function(){
+	$('#tournament-teams-table').on('click', 'td.clickable', function(){
 		var team_id = $(this).data("id");
 		window.location.href = "/admin/teams/"+team_id;
 	});

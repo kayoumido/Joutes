@@ -5,8 +5,12 @@ This project was carried out in the CPNV. Its main purpose is to help the sports
 
 # Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+If during the installation, you come up any problems, we have a section at the end of the readme that may help you. 
 
 ## Prerequisites
+
+### Laravel
+We use the 5.3 version of Laravel
 
 ### Homestead
 So we could work in exactly the same environment, we've decided to use laravels **_homestead_**
@@ -61,7 +65,7 @@ First of all you need to clone the project on your local machine. You can either
 $ git clone https://github.com/CPNV-ES/Joutes.git
 ```
 
-_All the following commands must be exectued in the project folder_
+_All the following commands must be exectued in the project folder if you are using homestead, you'll need to be in the folder in homestead_
 
 Now you need to install all the dependencies of the project.
 
@@ -115,6 +119,9 @@ If you've used homestead, it might redirect you to the wrong site, so you'll nee
 ```
 $ vagrant provision
 ```
+
+### Composer
+When you try to do a `composer install` you might need to activate the `mbstring` extensionin your php.ini file
 
 ### DB problems
 If you run into an error "Class XYZ not found" after seeding the DB, execute the following command :

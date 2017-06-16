@@ -235,7 +235,7 @@ class EventTournamentController extends Controller
      * of teams. If we pass a specific tournament, we get all teams who participating + teams who have no tournament linked
      * If we pass null, it's for create a new tournament, we get only the teams who don't have any tounrament linked
      *
-     * @param  Array  $tournament
+     * @param  Tournament  $tournament
      * @return Array
      *
      * @author Dessaules Loïc

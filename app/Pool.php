@@ -184,7 +184,7 @@ class Pool extends Model
 			}
         }
 
-		return $rankings;
+		return $this->sort($rankings);
     }
 
     /**

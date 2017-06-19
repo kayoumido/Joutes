@@ -5,7 +5,7 @@ This project was carried out in the CPNV. Its main purpose is to help the sports
 
 # Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-If during the installation, you come up any problems, we have a section at the end of the readme that may help you.
+If during the installation, you come up with any problems, we have a section at the end of the readme that may help you.
 
 ## Prerequisites
 

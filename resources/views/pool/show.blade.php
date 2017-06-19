@@ -38,7 +38,7 @@
 							@if (empty($game->contender1->team) || empty($game->contender2->team))
 
 								@if (empty($game->contender1->team))
-									<td class="contender1">{{" N° ".$game->contender1->rank_in_pool." pool ".$game->contender1->fromPool->poolName}}</td>
+									<td class="contender1">{{ $game->contender1->rank_in_pool . ($game->contender1->rank_in_pool == 1 ? "er " : 'ème ') . "de " . $game->contender1->fromPool->poolName }}</td>
 								@else
 									<td class="contender1">{{ $game->contender1->team->name }}</td>
 								@endif
@@ -48,7 +48,7 @@
 								<td class="score2"></td>
 
 								@if (empty($game->contender2->team))
-									<td class="contender2">{{" N° ".$game->contender2->rank_in_pool." pool ".$game->contender2->fromPool->poolName}}</td>
+									<td class="contender2">{{ $game->contender2->rank_in_pool . ($game->contender2->rank_in_pool == 1 ? "er " : 'ème ') . "de " . $game->contender2->fromPool->poolName }}</td>
 								@else
 									<td class="contender2">{{ $game->contender2->team->name }}</td>
 								@endif

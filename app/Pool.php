@@ -54,7 +54,7 @@ class Pool extends Model
 
 			if (empty($game->contender1->team)) {
 				// Create the implicite name
-                $impliciteContender1Name = " N° ".$game->contender1->rank_in_pool." pool ".$game->contender1->fromPool->poolName;
+                $impliciteContender1Name = $game->contender1->rank_in_pool . ($game->contender1->rank_in_pool == 1 ? "er " : 'ème ') . "de " . $game->contender1->fromPool->poolName;
                 $contender1exists = false;
 
                 // detect if we already have this name
@@ -80,7 +80,7 @@ class Pool extends Model
 
 			if (empty($game->contender2->team)) {
 				// Create the implicite name
-				$impliciteContender2Name = " N° ".$game->contender2->rank_in_pool." pool ".$game->contender2->fromPool->poolName;
+                $impliciteContender2Name = $game->contender2->rank_in_pool . ($game->contender2->rank_in_pool == 1 ? "er " : 'ème ') . "de " . $game->contender2->fromPool->poolName;
 				$contender2exists = false;
 
 				for ($i=0; $i < sizeof($rankings); $i++) {
@@ -119,7 +119,7 @@ class Pool extends Model
 							break;
 						}
 					}
-					// if so get old ranking values 
+					// if so get old ranking values
 					if ($position != -1) {
 						$score 			= $rankings[$position]["score"];
 						$win 			= $rankings[$position]["W"];

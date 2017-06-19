@@ -6,21 +6,21 @@ use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
-class MakeWritter extends Command
+class MakeWriter extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:writter {username} {password}';
+    protected $signature = 'make:writer {username} {password}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new writter';
+    protected $description = 'Create a new writer';
 
     /**
      * Create a new command instance.
@@ -43,14 +43,14 @@ class MakeWritter extends Command
         $password = Hash::make($this->argument('password'));
 
         if(User::where('username', '=', $username)->exists()){
-            $this->line("Erreur: L'utilisateur $username existe déjà.");
+            $this->line("Error: The username \"".$username."\" already exists.");
         }else{
             $user = new User;
             $user->username = $username;
             $user->password = $password;
-            $user->role = 'writter';
+            $user->role = 'writer';
             $user->save();
-            $this->line("Le rédacteur $username a bien été créé.");
+            $this->line("The writer \"".$username."\" has been created.");
         }
 
     }

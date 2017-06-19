@@ -240,7 +240,7 @@ class Pool extends Model
     public function isEditable(){
         if(Auth::check()){
             $role = Auth::user()->role;
-            if($role == "writter" || $role == "administrator"){
+            if($role == "writer" || $role == "administrator"){
                 if($this->isFinished == 0){
                     return true;
                 }else{

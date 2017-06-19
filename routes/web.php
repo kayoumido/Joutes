@@ -45,8 +45,8 @@ Route::group(['middleware'=>'checkIsAdmin', 'prefix'=>'admin', 'namespace' => 'A
     Route::resource('events.import', 'EventImportController', ['only' => ['store']]);
 });
 
-/* Authorization for Writter or Admin*/
-Route::group(['middleware'=>'checkIsWritterOrAdmin', 'prefix'=>'admin', 'namespace' => 'Admin'],function(){
+/* Authorization for Writer or Admin*/
+Route::group(['middleware'=>'checkIsWriterOrAdmin', 'prefix'=>'admin', 'namespace' => 'Admin'],function(){
 	Route::resource('tournaments.pools.games', 'TournamentPoolGameController', ['only' => 'update']);
 	Route::resource('tournaments.pools', 'TournamentPoolController', ['only' => 'update']);
 });

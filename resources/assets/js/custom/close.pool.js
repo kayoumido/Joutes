@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    closePool();
+});
+
+
+function closePool() {
     $('.close-pool-btn').click(function() {
 
         // Create the loader
@@ -31,16 +36,14 @@ $(document).ready(function() {
                 success : function(data) {
 
                     // limit number of alerts to one. This is done because multiple request are made.
-                    if (!$('.alert.alert-success').length) {
+                    if (!$('.alert.alert-success.end-pool').length) {
                         // Display success message
-                        var success = $("<div class='alert alert-success' role='alert'>Le pool à bien été terminé</div>");
+                        var success = $("<div class='alert alert-success end-pool' role='alert'>Le poule à bien été terminée</div>");
                         $("#match-block").prepend(success);
                         // After 2sec, the alert will disappear
                         success.fadeTo(3000, 500).slideUp(500, function(){
-                		    success.slideUp(500);
-                		});
-                        // Remove loader
-                        opac.remove();
+                            success.slideUp(500);
+                        });
                     }
 
                     $('.action i').each(function() {
@@ -48,6 +51,8 @@ $(document).ready(function() {
                     });
 
                     $('.close-pool-btn').remove();
+                    // Remove loader
+                    opac.remove();
                 },
                 error : function(xhr) {
                     console.error('readyState: ' + xhr.readyState);
@@ -61,4 +66,4 @@ $(document).ready(function() {
         });
 
     });
-});
+}

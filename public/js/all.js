@@ -434,7 +434,7 @@ $( document ).ready(function() {
 
 			// Remove square and cross icons and recreate pencil icon
 			tdAction.append(pencil);
-			checkSquare.remove();	
+			checkSquare.remove();
 			cross.remove();
 
 			// Remove inputs
@@ -462,8 +462,8 @@ $( document ).ready(function() {
 			}
 		});
 	}
-	
-	function displayAlert(type, message){	
+
+	function displayAlert(type, message){
 		$(".alert").remove();
 
 		switch(type) {
@@ -489,7 +489,7 @@ $( document ).ready(function() {
 	function valid(score1, score2){
 		var patternNumeric = /^[0-9]{1,3}$/;
 		if(!patternNumeric.test(score1) || !patternNumeric.test(score2)){
-    		return false; 
+    		return false;
     	}else{
     		return true;
     	}
@@ -522,8 +522,8 @@ $( document ).ready(function() {
             dataType    : 'json',
             context     : this,
             cache       : false,
-            headers     : {            
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')        
+            headers     : {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data        : {
         		score1 : tdAction.parent().children("td.score1").children("input").val(),
@@ -572,7 +572,13 @@ $( document ).ready(function() {
 					unlockScore($(this));
 				});
 
-				
+				if ($('.sepTime').length == 0) {
+					if ($('.close-pool-btn').length == 0) {
+						$('h1').append('<a class="greenBtn close-pool-btn">Terminer la poule</a>');
+						closePool();
+					}
+				}
+
 
 				// Update the rankings table
 				updateRankingstable(data);
@@ -592,16 +598,18 @@ $( document ).ready(function() {
 		var tBody = $("#pool-rankings-table tbody");
 		tBody.empty();
 		for (var i = 0; i < rankings.length; i++) {
-			tr = document.createElement("tr");
+			// tr = document.createElement("tr");
+			tr = $('<tr data-id="' + rankings[i]["team_id"] + '" data-rank="' + (i + 1) + '"></tr>');
 			allTds = '<td>'+(i+1)+'</td><td>'+rankings[i]["team"]+'</td><td>'+rankings[i]["score"]+'</td><td>'+rankings[i]["W"]+'</td><td>'+rankings[i]["L"]+'</td><td>'+rankings[i]["D"]+'</td><td>'+rankings[i]["+-"]+'</td>';
-			tr.innerHTML = allTds;
+			tr.html(allTds);
 			tBody.append(tr);
 		}
-		
+
 	}
 
 
 });
+
 $( document ).ready(function() {
 
 	$("#shiftMatch").click(function() {
@@ -871,6 +879,11 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+    closePool();
+});
+
+
+function closePool() {
     $('.close-pool-btn').click(function() {
 
         // Create the loader
@@ -903,16 +916,14 @@ $(document).ready(function() {
                 success : function(data) {
 
                     // limit number of alerts to one. This is done because multiple request are made.
-                    if (!$('.alert.alert-success').length) {
+                    if (!$('.alert.alert-success.end-pool').length) {
                         // Display success message
-                        var success = $("<div class='alert alert-success' role='alert'>Le pool à bien été terminé</div>");
+                        var success = $("<div class='alert alert-success end-pool' role='alert'>Le poule à bien été terminée</div>");
                         $("#match-block").prepend(success);
                         // After 2sec, the alert will disappear
                         success.fadeTo(3000, 500).slideUp(500, function(){
-                		    success.slideUp(500);
-                		});
-                        // Remove loader
-                        opac.remove();
+                            success.slideUp(500);
+                        });
                     }
 
                     $('.action i').each(function() {
@@ -920,6 +931,8 @@ $(document).ready(function() {
                     });
 
                     $('.close-pool-btn').remove();
+                    // Remove loader
+                    opac.remove();
                 },
                 error : function(xhr) {
                     console.error('readyState: ' + xhr.readyState);
@@ -933,6 +946,6 @@ $(document).ready(function() {
         });
 
     });
-});
+}
 
 //# sourceMappingURL=all.js.map

@@ -45,7 +45,7 @@
 
 								<td class="score1"></td>
 								<td class="separator sepTime">{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
-								<td class="score2"></td>
+								<td class="score2">{{ $game->court->name }}</td>
 
 								@if (empty($game->contender2->team))
 									<td class="contender2">{{ $game->contender2->rank_in_pool . ($game->contender2->rank_in_pool == 1 ? "er " : 'ème ') . "de " . $game->contender2->fromPool->poolName }}</td>
@@ -62,7 +62,7 @@
 									<td class="contender1">{{$game->contender1->team->name}}</td>
 									<td class="score1"></td>
 									<td class="separator sepTime">{{Carbon\Carbon::parse($game->start_time)->format('H:i')}}</td>
-									<td class="score2"></td>
+									<td class="score2">{{ $game->court->name }}</td>
 									<td class="contender2">{{$game->contender2->team->name}}</td>
 									@if($pool->isEditable())
 										<td class="action"><i class="fa fa-lg fa-clock-o editTime" aria-hidden="true"></i> <i class="editScore fa fa-trophy fa-lg" aria-hidden="true"></i></td>

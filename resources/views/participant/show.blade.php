@@ -53,7 +53,7 @@
 		@endif
 
 
-		<h2>Ajouter ce membre à une team</h2>
+		<h2>Ajouter ce membre à une équipe</h2>
 		@if (isset($error))
 			<div class="alert alert-danger">
 				{{ $error }}

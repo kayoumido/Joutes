@@ -5,36 +5,16 @@ This project was carried out in the CPNV. Its main purpose is to help the sports
 
 # Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-If during the installation, you come up any problems, we have a section at the end of the readme that may help you. 
+If during the installation, you come up any problems, we have a section at the end of the readme that may help you.
 
 ## Prerequisites
 
-### Laravel
-We use the 5.3 version of Laravel
-
-### Homestead
-So we could work in exactly the same environment, we've decided to use laravels **_homestead_**
-
-_"Laravel Homestead is an official, pre-packaged Vagrant box that provides you a wonderful development environment without requiring you to install PHP, a web server, and any other server software on your local machine."_
-
-If you wish to use it, which we highly recommend you do, you can follow the official documentation [here](https://laravel.com/docs/5.3/homestead). (quick tip: you'll need to generate an rsa key so homestead will work. Follow the solution [here](https://laravel.io/forum/06-04-2014-problem-launching-vagrant-on-homestead)).
-
-If don't want to use homestead, here are the software it includes: 
-* Ubuntu 16.04
-* Git
-* PHP 7.1
-* Nginx
-* MySQL
-* MariaDB
-* Sqlite3
-* Postgres
-* Composer
-* Node (With Yarn, PM2, Grunt and Gulp)
-* Redis
-* Memcached
-* Beanstalkd
-
-Not all the software on this list are required.
+* Git 2.7.4
+* PHP 7.0.17
+* Laravel 5.3
+* MySQL 5.7.16
+* Composer 1.4.2
+* Node 6.9.1 (With Gulp 3.9.1)
 
 ### Composer
 
@@ -56,6 +36,15 @@ php -r "unlink('composer-setup.php');"
 _Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world._
 
 if you don't have node.js installed, you can download it [here](https://nodejs.org/en/download/)
+
+We're using node so we can easily manage all of our JavaScript dependencies (gulp, jquery, laravel-elixir). We are aware that using node just for 3 dependencies is a bit overkill, it's something less to worry about. If you wish you can not use node and just download the dependencies.
+
+## Homestead
+So we could work in exactly the same environment, we've decided to use laravels **_homestead_**
+
+_"Laravel Homestead is an official, pre-packaged Vagrant box that provides you a wonderful development environment without requiring you to install PHP, a web server, and any other server software on your local machine."_
+
+If you wish to use it, which we highly recommend you do, you can follow the official documentation [here](https://laravel.com/docs/5.3/homestead). (quick tip: you'll need to generate an rsa key so homestead will work. Follow the solution [here](https://laravel.io/forum/06-04-2014-problem-launching-vagrant-on-homestead)).
 
 ## Installation
 

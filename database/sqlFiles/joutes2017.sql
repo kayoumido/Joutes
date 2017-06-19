@@ -1,5 +1,5 @@
 -- Empty the current database's tables and reset autoincrement to 1
-/*
+
 SET FOREIGN_KEY_CHECKS = 0;
 
 DELIMITER $$
@@ -19,12 +19,15 @@ CREATE PROCEDURE clearDb()
       THEN
         LEAVE get_table;
       END IF;
-      SET @qry1 := concat('delete from ', oneTable);
-      PREPARE stmt FROM @qry1;
-      EXECUTE stmt;
-      SET @qry1 := concat('ALTER TABLE ', oneTable, ' auto_increment=1');
-      PREPARE stmt FROM @qry1;
-      EXECUTE stmt;
+      IF oneTable <> 'migrations'
+      THEN
+        SET @qry1 := concat('delete from ', oneTable);
+        PREPARE stmt FROM @qry1;
+        EXECUTE stmt;
+        SET @qry1 := concat('ALTER TABLE ', oneTable, ' auto_increment=1');
+        PREPARE stmt FROM @qry1;
+        EXECUTE stmt;
+      END IF;
     END LOOP get_table;
     CLOSE allTables;
   END;
@@ -32,7 +35,7 @@ $$
 CALL clearDb();
 DROP PROCEDURE clearDb;
 
-SET FOREIGN_KEY_CHECKS = 1;*/
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- ========================================== Data ==============================================
 
@@ -46,19 +49,28 @@ INSERT INTO joutes.events (NAME) VALUES ('joutes 2017');
 --  Insert Data in sports
 --
 
-INSERT INTO sports (NAME, description) VALUES ('Beach Volley', '4-4 mixte');
+INSERT INTO sports (NAME, description)
+VALUES ('Beach Volley', '4-4 mixte'), ('Badminton', 'Doubles'), ('Unihockey', 'à 6 joueurs');
 
 --
 --  Insert Data in courts
 --
 
-INSERT INTO courts (NAME, sport_id, acronym) VALUES ('Lac', 1, 'LAC'), ('Montagne', 1, 'MONT');
+INSERT INTO courts (NAME, acronym, sport_id)
+VALUES
+  ('Lac', 'Lac', 1), ('Montagne', 'Mnt', 1),
+  ('1', 'T1', 2), ('2', 'T2', 2), ('3', 'T3', 2), ('4', 'T4', 2), ('5', 'T5', 2), ('6', 'T6', 2),
+  ('A', 'A', 3), ('B', 'B', 3);
 
 --
 --  Insert Data in tournaments
 --
 
-INSERT INTO tournaments (NAME, start_date, event_id, sport_id) VALUES ('BeachVolley', '2017-06-27', 1, 1);
+INSERT INTO tournaments (NAME, start_date, event_id, sport_id)
+VALUES
+  ('BeachVolley', '2017-06-27 09:30:00', 1, 1),
+  ('Badminton', '2017-06-27 13:30:00', 1, 2),
+  ('Unihockey', '2017-06-27 08:00:00', 1, 3);
 
 --
 --  Insert Data in gameTypes
@@ -99,11 +111,41 @@ VALUES ("Risa", "Fuller"), ("Jenette", "Alvarado"), ("Colorado", "Moss"), ("Bree
 INSERT INTO participants (first_name, last_name)
 VALUES ("Wanda", "Sears"), ("Melvin", "Bowen"), ("Lareina", "Forbes"), ("Dane", "Holland"), ("Norman", "Mcleod"),
   ("Blythe", "Cruz"), ("Jayme", "Gill"), ("Adele", "Warren"), ("Candace", "Valenzuela"), ("Judith", "Blake");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Ella", "Mcdaniel"), ("Mara", "Forbes"), ("Brynne", "Mcgowan"), ("Zelenia", "Knight"), ("Willa", "Griffith"),
+  ("Austin", "Gray"), ("Mason", "Hendricks"), ("Azalia", "Fletcher"), ("Tashya", "Lawson"), ("Gavin", "Reynolds");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Bree", "Kramer"), ("Wade", "Blake"), ("Keaton", "Melendez"), ("Charde", "Osborne"), ("Deanna", "Phelps"),
+  ("Ulric", "Higgins"), ("Violet", "Ramsey"), ("Dai", "Hyde"), ("Vivien", "Howe"), ("Lila", "Levy");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Ishmael", "Wall"), ("Yuli", "Wyatt"), ("Rina", "Rowe"), ("Yardley", "Conway"), ("Cecilia", "Alston"),
+  ("Ulla", "Bailey"), ("Xandra", "Yates"), ("Zane", "Thornton"), ("Chancellor", "Diaz"), ("India", "Hensley");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Xavier", "Williams"), ("Brynne", "Patton"), ("Vincent", "Moran"), ("Hayfa", "Arnold"), ("Melodie", "Garrett"),
+  ("Ariana", "Morris"), ("Isaiah", "Moran"), ("Myra", "Crane"), ("Daphne", "Reeves"), ("Elijah", "English");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Mason", "Weber"), ("Zoe", "Chapman"), ("David", "Conrad"), ("Marcia", "Ramos"), ("Addison", "Wynn"),
+  ("Matthew", "Boyle"), ("Len", "Simmons"), ("Ashely", "Ryan"), ("Nolan", "Holt"), ("Garrison", "Chambers");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Dale", "Glass"), ("Ezra", "Burnett"), ("Cain", "Blankenship"), ("Octavia", "Rocha"), ("Riley", "Cortez"),
+  ("Reed", "Hickman"), ("Luke", "Meadows"), ("Aspen", "Mills"), ("Jason", "Bishop"), ("Zephania", "Mcmahon");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Cody", "Mendoza"), ("Deirdre", "Floyd"), ("Melodie", "Massey"), ("Kellie", "Lynch"), ("Riley", "Mccarty"),
+  ("Tyrone", "Melton"), ("Savannah", "Gay"), ("Audra", "Franklin"), ("Maxwell", "Blackwell"), ("Chastity", "Maldonado");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Yardley", "Armstrong"), ("Nissim", "Saunders"), ("Doris", "Hendrix"), ("Burton", "Dixon"), ("Imani", "Bowers"),
+  ("Gwendolyn", "Scott"), ("Leslie", "Whitley"), ("Nehru", "Klein"), ("Dante", "Page"), ("Rudyard", "Beach");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Clare", "Warner"), ("Fatima", "Zamora"), ("Danielle", "Fields"), ("Keely", "Witt"), ("Rina", "Dale"),
+  ("Lee", "Vasquez"), ("Dillon", "Smith"), ("Tanya", "Brooks"), ("Ezekiel", "Oneil"), ("Zoe", "Frost");
+INSERT INTO participants (first_name, last_name)
+VALUES ("Yoshio", "Wolf"), ("Damian", "Berg"), ("Lev", "Santos"), ("Illiana", "Dyer"), ("Illiana", "Buchanan"),
+  ("Olga", "Booth"), ("Rhiannon", "Kaufman"), ("Brynne", "Clay"), ("Cruz", "Contreras"), ("Florence", "Herman");
 
 --
 --  Insert Data in teams
 --
-
+-- Beach volley teams
 INSERT INTO teams (NAME, tournament_id) VALUES ('Badboys', 1);
 INSERT INTO teams (NAME, tournament_id) VALUES ('Super Nanas', 1);
 INSERT INTO teams (NAME, tournament_id) VALUES ('CPVN Crew', 1);
@@ -116,44 +158,60 @@ INSERT INTO teams (NAME, tournament_id) VALUES ('Monoster', 1);
 INSERT INTO teams (NAME, tournament_id) VALUES ('Picalo', 1);
 INSERT INTO teams (NAME, tournament_id) VALUES ('Dellit', 1);
 INSERT INTO teams (NAME, tournament_id) VALUES ('SuperStar', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Masting', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Clafier', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Robert2Poche', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Alexandri', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('FanGirls', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Les Otakus', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Gamers', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Over2000', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Shinigami', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Rocketteurs', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Gilles & 2Sot-Vetage', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Maya Labeille', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Taupes ModL', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Les Pausés', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Absolute Frost', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Dark Side', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Btooom', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Stalgia', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Clattonia', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Danrell', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('RunAGround', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Believer', 1);
-INSERT INTO teams (NAME, tournament_id) VALUES ('Warriors', 1);
 
---
---  Insert Data in participant_team
---
+-- Badminton teams
+INSERT INTO teams (NAME, tournament_id) VALUES ('Masting', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Clafier', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Robert2Poche', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Alexandri', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('FanGirls', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Les Otakus', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Gamers', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Over2000', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Shinigami', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Rocketteurs', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Gilles & 2Sot-Vetage', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Maya Labeille', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Taupes ModL', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Les Pausés', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Absolute Frost', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Dark Side', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Btooom', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Stalgia', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Clattonia', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Danrell', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('RunAGround', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Believer', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Plouf', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Jokers', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Minnie and friends', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Youpi', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Mouarf', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Olakétal', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Tchôoo', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Minions', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('Big fat boys', 2);
+INSERT INTO teams (NAME, tournament_id) VALUES ('La loooose', 2);
 
+-- Build 12 teams of 4 with first 48 persons for beachvolley
 INSERT INTO participant_team (participant_id, team_id, isCaptain) SELECT
                                                                     id,
                                                                     FLOOR((id + 3) / 4),
                                                                     (id % 4 = 0)
                                                                   FROM participants
-                                                                  LIMIT 48;
+                                                                  WHERE id <= 48;
 
---
---  Insert Data in contenders
---
+-- Build 32 pairs with next 64 persons for badminton
+INSERT INTO participant_team (participant_id, team_id, isCaptain) SELECT
+                                                                    id,
+                                                                    12 + FLOOR((id - 47) / 2),
+                                                                    (id % 2 = 0)
+                                                                  FROM participants
+                                                                  WHERE id BETWEEN 49 AND 112;
+
+-- ################################################################################
+--                                  Beach Volley
+-- ################################################################################
 
 -- ================= stage 1 =====================
 
@@ -169,7 +227,7 @@ INSERT INTO contenders (pool_id, team_id) SELECT
                                             FLOOR((id + 3) / 4),
                                             id
                                           FROM teams
-                                          LIMIT 12;
+                                          WHERE tournament_id = 1;
 
 -- Games
 INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
@@ -197,7 +255,7 @@ VALUES
 
 -- ================= stage 2 =====================
 
-  -- pools id 4-5
+-- pools id 4-5
 INSERT INTO pools (tournament_id, start_time, end_time, poolName, mode_id, gameType_id, poolSize, stage, isFinished)
 VALUES
   (1, '11:45', '16:00', 'Winners', 1, 1, 6, 2, 0), (1, '11:45', '16:00', 'Fun', 1, 1, 6, 2, 0);
@@ -251,3 +309,309 @@ VALUES
   ('2017-06-27', '15:15', 22, 27, 2),
   ('2017-06-27', '15:30', 23, 25, 2),
   ('2017-06-27', '15:45', 24, 26, 2);
+
+DELIMITER $$
+CREATE PROCEDURE AddBadmintonTournament()
+  -- Tournament structure:
+  -- 32 teams
+  -- round 1: 8 pools of 4 teams
+  -- round 2: 2 pools of 4 winners, 2 pools of 4 seconds, 2 pools of 4 third, 2 pools of 4 fourth
+  -- round 3: finals rank for rank across pools of the same level
+  BEGIN
+    DECLARE firstPoolStage1 INT;
+    DECLARE firstPoolStage2 INT;
+    DECLARE firstTeam INT DEFAULT (SELECT id
+                                   FROM teams
+                                   WHERE tournament_id = 2
+                                   LIMIT 1); -- first of the 32 badminton pairs
+    DECLARE firstContender INT;
+
+    -- Stage 1
+    INSERT INTO pools (tournament_id, start_time, end_time, poolName, mode_id, gameType_id, poolSize, stage, isFinished)
+    VALUES
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '13:30', '14:45', 'A', 1, 1, 4, 1, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '13:30', '14:45', 'B', 1, 1, 4, 1, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '13:30', '14:45', 'C', 1, 1, 4, 1, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '13:30', '14:45', 'D', 1, 1, 4, 1, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '13:30', '14:45', 'E', 1, 1, 4, 1, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '13:30', '14:45', 'F', 1, 1, 4, 1, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '13:30', '14:45', 'G', 1, 1, 4, 1, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '13:30', '14:45', 'H', 1, 1, 4, 1, 0);
+    SET firstPoolStage1 = LAST_INSERT_ID();
+
+    -- contenders are automatic: teams 1-4 -> pool 1, teams 5-8 -> pool 2, thus team X -> pool floor((X+3)/4)
+    INSERT INTO contenders (pool_id, team_id) SELECT
+                                                firstPoolStage1 + FLOOR((id - firstTeam) / 4),
+                                                id
+                                              FROM teams
+                                              WHERE tournament_id = 2;
+
+    -- Games pool A
+    SET firstContender = LAST_INSERT_ID();
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 3),
+      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 5),
+      ('2017-06-27', '13:50', firstContender + 0, firstContender + 2, 7),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 3),
+      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 5),
+      ('2017-06-27', '14:30', firstContender + 1, firstContender + 2, 7);
+
+    -- Games pool B
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 4),
+      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 6),
+      ('2017-06-27', '13:50', firstContender + 0, firstContender + 2, 8),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 4),
+      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 6),
+      ('2017-06-27', '14:30', firstContender + 1, firstContender + 2, 8);
+
+    -- Games pool C
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 5),
+      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 7),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 3),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 5),
+      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 7),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 3);
+
+    -- Games pool D
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 6),
+      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 8),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 4),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 6),
+      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 8),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 4);
+
+    -- Games pool E
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 7),
+      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 3),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 5),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 7),
+      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 3),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 5);
+
+    -- Games pool F
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 8),
+      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 4),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 6),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 8),
+      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 4),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 6);
+
+    -- Games pool G
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:40', firstContender + 0, firstContender + 1, 3),
+      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 5),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 7),
+      ('2017-06-27', '14:20', firstContender + 1, firstContender + 3, 3),
+      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 5),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 7);
+
+    -- Games pool H
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:40', firstContender + 0, firstContender + 1, 4),
+      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 6),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 8),
+      ('2017-06-27', '14:20', firstContender + 1, firstContender + 3, 4),
+      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 6),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 8);
+
+    -- Stage 2
+    INSERT INTO pools (tournament_id, start_time, end_time, poolName, mode_id, gameType_id, poolSize, stage, isFinished)
+    VALUES
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '14:45', '16:00', '1A', 1, 1, 4, 2, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '14:45', '16:00', '1B', 1, 1, 4, 2, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '14:45', '16:00', '2A', 1, 1, 4, 2, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '14:45', '16:00', '2B', 1, 1, 4, 2, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '14:45', '16:00', '3A', 1, 1, 4, 2, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '14:45', '16:00', '3B', 1, 1, 4, 2, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '14:45', '16:00', '4A', 1, 1, 4, 2, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '14:45', '16:00', '4B', 1, 1, 4, 2, 0);
+    SET firstPoolStage2 = LAST_INSERT_ID();
+
+    INSERT INTO contenders (pool_id, rank_in_pool, pool_from_id)
+    VALUES
+      (firstPoolStage2 + 0, 1, firstPoolStage1 + 0),
+      (firstPoolStage2 + 0, 1, firstPoolStage1 + 1),
+      (firstPoolStage2 + 0, 1, firstPoolStage1 + 2),
+      (firstPoolStage2 + 0, 1, firstPoolStage1 + 3),
+      (firstPoolStage2 + 1, 1, firstPoolStage1 + 4),
+      (firstPoolStage2 + 1, 1, firstPoolStage1 + 5),
+      (firstPoolStage2 + 1, 1, firstPoolStage1 + 6),
+      (firstPoolStage2 + 1, 1, firstPoolStage1 + 7),
+      (firstPoolStage2 + 2, 2, firstPoolStage1 + 0),
+      (firstPoolStage2 + 2, 2, firstPoolStage1 + 1),
+      (firstPoolStage2 + 2, 2, firstPoolStage1 + 2),
+      (firstPoolStage2 + 2, 2, firstPoolStage1 + 3),
+      (firstPoolStage2 + 3, 2, firstPoolStage1 + 4),
+      (firstPoolStage2 + 3, 2, firstPoolStage1 + 5),
+      (firstPoolStage2 + 3, 2, firstPoolStage1 + 6),
+      (firstPoolStage2 + 3, 2, firstPoolStage1 + 7),
+      (firstPoolStage2 + 4, 3, firstPoolStage1 + 0),
+      (firstPoolStage2 + 4, 3, firstPoolStage1 + 1),
+      (firstPoolStage2 + 4, 3, firstPoolStage1 + 2),
+      (firstPoolStage2 + 4, 3, firstPoolStage1 + 3),
+      (firstPoolStage2 + 5, 3, firstPoolStage1 + 4),
+      (firstPoolStage2 + 5, 3, firstPoolStage1 + 5),
+      (firstPoolStage2 + 5, 3, firstPoolStage1 + 6),
+      (firstPoolStage2 + 5, 3, firstPoolStage1 + 7),
+      (firstPoolStage2 + 6, 4, firstPoolStage1 + 0),
+      (firstPoolStage2 + 6, 4, firstPoolStage1 + 1),
+      (firstPoolStage2 + 6, 4, firstPoolStage1 + 2),
+      (firstPoolStage2 + 6, 4, firstPoolStage1 + 3),
+      (firstPoolStage2 + 7, 4, firstPoolStage1 + 4),
+      (firstPoolStage2 + 7, 4, firstPoolStage1 + 5),
+      (firstPoolStage2 + 7, 4, firstPoolStage1 + 6),
+      (firstPoolStage2 + 7, 4, firstPoolStage1 + 7);
+
+    -- Games pool A
+    SET firstContender = LAST_INSERT_ID();
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 3),
+      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 5),
+      ('2017-06-27', '13:50', firstContender + 0, firstContender + 2, 7),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 3),
+      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 5),
+      ('2017-06-27', '14:30', firstContender + 1, firstContender + 2, 7);
+
+    -- Games pool B
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 4),
+      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 6),
+      ('2017-06-27', '13:50', firstContender + 0, firstContender + 2, 8),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 4),
+      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 6),
+      ('2017-06-27', '14:30', firstContender + 1, firstContender + 2, 8);
+
+    -- Games pool C
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 5),
+      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 7),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 3),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 5),
+      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 7),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 3);
+
+    -- Games pool D
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 6),
+      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 8),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 4),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 6),
+      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 8),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 4);
+
+    -- Games pool E
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 7),
+      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 3),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 5),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 7),
+      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 3),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 5);
+
+    -- Games pool F
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 8),
+      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 4),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 6),
+      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 8),
+      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 4),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 6);
+
+    -- Games pool G
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:40', firstContender + 0, firstContender + 1, 3),
+      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 5),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 7),
+      ('2017-06-27', '14:20', firstContender + 1, firstContender + 3, 3),
+      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 5),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 7);
+
+    -- Games pool H
+    SET firstContender = firstContender + 4;
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '13:40', firstContender + 0, firstContender + 1, 4),
+      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 6),
+      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 8),
+      ('2017-06-27', '14:20', firstContender + 1, firstContender + 3, 4),
+      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 6),
+      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 8);
+
+  END;
+
+
+$$
+CALL AddBadmintonTournament();
+DROP PROCEDURE AddBadmintonTournament;
+
+-- Temporarily for ease of testing: create admin and writer
+
+INSERT INTO joutes.users (username, password, role)
+VALUES ('writer', '$2y$10$1nlzftBwvtxq6yueKHvROukJ9acntgG1pmu.qb1UY80pJWFchadP6', 'writter');
+INSERT INTO joutes.users (username, password, role)
+VALUES ('admin', '$2y$10$RsiBblUoNfis0/TAmWR3NuLQRUITxQbQmsaSAdCPyto1z4eUs4ZlW', 'administrator');

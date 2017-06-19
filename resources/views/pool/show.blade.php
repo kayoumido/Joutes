@@ -11,7 +11,7 @@
 			{{$pool->tournament->name}} - Phase {{ $pool->stage }} - {{$pool->poolName}}
 
 			@if (sizeof($pool->rankings()) > 0 && !$pool->isFinished && $ranking_completed && $games_completed && Auth::check() && (Auth::user()->role == 'administrator' || Auth::user()->role == 'writter'))
-				<a class="greenBtn close-pool-btn">Terminer la pool</a>
+				<a class="greenBtn close-pool-btn">Terminer la poule</a>
 			@endif
 
 		</h1>

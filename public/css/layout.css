@@ -9,6 +9,7 @@
 
 .navbar-header .user-infos{
     margin-right: 30px;
+    z-index: 999;
 }
 
 .navbar-header .user-infos .username, .navbar-header .login{

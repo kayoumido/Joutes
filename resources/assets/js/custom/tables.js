@@ -85,7 +85,7 @@ $( document ).ready(function() {
 	$('.dataTables_wrapper').removeClass('container-fluid');
 
 	// Redirect when click on a cell
-	$('#pools-table').on('click', 'td.clickable', function(){
+	$('#pools-table td.clickable').on('click', function(){
 		var tournament_id = $("#pools-table").data("tournament");
 		var pool_id = $(this).data("id");
 		window.location.href = tournament_id+"/pools/"+pool_id;

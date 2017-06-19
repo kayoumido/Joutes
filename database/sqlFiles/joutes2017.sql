@@ -1,5 +1,5 @@
 -- Empty the current database's tables and reset autoincrement to 1
-
+/*
 SET FOREIGN_KEY_CHECKS = 0;
 
 DELIMITER $$
@@ -32,7 +32,7 @@ $$
 CALL clearDb();
 DROP PROCEDURE clearDb;
 
-SET FOREIGN_KEY_CHECKS = 1;
+SET FOREIGN_KEY_CHECKS = 1;*/
 
 -- ========================================== Data ==============================================
 

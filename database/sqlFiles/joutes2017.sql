@@ -52,7 +52,7 @@ INSERT INTO sports (NAME, description) VALUES ('Beach Volley', '4-4 mixte');
 --  Insert Data in courts
 --
 
-INSERT INTO courts (NAME, sport_id) VALUES ('Lac', 1), ('Montagne', 1);
+INSERT INTO courts (NAME, sport_id, acronym) VALUES ('Lac', 1, 'LAC'), ('Montagne', 1, 'MONT');
 
 --
 --  Insert Data in tournaments

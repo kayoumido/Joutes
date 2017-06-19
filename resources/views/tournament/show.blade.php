@@ -9,7 +9,9 @@
 
 		<h1 class="tournamentName">
 			{{ $tournament->name }}
-			<a href="{{ route('tournaments.schedule.index', $tournament->id) }}" class="greenBtn big-screen" title="Affichage écran géant">Affichage écran geant</i></a>
+			@if (Auth::check() && (Auth::user()->role == 'administrator' || Auth::user()->role == 'writter'))
+				<a href="{{ route('tournaments.schedule.index', $tournament->id) }}" class="greenBtn big-screen" title="Affichage écran géant">Affichage écran geant</i></a>
+			@endif
 		</h1>
 
 		<div class="right">

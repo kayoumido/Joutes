@@ -320,6 +320,7 @@ CREATE PROCEDURE AddBadmintonTournament()
   BEGIN
     DECLARE firstPoolStage1 INT;
     DECLARE firstPoolStage2 INT;
+    DECLARE firstFinal INT;
     DECLARE firstTeam INT DEFAULT (SELECT id
                                    FROM teams
                                    WHERE tournament_id = 2
@@ -514,93 +515,203 @@ CREATE PROCEDURE AddBadmintonTournament()
       (firstPoolStage2 + 7, 4, firstPoolStage1 + 6),
       (firstPoolStage2 + 7, 4, firstPoolStage1 + 7);
 
-    -- Games pool A
+    -- Games pool 1A
     SET firstContender = LAST_INSERT_ID();
     INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
     VALUES
-      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 3),
-      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 5),
-      ('2017-06-27', '13:50', firstContender + 0, firstContender + 2, 7),
-      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 3),
-      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 5),
-      ('2017-06-27', '14:30', firstContender + 1, firstContender + 2, 7);
+      ('2017-06-27', '14:45', firstContender + 0, firstContender + 1, 3),
+      ('2017-06-27', '14:55', firstContender + 2, firstContender + 3, 5),
+      ('2017-06-27', '15:05', firstContender + 0, firstContender + 2, 7),
+      ('2017-06-27', '15:25', firstContender + 1, firstContender + 3, 3),
+      ('2017-06-27', '15:35', firstContender + 0, firstContender + 3, 5),
+      ('2017-06-27', '15:45', firstContender + 1, firstContender + 2, 7);
 
-    -- Games pool B
+    -- Games pool 1B
     SET firstContender = firstContender + 4;
     INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
     VALUES
-      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 4),
-      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 6),
-      ('2017-06-27', '13:50', firstContender + 0, firstContender + 2, 8),
-      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 4),
-      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 6),
-      ('2017-06-27', '14:30', firstContender + 1, firstContender + 2, 8);
+      ('2017-06-27', '14:45', firstContender + 0, firstContender + 1, 4),
+      ('2017-06-27', '14:55', firstContender + 2, firstContender + 3, 6),
+      ('2017-06-27', '15:05', firstContender + 0, firstContender + 2, 8),
+      ('2017-06-27', '15:25', firstContender + 1, firstContender + 3, 4),
+      ('2017-06-27', '15:35', firstContender + 0, firstContender + 3, 6),
+      ('2017-06-27', '15:45', firstContender + 1, firstContender + 2, 8);
 
-    -- Games pool C
+    -- Games pool 2A
     SET firstContender = firstContender + 4;
     INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
     VALUES
-      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 5),
-      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 7),
-      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 3),
-      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 5),
-      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 7),
-      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 3);
+      ('2017-06-27', '14:45', firstContender + 0, firstContender + 1, 5),
+      ('2017-06-27', '14:55', firstContender + 2, firstContender + 3, 7),
+      ('2017-06-27', '15:15', firstContender + 0, firstContender + 2, 3),
+      ('2017-06-27', '15:25', firstContender + 1, firstContender + 3, 5),
+      ('2017-06-27', '15:35', firstContender + 0, firstContender + 3, 7),
+      ('2017-06-27', '15:55', firstContender + 1, firstContender + 2, 3);
 
-    -- Games pool D
+    -- Games pool 2B
     SET firstContender = firstContender + 4;
     INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
     VALUES
-      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 6),
-      ('2017-06-27', '13:40', firstContender + 2, firstContender + 3, 8),
-      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 4),
-      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 6),
-      ('2017-06-27', '14:20', firstContender + 0, firstContender + 3, 8),
-      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 4);
+      ('2017-06-27', '14:45', firstContender + 0, firstContender + 1, 6),
+      ('2017-06-27', '14:55', firstContender + 2, firstContender + 3, 8),
+      ('2017-06-27', '15:15', firstContender + 0, firstContender + 2, 4),
+      ('2017-06-27', '15:25', firstContender + 1, firstContender + 3, 6),
+      ('2017-06-27', '15:35', firstContender + 0, firstContender + 3, 8),
+      ('2017-06-27', '15:55', firstContender + 1, firstContender + 2, 4);
 
-    -- Games pool E
+    -- Games pool 3A
     SET firstContender = firstContender + 4;
     INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
     VALUES
-      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 7),
-      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 3),
-      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 5),
-      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 7),
-      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 3),
-      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 5);
+      ('2017-06-27', '14:45', firstContender + 0, firstContender + 1, 7),
+      ('2017-06-27', '15:05', firstContender + 2, firstContender + 3, 3),
+      ('2017-06-27', '15:15', firstContender + 0, firstContender + 2, 5),
+      ('2017-06-27', '15:25', firstContender + 1, firstContender + 3, 7),
+      ('2017-06-27', '15:45', firstContender + 0, firstContender + 3, 3),
+      ('2017-06-27', '15:55', firstContender + 1, firstContender + 2, 5);
 
-    -- Games pool F
+    -- Games pool 3B
     SET firstContender = firstContender + 4;
     INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
     VALUES
-      ('2017-06-27', '13:30', firstContender + 0, firstContender + 1, 8),
-      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 4),
-      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 6),
-      ('2017-06-27', '14:10', firstContender + 1, firstContender + 3, 8),
-      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 4),
-      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 6);
+      ('2017-06-27', '14:45', firstContender + 0, firstContender + 1, 8),
+      ('2017-06-27', '15:05', firstContender + 2, firstContender + 3, 4),
+      ('2017-06-27', '15:15', firstContender + 0, firstContender + 2, 6),
+      ('2017-06-27', '15:25', firstContender + 1, firstContender + 3, 8),
+      ('2017-06-27', '15:45', firstContender + 0, firstContender + 3, 4),
+      ('2017-06-27', '15:55', firstContender + 1, firstContender + 2, 6);
 
-    -- Games pool G
+    -- Games pool 4A
     SET firstContender = firstContender + 4;
     INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
     VALUES
-      ('2017-06-27', '13:40', firstContender + 0, firstContender + 1, 3),
-      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 5),
-      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 7),
-      ('2017-06-27', '14:20', firstContender + 1, firstContender + 3, 3),
-      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 5),
-      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 7);
+      ('2017-06-27', '14:55', firstContender + 0, firstContender + 1, 3),
+      ('2017-06-27', '15:05', firstContender + 2, firstContender + 3, 5),
+      ('2017-06-27', '15:15', firstContender + 0, firstContender + 2, 7),
+      ('2017-06-27', '15:35', firstContender + 1, firstContender + 3, 3),
+      ('2017-06-27', '15:45', firstContender + 0, firstContender + 3, 5),
+      ('2017-06-27', '15:55', firstContender + 1, firstContender + 2, 7);
 
-    -- Games pool H
+    -- Games pool 4B
     SET firstContender = firstContender + 4;
     INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
     VALUES
-      ('2017-06-27', '13:40', firstContender + 0, firstContender + 1, 4),
-      ('2017-06-27', '13:50', firstContender + 2, firstContender + 3, 6),
-      ('2017-06-27', '14:00', firstContender + 0, firstContender + 2, 8),
-      ('2017-06-27', '14:20', firstContender + 1, firstContender + 3, 4),
-      ('2017-06-27', '14:30', firstContender + 0, firstContender + 3, 6),
-      ('2017-06-27', '14:40', firstContender + 1, firstContender + 2, 8);
+      ('2017-06-27', '14:55', firstContender + 0, firstContender + 1, 4),
+      ('2017-06-27', '15:05', firstContender + 2, firstContender + 3, 6),
+      ('2017-06-27', '15:15', firstContender + 0, firstContender + 2, 8),
+      ('2017-06-27', '15:35', firstContender + 1, firstContender + 3, 4),
+      ('2017-06-27', '15:45', firstContender + 0, firstContender + 3, 6),
+      ('2017-06-27', '15:55', firstContender + 1, firstContender + 2, 8);
+
+    -- Stage 3: finals
+    INSERT INTO pools (tournament_id, start_time, end_time, poolName, mode_id, gameType_id, poolSize, stage, isFinished)
+    VALUES
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 1-2', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 3-4', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 5-6', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 7-8', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 9-10', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 11-12', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 13-14', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 15-16', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 17-18', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 19-20', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 21-22', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 23-14', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 25-26', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 27-28', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 29-30', 1, 1, 2, 3, 0),
+      ((SELECT id
+        FROM tournaments
+        WHERE name = 'Badminton'), '16:15', '16:00', 'Finale 31-32', 1, 1, 2, 3, 0);
+    SET firstFinal = LAST_INSERT_ID();
+
+    INSERT INTO contenders (pool_id, rank_in_pool, pool_from_id)
+    VALUES
+      (firstFinal + 0, 1, firstPoolStage2 + 0),
+      (firstFinal + 0, 1, firstPoolStage2 + 1),
+      (firstFinal + 1, 2, firstPoolStage2 + 0),
+      (firstFinal + 1, 2, firstPoolStage2 + 1),
+      (firstFinal + 2, 3, firstPoolStage2 + 0),
+      (firstFinal + 2, 3, firstPoolStage2 + 1),
+      (firstFinal + 3, 4, firstPoolStage2 + 0),
+      (firstFinal + 3, 4, firstPoolStage2 + 1),
+      (firstFinal + 4, 1, firstPoolStage2 + 2),
+      (firstFinal + 4, 1, firstPoolStage2 + 3),
+      (firstFinal + 5, 2, firstPoolStage2 + 2),
+      (firstFinal + 5, 2, firstPoolStage2 + 3),
+      (firstFinal + 6, 3, firstPoolStage2 + 2),
+      (firstFinal + 6, 3, firstPoolStage2 + 3),
+      (firstFinal + 7, 4, firstPoolStage2 + 2),
+      (firstFinal + 7, 4, firstPoolStage2 + 3),
+      (firstFinal + 8, 1, firstPoolStage2 + 4),
+      (firstFinal + 8, 1, firstPoolStage2 + 5),
+      (firstFinal + 9, 2, firstPoolStage2 + 4),
+      (firstFinal + 9, 2, firstPoolStage2 + 5),
+      (firstFinal + 10, 3, firstPoolStage2 + 4),
+      (firstFinal + 10, 3, firstPoolStage2 + 5),
+      (firstFinal + 11, 4, firstPoolStage2 + 4),
+      (firstFinal + 11, 4, firstPoolStage2 + 5),
+      (firstFinal + 12, 1, firstPoolStage2 + 6),
+      (firstFinal + 12, 1, firstPoolStage2 + 7),
+      (firstFinal + 13, 2, firstPoolStage2 + 6),
+      (firstFinal + 13, 2, firstPoolStage2 + 7),
+      (firstFinal + 14, 3, firstPoolStage2 + 6),
+      (firstFinal + 14, 3, firstPoolStage2 + 7),
+      (firstFinal + 15, 4, firstPoolStage2 + 6),
+      (firstFinal + 15, 4, firstPoolStage2 + 7);
+
+    -- Games pool 1A
+    SET firstContender = LAST_INSERT_ID();
+    INSERT INTO games (date, start_time, contender1_id, contender2_id, court_id)
+    VALUES
+      ('2017-06-27', '16:45', firstContender + 0, firstContender + 1, 3),
+      ('2017-06-27', '16:45', firstContender + 2, firstContender + 3, 6),
+      ('2017-06-27', '16:45', firstContender + 4, firstContender + 5, 4),
+      ('2017-06-27', '16:45', firstContender + 6, firstContender + 7, 7),
+      ('2017-06-27', '16:30', firstContender + 8, firstContender + 9, 8),
+      ('2017-06-27', '16:30', firstContender + 10, firstContender + 11, 7),
+      ('2017-06-27', '16:30', firstContender + 12, firstContender + 13, 6),
+      ('2017-06-27', '16:30', firstContender + 14, firstContender + 15, 5),
+      ('2017-06-27', '16:30', firstContender + 16, firstContender + 17, 4),
+      ('2017-06-27', '16:30', firstContender + 18, firstContender + 19, 3),
+      ('2017-06-27', '16:15', firstContender + 20, firstContender + 21, 8),
+      ('2017-06-27', '16:15', firstContender + 22, firstContender + 23, 7),
+      ('2017-06-27', '16:15', firstContender + 24, firstContender + 25, 6),
+      ('2017-06-27', '16:15', firstContender + 26, firstContender + 27, 5),
+      ('2017-06-27', '16:15', firstContender + 28, firstContender + 29, 4),
+      ('2017-06-27', '16:15', firstContender + 30, firstContender + 31, 3);
+
 
   END;
 

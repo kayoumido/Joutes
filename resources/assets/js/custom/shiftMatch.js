@@ -21,6 +21,7 @@ $( document ).ready(function() {
 		//if empty or not numeric
 		if(!(shiftTime % 1 === 0 && shiftTime != '')){
 			displayAlert("danger", "Le décalage doit être un numéro entier qui correspond à un temps en minute...");
+			opac.remove();
 			return;
 		}
 

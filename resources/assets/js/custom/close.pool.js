@@ -13,19 +13,19 @@ function closePool() {
 
 
 // Display the popup
-function alertConfirmEndPool(title, text){
+function alertConfirmEndPool(title, text) {
     swal({
-    title: title,
-    text: text,
-    type: "warning",
-    showCancelButton: true,
-    cancelButtonText: "Annuler",
-    confirmButtonColor: "#DD6B55",
-    confirmButtonText: "Confirmer"
-},
-function(isConfirm){
-        if(isConfirm){
-        
+        title: title,
+        text: text,
+        type: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Annuler",
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Confirmer"
+    },
+    function(isConfirm){
+        if(isConfirm) {
+
 
             // Create the loader
             var opac = document.createElement("div");
@@ -88,7 +88,6 @@ function(isConfirm){
                 });
 
             });
-
 
         }
 

@@ -1,41 +1,41 @@
 -- Empty the current database's tables and reset autoincrement to 1
 
-SET FOREIGN_KEY_CHECKS = 0;
-
-DELIMITER $$
-CREATE PROCEDURE clearDb()
-  BEGIN
-    DECLARE oneTable CHAR(100);
-    DECLARE finished INT DEFAULT 0;
-    DECLARE allTables CURSOR FOR SELECT table_name
-                                 FROM information_schema.tables
-                                 WHERE table_schema = (SELECT DATABASE());
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET finished = 1;
-    OPEN allTables;
-    get_table: LOOP
-      FETCH allTables
-      INTO oneTable;
-      IF finished = 1
-      THEN
-        LEAVE get_table;
-      END IF;
-      IF oneTable <> 'migrations'
-      THEN
-        SET @qry1 := concat('delete from ', oneTable);
-        PREPARE stmt FROM @qry1;
-        EXECUTE stmt;
-        SET @qry1 := concat('ALTER TABLE ', oneTable, ' auto_increment=1');
-        PREPARE stmt FROM @qry1;
-        EXECUTE stmt;
-      END IF;
-    END LOOP get_table;
-    CLOSE allTables;
-  END;
-$$
-CALL clearDb();
-DROP PROCEDURE clearDb;
-
-SET FOREIGN_KEY_CHECKS = 1;
+-- SET FOREIGN_KEY_CHECKS = 0;
+--
+-- DELIMITER $$
+-- CREATE PROCEDURE clearDb()
+--   BEGIN
+--     DECLARE oneTable CHAR(100);
+--     DECLARE finished INT DEFAULT 0;
+--     DECLARE allTables CURSOR FOR SELECT table_name
+--                                  FROM information_schema.tables
+--                                  WHERE table_schema = (SELECT DATABASE());
+--     DECLARE CONTINUE HANDLER FOR NOT FOUND SET finished = 1;
+--     OPEN allTables;
+--     get_table: LOOP
+--       FETCH allTables
+--       INTO oneTable;
+--       IF finished = 1
+--       THEN
+--         LEAVE get_table;
+--       END IF;
+--       IF oneTable <> 'migrations'
+--       THEN
+--         SET @qry1 := concat('delete from ', oneTable);
+--         PREPARE stmt FROM @qry1;
+--         EXECUTE stmt;
+--         SET @qry1 := concat('ALTER TABLE ', oneTable, ' auto_increment=1');
+--         PREPARE stmt FROM @qry1;
+--         EXECUTE stmt;
+--       END IF;
+--     END LOOP get_table;
+--     CLOSE allTables;
+--   END;
+-- $$
+-- CALL clearDb();
+-- DROP PROCEDURE clearDb;
+--
+-- SET FOREIGN_KEY_CHECKS = 1;
 
 -- ========================================== Data ==============================================
 
@@ -723,6 +723,6 @@ DROP PROCEDURE AddBadmintonTournament;
 -- Temporarily for ease of testing: create admin and writer
 
 INSERT INTO joutes.users (username, password, role)
-VALUES ('writer', '$2y$10$1nlzftBwvtxq6yueKHvROukJ9acntgG1pmu.qb1UY80pJWFchadP6', 'writter');
+VALUES ('writer', '$2y$10$1nlzftBwvtxq6yueKHvROukJ9acntgG1pmu.qb1UY80pJWFchadP6', 'writer');
 INSERT INTO joutes.users (username, password, role)
 VALUES ('admin', '$2y$10$RsiBblUoNfis0/TAmWR3NuLQRUITxQbQmsaSAdCPyto1z4eUs4ZlW', 'administrator');

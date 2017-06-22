@@ -25,7 +25,8 @@
 
 .schedule .match .info,
 .schedule .header .info {
-    font-size: 8rem;
+    /*font-size: 8rem;*/
+    font-size: 1.4vh;
 }
 
 .schedule .match .team-name {

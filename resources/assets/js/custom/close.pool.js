@@ -72,6 +72,9 @@ function(isConfirm){
                         });
 
                         $('.close-pool-btn').remove();
+
+                        $('input#shiftTime').parent().remove();
+
                         // Remove loader
                         opac.remove();
                     },

@@ -9,8 +9,9 @@ class ParticipantTeamTransformer extends TransformerAbstract
     public function transform(Team $teams) {
 
         return [
-            'id'   => (int) $teams->id,
-            'name' => (string) $teams->name,
+            'id'            => (int) $teams->id,
+            'name'          => (string) $teams->name,
+            'tournament_id' => (int) $teams->tournament->id,
         ];
     }
 }

@@ -72,11 +72,17 @@ class Tournament extends Model
     {
         // depends on $withFinishedPool used
         $pools = ($withFinishedPool) ? $this->pools :  $this->getNotFinishedPools()->sortBy('start_time');
-        $currentStage = $this->getCurrentStage();
-        return $pools->filter(function($value, $key) use ($currentStage)
-        {
-            return ($value['stage'] == $currentStage);
-        });
+
+        //if there is at least one pool
+        if(!$pools->isEmpty()){
+            $currentStage = $this->getCurrentStage();
+            return $pools->filter(function($value, $key) use ($currentStage)
+            {
+                return ($value['stage'] == $currentStage);
+            });
+        }
+        //to not return nothing
+        return collect();
     }
     /**
      * get the number of the current stage (the first stage which has not finished pools)

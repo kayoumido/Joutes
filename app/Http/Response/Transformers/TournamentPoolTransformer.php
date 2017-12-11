@@ -13,5 +13,6 @@ class TournamentPoolTransformer extends TransformerAbstract
             'stage'         => $pool->stage,
             'isFinished'    => $pool->isFinished
         ];
+
     }
 }

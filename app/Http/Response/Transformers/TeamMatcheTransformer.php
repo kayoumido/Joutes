@@ -25,6 +25,7 @@ class TeamMatcheTransformer extends TransformerAbstract
 
         return [
             'id'            => (int) $game->id,
+            'idPool'        => (int) $game->pool()->id,
             'ownScore'      => (int) $ownScore,
             'opponentScore' => (int) $opponentScore,
             'ownName'       => (string) $ownName,

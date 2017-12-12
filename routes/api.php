@@ -27,6 +27,10 @@ $api->version('v1', function ($api) {
             'index', 'show'
         ]]);
 
+        $api->resource('events.tournaments.pools', 'App\Http\Controllers\API\EventTournamentPoolController', [ 'only' => [
+            'show'
+        ]]);
+
         $api->resource('events.teams', 'App\Http\Controllers\API\EventTeamController', [ 'only' => [
             'index', 'show'
         ]]);

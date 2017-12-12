@@ -44,7 +44,7 @@ class Pool extends Model
     *
     * @author Loïc Dessaules
     */
-    public function rankings(){
+    public function rankings() {
         $teams = $this->teams();
         $games = $this->games;
 

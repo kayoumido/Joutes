@@ -22,7 +22,6 @@ class SingleTournamentTransformer extends TransformerAbstract
             'winner'        => [],
             'second'        => [],
             'third'         => [],
-            'group_matches' => [],
         ];
     }
 
@@ -31,6 +30,6 @@ class SingleTournamentTransformer extends TransformerAbstract
     }
     public function includePools(Tournament $tournament)
     {
-        return $this->collection($tournament->getCurrentStagePools(true), new TournamentPoolTransformer);
+        return $this->collection($tournament->pools, new TournamentPoolTransformer);
     }
 }

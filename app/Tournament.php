@@ -63,6 +63,49 @@ class Tournament extends Model
     public function pools() {
         return $this->hasMany('App\Pool');
     }
+    /**
+     * return the pools of the current stage
+     * @param  Boolean withFinishedPool if it is true, the function will return also the finished pools of the current stage
+     * @return Collection return a collection of pools
+     */
+    public function getCurrentStagePools($withFinishedPool = false)
+    {
+        // depends on $withFinishedPool used
+        $pools = ($withFinishedPool) ? $this->pools :  $this->getNotFinishedPools()->sortBy('start_time');
+
+        //if there is at least one pool
+        if(!$pools->isEmpty()){
+            $currentStage = $this->getCurrentStage();
+            return $pools->filter(function($value, $key) use ($currentStage)
+            {
+                return ($value['stage'] == $currentStage);
+            });
+        }
+        //to not return nothing
+        return collect();
+    }
+    /**
+     * get the number of the current stage (the first stage which has not finished pools)
+     * @return Collection return a collection of pools
+     */
+    public function getCurrentStage()
+    {
+        return $this->pools->where('isFinished', 0)
+                            ->sortBy('stage')
+                            ->first()
+                            ->stage;
+    }
+    /**
+     * return the pools which aren't finished
+     * @return Collection return a collection of pools
+     */
+    public function getNotFinishedPools()
+    {
+        return $this->pools->filter(function($value, $key)
+        {
+            return !$value['isFinished'];
+        });
+    }
 
     /**
      * Get all active games of a tournament

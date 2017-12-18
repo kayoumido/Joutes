@@ -10,14 +10,14 @@ class TournamentTransformer extends TransformerAbstract
         $results = $tournament->results();
         $first_second = null;
         $third_forth = null;
-        if (!empty($results)) {
+        if (count($results) > 0) {
             $first_second = $results->first()->rankings();
             $third_forth = $results->last()->rankings();
             if ($first_second === $third_forth) {
                 $third_forth = null;
             }
         }
-        
+
         return [
             'id'     => (int) $tournament->id,
             'name'   => (string) $tournament->name,

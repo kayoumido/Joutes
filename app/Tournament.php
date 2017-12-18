@@ -80,7 +80,7 @@ class Tournament extends Model
     public function pool($id)
     {
         // get tournament pools
-        $pools = $this->pools()->get();
+        $pools = $this->pools;
 
         // look for wanted pool
         foreach ($pools as $pool) {
@@ -88,6 +88,20 @@ class Tournament extends Model
                 return $pool;
             }
         }
+    }
+
+    public function results() {
+        $pools = $this->pools;
+        $filtered = null;
+        if (!empty($pools->last())) {
+            $final_stage = $pools->last()->stage;
+            $filtered = $pools->filter(function($value, $key) use (&$final_stage) {
+                if ($value['stage'] == $final_stage && $value['isFinished'] == 1)
+                return $value;
+            });
+            $pools = null;
+        }
+        return $filtered;
     }
 
     /**

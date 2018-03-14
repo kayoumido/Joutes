@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Event;
+use App\Http\Response\Transformers\TournamentPoolTransformer;
+use App\Tournament;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Response\Transformers\SinglePoolTransformer;
@@ -15,8 +17,15 @@ class EventTournamentPoolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request, $tournament_id) {
+        // check if it's an api request
+        if ($request->is('api/*'))
+        {
+            // get tournament pools
+            $pools = Tournament::findOrFail($tournament_id)->pools;
 
+            return $this->response->collection($pools, new TournamentPoolTransformer, ['key' => 'pools']);
+        }
     }
 
     /**

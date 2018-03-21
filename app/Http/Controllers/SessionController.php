@@ -38,8 +38,7 @@ class SessionController extends Controller
      */
     public function destroy($id)
     {
-        Auth::logout();
-        return redirect(route('events.index'));
+        return redirect()->route('saml_logout');
     }
 
 }

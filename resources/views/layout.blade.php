@@ -27,7 +27,7 @@
                     {{ Form::button('<i class="fa fa-power-off" aria-hidden="true"></i>', array('type' => 'submit','class' => 'logout')) }}
                 {{ Form::close() }}
             @else
-                <span id="login_link"><a href="saml2/login">Connexion</a></span>
+                <span id="login_link"><a href="/saml2/login">Connexion</a></span>
             @endif
         </div>
     </div>

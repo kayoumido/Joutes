@@ -182,6 +182,12 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ApiServiceProvider::class,
 
+        /*
+         *  Saml providers
+         */
+
+        Aacotroneo\Saml2\Saml2ServiceProvider::class,
+
     ],
 
     /*
@@ -231,7 +237,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
+        'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class,
     ],
 
 ];

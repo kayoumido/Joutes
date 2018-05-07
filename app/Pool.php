@@ -44,7 +44,7 @@ class Pool extends Model
     *
     * @author Loïc Dessaules
     */
-    public function rankings(){
+    public function rankings() {
         $teams = $this->teams();
         $games = $this->games;
 
@@ -240,19 +240,9 @@ class Pool extends Model
     public function isEditable(){
         if(Auth::check()){
             $role = Auth::user()->role;
-            if($role == "writer" || $role == "administrator"){
-                if($this->isFinished == 0){
-                    return true;
-                }else{
-                    return false;
-                }
-                return true;
-            }else{
-                return false;
-            }
-        }else{
-            return false;
+            if($role == "writer" || $role == "administrator") return ($this->isFinished == 0);
         }
+        return false;
     }
 
 }

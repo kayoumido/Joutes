@@ -7,26 +7,33 @@ use League\Fractal\TransformerAbstract;
 class SingleTeamTransformer extends TransformerAbstract
 {
     public $defaultIncludes = [
-        "members",
-        'tournament',
+        'matches',
+        'members',
+        'tournament'
     ];
 
-    public function transform(Team $team) {
-
+    public function transform(Team $team)
+    {
         return [
             'id'         => (int) $team->id,
             'name'       => (string) $team->name,
             'status'     => (string) '',
-            'sport'      => $team->sport->name,
-            'matches'    => [],
+            'sport'      => $team->sport->name
         ];
     }
 
-    public function includeMembers(Team $team) {
+    public function includeMembers(Team $team)
+    {
         return $this->collection($team->participants, new TeamMemberTransformer);
     }
 
-    public function includeTournament(Team $team) {
+    public function includeTournament(Team $team)
+    {
         return $this->item($team->tournament, new TeamTournamentTransformer);
+    }
+
+    public function includeMatches(Team $team)
+    {
+        return $this->collection($team->games(), new TeamMatcheTransformer);
     }
 }

@@ -10,3 +10,5 @@ Homestead.yaml
 public/event_img/
 
 public/tournament_img/
+
+package-lock\.json

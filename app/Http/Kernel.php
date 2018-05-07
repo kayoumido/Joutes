@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'checkIsAdmin' => \App\Http\Middleware\CheckIsAdmin::class,
         'checkIsWriterOrAdmin' => \App\Http\Middleware\CheckIsWriterOrAdmin::class,
+        'samlauth' => \App\Http\Middleware\SamlAuth::class,
     ];
 }

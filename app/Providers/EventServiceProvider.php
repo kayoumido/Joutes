@@ -16,6 +16,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+        'Aacotroneo\Saml2\Events\Saml2LoginEvent' => [
+            'App\Listeners\LoginListener',
+        ],
+        'Aacotroneo\Saml2\Events\Saml2LogoutEvent' => [
+            'App\Listeners\LogoutListener',
+        ],
     ];
 
     /**

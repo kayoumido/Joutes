@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-
+	/*
 	// Login popup
 	$("#login_link").click(function() {
 		$('#login_popup').modal();
@@ -9,7 +9,6 @@ $( document ).ready(function() {
 	$('#login_popup').on('shown.bs.modal', function(){
 		$("#username").focus();
 	})
-
 
 	$("#login_popup .btn-login-form").click(function(event){
 		event.preventDefault();
@@ -40,7 +39,8 @@ $( document ).ready(function() {
             }
         });
 	});
-	
+
+	*/
 
 	// set click event on import button
 	$('.import').click(function(event) {
@@ -50,6 +50,7 @@ $( document ).ready(function() {
 		// submit form
 		$(this).parent().submit();
 	});
+
 
 	$('.show-devs').click(function() {
 		if ($('.dev-names').hasClass('hide')) {
